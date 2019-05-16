@@ -4,20 +4,17 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>LaCiMovl</ion-title>
+    <div style="margin-left:16%;"><ion-title>LaCiMovl</ion-title></div>
   </ion-navbar>
 </ion-header>
 
 <ion-content  padding>
-    <body background="https://www.unibelia.es/academia-las-palmas/wp-content/uploads/fondo-celeste-trans.png">
-    <h3>Bienvenido a la LaCiMovl</h3>
+  <div style="text-align:center"><h3>Bienvenido a la LaCiMovl</h3></div>
 
-     <img src="https://images.vexels.com/media/users/3/141264/isolated/preview/f82866c9cdd747c705ec7bcea2ed62cf-deportista-corriendo-by-vexels.png">
+  <img src="assets/imgs/deportista.png"style="width:100%;text-align:center;margin-top:0%;">
 
-
-    <button ion-button secondary (click)="iniciar_sesion()">Iniciar Sesión</button>
-    <button ion-button secondary (click)="registrar()">Registrarse</button>
-    <!--<button ion-button secondary menuToggle>Registrarse</button>-->  
-    </body>
+  <button ion-button secondary (click)="iniciar_sesion()">Iniciar Sesión</button>
+  <button ion-button secondary (click)="registrar()">Registrarse</button>
+  <!--<button ion-button secondary menuToggle>Registrarse</button>-->  
   
 </ion-content>
