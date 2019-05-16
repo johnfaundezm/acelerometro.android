@@ -8,13 +8,16 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content  padding>
+<ion-content  class="grad">
   <div style="text-align:center"><h3>Bienvenido a la LaCiMovl</h3></div>
 
-  <img src="assets/imgs/deportista.png"style="width:100%;text-align:center;">
-
-  <button ion-button secondary (click)="iniciar_sesion()">Iniciar Sesión</button>
-  <button ion-button secondary (click)="registrar()">Registrarse</button>
+  <img src="assets/imgs/deportista.png"style="width:20%;text-align:center;margin-left:40%">
+  <div style="text-align:center"><h3>Usuario</h3></div>
+  <div style="text-align:center"><input type="text" name="nombredelacaja"></div>
+  <div style="text-align:center"><h3>Contraseña</h3></div>
+  <div style="text-align:center"><input type="text" name="nombredelacaja"></div>
+  <div style="text-align:center"><button ion-button secondary (click)="iniciar_sesion()">Iniciar Sesión</button></div>
+  <div style="text-align:center"><button ion-button secondary (click)="registrar()">Registrarse</button></div>
   <!--<button ion-button secondary menuToggle>Registrarse</button>-->  
   
 </ion-content>
