@@ -1,6 +1,31 @@
 
-<ion-content padding>
+<ion-content class="grad" padding>
 
-	<h3>Camilo anda a acostarte porfa, ¿tamoh?</h3>
+    <div style="text-align:center; margin-top:40% ;color:white "><h3>Crear Cuenta</h3></div>
+
+    <ion-item style="margin-top:15%" class="border_r">
+      <ion-input type="text" placeholder="Correo" ></ion-input>
+    </ion-item>
+    <br>
+  
+    <ion-item class="border_r">
+      <ion-input type="text" placeholder="Contraseña" ></ion-input>
+    </ion-item>
+    <br>
+  
+    <ion-list>
+      <ion-item class="border_r">
+        <ion-label>ROL</ion-label>
+        <ion-select >
+          <ion-option >Deportista</ion-option>
+          <ion-option >Entrenador</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  
+    <div style="text-align:center;margin-top:5%">
+      <button ion-button secondary class="btn_ok" >Registrarse</button>
+      <button ion-button color="light" clear secondary >Cancelar</button>
+    </div>
 
 </ion-content>
