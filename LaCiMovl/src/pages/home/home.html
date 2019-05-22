@@ -1,34 +1,51 @@
-<ion-content  class="grad" padding>
+<ion-content  class="grad" padding> <!--padding = margen entre contenido de la vista y sus bordes-->
 
+  <!--Menu desplegrable lado izquierdo-->
   <button ion-button color="light" menuToggle clear>
       <ion-icon name="menu"></ion-icon>
   </button>
   <br>
-  <img class="logo" src="assets/imgs/logofinal.png"style="width:20%;margin-left:40%; margin-top:10%">
-
+  <!--Imagen Insertada-->
+  <img class="logo" src="assets/imgs/logofinal.png">
+  
+  <!--Texto Central-->
   <div style="text-align:center;margin-top:5% ;color:white">
     <h6>LaCiMovl</h6>
   </div>
-
   <br>
-  <ion-item style="margin-top:25%; border-radius:20px">
-      <ion-input type="text" placeholder="Correo" ></ion-input>
+  <!--formulario de ingreso de correo electronico-->
+  <ion-item style="margin-top:20%; border-radius:20px">
+      <ion-input  [(ngModel)]="correo" type="text" placeholder="Correo" ></ion-input>
   </ion-item>
+  <br>
   
-  <br> 
+  <!--Formulario de ingreso de contraseña--> 
   <ion-item style="border-radius:20px">
-      <ion-input type="password" placeholder="Contraseña"></ion-input>
+      <ion-input [(ngModel)]="pass" type="password" placeholder="Contraseña"></ion-input>
   </ion-item>
-  
+  <br>
 
+  <ion-list>
+    <ion-item style="border-radius: 20px">
+      <ion-label>ROL</ion-label>
+      <ion-select>
+        <ion-option value="Deportista">Deportista</ion-option>
+        <ion-option value="Entrenador">Entrenador</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  
+<!--Boton de inicio de sesión-->
   <div style="text-align:center;margin-top:5%">
-    <button ion-button secondary class="btn_ok" >Iniciar Sesión</button>
+    <button ion-button secondary class="btn_ok" (click)="guardarbd()">Iniciar Sesión</button>
   </div>
 
+<!--Boton de registro-->
   <div style="text-align:center">
-    <button ion-button secondary color="light" clear >Registrarse</button>
+    <button ion-button color="light" clear (click)="registrar()">Registrarse</button>
   </div>
 
-  <div class="pie_page"><label>Todos los derechos reservados ®</label></div>  
-  
+<!--Pie de pagina-->
+  <div class="pie_page"><label>Todos los derechos reservados ®</label></div>
+
 </ion-content>

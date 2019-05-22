@@ -25,4 +25,41 @@ export class HomePage {
   	this.navCtrl.push(RegistroPage);
   }
 
+  guardarbd(){
+    
+    this.sqlite.create({
+      name: 'LaCiMovl.db',
+      location: 'default'
+    })
+      .then((db: SQLiteObject) => {
+
+        //insercion de datos
+        db.executeSql('insert into usuario values (?,?,?)', [null,this.correo,this.pass])
+        .then((data)=>{
+         alert('insert ok'+JSON.stringify(data));
+         db.executeSql('select * from usuario',[]).then((data) => {
+
+          alert('usuario'+JSON.stringify(data.rows.item(0).correo));
+          /*if(data.rows.length > 0) {
+            alert('usuario'+data.rows.item(0).correo);
+          }*/
+        }, (err) => {
+           alert(JSON.stringify(err));
+        }).catch(e=>{alert(JSON.stringify(e))});
+       },
+       (err)=>{
+         JSON.stringify('insert error'+err);
+       }).catch(err=>{
+
+         JSON.stringify('insert error2'+err);
+       });
+
+       
+
+      });
+
+
+
+  }
+
 }

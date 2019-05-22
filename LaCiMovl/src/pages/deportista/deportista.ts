@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { PopoverComponent } from '../../components/popover/popover';
-import { DatabaseProvider } from '../../providers/database/database';
+
+
 /**
  * Generated class for the DeportistaPage page.
  *
@@ -16,9 +18,7 @@ import { DatabaseProvider } from '../../providers/database/database';
 })
 export class DeportistaPage {
 
-  ListUser : any;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, private database: DatabaseProvider ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite, public popoverCtrl: PopoverController) {
   }
 
   presentPopover(myEvent) {
@@ -32,13 +32,41 @@ export class DeportistaPage {
     console.log('ionViewDidLoad DeportistaPage');
   }
 
-  GetAllUsers(){
-    this.database.GetAllUsers().then((data: any) =>{
-      console.log(data);
-      this.ListUser = data;
-    }, (error) =>{
-      console.log(error);
+  guardarbd(){
+    
+    this.sqlite.create({
+      name: 'LaCiMovl.db',
+      location: 'default'
     })
+      .then((db: SQLiteObject) => {
+
+        //insercion de datos
+        db.executeSql('insert into usuario values (?,?,?,?)', [])
+        .then((data)=>{
+         alert('insert ok'+JSON.stringify(data));
+         db.executeSql('select * from perfil_entrenador',[]).then((data) => {
+
+          alert('usuario'+JSON.stringify(data.rows.item(0).nombre));
+          /*if(data.rows.length > 0) {
+            alert('usuario'+data.rows.item(0).correo);
+          }*/
+         }, (err) => {
+           alert(JSON.stringify(err));
+        }).catch(e=>{alert(JSON.stringify(e))});
+       },
+       (err)=>{
+         JSON.stringify('insert error'+err);
+       }).catch(err=>{
+
+         JSON.stringify('insert error2'+err);
+       });
+
+       
+
+      });
+
+
+
   }
 
 }

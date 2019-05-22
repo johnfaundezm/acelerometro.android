@@ -1,14 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HomePage } from '../home/home';
 import { DatabaseProvider } from '../../providers/database/database';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
-/**
- * Generated class for the RegistroPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -16,18 +11,17 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: 'registro.html',
 })
 export class RegistroPage {
-  ListUser : any;
+
+  private ListUser : any; 
   private todo: FormGroup;
 
-  constructor(public navCtrl: NavController, private database: DatabaseProvider , public navParams: NavParams, private formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, private database: DatabaseProvider, private formBuilder: FormBuilder) {
+    
     this.todo = this.formBuilder.group({
       correo: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]],
       pass: ['', [Validators.required, Validators.maxLength(8)]],
     });
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RegistroPage');
+   
   }
 
   CreateUser(){
@@ -48,6 +42,16 @@ export class RegistroPage {
     }, (error) =>{
       console.log(error);
     })
+  }
+
+  DeleteUser(correo){
+    console.log(correo);
+
+  }
+
+  
+  cancelar(){
+    this.navCtrl.push(HomePage);
   }
 
 }

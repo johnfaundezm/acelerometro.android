@@ -31,6 +31,21 @@ export class DatabaseProvider {
     }
   }
 
+  abrirbd(){
+    this.storage = new SQLite();
+      this.storage.create({ name: "data.db", location: "default" }).then((db: SQLiteObject) => {
+        this.db = db;
+        db.executeSql("CREATE TABLE IF NOT EXISTS users (correo TEXT, pass TEXT)", []).then(
+          (res)=>{
+            alert('se creo la bd'+res);
+          }
+        );
+        this.isOpen = true;
+      }).catch((error) => {
+        alert('no se creo la bd'+error);
+      })
+  }
+
   CreateUser(correo:string, pass:string){
     return new Promise ((resolve, reject) => {
       let sql = "INSERT INTO users (correo, pass) VALUES (?, ?)";

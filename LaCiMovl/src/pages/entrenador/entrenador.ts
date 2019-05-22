@@ -1,13 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { DatabaseProvider } from '../../providers/database/database';
-
-/**
- * Generated class for the EntrenadorPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { PopovercoachComponent } from '../../components/popovercoach/popovercoach';
 
 @IonicPage()
 @Component({
@@ -16,21 +9,18 @@ import { DatabaseProvider } from '../../providers/database/database';
 })
 export class EntrenadorPage {
 
-  ListUser : any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController) {
+  }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private database: DatabaseProvider ) {
+  presentPopovercoach(myEvent) {
+    let popover = this.popoverCtrl.create(PopovercoachComponent);
+    popover.present({
+      ev: myEvent
+    })
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EntrenadorPage');
   }
 
-  GetAllUsers(){
-    this.database.GetAllUsers().then((data: any) =>{
-      console.log(data);
-      this.ListUser = data;
-    }, (error) =>{
-      console.log(error);
-    })
-  }
 }

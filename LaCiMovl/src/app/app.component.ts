@@ -9,18 +9,20 @@ import { ListPage } from '../pages/list/list';
 import { AdministradorPage } from '../pages/administrador/administrador';
 import { EntrenadorPage } from '../pages/entrenador/entrenador';
 import { DeportistaPage } from '../pages/deportista/deportista';
+import {DatabaseProvider} from '../providers/database/database';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
+  
 
   rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(private sqlite: SQLite, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(private sqlite: SQLite, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public db: DatabaseProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -38,6 +40,7 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      this.db.abrirbd();
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
@@ -52,3 +55,5 @@ export class MyApp {
   
 
 }
+
+// db.executeSql('create table if not exists usuario(id INTEGER PRIMARY KEY, correo VARCHAR(20), contraseña VARCHAR(16), nombre VARCHAR(20), apellido VARCHAR(20), genero VARCHAR(9), fecha_n DATE, edad INTEGER, masa VARCHAR(5), estatura VARCHAR(5), IMC VARCHAR(5), tipo INTEGER, estado VARCHAR(9), fecha_r DATE, pais VARCHAR(20), ciudad VARCHAR(20)', [])

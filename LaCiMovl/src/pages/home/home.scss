@@ -1,6 +1,10 @@
+/*ESTILO DE LA PAGINA DE Origen*/
+
 page-home {
+	/*Colores de Fondo de pantalla*/
 	.grad {
-  		background-image: linear-gradient(#1575E1, #33D7FF);
+		/*Colores gradientes del fondo de pantalla*/
+		background-image: linear-gradient(#1575E1, #33D7FF);
 	}
 
 	.logo {
@@ -11,13 +15,13 @@ page-home {
 	}
 
 	.btn_ok{
-		background-color:#FF780F;
+		background-color:#FF780F;	/*Color de botón*/
 	}
-
+	/*Estilo de texto pie de pagina (derechos reservados)*/
 	.pie_page {
-		text-align: center;
-		margin-top: 25%;
-		color: white;
-		font-size: 75%;
+		text-align: center;	/*ubicacion del texto horizontal*/
+		margin-top: 25%;	/*ubicacion del texto vertical*/
+		color: white;	  /*Color de la fuente*/
+		font-size: 75%;		/*tamaño de la fuente*/
 	}
 }
