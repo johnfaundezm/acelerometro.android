@@ -16,6 +16,8 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: 'administrador.html',
 })
 export class AdministradorPage {
+  ListUser : any; 
+  private todo: FormGroup;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private database: DatabaseProvider, private formBuilder: FormBuilder) {
   
@@ -39,5 +41,24 @@ export class AdministradorPage {
       console.log(error);
     })
   }
+
+  GetAllUsers(){
+    this.database.GetAllUsers().then((data: any) =>{
+      console.log(data);
+      this.ListUser = data;
+    }, (error) =>{
+      console.log(error);
+    })
+  }
+
+  DeleteUser(correo){
+    this.database.DeleteUser(correo).then((correo) =>{
+      console.log(correo);
+    }, (error) =>{
+      console.log(error);
+    })
+  }
+
+
 
 }

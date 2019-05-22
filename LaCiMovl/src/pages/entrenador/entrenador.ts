@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { DatabaseProvider } from '../../providers/database/database';
 
 /**
  * Generated class for the EntrenadorPage page.
@@ -15,11 +16,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class EntrenadorPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  ListUser : any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private database: DatabaseProvider ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EntrenadorPage');
   }
 
+  
 }

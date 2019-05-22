@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { PopoverComponent } from '../../components/popover/popover';
+import { DatabaseProvider } from '../../providers/database/database';
 /**
  * Generated class for the DeportistaPage page.
  *
@@ -15,7 +16,7 @@ import { PopoverComponent } from '../../components/popover/popover';
 })
 export class DeportistaPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, private database: DatabaseProvider ) {
   }
 
   presentPopover(myEvent) {
