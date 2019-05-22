@@ -25,5 +25,12 @@ export class EntrenadorPage {
     console.log('ionViewDidLoad EntrenadorPage');
   }
 
-  
+  GetAllUsers(){
+    this.database.GetAllUsers().then((data: any) =>{
+      console.log(data);
+      this.ListUser = data;
+    }, (error) =>{
+      console.log(error);
+    })
+  }
 }

@@ -16,6 +16,8 @@ import { DatabaseProvider } from '../../providers/database/database';
 })
 export class DeportistaPage {
 
+  ListUser : any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, private database: DatabaseProvider ) {
   }
 
@@ -28,6 +30,15 @@ export class DeportistaPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DeportistaPage');
+  }
+
+  GetAllUsers(){
+    this.database.GetAllUsers().then((data: any) =>{
+      console.log(data);
+      this.ListUser = data;
+    }, (error) =>{
+      console.log(error);
+    })
   }
 
 }
