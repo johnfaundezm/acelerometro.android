@@ -1,19 +1,28 @@
-En consola ejecutar los siguientes comandos:
+-En consola ejecutar los siguientes comandos:
 
 	npm install -g ionic cordova
 
-Instalar android studio.
+-Instalar android studio.
 
-Se puede utilizar cualquier editor de texto, recomendable utilizar visual studio code.
+-Se puede utilizar cualquier editor de texto, recomendable utilizar visual studio code.
 
-Para crear un nuevo proyecto ejecutar en consola:
+-Para crear un nuevo proyecto ejecutar en consola:
 
 	ionic start helloWorld blank --type=ionic-angular
 
-Para compilar en el navegador escribir en consola:
+-Para compilar se debe llegar a la carpeta ("helloWorld" se llamaría la carpeta si ejecuta 
+el comando anterior) donde se creó el proyecto por consola y ejecutar el siguiente comando. 
 
 	ionic server --lab
 
-para compilar en el telefono(este debe estar conectado) escribir en consola:
+-para compilar en el telefono(este debe estar conectado) escribir en consola:
 
 	ionic cordova run android
+
+-Otra opcion, es copiar la apk que se encuentra en:
+
+acelerometro.android\LaCiMovl\platforms\android\app\build\outputs\apk\debug\
+
+dentro de esta ultima carpeta (debug) se encontrará un archivo llamado app-debug.apk, el cual 
+se puede copiar en su celular y al ejecutarlo instalará la aplicación, el nombre de la aplicacion será "MyApp"
+
