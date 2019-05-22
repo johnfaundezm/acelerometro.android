@@ -1,0 +1,19 @@
+En consola ejecutar los siguientes comandos:
+
+	npm install -g ionic cordova
+
+Instalar android studio.
+
+Se puede utilizar cualquier editor de texto, recomendable utilizar visual studio code.
+
+Para crear un nuevo proyecto ejecutar en consola:
+
+	ionic start helloWorld blank --type=ionic-angular
+
+Para compilar en el navegador escribir en consola:
+
+	ionic server --lab
+
+para compilar en el telefono(este debe estar conectado) escribir en consola:
+
+	ionic cordova run android
