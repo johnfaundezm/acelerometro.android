@@ -37,12 +37,12 @@ export class DatabaseProvider {
         this.db = db;
         db.executeSql("CREATE TABLE IF NOT EXISTS users (correo TEXT, pass TEXT)", []).then(
           (res)=>{
-            alert('se creo la bd'+res);
+           // alert('se creo la bd'+res);
           }
         );
         this.isOpen = true;
       }).catch((error) => {
-        alert('no se creo la bd'+error);
+       // alert('no se creo la bd'+error);
       })
   }
 

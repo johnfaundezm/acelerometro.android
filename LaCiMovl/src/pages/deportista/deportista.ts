@@ -18,6 +18,8 @@ import { PopoverComponent } from '../../components/popover/popover';
 })
 export class DeportistaPage {
 
+  usuario: Array<{correo:string,pass:string}>=[{correo:'',pass:''}];
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite, public popoverCtrl: PopoverController) {
   }
 
@@ -29,37 +31,44 @@ export class DeportistaPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DeportistaPage');
+    while(this.usuario.length>0){
+      this.usuario.pop();
+    }
+    
+    this.traerdatos();
   }
 
-  guardarbd(){
-    
+
+  traerdatos(){
+
     this.sqlite.create({
-      name: 'LaCiMovl.db',
+      name: 'data.db',
       location: 'default'
     })
       .then((db: SQLiteObject) => {
 
-        //insercion de datos
-        db.executeSql('insert into usuario values (?,?,?,?)', [])
-        .then((data)=>{
-         alert('insert ok'+JSON.stringify(data));
-         db.executeSql('select * from perfil_entrenador',[]).then((data) => {
+         db.executeSql('select * from users',[]).then((data) => {
 
-          alert('usuario'+JSON.stringify(data.rows.item(0).nombre));
+          //alert('correo'+JSON.stringify(data.rows.item(0).correo));
+          //alert('pass'+JSON.stringify(data.rows.item(0).pass));
+
+          let largo=data.rows.length;
+        
+        for(var i=0;i<largo;i++){
+
+          var correo =data.rows.item(0).correo;
+          var pass = data.rows.item(0).pass;
+
+          this.usuario.push({"correo":correo,"pass":pass});
+          
+        }
           /*if(data.rows.length > 0) {
             alert('usuario'+data.rows.item(0).correo);
           }*/
          }, (err) => {
            alert(JSON.stringify(err));
         }).catch(e=>{alert(JSON.stringify(e))});
-       },
-       (err)=>{
-         JSON.stringify('insert error'+err);
-       }).catch(err=>{
-
-         JSON.stringify('insert error2'+err);
-       });
+       
 
        
 

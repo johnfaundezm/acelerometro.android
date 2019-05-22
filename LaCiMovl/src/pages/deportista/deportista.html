@@ -9,7 +9,7 @@
       Informacion Personal
     </ion-card-header>
 
-    <ion-list>
+    <!--<ion-list>
 
       <ion-item>
         <ion-label>Nombre</ion-label>
@@ -47,6 +47,18 @@
       </ion-item>
 
     </ion-list>
+  -->
+  <div>
+    <ion-list inset *ngFor="let u of usuario" >
+        <ion-item>
+    
+            <h2>Correo: {{u.correo}}</h2>
+            <h4>Contraseña: {{u.pass}}</h4>
+ 
+        </ion-item>
+    </ion-list>
+
+  </div>
 
     <ion-item >
       <button ion-button color="secondary" block (click)="presentPopover($event)">
@@ -68,6 +80,7 @@
       Estadisticas
     </ion-card-header>
   
-  </ion-card>
+  </ion-card>-->
+
 
 </ion-content>

@@ -28,16 +28,17 @@
   <ion-list>
     <ion-item style="border-radius: 20px">
       <ion-label>ROL</ion-label>
-      <ion-select>
-        <ion-option value="Deportista">Deportista</ion-option>
-        <ion-option value="Entrenador">Entrenador</ion-option>
+      <ion-select [(ngModel)]="rol">
+        <ion-option value="0">Administrador</ion-option>
+        <ion-option value="1">Deportista</ion-option>
+        <ion-option value="2">Entrenador</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
   
 <!--Boton de inicio de sesión-->
   <div style="text-align:center;margin-top:5%">
-    <button ion-button secondary class="btn_ok" (click)="guardarbd()">Iniciar Sesión</button>
+    <button ion-button secondary class="btn_ok" (click)="condicion()">Iniciar Sesión</button>
   </div>
 
 <!--Boton de registro-->

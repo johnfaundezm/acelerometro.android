@@ -14,6 +14,8 @@ export class RegistroPage {
 
   private ListUser : any; 
   private todo: FormGroup;
+  correo:any;
+  pass:any;
 
   constructor(public navCtrl: NavController, private database: DatabaseProvider, private formBuilder: FormBuilder) {
     
@@ -24,14 +26,13 @@ export class RegistroPage {
    
   }
 
-  CreateUser(){
+  crearusuario(){
     console.log(this.todo);
 
-    this.database.CreateUser(this.todo.value.correo,this.todo.value.pass).then((data) =>{
-      console.log(data);
-      this.GetAllUsers();
+    this.database.CreateUser(this.correo,this.pass).then((data) =>{
+      alert('registra en la bd'+JSON.stringify(data));
     }, (error) =>{
-      console.log(error);
+      alert('no registra en la bd'+JSON.stringify(error));
     })
   }
 
