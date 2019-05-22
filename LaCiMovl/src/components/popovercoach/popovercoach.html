@@ -2,41 +2,30 @@
   
   <ion-item>
     <ion-label fixed>Nombre</ion-label>
-    <ion-input [(ngModel)]="nombre"></ion-input>
+    <ion-input></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label fixed>Apellidos</ion-label>
-    <ion-input [(ngModel)]="apellido"></ion-input>
-  </ion-item>
-
-    <ion-item>
-      <ion-label>Genero</ion-label>
-      <ion-select [(ngModel)]="genero">
-        <ion-option value=Masculino>Masculino</ion-option>
-        <ion-option value=Femenino>Femenino</ion-option>
-      </ion-select>
-    </ion-item>
-
-  <ion-item>
-    <ion-label fixed>Masa(Kg)</ion-label>
-    <ion-input [(ngModel)]="peso"></ion-input>
+    <ion-input></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label fixed>Altura(m)</ion-label>
-    <ion-input [(ngModel)]="estatura"></ion-input>
+    <ion-label>Genero</ion-label>
+    <ion-select >
+      <ion-option value=Masculino>Masculino</ion-option>
+      <ion-option value=Femenino>Femenino</ion-option>
+    </ion-select>
   </ion-item>
 
   <ion-item>
-    <ion-label fixed>Edad</ion-label>
-    <ion-datetime [(ngModel)]="Edad"></ion-datetime>
+    <ion-label fixed>Fecha nacimiento</ion-label>
+    <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD/MMM/YYYY" ></ion-datetime>
   </ion-item>
 
-
-    <ion-item>
+  <ion-item>
       <ion-label>Pais</ion-label>
-      <ion-select [(ngModel)]="pais">
+      <ion-select >
         <ion-option value="Argentina">Argentina</ion-option>
         <ion-option value="Bolivia">Bolivia</ion-option>
         <ion-option value="Brasil">Brasil</ion-option>
@@ -58,8 +47,8 @@
         <ion-option value="Uruguay">Uruguay</ion-option>
         <ion-option value="Venezuela">Venezuela</ion-option>
       </ion-select>
-    </ion-item>
+  </ion-item>
 
+<button ion-button style="margin-left: 30%">Guardar</button>
 
-  <button ion-button style="margin-left: 30%">Guardar</button>
 </ion-content>
