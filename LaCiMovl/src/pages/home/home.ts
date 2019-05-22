@@ -33,8 +33,11 @@ export class HomePage {
     if(this.rol==1){
       this.navCtrl.push(DeportistaPage);
     }
-    else{
+    if(this.rol==0){
       this.navCtrl.push(AdministradorPage);
+    }
+    if(this.rol!=0 && this.rol!=1 && this.rol!=2){
+      alert('Escoja un rol');
     }  
   }
 
