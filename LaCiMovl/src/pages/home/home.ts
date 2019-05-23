@@ -2,7 +2,6 @@
 import { Component } from '@angular/core';//componentes de angular
 import { NavController } from 'ionic-angular';//controladores de angular
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';//enlace con la base de datos
-import { Storage } from '@ionic/storage';
 
 import { RegistroPage} from '../registro/registro';//conexion con las vista registro
 import { EntrenadorPage} from '../entrenador/entrenador';//conexion con las vista Entrenador
@@ -22,8 +21,53 @@ export class HomePage {
   pass:any;
   rol:any;
 
-  constructor(public navCtrl: NavController, private sqlite: SQLite, private storage: Storage) {
+  constructor(public navCtrl: NavController, private sqlite: SQLite) {
 
+  }
+
+  inicio_sesion(){
+    this.sqlite.create({
+      name: 'data.db',
+      location: 'default'
+    })
+    .then((db: SQLiteObject) => {
+
+      db.executeSql('SELECT * FROM users Where correo=(?)',[this.correo]).then((data) => {
+
+      //alert('correo'+JSON.stringify(data.rows.item(0).correo));
+      //alert('pass'+JSON.stringify(data.rows.item(0).pass));
+
+      var correo =data.rows.item(0).correo;
+      var pass = data.rows.item(0).pass;
+      
+      if(this.rol==2){
+        this.navCtrl.push(EntrenadorPage, {correo:this.correo});
+      }
+      if(this.rol==1){
+        if(correo==this.correo && pass==this.pass){
+          this.navCtrl.push(DeportistaPage, {correo:this.correo});
+        }
+        else(
+          alert('El usuario no existe o su contraseña es incorrecta')
+        ) 
+      }
+      if(this.rol==0){
+        this.navCtrl.push(AdministradorPage, {correo:this.correo});
+      }
+      if(this.rol!=0 && this.rol!=1 && this.rol!=2){
+        alert('Escoja un rol');
+      } 
+
+      /*if(data.rows.length > 0) {
+        alert('usuario'+data.rows.item(0).correo);
+      }*/
+      }, (err) => {
+          //alert(JSON.stringify(err));
+          
+      }).catch(e=>{alert('El correo no existe')});
+      //.catch(e=>{alert(JSON.stringify(e))});
+
+    });
   }
 
   condicion(){
