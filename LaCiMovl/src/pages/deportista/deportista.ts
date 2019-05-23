@@ -17,10 +17,11 @@ import { PopoverComponent } from '../../components/popover/popover';
   templateUrl: 'deportista.html',
 })
 export class DeportistaPage {
-
+  correo:any;
   usuario: Array<{correo:string,pass:string}>=[{correo:'',pass:''}];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite, public popoverCtrl: PopoverController) {
+      this.correo = this.navParams.get('correo');
   }
 
   presentPopover(myEvent) {
@@ -35,9 +36,41 @@ export class DeportistaPage {
       this.usuario.pop();
     }
     
-    this.traerdatos();
+    //this.traerdatos();
+    this.datos_user();
   }
 
+  datos_user(){
+
+    this.sqlite.create({
+      name: 'data.db',
+      location: 'default'
+    })
+    .then((db: SQLiteObject) => {
+
+      db.executeSql('SELECT * FROM users Where correo=(?)',[this.correo]).then((data) => {
+
+      //alert('correo'+JSON.stringify(data.rows.item(0).correo));
+      //alert('pass'+JSON.stringify(data.rows.item(0).pass));
+
+      let largo=data.rows.length;
+      
+
+      var correo =data.rows.item(0).correo;
+      var pass = data.rows.item(0).pass;
+
+      this.usuario.push({"correo":correo,"pass":pass});
+
+      /*if(data.rows.length > 0) {
+        alert('usuario'+data.rows.item(0).correo);
+      }*/
+      }, (err) => {
+          alert(JSON.stringify(err));
+      }).catch(e=>{alert(JSON.stringify(e))});
+
+    });
+
+  }
 
   traerdatos(){
 
@@ -45,36 +78,31 @@ export class DeportistaPage {
       name: 'data.db',
       location: 'default'
     })
-      .then((db: SQLiteObject) => {
+    .then((db: SQLiteObject) => {
 
-         db.executeSql('select * from users',[]).then((data) => {
+        db.executeSql('SELECT * FROM users ',[]).then((data) => {
 
-          //alert('correo'+JSON.stringify(data.rows.item(0).correo));
-          //alert('pass'+JSON.stringify(data.rows.item(0).pass));
+        //alert('correo'+JSON.stringify(data.rows.item(0).correo));
+        //alert('pass'+JSON.stringify(data.rows.item(0).pass));
 
-          let largo=data.rows.length;
+        let largo=data.rows.length;
+      
+      for(var i=0;i<largo;i++){
+
+        var correo =data.rows.item(0).correo;
+        var pass = data.rows.item(0).pass;
+
+        this.usuario.push({"correo":correo,"pass":pass});
         
-        for(var i=0;i<largo;i++){
+      }
+        /*if(data.rows.length > 0) {
+          alert('usuario'+data.rows.item(0).correo);
+        }*/
+        }, (err) => {
+          alert(JSON.stringify(err));
+      }).catch(e=>{alert(JSON.stringify(e))});
 
-          var correo =data.rows.item(0).correo;
-          var pass = data.rows.item(0).pass;
-
-          this.usuario.push({"correo":correo,"pass":pass});
-          
-        }
-          /*if(data.rows.length > 0) {
-            alert('usuario'+data.rows.item(0).correo);
-          }*/
-         }, (err) => {
-           alert(JSON.stringify(err));
-        }).catch(e=>{alert(JSON.stringify(e))});
-       
-
-       
-
-      });
-
-
+    });
 
   }
 

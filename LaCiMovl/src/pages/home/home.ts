@@ -31,7 +31,7 @@ export class HomePage {
       this.navCtrl.push(EntrenadorPage);
     }
     if(this.rol==1){
-      this.navCtrl.push(DeportistaPage);
+      this.navCtrl.push(DeportistaPage,{correo:this.correo});
     }
     if(this.rol==0){
       this.navCtrl.push(AdministradorPage);
