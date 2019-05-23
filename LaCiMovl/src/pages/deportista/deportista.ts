@@ -48,7 +48,7 @@ export class DeportistaPage {
     })
     .then((db: SQLiteObject) => {
 
-      db.executeSql('SELECT * FROM users Where correo=(?)',[this.correo]).then((data) => {
+      db.executeSql('SELECT * FROM perfil_deportista Where correo=(?)',[this.correo]).then((data) => {
 
       //alert('correo'+JSON.stringify(data.rows.item(0).correo));
       //alert('pass'+JSON.stringify(data.rows.item(0).pass));
@@ -80,7 +80,7 @@ export class DeportistaPage {
     })
     .then((db: SQLiteObject) => {
 
-        db.executeSql('SELECT * FROM users ',[]).then((data) => {
+        db.executeSql('SELECT * FROM perfil_deportista WHERE ',[]).then((data) => {
 
         //alert('correo'+JSON.stringify(data.rows.item(0).correo));
         //alert('pass'+JSON.stringify(data.rows.item(0).pass));

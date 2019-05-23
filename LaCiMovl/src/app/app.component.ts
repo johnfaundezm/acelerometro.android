@@ -7,7 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { AdministradorPage } from '../pages/administrador/administrador';
 import { EntrenadorPage } from '../pages/entrenador/entrenador';
-import { DeportistaPage } from '../pages/deportista/deportista';
+//import { DeportistaPage } from '../pages/deportista/deportista';
 import {DatabaseProvider} from '../providers/database/database';
 
 @Component({
@@ -29,7 +29,7 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Administrador', component: AdministradorPage },
       { title: 'Entrenador', component: EntrenadorPage },
-      { title: 'Deportista', component: DeportistaPage },
+      //{ title: 'Deportista', component: DeportistaPage },
       { title: 'List', component: ListPage }
     ];
 

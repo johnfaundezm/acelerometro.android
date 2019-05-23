@@ -16,6 +16,7 @@ export class RegistroPage {
   private todo: FormGroup;
   correo:any;
   pass:any;
+  rol:any;
 
   constructor(public navCtrl: NavController, private database: DatabaseProvider, private formBuilder: FormBuilder) {
     
@@ -29,11 +30,29 @@ export class RegistroPage {
   crearusuario(){
     console.log(this.todo);
 
-    this.database.CreateUser(this.correo,this.pass).then((data) =>{
-      alert('registra en la bd'+JSON.stringify(data));
-    }, (error) =>{
-      alert('no registra en la bd'+JSON.stringify(error));
-    })
+    if(this.rol==0){
+      this.database.Create_administrador(this.correo,this.pass).then((data) =>{
+        alert('registra en la bd'+JSON.stringify(data));
+      }, (error) =>{
+        alert('no registra en la bd'+JSON.stringify(error));
+      })
+    }
+
+    if(this.rol==1){
+      this.database.Create_deportista(this.correo,this.pass).then((data) =>{
+        alert('registra en la bd'+JSON.stringify(data));
+      }, (error) =>{
+        alert('no registra en la bd'+JSON.stringify(error));
+      })
+    }
+
+    if(this.rol==2){
+      this.database.Create_entrenador(this.correo,this.pass).then((data) =>{
+        alert('registra en la bd'+JSON.stringify(data));
+      }, (error) =>{
+        alert('no registra en la bd'+JSON.stringify(error));
+      })
+    } 
   }
 
   GetAllUsers(){

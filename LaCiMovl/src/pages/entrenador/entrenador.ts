@@ -23,4 +23,6 @@ export class EntrenadorPage {
     console.log('ionViewDidLoad EntrenadorPage');
   }
 
+  
+
 }

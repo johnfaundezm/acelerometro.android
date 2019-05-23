@@ -32,40 +32,57 @@ export class HomePage {
     })
     .then((db: SQLiteObject) => {
 
-      db.executeSql('SELECT * FROM users Where correo=(?)',[this.correo]).then((data) => {
+      if(this.rol==0){
+        db.executeSql('SELECT * FROM perfil_administrador Where correo=(?)',[this.correo]).then((data) => {
+          var correo =data.rows.item(0).correo;
+          var pass = data.rows.item(0).pass;
+          if(correo==this.correo && pass==this.pass){
+            this.navCtrl.push(AdministradorPage, {correo:this.correo});
+          }
+          else(
+            alert('El correo no existe o su contraseña es incorrecta')
+          )
+        }, (err) => {
+          //alert(JSON.stringify(err));
+          
+        }).catch(e=>{alert('El correo no existe o no existe para este Rol')});   
+      }
 
-      //alert('correo'+JSON.stringify(data.rows.item(0).correo));
-      //alert('pass'+JSON.stringify(data.rows.item(0).pass));
-
-      var correo =data.rows.item(0).correo;
-      var pass = data.rows.item(0).pass;
+      if(this.rol==1){
+        db.executeSql('SELECT * FROM perfil_deportista WHERE correo=(?)',[this.correo]).then((data) => {
+          var correo =data.rows.item(0).correo;
+          var pass = data.rows.item(0).pass;
+          if(correo==this.correo && pass==this.pass){
+            this.navCtrl.push(DeportistaPage, {correo:this.correo});
+          }
+          else(
+            alert('El correo no existe o su contraseña es incorrecta')
+          )
+        }, (err) => {
+          //alert(JSON.stringify(err));
+          
+        }).catch(e=>{alert('El correo no existe o no existe para este Rol')});
+      }
       
       if(this.rol==2){
-        this.navCtrl.push(EntrenadorPage, {correo:this.correo});
+        db.executeSql('SELECT * FROM perfil_entrenador WHERE correo=(?)',[this.correo]).then((data) => {
+          var correo =data.rows.item(0).correo;
+          var pass = data.rows.item(0).pass;
+          if(correo==this.correo && pass==this.pass){
+            this.navCtrl.push(EntrenadorPage, {correo:this.correo});
+          }
+          else(
+            alert('El correo no existe o su contraseña es incorrecta')
+          )
+        }, (err) => {
+          //alert(JSON.stringify(err));
+          
+        }).catch(e=>{alert('El correo no existe o no existe para este Rol')});
       }
-      if(this.rol==1){
-        if(correo==this.correo && pass==this.pass){
-          this.navCtrl.push(DeportistaPage, {correo:this.correo});
-        }
-        else(
-          alert('El usuario no existe o su contraseña es incorrecta')
-        ) 
-      }
-      if(this.rol==0){
-        this.navCtrl.push(AdministradorPage, {correo:this.correo});
-      }
+      
       if(this.rol!=0 && this.rol!=1 && this.rol!=2){
         alert('Escoja un rol');
       } 
-
-      /*if(data.rows.length > 0) {
-        alert('usuario'+data.rows.item(0).correo);
-      }*/
-      }, (err) => {
-          //alert(JSON.stringify(err));
-          
-      }).catch(e=>{alert('El correo no existe')});
-      //.catch(e=>{alert(JSON.stringify(e))});
 
     });
   }
