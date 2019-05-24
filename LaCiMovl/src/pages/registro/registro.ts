@@ -18,16 +18,8 @@ export class RegistroPage {
   private todo: FormGroup;
   correo:any;
   pass:any;
-  nombre:any;
-  apellido_p:any;
-  apellido_m:any;
-  genero:any;
-  edad:any;
-  peso:any;
-  estatura:any;
-  imc:any;
-  pais:any;
-  fecha_r:any;
+  
+  today = Date.now();
   id_tipo_usuario:any;
   rol:any;
 
@@ -40,9 +32,18 @@ export class RegistroPage {
    
   }
 
+  prueba(){
+    this.webservices.prueba('carlos2').then(
+      (resultado) =>{
+        alert('oka'+JSON.stringify(resultado));
+      },
+      (error) =>{
+        alert('error'+JSON.stringify(error));
+      })
+  }
 
   registrar(){
-    this.webservices.Registrar(this.correo,this.pass,this.nombre,this.apellido_p,this.apellido_m, this.genero,this.edad,this.peso,this.estatura,this.imc,this.pais,this.fecha_r,this.id_tipo_usuario).then(
+    this.webservices.registrar(this.correo,this.pass,'null','null','null','null',0,0,0,0,'','2019-05-24',this.id_tipo_usuario).then(
       (resultado) =>{
         alert('oka'+JSON.stringify(resultado));
       },
