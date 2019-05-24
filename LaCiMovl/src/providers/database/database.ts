@@ -27,13 +27,13 @@ export class DatabaseProvider {
               (res)=>{
                 db.executeSql("CREATE TABLE IF NOT EXISTS perfil_deportista(correo VARCHAR, pass VARCHAR, nombre VARCHAR, apellido VARCHAR, genero VARCHAR, edad INTEGER, pais VARCHAR, masa FLOAT, estatura FLOAT, imc FLOAT, fecha_registro VARCHAR)",[]).then(
                   (res)=>{
-                    alert('se creo la bd 3'+res);
+                    //alert('se creo la bd 3'+res);
                   }
                 );
-                alert('se creo la bd 2'+res);
+                //alert('se creo la bd 2'+res);
               }
             );
-            alert('se creo la bd 1'+res);
+            //alert('se creo la bd 1'+res);
           }
         );
         

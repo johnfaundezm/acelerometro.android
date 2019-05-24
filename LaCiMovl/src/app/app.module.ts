@@ -23,6 +23,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IonicStorageModule } from '@ionic/storage';
 import { DatabaseProvider } from '../providers/database/database';
 import { HttpModule } from '@angular/http';
+import { WebservicesProvider } from '../providers/webservices/webservices';
+import { HTTP } from '@ionic-native/http';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -43,7 +46,8 @@ import { HttpModule } from '@angular/http';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
-    HttpModule
+    HttpModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -62,7 +66,9 @@ import { HttpModule } from '@angular/http';
     SplashScreen,
     SQLite,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DatabaseProvider
+    DatabaseProvider,
+    WebservicesProvider,
+    HTTP
   ]
 })
 export class AppModule {}

@@ -10,18 +10,74 @@
   </ion-item>
   <br>
 
+  <ion-item class="border_r">
+    <ion-input [(ngModel)]="nombre" type="text" placeholder="Nombre" ></ion-input>
+  </ion-item>
+  <br>
+
+  <ion-item class="border_r">
+    <ion-input [(ngModel)]="apellido_p" type="text" placeholder="Apellido Paterno" ></ion-input>
+  </ion-item>
+  <br>
+
+  <ion-item class="border_r">
+    <ion-input [(ngModel)]="apellido_m" type="text" placeholder="Apellido Materno" ></ion-input>
+  </ion-item>
+  <br>
+
   <ion-list>
     <ion-item class="border_r">
       <ion-label >ROL</ion-label>
-      <ion-select [(ngModel)]="rol">
-        <ion-option value="1">Deportista</ion-option>
+      <ion-select [(ngModel)]="genero">
+        <ion-option value="Femenino">Femenino</ion-option>
+        <ion-option value="Masculino">Masculino</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-item class="border_r">
+    <ion-input [(ngModel)]="edad" type="text" placeholder="Edad" ></ion-input>
+  </ion-item>
+  <br>
+
+  <ion-item class="border_r">
+    <ion-input [(ngModel)]="peso" type="text" placeholder="Peso" ></ion-input>
+  </ion-item>
+  <br>
+
+  <ion-item class="border_r">
+    <ion-input [(ngModel)]="estatura" type="text" placeholder="Estatura" ></ion-input>
+  </ion-item>
+  <br>
+
+  <ion-item class="border_r">
+    <ion-input [(ngModel)]="imc" type="text" placeholder="Imc" ></ion-input>
+  </ion-item>
+  <br>
+
+  <ion-item class="border_r">
+    <ion-input [(ngModel)]="pais" type="text" placeholder="Pais" ></ion-input>
+  </ion-item>
+  <br>
+
+  <ion-item class="border_r">
+    <ion-input [(ngModel)]="fecha_r" type="text" placeholder="Fecha de Registro" ></ion-input>
+  </ion-item>
+  <br>
+
+  <ion-list>
+    <ion-item class="border_r">
+      <ion-label >ROL</ion-label>
+      <ion-select [(ngModel)]="id_tipo_usuario">
+        <ion-option value="3">Deportista</ion-option>
         <ion-option value="2">Entrenador</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
 
   <div style="text-align:center;margin-top:5%">
-    <button ion-button secondary class="btn_ok" (click)="crearusuario()">Registrarse</button>
+    <!--<button ion-button secondary class="btn_ok" (click)="crearusuario()">Registrarse</button>-->
+    <button ion-button secondary class="btn_ok" (click)="registrar()">Registrarse</button>
     <button ion-button color="light" clear secondary (click)="cancelar()">Cancelar</button>
   </div>
 

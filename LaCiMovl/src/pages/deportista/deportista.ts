@@ -53,9 +53,6 @@ export class DeportistaPage {
       //alert('correo'+JSON.stringify(data.rows.item(0).correo));
       //alert('pass'+JSON.stringify(data.rows.item(0).pass));
 
-      let largo=data.rows.length;
-      
-
       var correo =data.rows.item(0).correo;
       var pass = data.rows.item(0).pass;
 
