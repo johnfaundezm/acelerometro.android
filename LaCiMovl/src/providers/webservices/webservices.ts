@@ -38,6 +38,57 @@ export class WebservicesProvider {
         }, error => reject(error));
     });
   }
+
+  actualizar(correo,pass,nombre,apellido_p,apellido_m,genero,edad,peso,estatura,imc,pais) {
+    return new Promise( (resolve, reject) => {
+      
+      let headers = new Headers({
+        "Content-Type": "application/x-www-form-urlencoded"
+      });
+      let options = new RequestOptions({
+        headers: headers
+      });
+      // TODO: Encode the values using encodeURIComponent().
+      let body = 'correo='+correo + '&pass='+pass +'&nombre='+nombre +'&apellido_p='+apellido_p +'&apellido_m='+apellido_m +'&genero='+genero +'&edad='+edad +'&peso='+peso +'&estatura='+estatura +'&imc='+imc +'&pais='+pais;
+
+      let url = "https://lacimovl.000webhostapp.com/webservices/update_usuario.php";
+
+      this.http.post(url, body, options)
+        .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
+        .subscribe(data => {
+          alert(JSON.stringify(data));
+          if (data != 'null') resolve( data );  
+          else resolve (false);
+        }, error => reject(error));
+    });
+  }
+
+  consulta(correo) {
+    return new Promise( (resolve, reject) => {
+      
+      let headers = new Headers({
+        "Content-Type": "application/x-www-form-urlencoded"
+      });
+      let options = new RequestOptions({
+        headers: headers
+      });
+      // TODO: Encode the values using encodeURIComponent().
+      let body = 'correo='+correo;
+
+      let url = "https://lacimovl.000webhostapp.com/webservices/select_dep.php";
+
+      this.http.post(url, body, options)
+        .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
+        .subscribe(data => {
+          alert(JSON.stringify(data));
+          if (data != 'null') resolve( data );  
+          else resolve (false);
+        }, error => reject(error));
+    });
+  }
+
+
+
   prueba(nombre) {
     return new Promise( (resolve, reject) => {
       

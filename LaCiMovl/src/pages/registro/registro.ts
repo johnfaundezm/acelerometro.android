@@ -19,7 +19,6 @@ export class RegistroPage {
   correo:any;
   pass:any;
   
-  today = Date.now();
   id_tipo_usuario:any;
   rol:any;
 
@@ -52,6 +51,7 @@ export class RegistroPage {
       })
   }
 
+  //sqlite
   crearusuario(){
     console.log(this.todo);
 

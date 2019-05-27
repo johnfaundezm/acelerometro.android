@@ -19,7 +19,7 @@ export class HomePage {
 
   correo:any;
   pass:any;
-  rol:any;
+  rol:any=1;
 
   constructor(public navCtrl: NavController, private sqlite: SQLite) {
 
@@ -97,9 +97,9 @@ export class HomePage {
     if(this.rol==0){
       this.navCtrl.push(AdministradorPage);
     }
-    if(this.rol!=0 && this.rol!=1 && this.rol!=2){
-      alert('Escoja un rol');
-    }  
+    //if(this.rol!=0 && this.rol!=1 && this.rol!=2){
+    //  alert('Escoja un rol');
+    //}  
   }
 
   registrar(){

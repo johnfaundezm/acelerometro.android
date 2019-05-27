@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { PopoverComponent } from '../../components/popover/popover';
+import { WebservicesProvider } from '../../providers/webservices/webservices';
 
 
 /**
@@ -17,10 +18,21 @@ import { PopoverComponent } from '../../components/popover/popover';
   templateUrl: 'deportista.html',
 })
 export class DeportistaPage {
-  correo:any;
-  usuario: Array<{correo:string,pass:string}>=[{correo:'',pass:''}];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite, public popoverCtrl: PopoverController) {
+
+  correo:any;
+  pass:any;
+  nombre:any;
+  apellido_p:any;
+  apellido_m:any;
+  genero:any;
+  edad:any;
+  peso:any;
+  estatura:any;
+  imc:any;
+  pais:any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite, public popoverCtrl: PopoverController, private webservices: WebservicesProvider) {
       this.correo = this.navParams.get('correo');
   }
 
@@ -32,15 +44,46 @@ export class DeportistaPage {
   }
 
   ionViewDidLoad() {
-    while(this.usuario.length>0){
-      this.usuario.pop();
-    }
+    alert(this.correo);
+    this.consulta();
     
     //this.traerdatos();
-    this.datos_user();
+    //this.datos_user();
   }
 
-  datos_user(){
+  actualizar(){
+    this.webservices.actualizar(this.correo, this.pass, this.nombre, this.apellido_p, this.apellido_m, this.genero, this.edad, this.peso, this.estatura, this.imc, this.pais).then(
+      (resultado) =>{
+        alert('oka'+JSON.stringify(resultado));
+      },
+      (error) =>{
+        alert('error'+JSON.stringify(error));
+      })
+  }
+
+  consulta(){
+    this.webservices.consulta(this.correo).then(
+      (datos)=>{
+        alert(JSON.stringify(datos));
+          this.pass= datos[0].PASS;
+          this.nombre= datos[0].NOMBRE;
+          this.apellido_p= datos[0].APELLIDO_P;
+          this.apellido_m= datos[0].APELLIDO_M;
+          this.genero= datos[0].GENERO;
+          this.edad= datos[0].EDAD;
+          this.peso= datos[0].PESO;
+          this.estatura= datos[0].ESTATURA;
+          this.imc= datos[0].IMC;
+          this.pais= datos[0].PAIS;
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
+  }
+
+
+  //sqlite
+  /*datos_user(){
 
     this.sqlite.create({
       name: 'data.db',
@@ -60,16 +103,16 @@ export class DeportistaPage {
 
       /*if(data.rows.length > 0) {
         alert('usuario'+data.rows.item(0).correo);
-      }*/
+}*//*
       }, (err) => {
           alert(JSON.stringify(err));
       }).catch(e=>{alert(JSON.stringify(e))});
 
     });
 
-  }
+  }*/
 
-  traerdatos(){
+  /*traerdatos(){
 
     this.sqlite.create({
       name: 'data.db',
@@ -94,13 +137,13 @@ export class DeportistaPage {
       }
         /*if(data.rows.length > 0) {
           alert('usuario'+data.rows.item(0).correo);
-        }*/
+        }*//*
         }, (err) => {
           alert(JSON.stringify(err));
       }).catch(e=>{alert(JSON.stringify(e))});
 
     });
 
-  }
+  }*/
 
 }
