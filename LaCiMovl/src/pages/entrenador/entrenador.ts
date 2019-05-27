@@ -13,7 +13,7 @@ export class EntrenadorPage {
   }
 
   presentPopovercoach(myEvent) {
-    let popover = this.popoverCtrl.create(PopovercoachComponent);
+    let popover = this.popoverCtrl.create(PopovercoachComponent, {}, {cssClass: 'popover-tamaño'});
     popover.present({
       ev: myEvent
     })
