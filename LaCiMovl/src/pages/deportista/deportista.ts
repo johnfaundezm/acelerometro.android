@@ -55,7 +55,7 @@ export class DeportistaPage {
   actualizar(){
     this.webservices.actualizar(this.correo, this.pass, this.nombre, this.apellido_p, this.apellido_m, this.genero, this.edad, this.peso, this.estatura, this.imc, this.pais).then(
       (resultado) =>{
-        alert('oka'+JSON.stringify(resultado));
+        //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
         alert('error'+JSON.stringify(error));
@@ -65,7 +65,7 @@ export class DeportistaPage {
   consulta(){
     this.webservices.consulta(this.correo).then(
       (datos)=>{
-        alert(JSON.stringify(datos));
+        //alert(JSON.stringify(datos));
           this.pass= datos[0].PASS;
           this.nombre= datos[0].NOMBRE;
           this.apellido_p= datos[0].APELLIDO_P;
