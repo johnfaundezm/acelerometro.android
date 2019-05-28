@@ -45,7 +45,7 @@ export class DeportistaPage {
   }
 
   ionViewDidLoad() {
-    alert(this.correo);
+    //alert(this.correo);
     this.consulta();
     
     //this.traerdatos();

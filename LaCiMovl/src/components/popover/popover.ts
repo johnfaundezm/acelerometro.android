@@ -38,6 +38,14 @@ export class PopoverComponent {
     this.correo = this.navParams.get('correo');
   }
 
+  ionViewDidLoad() {
+    alert(this.correo);
+    this.consulta();
+    
+    //this.traerdatos();
+    //this.datos_user();
+  }
+
 
   actualizar(){
     this.webservices.actualizar(this.correo, this.pass, this.nombre, this.apellido_p, this.apellido_m, this.genero, this.edad, this.peso, this.estatura, this.imc, this.pais).then(
