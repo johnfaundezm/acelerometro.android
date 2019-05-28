@@ -104,9 +104,14 @@ export class WebservicesProvider {
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
         .subscribe(data => {
-          //alert(JSON.stringify(data));
-          if (data != 'null') resolve( data );  
-          else resolve (false);
+          
+          if (data != 'null'){
+            //alert('alerta 1'+JSON.stringify(data));
+            resolve( data );
+          }   
+          else{
+            resolve (false);
+          } 
         }, error => {
           reject(error)
         });

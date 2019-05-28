@@ -1,6 +1,6 @@
 //Importaciones
 import { Component } from '@angular/core';//componentes de angular
-import { NavController } from 'ionic-angular';//controladores de angular
+import { NavController, Alert } from 'ionic-angular';//controladores de angular
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';//enlace con la base de datos
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 
@@ -23,6 +23,7 @@ export class HomePage {
   pass:any;
   pass2:any;
   rol:any;
+  respuesta:any;
 
   constructor(public navCtrl: NavController, private sqlite: SQLite, private webservices: WebservicesProvider) {
 
@@ -35,6 +36,7 @@ export class HomePage {
         this.email= datos[0].CORREO;
         this.pass2= datos[0].PASS;
         this.rol= datos[0].TIPO;
+        this.respuesta= datos[0].RESPUESTA;
 
         if(this.rol==1){
           
@@ -65,6 +67,10 @@ export class HomePage {
             alert('El correo no existe o su contraseña es incorrecta')
           )
         }
+        if(this.respuesta=='ERROR'){
+          alert('El correo no existe o su contraseña es incorrecta')
+        }
+
 
       },
       (err)=>{
