@@ -24,6 +24,7 @@ export class HomePage {
   pass2:any;
   rol:any;
   respuesta:any;
+  estado:any;
 
   constructor(public navCtrl: NavController, private sqlite: SQLite, private webservices: WebservicesProvider) {
 
@@ -35,42 +36,52 @@ export class HomePage {
         //alert(JSON.stringify(datos));
         this.email= datos[0].CORREO;
         this.pass2= datos[0].PASS;
+        this.estado= datos[0].ESTADO;
         this.rol= datos[0].TIPO;
         this.respuesta= datos[0].RESPUESTA;
 
-        if(this.rol==1){
-          
-          if(this.correo==this.email && this.pass==this.pass2){
-            this.navCtrl.push(AdministradorPage, {correo:this.correo});
+        if(this.estado=='activada'){
+        
+          if(this.rol==1){
+            
+            if(this.correo==this.email && this.pass==this.pass2){
+              this.navCtrl.push(AdministradorPage, {correo:this.correo});
+            }
+            else(
+              alert('El correo no existe o su contraseña es incorrecta')
+            )  
           }
-          else(
-            alert('El correo no existe o su contraseña es incorrecta')
-          )  
-        }
 
-        if(this.rol==2){
-          
-          if(this.correo==this.email && this.pass==this.pass2){
-            this.navCtrl.push(EntrenadorPage, {correo:this.correo});
+          if(this.rol==2){
+            
+            if(this.correo==this.email && this.pass==this.pass2){
+              this.navCtrl.push(EntrenadorPage, {correo:this.correo});
+            }
+            else(
+              alert('El correo no existe o su contraseña es incorrecta')
+            )
           }
-          else(
-            alert('El correo no existe o su contraseña es incorrecta')
-          )
+    
+          if(this.rol==3){
+            
+            if(this.correo==this.email && this.pass==this.pass2){
+              this.navCtrl.push(DeportistaPage, {correo:this.correo});
+            }
+            else(
+              alert('El correo no existe o su contraseña es incorrecta')
+            )
+          }
         }
-  
-        if(this.rol==3){
-           
-          if(this.correo==this.email && this.pass==this.pass2){
-            this.navCtrl.push(DeportistaPage, {correo:this.correo});
-          }
-          else(
+        if(this.estado=='desactivada'){
+          if(this.pass==this.pass2){
+            alert('Su cuenta esta desactivada')
+          }else{
             alert('El correo no existe o su contraseña es incorrecta')
-          )
+          }
         }
         if(this.respuesta=='ERROR'){
           alert('El correo no existe o su contraseña es incorrecta')
         }
-
 
       },
       (err)=>{
