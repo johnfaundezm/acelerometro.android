@@ -107,7 +107,9 @@ export class WebservicesProvider {
           //alert(JSON.stringify(data));
           if (data != 'null') resolve( data );  
           else resolve (false);
-        }, error => reject(error));
+        }, error => {
+          reject(error)
+        });
     });
   }
 
