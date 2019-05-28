@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';//componentes de angular
 import { NavController } from 'ionic-angular';//controladores de angular
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';//enlace con la base de datos
+import { WebservicesProvider } from '../../providers/webservices/webservices';
 
 import { RegistroPage} from '../registro/registro';//conexion con las vista registro
 import { EntrenadorPage} from '../entrenador/entrenador';//conexion con las vista Entrenador
@@ -16,13 +17,59 @@ import { AdministradorPage} from '../administrador/administrador';//conexion con
 
 //información enviada a la base de datos
 export class HomePage {
-
+  
+  email:any;
   correo:any;
   pass:any;
-  rol:any=1;
+  pass2:any;
+  rol:any;
 
-  constructor(public navCtrl: NavController, private sqlite: SQLite) {
+  constructor(public navCtrl: NavController, private sqlite: SQLite, private webservices: WebservicesProvider) {
 
+  }
+
+  consulta_login(){
+    this.webservices.consulta_login(this.correo).then(
+      (datos)=>{
+        //alert(JSON.stringify(datos));
+        this.email= datos[0].CORREO;
+        this.pass2= datos[0].PASS;
+        this.rol= datos[0].TIPO;
+
+        if(this.rol==1){
+          
+          if(this.correo==this.email && this.pass==this.pass2){
+            this.navCtrl.push(AdministradorPage, {correo:this.correo});
+          }
+          else(
+            alert('El correo no existe o su contraseña es incorrecta')
+          )  
+        }
+
+        if(this.rol==2){
+          
+          if(this.correo==this.email && this.pass==this.pass2){
+            this.navCtrl.push(EntrenadorPage, {correo:this.correo});
+          }
+          else(
+            alert('El correo no existe o su contraseña es incorrecta')
+          )
+        }
+  
+        if(this.rol==3){
+           
+          if(this.correo==this.email && this.pass==this.pass2){
+            this.navCtrl.push(DeportistaPage, {correo:this.correo});
+          }
+          else(
+            alert('El correo no existe o su contraseña es incorrecta')
+          )
+        }
+
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
   }
 
   inicio_sesion(){

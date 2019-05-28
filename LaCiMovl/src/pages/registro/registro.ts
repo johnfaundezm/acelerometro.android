@@ -31,16 +31,6 @@ export class RegistroPage {
    
   }
 
-  prueba(){
-    this.webservices.prueba('carlos2').then(
-      (resultado) =>{
-        alert('oka'+JSON.stringify(resultado));
-      },
-      (error) =>{
-        alert('error'+JSON.stringify(error));
-      })
-  }
-
   registrar(){
     this.webservices.registrar(this.correo,this.pass,'null','null','null','null',0,0,0,0,'','2019-05-24',this.id_tipo_usuario).then(
       (resultado) =>{

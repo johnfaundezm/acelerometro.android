@@ -52,16 +52,6 @@ export class DeportistaPage {
     //this.datos_user();
   }
 
-  actualizar(){
-    this.webservices.actualizar(this.correo, this.pass, this.nombre, this.apellido_p, this.apellido_m, this.genero, this.edad, this.peso, this.estatura, this.imc, this.pais).then(
-      (resultado) =>{
-        //alert('oka'+JSON.stringify(resultado));
-      },
-      (error) =>{
-        alert('error'+JSON.stringify(error));
-      })
-  }
-
   consulta(){
     this.webservices.consulta(this.correo).then(
       (datos)=>{
