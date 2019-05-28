@@ -1,6 +1,6 @@
 //Importaciones
 import { Component } from '@angular/core';//componentes de angular
-import { NavController, Alert } from 'ionic-angular';//controladores de angular
+import { NavController } from 'ionic-angular';//controladores de angular
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';//enlace con la base de datos
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 

@@ -40,9 +40,15 @@
 
   <ion-item>
     <ion-label fixed>Edad</ion-label>
-    <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD-MMM-YYYY" [(ngModel)]="Edad"></ion-datetime>
+    <ion-input [(ngModel)]="edad"></ion-input>
   </ion-item>
 
+  <!--
+  <ion-item>
+    <ion-label fixed>Edad</ion-label>
+    <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD-MMM-YYYY" [(ngModel)]="Edad"></ion-datetime>
+  </ion-item>
+  -->
 
     <ion-item>
       <ion-label>Pais</ion-label>
@@ -70,6 +76,6 @@
       </ion-select>
     </ion-item>
 
-    <button ion-button color="primary" style="margin: auto; display: block" (click)="actualizar()">Guardar</button>
+    <button ion-button color="primary" style="margin: auto; display: block" (click)="actualizar_deportista()">Guardar</button>
    
 </ion-content>

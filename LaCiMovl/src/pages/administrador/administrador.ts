@@ -15,7 +15,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AdministradorPage {
 
+  correo:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.correo = this.navParams.get('correo');
   }
 
   ionViewDidLoad() {

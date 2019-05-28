@@ -13,7 +13,7 @@
 
       <ion-item>
         <ion-label>Nombre</ion-label>
-        <ion-input disabled class="textarea"></ion-input>
+        <ion-input [(ngModel)]="nombre" disabled class="textarea"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -27,18 +27,23 @@
       </ion-item>
 
       <ion-item>
+        <ion-label>Contraseña</ion-label>
+        <ion-input [(ngModel)]="pass" class="textarea" disabled></ion-input>
+      </ion-item>
+
+      <ion-item>
         <ion-label>Genero</ion-label>
-        <ion-input disabled class="textarea"></ion-input>
+        <ion-input [(ngModel)]="genero" disabled class="textarea"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>Edad</ion-label>
-        <ion-input disabled class="textarea"></ion-input>
+        <ion-input [(ngModel)]="edad" disabled class="textarea"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>Pais</ion-label>
-        <ion-input disabled class="textarea"></ion-input>
+        <ion-input [(ngModel)]="pais" disabled class="textarea"></ion-input>
       </ion-item>
 
     </ion-list>

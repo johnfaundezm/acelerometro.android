@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { PopovercoachComponent } from '../../components/popovercoach/popovercoach';
+import { WebservicesProvider } from '../../providers/webservices/webservices';
 
 @IonicPage()
 @Component({
@@ -9,11 +10,21 @@ import { PopovercoachComponent } from '../../components/popovercoach/popovercoac
 })
 export class EntrenadorPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController) {
+  correo:any;
+  pass:any;
+  nombre:any;
+  apellido_p:any;
+  apellido_m:any;
+  genero:any;
+  edad:any;
+  pais:any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, private webservices: WebservicesProvider) {
+    this.correo = this.navParams.get('correo');
   }
 
   presentPopovercoach(myEvent) {
-    let popover = this.popoverCtrl.create(PopovercoachComponent, {}, {cssClass: 'popover-tamaño'});
+    let popover = this.popoverCtrl.create(PopovercoachComponent, {correo:this.correo}, {cssClass: 'popover-tamaño'});
     popover.present({
       ev: myEvent
     })
@@ -21,8 +32,26 @@ export class EntrenadorPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EntrenadorPage');
+    this.consulta();
   }
 
+
+  consulta(){
+    this.webservices.consulta(this.correo).then(
+      (datos)=>{
+        //alert(JSON.stringify(datos));
+          this.pass= datos[0].PASS;
+          this.nombre= datos[0].NOMBRE;
+          this.apellido_p= datos[0].APELLIDO_P;
+          this.apellido_m= datos[0].APELLIDO_M;
+          this.genero= datos[0].GENERO;
+          this.edad= datos[0].EDAD;
+          this.pais= datos[0].PAIS;
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
+  }
   
 
 }
