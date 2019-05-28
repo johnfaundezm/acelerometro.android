@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { NavController, NavParams } from 'ionic-angular';//controladores de angular
+import { WebservicesProvider } from '../../providers/webservices/webservices';
+
+import { DeportistaPage} from '../../pages/deportista/deportista';//conexion con las vista Deportista
 
 /**
  * Generated class for the PopoverComponent component.
@@ -14,22 +18,59 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 export class PopoverComponent {
   //atributos a actualizar
   correo:any; //primary
+  pass:any;
   nombre:any;
-  apellido:any;
+  apellido_p:any;
+  apellido_m:any;
   genero:any;
+  edad:any;
   peso:any;
   estatura:any;
-  edad:any;
+  imc:any;
   pais:any;
 
   text: string;
 
-  constructor(private sqlite: SQLite) {
+  constructor(private sqlite: SQLite, private webservices: WebservicesProvider, public navCtrl: NavController, public navParams: NavParams) {
     console.log('Hello PopoverComponent Component');
     this.text = 'Hello World';
+    //recibe variable correo
+    this.correo = this.navParams.get('correo');
   }
 
 
+  actualizar(){
+    this.webservices.actualizar(this.correo, this.pass, this.nombre, this.apellido_p, this.apellido_m, this.genero, this.edad, this.peso, this.estatura, this.imc, this.pais).then(
+      (resultado) =>{
+        this.navCtrl.push(DeportistaPage);
+        alert('oka'+JSON.stringify(resultado));
+      },
+      (error) =>{
+        alert('error'+JSON.stringify(error));
+      })
+  }
+
+  consulta(){
+    this.webservices.consulta(this.correo).then(
+      (datos)=>{
+        alert(JSON.stringify(datos));
+          this.pass= datos[0].PASS;
+          this.nombre= datos[0].NOMBRE;
+          this.apellido_p= datos[0].APELLIDO_P;
+          this.apellido_m= datos[0].APELLIDO_M;
+          this.genero= datos[0].GENERO;
+          this.edad= datos[0].EDAD;
+          this.peso= datos[0].PESO;
+          this.estatura= datos[0].ESTATURA;
+          this.imc= datos[0].IMC;
+          this.pais= datos[0].PAIS;
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
+  }
+
+/*
   actualizarbd() {
     this.sqlite.create({
       name: 'LaCiMovl.db',
@@ -47,4 +88,5 @@ export class PopoverComponent {
         
       });
   }
+  */
 }
