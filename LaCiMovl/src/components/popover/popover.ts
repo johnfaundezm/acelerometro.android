@@ -42,7 +42,7 @@ export class PopoverComponent {
   actualizar(){
     this.webservices.actualizar(this.correo, this.pass, this.nombre, this.apellido_p, this.apellido_m, this.genero, this.edad, this.peso, this.estatura, this.imc, this.pais).then(
       (resultado) =>{
-        this.navCtrl.push(DeportistaPage);
+        this.navCtrl.push(DeportistaPage,{correo:this.correo});
         alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{

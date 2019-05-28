@@ -37,8 +37,8 @@ export class DeportistaPage {
   }
 
   presentPopover(myEvent) {
-    this.navCtrl.push(PopoverComponent, {correo:this.correo});
-    let popover = this.popoverCtrl.create(PopoverComponent);
+    //this.navCtrl.push(PopoverComponent, {correo:this.correo});
+    let popover = this.popoverCtrl.create(PopoverComponent, {correo:this.correo});
     popover.present({
       ev: myEvent
     })
