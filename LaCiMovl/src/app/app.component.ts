@@ -10,6 +10,9 @@ import { EntrenadorPage } from '../pages/entrenador/entrenador';
 //import { DeportistaPage } from '../pages/deportista/deportista';
 import { DeportistatabsPage} from '../pages/deportistatabs/deportistatabs';
 import {DatabaseProvider} from '../providers/database/database';
+import { PerfildepPage } from '../pages/perfildep/perfildep';
+import { EntrenamientoPage } from '../pages/entrenamiento/entrenamiento';
+import { EstadisticasdepPage } from '../pages/estadisticasdep/estadisticasdep';
 
 @Component({
   templateUrl: 'app.html'
@@ -25,12 +28,14 @@ export class MyApp {
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public db: DatabaseProvider) {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Administrador', component: AdministradorPage },
       { title: 'Entrenador', component: EntrenadorPage },
       { title: 'Deportistatabs', component: DeportistatabsPage},
+      //{ title: 'Perfildep', component: PerfildepPage},
+      //{ title: 'Entrenamiento', component: EntrenamientoPage},
+      //{ title: 'Estadisticasdep', component: EstadisticasdepPage},
       //{ title: 'Deportista', component: DeportistaPage },
       { title: 'List', component: ListPage }
     ];
@@ -39,8 +44,6 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.db.abrirbd();
       this.statusBar.styleDefault();
       this.splashScreen.hide();
