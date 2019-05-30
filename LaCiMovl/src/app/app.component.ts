@@ -10,9 +10,7 @@ import { EntrenadorPage } from '../pages/entrenador/entrenador';
 //import { DeportistaPage } from '../pages/deportista/deportista';
 import { DeportistatabsPage} from '../pages/deportistatabs/deportistatabs';
 import {DatabaseProvider} from '../providers/database/database';
-import { PerfildepPage } from '../pages/perfildep/perfildep';
-import { EntrenamientoPage } from '../pages/entrenamiento/entrenamiento';
-import { EstadisticasdepPage } from '../pages/estadisticasdep/estadisticasdep';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -33,9 +31,6 @@ export class MyApp {
       { title: 'Administrador', component: AdministradorPage },
       { title: 'Entrenador', component: EntrenadorPage },
       { title: 'Deportistatabs', component: DeportistatabsPage},
-      //{ title: 'Perfildep', component: PerfildepPage},
-      //{ title: 'Entrenamiento', component: EntrenamientoPage},
-      //{ title: 'Estadisticasdep', component: EstadisticasdepPage},
       //{ title: 'Deportista', component: DeportistaPage },
       { title: 'List', component: ListPage }
     ];
