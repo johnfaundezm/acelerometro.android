@@ -37,7 +37,7 @@ export class AdministradorPage {
   }
 
   vista_entrenador(){
-    this.webservices.vista_deportista().then(
+    this.webservices.vista_entrenador().then(
       (datos) =>{
         let largo=Object.keys(datos).length;
         for(var i=0;i<largo;i++){
