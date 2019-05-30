@@ -3,11 +3,33 @@
     <button ion-button color="light" menuToggle clear>
         <ion-icon name="menu"></ion-icon>
     </button>
+
+    <!--
+  <div>
+    <ion-list inset *ngFor="let u of usuario" >
+        <ion-item>
+    
+            <h2>Correo: {{u.correo}}</h2>
+            <h4>Contraseña: {{u.pass}}</h4>
+ 
+        </ion-item>
+    </ion-list>
+
+  </div>
+-->
   
     <ion-card class="border_card">
       <ion-card-header class="title_card">
         Deportistas
       </ion-card-header>
+
+      <ion-list inset *ngFor="let d of deportista" >
+        <ion-item>
+
+            <h2 (click)="detalle(d.email)">Correo: {{d.email}}</h2>
+ 
+        </ion-item>
+      </ion-list>
 
       <ion-item >
         <button ion-button color="secondary" block >
@@ -26,6 +48,14 @@
       <ion-card-header class="title_card">
         Entrenadores
       </ion-card-header>
+
+      <ion-list inset *ngFor="let e of entrenador" >
+        <ion-item>
+
+            <h2 (click)="detalle(e.email)">Correo: {{e.email}}</h2>
+ 
+        </ion-item>
+      </ion-list>
 
       <ion-item >
         <button ion-button color="secondary" block >
