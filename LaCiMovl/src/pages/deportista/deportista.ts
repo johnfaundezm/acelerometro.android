@@ -4,14 +4,6 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { PopoverComponent } from '../../components/popover/popover';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 
-
-/**
- * Generated class for the DeportistaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-deportista',

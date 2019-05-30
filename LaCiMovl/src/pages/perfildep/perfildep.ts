@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { PopoverComponent } from '../../components/popover/popover';
 
-/**
- * Generated class for the PerfildepPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,7 +10,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PerfildepPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController) {
+  }
+
+  presentPopover(myEvent) {
+    //this.navCtrl.push(PopoverComponent, {correo:this.correo});
+    let popover = this.popoverCtrl.create(PopoverComponent, {}, {cssClass: 'popover-tamaño'});
+    popover.present({
+      ev: myEvent
+    })
   }
 
   ionViewDidLoad() {
