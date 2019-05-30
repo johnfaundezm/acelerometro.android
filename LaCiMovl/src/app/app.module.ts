@@ -28,9 +28,7 @@ import { HTTP } from '@ionic-native/http';
 import { HttpClientModule } from '@angular/common/http';
 
 import { DeportistatabsPage } from '../pages/deportistatabs/deportistatabs';
-//import { PerfildepPage } from '../pages/perfildep/perfildep';
-//import { EntrenamientoPage } from '../pages/entrenamiento/entrenamiento';
-//import { EstadisticasdepPage } from '../pages/estadisticasdep/estadisticasdep';
+import { AdmintabsPage } from '../pages/admintabs/admintabs';
 
 
 @NgModule({
@@ -44,7 +42,8 @@ import { DeportistatabsPage } from '../pages/deportistatabs/deportistatabs';
     DeportistaPage,
     PopoverComponent,
     PopovercoachComponent,
-    DeportistatabsPage
+    DeportistatabsPage,
+    AdmintabsPage
   ],
   imports: [
     BrowserAnimationsModule,
@@ -65,7 +64,8 @@ import { DeportistatabsPage } from '../pages/deportistatabs/deportistatabs';
     DeportistaPage,
     PopoverComponent,
     PopovercoachComponent,
-    DeportistatabsPage
+    DeportistatabsPage,
+    AdmintabsPage
   ],
   providers: [
     StatusBar,
