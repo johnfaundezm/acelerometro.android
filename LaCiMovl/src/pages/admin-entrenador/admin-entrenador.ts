@@ -1,14 +1,20 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
-import { PopovercoachComponent } from '../../components/popovercoach/popovercoach';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
+
+/**
+ * Generated class for the AdminEntrenadorPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @IonicPage()
 @Component({
-  selector: 'page-entrenador',
-  templateUrl: 'entrenador.html',
+  selector: 'page-admin-entrenador',
+  templateUrl: 'admin-entrenador.html',
 })
-export class EntrenadorPage {
+export class AdminEntrenadorPage {
 
   correo:any;
   pass:any;
@@ -20,25 +26,16 @@ export class EntrenadorPage {
   pais:any;
   estado:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, private webservices: WebservicesProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
     this.correo = this.navParams.get('correo');
   }
 
-  presentPopovercoach(myEvent) {
-    let popover = this.popoverCtrl.create(PopovercoachComponent, {correo:this.correo}, {cssClass: 'popover-tamaño'});
-    popover.present({
-      ev: myEvent
-    })
-  }
-
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EntrenadorPage');
-    this.consulta();
+    this.detalle();
   }
 
-
-  consulta(){
-    this.webservices.consulta(this.correo).then(
+  detalle(){
+    this.webservices.consulta_entrenador(this.correo).then(
       (datos)=>{
         //alert(JSON.stringify(datos));
           this.pass= datos[0].PASS;
@@ -54,6 +51,5 @@ export class EntrenadorPage {
         alert(JSON.stringify(err))
       })
   }
-  
 
 }

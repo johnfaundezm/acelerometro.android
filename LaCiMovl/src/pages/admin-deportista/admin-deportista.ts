@@ -1,14 +1,22 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
-import { PopovercoachComponent } from '../../components/popovercoach/popovercoach';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
+
+
+
+/**
+ * Generated class for the AdminDeportistaPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @IonicPage()
 @Component({
-  selector: 'page-entrenador',
-  templateUrl: 'entrenador.html',
+  selector: 'page-admin-deportista',
+  templateUrl: 'admin-deportista.html',
 })
-export class EntrenadorPage {
+export class AdminDeportistaPage {
 
   correo:any;
   pass:any;
@@ -17,28 +25,22 @@ export class EntrenadorPage {
   apellido_m:any;
   genero:any;
   edad:any;
+  peso:any;
+  estatura:any;
+  imc:any;
   pais:any;
   estado:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, private webservices: WebservicesProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
     this.correo = this.navParams.get('correo');
   }
 
-  presentPopovercoach(myEvent) {
-    let popover = this.popoverCtrl.create(PopovercoachComponent, {correo:this.correo}, {cssClass: 'popover-tamaño'});
-    popover.present({
-      ev: myEvent
-    })
-  }
-
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EntrenadorPage');
-    this.consulta();
+    this.detalle();
   }
 
-
-  consulta(){
-    this.webservices.consulta(this.correo).then(
+  detalle(){
+    this.webservices.consulta_deportista(this.correo).then(
       (datos)=>{
         //alert(JSON.stringify(datos));
           this.pass= datos[0].PASS;
@@ -47,6 +49,9 @@ export class EntrenadorPage {
           this.apellido_m= datos[0].APELLIDO_M;
           this.genero= datos[0].GENERO;
           this.edad= datos[0].EDAD;
+          this.peso= datos[0].PESO;
+          this.estatura= datos[0].ESTATURA;
+          this.imc= datos[0].IMC;
           this.pais= datos[0].PAIS;
           this.estado= datos[0].ESTADO;
       },
@@ -54,6 +59,5 @@ export class EntrenadorPage {
         alert(JSON.stringify(err))
       })
   }
-  
 
 }

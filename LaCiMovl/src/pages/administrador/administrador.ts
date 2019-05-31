@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 
+import { AdminDeportistaPage} from '../admin-deportista/admin-deportista';
+import { AdminEntrenadorPage} from '../admin-entrenador/admin-entrenador';
+
 /**
  * Generated class for the AdministradorPage page.
  *
@@ -20,6 +23,17 @@ export class AdministradorPage {
   deportista: Array<{email:string,pass:string,nombre:string,apellido_p:string,apellido_m:string,genero:string,edad:string,peso:string,estatura:string,imc:string,pais:string,estado:string,fecha_r:string}>=[{email:'',pass:'',nombre:'',apellido_p:'',apellido_m:'',genero:'',edad:'',peso:'',estatura:'',imc:'',pais:'',estado:'',fecha_r:''}];
 
   correo:any;
+  pass1:any;
+  nombre1:any;
+  apellido_p1:any;
+  apellido_m1:any;
+  genero1:any;
+  edad1:any;
+  peso1:any;
+  estatura1:any;
+  imc1:any;
+  pais1:any;
+  estado1:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
     this.correo = this.navParams.get('correo');
@@ -91,10 +105,33 @@ export class AdministradorPage {
       })
   }
 
-  
+  detalles(email){
+    this.webservices.consulta_deportista(email).then(
+      (datos)=>{
+        //alert(JSON.stringify(datos));
+          this.pass1= datos[0].PASS;
+          this.nombre1= datos[0].NOMBRE;
+          this.apellido_p1= datos[0].APELLIDO_P;
+          this.apellido_m1= datos[0].APELLIDO_M;
+          this.genero1= datos[0].GENERO;
+          this.edad1= datos[0].EDAD;
+          this.peso1= datos[0].PESO;
+          this.estatura1= datos[0].ESTATURA;
+          this.imc1= datos[0].IMC;
+          this.pais1= datos[0].PAIS;
+          this.estado1= datos[0].ESTADO;
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
+  }
 
   detalle(email){
-    alert(email);
+    this.navCtrl.push(AdminDeportistaPage, {correo:email});
+  }
+
+  detalle2(email){
+    this.navCtrl.push(AdminEntrenadorPage, {correo:email})
   }
 
 }

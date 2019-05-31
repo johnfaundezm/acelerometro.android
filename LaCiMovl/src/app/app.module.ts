@@ -11,6 +11,8 @@ import { ListPage } from '../pages/list/list';
 import { AdministradorPage } from '../pages/administrador/administrador';
 import { EntrenadorPage } from '../pages/entrenador/entrenador';
 import { DeportistaPage } from '../pages/deportista/deportista';
+import { AdminDeportistaPage } from '../pages/admin-deportista/admin-deportista';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -40,6 +42,7 @@ import { AdmintabsPage } from '../pages/admintabs/admintabs';
     AdministradorPage,
     EntrenadorPage,
     DeportistaPage,
+    AdminDeportistaPage,
     PopoverComponent,
     PopovercoachComponent,
     DeportistatabsPage,
@@ -62,6 +65,7 @@ import { AdmintabsPage } from '../pages/admintabs/admintabs';
     AdministradorPage,
     EntrenadorPage,
     DeportistaPage,
+    AdminDeportistaPage,
     PopoverComponent,
     PopovercoachComponent,
     DeportistatabsPage,
