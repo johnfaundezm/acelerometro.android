@@ -18,6 +18,7 @@ export class EntrenadorPage {
   genero:any;
   edad:any;
   pais:any;
+  estado:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, private webservices: WebservicesProvider) {
     this.correo = this.navParams.get('correo');
@@ -47,6 +48,7 @@ export class EntrenadorPage {
           this.genero= datos[0].GENERO;
           this.edad= datos[0].EDAD;
           this.pais= datos[0].PAIS;
+          this.estado= datos[0].ESTADO;
       },
       (err)=>{
         alert(JSON.stringify(err))

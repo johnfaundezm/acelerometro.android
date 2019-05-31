@@ -23,6 +23,7 @@ export class DeportistaPage {
   estatura:any;
   imc:any;
   pais:any;
+  estado:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private sqlite: SQLite, public popoverCtrl: PopoverController, private webservices: WebservicesProvider) {
       this.correo = this.navParams.get('correo');
@@ -58,6 +59,7 @@ export class DeportistaPage {
           this.estatura= datos[0].ESTATURA;
           this.imc= datos[0].IMC;
           this.pais= datos[0].PAIS;
+          this.estado= datos[0].ESTADO;
       },
       (err)=>{
         alert(JSON.stringify(err))
