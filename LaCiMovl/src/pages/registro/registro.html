@@ -6,7 +6,8 @@
   <br>
  
   <ion-item style="margin-top:15%" class="border_r">
-    <ion-input [(ngModel)]="correo" type="text" placeholder="Correo" ></ion-input>
+    <!--<ion-input [(ngModel)]="correo" type="text" placeholder="Correo" ></ion-input>-->
+    <ion-input formControlName="correo" type="email" [(ngModel)]="correo"></ion-input>
   </ion-item>
   <br>
 

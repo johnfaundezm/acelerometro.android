@@ -15,7 +15,7 @@ import { WebservicesProvider } from '../../providers/webservices/webservices';
 export class RegistroPage {
 
   //private ListUser : any; 
-  private todo: FormGroup;
+  todo: FormGroup;
   correo:any;
   pass:any;
   
@@ -25,7 +25,7 @@ export class RegistroPage {
   constructor(public navCtrl: NavController, private database: DatabaseProvider, private formBuilder: FormBuilder, private webservices: WebservicesProvider) {
     
     this.todo = this.formBuilder.group({
-      correo: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]],
+      correo: ['',[Validators.required, Validators.maxLength(50), Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$')]],
       pass: ['', [Validators.required, Validators.maxLength(8)]],
     });
    
