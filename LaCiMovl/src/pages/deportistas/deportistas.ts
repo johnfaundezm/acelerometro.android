@@ -12,6 +12,7 @@ export class DeportistasPage {
   deportista: Array<{email:string,pass:string,nombre:string,apellido_p:string,apellido_m:string,genero:string,edad:string,peso:string,estatura:string,imc:string,pais:string,estado:string,fecha_r:string}>=[{email:'',pass:'',nombre:'',apellido_p:'',apellido_m:'',genero:'',edad:'',peso:'',estatura:'',imc:'',pais:'',estado:'',fecha_r:''}];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
+    
   }
 
   ionViewDidLoad() {

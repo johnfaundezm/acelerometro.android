@@ -91,7 +91,6 @@ export class AdministradorPage {
           this.deportista.push({"email":email,"pass":pass,"nombre":nombre,"apellido_p":apellido_p,"apellido_m":apellido_m,"genero":genero,"edad":edad,"peso":peso,"estatura":estatura,"imc":imc,"pais":pais,"estado":estado,"fecha_r":fecha_r});
 
         }
-
       },
       (err)=>{
         alert(JSON.stringify(err))
