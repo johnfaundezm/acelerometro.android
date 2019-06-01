@@ -11,4 +11,9 @@ page-deportistas {
         font-size: 90%;
         color: darkcyan;
     }
+
+    ion-scroll {
+      white-space: nowrap;
+      height: 100%;
+    }
 }

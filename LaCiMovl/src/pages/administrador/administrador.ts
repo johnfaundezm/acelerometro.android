@@ -5,13 +5,6 @@ import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { AdminDeportistaPage} from '../admin-deportista/admin-deportista';
 import { AdminEntrenadorPage} from '../admin-entrenador/admin-entrenador';
 
-/**
- * Generated class for the AdministradorPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-administrador',
