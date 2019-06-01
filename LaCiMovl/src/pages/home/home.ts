@@ -9,6 +9,7 @@ import { EntrenadorPage} from '../entrenador/entrenador';//conexion con las vist
 import { DeportistaPage} from '../deportista/deportista';//conexion con las vista Deportista
 import { AdministradorPage} from '../administrador/administrador';//conexion con las vista Administrador
 import { AdmintabsPage } from '../admintabs/admintabs';
+import { DeportistatabsPage } from '../deportistatabs/deportistatabs';
 
 //Vista con la que se está trabajando
 @Component({
@@ -66,7 +67,7 @@ export class HomePage {
           if(this.rol==3){
             
             if(this.correo==this.email && this.pass==this.pass2){
-              this.navCtrl.push(DeportistaPage, {correo:this.correo});
+              this.navCtrl.push(DeportistatabsPage, {correo:this.correo});
             }
             else(
               alert('El correo no existe o su contraseña es incorrecta')
