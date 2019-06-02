@@ -4,16 +4,49 @@
     <h3>Crear Cuenta</h3>
   </div>
   <br>
- 
-  <ion-item style="margin-top:15%" class="border_r">
-    <!--<ion-input [(ngModel)]="correo" type="text" placeholder="Correo" ></ion-input>-->
-    <ion-input formControlName="correo" type="email" [(ngModel)]="correo"></ion-input>
-  </ion-item>
-  <br>
 
-  <ion-item class="border_r">
-    <ion-input [(ngModel)]="pass" type="password" placeholder="Contraseña" ></ion-input>
-  </ion-item>
+  <form [formGroup]="formulario" (ngSubmit)="registrar()">
+    <ion-item style="margin-top:15%" class="border_r">
+      <!--<ion-inp   ut [(ngModel)]="correo" type="text" placeholder="Correo" ></ion-input>-->
+      <ion-input type="text" formControlName="correo" placeholder="Correo"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="formulario.get('correo').errors && formulario.get('correo').dirty">
+      <p color="danger" ion-text *ngIf="formulario.get('correo').hasError('required')">*El campo es requerido</p>
+      <p color="danger" ion-text *ngIf="formulario.get('correo').hasError('maxlength')">Cantidad maxima de caracteres es (50)</p>
+      <p color="danger" ion-text *ngIf="formulario.get('correo').hasError('pattern')">Ingrese un correo valido</p>
+    </ion-item>
+    <br>
+
+    <ion-item class="border_r">
+      <ion-input type="password" formControlName="pass" placeholder="Contraseña" ></ion-input>
+    </ion-item>
+    <ion-item *ngIf="formulario.get('pass').errors && formulario.get('pass').dirty">
+      <p color="danger" ion-text *ngIf="formulario.get('pass').hasError('required')">*El campo es requerido</p>
+      <p color="danger" ion-text *ngIf="formulario.get('pass').hasError('minlength')">Cantidad minima de caracteres es (4)</p>
+      <p color="danger" ion-text *ngIf="formulario.get('pass').hasError('maxlength')">Cantidad maxima de caracteres es (16)</p>
+    </ion-item>
+    <br>
+
+    <ion-list>
+      <ion-item class="border_r">
+        <ion-label >ROL</ion-label>
+        <ion-select formControlName="id_tipo_usuario">
+          <ion-option value="3">Deportista</ion-option>
+          <ion-option value="2">Entrenador</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="formulario.get('id_tipo_usuario').errors && formulario.get('id_tipo_usuario').dirty">
+        <p color="danger" ion-text *ngIf="formulario.get('id_tipo_usuario').hasError('required')">*El campo es requerido</p>
+      </ion-item>
+    </ion-list>
+
+    <div style="text-align:center;margin-top:5%">
+      <button ion-button secondary type="submit" [disabled]="!formulario.valid" class="btn_ok" (click)="registrar()">Registrarse</button>
+      <button ion-button color="light" clear secondary (click)="cancelar()">Cancelar</button>
+    </div>
+
+  </form> 
+
   <br>
 
   <!--
@@ -28,21 +61,9 @@
   </ion-list>
   -->
 
-  <ion-list>
-    <ion-item class="border_r">
-      <ion-label >ROL</ion-label>
-      <ion-select [(ngModel)]="id_tipo_usuario">
-        <ion-option value="3">Deportista</ion-option>
-        <ion-option value="2">Entrenador</ion-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
+  
 
-  <div style="text-align:center;margin-top:5%">
-    <!--<button ion-button secondary class="btn_ok" (click)="crearusuario()">Registrarse</button>-->
-    <button ion-button secondary class="btn_ok" (click)="registrar()">Registrarse</button>
-    <button ion-button color="light" clear secondary (click)="cancelar()">Cancelar</button>
-  </div>
+  
 
 </ion-content>
 

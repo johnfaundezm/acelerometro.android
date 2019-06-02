@@ -15,24 +15,19 @@ import { WebservicesProvider } from '../../providers/webservices/webservices';
 export class RegistroPage {
 
   //private ListUser : any; 
-  todo: FormGroup;
-  correo:any;
-  pass:any;
-  
-  id_tipo_usuario:any;
-  rol:any;
+  private formulario: FormGroup;
 
   constructor(public navCtrl: NavController, private database: DatabaseProvider, private formBuilder: FormBuilder, private webservices: WebservicesProvider) {
     
-    this.todo = this.formBuilder.group({
+    this.formulario = this.formBuilder.group({
       correo: ['',[Validators.required, Validators.maxLength(50), Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$')]],
-      pass: ['', [Validators.required, Validators.maxLength(8)]],
+      pass: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]],
+      id_tipo_usuario: ['', [Validators.required]],
     });
-   
   }
 
   registrar(){
-    this.webservices.registrar(this.correo,this.pass,'null','null','null','null',0,0,0,0,'','2019-05-24',this.id_tipo_usuario).then(
+    this.webservices.registrar(this.formulario.value.correo,this.formulario.value.pass,'null','null','null','null',0,0,0,0,'null','activada','2019-06-01',this.formulario.value.id_tipo_usuario).then(
       (resultado) =>{
         alert('oka'+JSON.stringify(resultado));
       },
@@ -42,8 +37,7 @@ export class RegistroPage {
   }
 
   //sqlite
-  crearusuario(){
-    console.log(this.todo);
+  /*crearusuario(){
 
     if(this.rol==0){
       this.database.Create_administrador(this.correo,this.pass).then((data) =>{
@@ -82,7 +76,7 @@ export class RegistroPage {
   DeleteUser(correo){
     console.log(correo);
 
-  }
+  }*/
 
   
   cancelar(){

@@ -15,7 +15,7 @@ export class WebservicesProvider {
     console.log('Hello WebservicesProvider Provider');
   }
 
-  registrar(correo,pass,nombre,apellido_p,apellido_m,genero,edad,peso,estatura,imc,pais,fecha_r,id_tipo_usuario) {
+  registrar(correo,pass,nombre,apellido_p,apellido_m,genero,edad,peso,estatura,imc,pais,estado,fecha_r,id_tipo_usuario) {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
@@ -25,7 +25,7 @@ export class WebservicesProvider {
         headers: headers
       });
       // TODO: Encode the values using encodeURIComponent().
-      let body = 'correo='+correo +'&pass='+pass +'&nombre='+nombre +'&apellido_p='+apellido_p +'&apellido_m='+apellido_m+'&genero='+genero+'&edad='+edad+'&peso='+peso+'&estatura='+estatura+'&imc='+imc+'&pais='+pais+'&fecha_r='+fecha_r+'&id_tipo_usuario='+id_tipo_usuario;
+      let body = 'correo='+correo +'&pass='+pass +'&nombre='+nombre +'&apellido_p='+apellido_p +'&apellido_m='+apellido_m+'&genero='+genero+'&edad='+edad+'&peso='+peso+'&estatura='+estatura+'&imc='+imc+'&pais='+pais+'&estado='+estado+'&fecha_r='+fecha_r+'&id_tipo_usuario='+id_tipo_usuario;
 
       let url = "https://lacimovl.000webhostapp.com/webservices/insert_usuario.php";
 
