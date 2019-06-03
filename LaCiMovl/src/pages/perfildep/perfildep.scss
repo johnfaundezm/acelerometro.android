@@ -16,4 +16,9 @@ page-perfildep {
     .textarea {
         text-align-last: right;
     }
+
+    ion-scroll {
+        white-space: nowrap;
+        height: 100%;
+    }
 }

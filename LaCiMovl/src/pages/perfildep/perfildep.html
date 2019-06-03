@@ -9,59 +9,63 @@
       Informacion Personal
     </ion-card-header>
 
-    <ion-list>
+    <ion-scroll scrollY="true">
+        <ion-list>
 
-      <ion-item>
-        <ion-label>Nombre</ion-label>
-        <ion-input [(ngModel)]="nombre" class="textarea" disabled></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Apellido paterno</ion-label>
-        <ion-input [(ngModel)]="apellido_p" class="textarea" disabled></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Apellido materno</ion-label>
-        <ion-input [(ngModel)]="apellido_m" class="textarea" disabled></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Contraseña</ion-label>
-        <ion-input [(ngModel)]="pass" class="textarea" disabled type="password"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Genero</ion-label>
-        <ion-input [(ngModel)]="genero" class="textarea" disabled></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Edad</ion-label>
-        <ion-input [(ngModel)]="edad" class="textarea" disabled></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Peso</ion-label>
-        <ion-input [(ngModel)]="peso" class="textarea" disabled></ion-input>
-      </ion-item>
+            <ion-item>
+              <ion-label>Nombre</ion-label>
+              <ion-input [(ngModel)]="nombre" class="textarea" disabled></ion-input>
+            </ion-item>
+      
+            <ion-item>
+              <ion-label>Apellido paterno</ion-label>
+              <ion-input [(ngModel)]="apellido_p" class="textarea" disabled></ion-input>
+            </ion-item>
+      
+            <ion-item>
+              <ion-label>Apellido materno</ion-label>
+              <ion-input [(ngModel)]="apellido_m" class="textarea" disabled></ion-input>
+            </ion-item>
+      
+            <ion-item>
+              <ion-label>Contraseña</ion-label>
+              <ion-input [(ngModel)]="pass" class="textarea" disabled type="password"></ion-input>
+            </ion-item>
+      
+            <ion-item>
+              <ion-label>Genero</ion-label>
+              <ion-input [(ngModel)]="genero" class="textarea" disabled></ion-input>
+            </ion-item>
+      
+            <ion-item>
+              <ion-label>Edad</ion-label>
+              <ion-input [(ngModel)]="edad" class="textarea" disabled></ion-input>
+            </ion-item>
+      
+            <ion-item>
+              <ion-label>Peso</ion-label>
+              <ion-input [(ngModel)]="peso" class="textarea" disabled></ion-input>
+            </ion-item>
+          
+            <ion-item>
+              <ion-label>Estatura</ion-label>
+              <ion-input [(ngModel)]="estatura" class="textarea" disabled></ion-input>
+            </ion-item>
+          
+            <ion-item>
+              <ion-label>I.M.C</ion-label>
+              <ion-input [(ngModel)]="imc" class="textarea" disabled></ion-input>
+            </ion-item>
+      
+            <ion-item>
+              <ion-label>Pais</ion-label>
+              <ion-input [(ngModel)]="pais" class="textarea" disabled></ion-input>
+            </ion-item>
+      
+        </ion-list>
+    </ion-scroll>
     
-      <ion-item>
-        <ion-label>Estatura</ion-label>
-        <ion-input [(ngModel)]="estatura" class="textarea" disabled></ion-input>
-      </ion-item>
     
-      <ion-item>
-        <ion-label>I.M.C</ion-label>
-        <ion-input [(ngModel)]="imc" class="textarea" disabled></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>Pais</ion-label>
-        <ion-input [(ngModel)]="pais" class="textarea" disabled></ion-input>
-      </ion-item>
-
-    </ion-list>
     
     <ion-item >
       <button ion-button style="margin-top: 0px" color="secondary" block (click)="presentPopover($event)">
