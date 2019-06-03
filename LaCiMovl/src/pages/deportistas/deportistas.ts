@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
+import { AdminDeportistaPage } from '../admin-deportista/admin-deportista';
 
 @IonicPage()
 @Component({
@@ -50,7 +51,7 @@ export class DeportistasPage {
   }
 
   detalle(email){
-    alert(email);
+    this.navCtrl.push(AdminDeportistaPage, {correo:email})
   }
 
 }
