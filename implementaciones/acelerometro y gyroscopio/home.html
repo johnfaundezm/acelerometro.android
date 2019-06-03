@@ -1,0 +1,77 @@
+<ion-content  class="grad" padding> <!--padding = margen entre contenido de la vista y sus bordes-->
+
+  <!--Menu desplegrable lado izquierdo-->
+  <button ion-button color="light" menuToggle clear>
+      <ion-icon name="menu"></ion-icon>
+  </button>
+  <br>
+  <!--Imagen Insertada-->
+  <img class="logo" src="assets/imgs/logofinal.png">
+  
+  
+  
+  <!--Texto Central-->
+  <div style="text-align:center;margin-top:5% ;color:white">
+    <h6>LaCiMovl</h6>
+  </div>
+  <br>
+  <!--formulario de ingreso de correo electronico-->
+  <ion-item style="margin-top:20%; border-radius:20px">
+      <ion-input  [(ngModel)]="correo" type="email" placeholder="Correo" ></ion-input>
+  </ion-item>
+  <br>
+  
+  <!--Formulario de ingreso de contraseña--> 
+  <ion-item style="border-radius:20px">
+      <ion-input [(ngModel)]="pass" type="password" placeholder="Contraseña"></ion-input>
+  </ion-item>
+  <br>
+
+<!--Boton de inicio de sesión-->
+  <div style="text-align:center;margin-top:5%">
+    <button ion-button secondary class="btn_ok" (click)="consulta_login()">Iniciar Sesión</button>
+  </div>
+
+<!--Boton de registro-->
+  <div style="text-align:center">
+    <button ion-button color="light" clear (click)="registrar()">Registrarse</button>
+  </div>
+
+<!--Prueba de funciones-->
+<ion-item> 
+  <ion-label>X orientation</ion-label>
+<ion-input type="text" [(ngModel)]="xOrient"></ion-input>
+</ion-item>
+<ion-item> 
+  <ion-label>Y orientation</ion-label>
+  <ion-input type="text" [(ngModel)]="yOrient"></ion-input>
+</ion-item>
+<ion-item> 
+    <ion-label>Z orientation</ion-label>
+    <ion-input type="text" [(ngModel)]="zOrient"></ion-input>
+  </ion-item>
+  <ion-item> 
+      <ion-label>Time Stamp</ion-label>
+      <ion-input type="text" [(ngModel)]="timestamp"></ion-input>
+    </ion-item>
+
+    <button ion-button (click)="gyrascope()" full>click</button>
+
+    <ion-item> 
+        <ion-label>Acceleration X</ion-label>
+        <ion-input type="text" [(ngModel)]="accX"></ion-input>
+      </ion-item>
+      <ion-item> 
+          <ion-label>Acceleration Y</ion-label>
+          <ion-input type="text" [(ngModel)]="accY"></ion-input>
+        </ion-item>
+        <ion-item> 
+            <ion-label>Acceleration Z</ion-label>
+            <ion-input type="text" [(ngModel)]="accZ"></ion-input>
+          </ion-item>
+      <button ion-button (click)="Accelerometer()" full>click</button>
+
+<!--Pie de pagina-->
+  <div class="pie_page"><label>Todos los derechos reservados ®</label></div>
+
+</ion-content>
