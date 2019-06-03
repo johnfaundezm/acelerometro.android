@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { PerfildepPage } from '../perfildep/perfildep';
 
 @IonicPage()
 @Component({
@@ -11,8 +12,18 @@ export class DeportistatabsPage {
   perfildepRoot = 'PerfildepPage'
   entrenamientoRoot = 'EntrenamientoPage'
   estadisticasdepRoot = 'EstadisticasdepPage'
+  correo:any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.correo = this.navParams.get('correo');
+  }
+
+  ionViewDidLoad() {
+    this.redireccion();
+  }
 
 
-  constructor(public navCtrl: NavController) {}
-
+  redireccion(){
+    this.navCtrl.push(this.perfildepRoot, {correo:this.correo});
+  }
 }
