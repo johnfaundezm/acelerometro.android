@@ -14,8 +14,8 @@ import { WebservicesProvider } from '../../providers/webservices/webservices';
 })
 export class RegistroPage {
 
-  //private ListUser : any; 
   private formulario: FormGroup;
+  respuesta:any;
 
   constructor(public navCtrl: NavController, private database: DatabaseProvider, private formBuilder: FormBuilder, private webservices: WebservicesProvider) {
     
@@ -28,11 +28,21 @@ export class RegistroPage {
 
   registrar(){
     this.webservices.registrar(this.formulario.value.correo,this.formulario.value.pass,'null','null','null','null',0,0,0,0,'null','activada','2019-06-01',this.formulario.value.id_tipo_usuario).then(
-      (resultado) =>{
-        alert('oka'+JSON.stringify(resultado));
+      (datos) =>{
+        this.respuesta= datos[0].RESPUESTA;
+        if(this.respuesta=='OK'){
+          alert('El usuario ha sido creado exitosamente')
+        }
+        if(this.respuesta=='EXISTE'){
+          alert('El usuario ya existe, intente con otro correo')
+        }
+        if(this.respuesta=='ERROR'){
+          alert('Ha ocurrido un error inesperado')
+        }
+        //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
-        alert('error'+JSON.stringify(error));
+        //alert('error'+JSON.stringify(error));
       })
   }
 
