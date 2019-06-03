@@ -46,7 +46,7 @@ export class EntrenadoresPage {
   }
 
   detalle(email){
-    this.navCtrl.push(AdminEntrenadorPage, {correo:email})
+    this.navCtrl.push(AdminEntrenadorPage, {correo:email});
   }
 
 }
