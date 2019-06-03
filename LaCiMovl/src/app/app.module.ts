@@ -19,6 +19,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { PopoverComponent } from '../components/popover/popover';
 import { PopovercoachComponent } from '../components/popovercoach/popovercoach';
+import { PoadmindepComponent } from '../components/poadmindep/poadmindep';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -33,6 +34,7 @@ import { DeportistatabsPage } from '../pages/deportistatabs/deportistatabs';
 import { AdmintabsPage } from '../pages/admintabs/admintabs';
 
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -45,6 +47,7 @@ import { AdmintabsPage } from '../pages/admintabs/admintabs';
     AdminDeportistaPage,
     PopoverComponent,
     PopovercoachComponent,
+    PoadmindepComponent,
     DeportistatabsPage,
     AdmintabsPage
   ],
@@ -68,6 +71,7 @@ import { AdmintabsPage } from '../pages/admintabs/admintabs';
     AdminDeportistaPage,
     PopoverComponent,
     PopovercoachComponent,
+    PoadmindepComponent,
     DeportistatabsPage,
     AdmintabsPage
   ],

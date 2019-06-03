@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
+import { PoadmindepComponent } from '../../components/poadmindep/poadmindep';
 
 
 @IonicPage()
@@ -23,8 +24,15 @@ export class AdminDeportistaPage {
   pais:any;
   estado:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider, public popoverCtrl: PopoverController) {
     this.correo = this.navParams.get('correo');
+  }
+
+  poadmindep(myEvent) {
+    let popover = this.popoverCtrl.create(PoadmindepComponent, {}, {cssClass: 'popover-tamaño'});
+    popover.present({
+      ev: myEvent
+    })
   }
 
   ionViewDidLoad() {

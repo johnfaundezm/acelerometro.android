@@ -1,0 +1,81 @@
+<ion-content >
+
+    <ion-item>
+      <ion-label fixed>Nombre</ion-label>
+      <ion-input [(ngModel)]="nombre"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label fixed>Apellido Paterno</ion-label>
+      <ion-input [(ngModel)]="apellido_p"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label fixed>Apellido Materno</ion-label>
+      <ion-input [(ngModel)]="apellido_m"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label fixed>Contraseña</ion-label>
+      <ion-input [(ngModel)]="pass" type="password"></ion-input>
+    </ion-item>
+  
+      <ion-item>
+        <ion-label>Genero</ion-label>
+        <ion-select [(ngModel)]="genero">
+          <ion-option value=Masculino>Masculino</ion-option>
+          <ion-option value=Femenino>Femenino</ion-option>
+        </ion-select>
+      </ion-item>
+  
+    <ion-item>
+      <ion-label fixed>Masa(Kg)</ion-label>
+      <ion-input [(ngModel)]="peso"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label fixed>Altura(m)</ion-label>
+      <ion-input [(ngModel)]="estatura"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label fixed>Edad</ion-label>
+      <ion-input [(ngModel)]="edad"></ion-input>
+    </ion-item>
+  
+    <!--
+    <ion-item>
+      <ion-label fixed>Edad</ion-label>
+      <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD-MMM-YYYY" [(ngModel)]="Edad"></ion-datetime>
+    </ion-item>
+    -->
+  
+      <ion-item>
+        <ion-label>Pais</ion-label>
+        <ion-select [(ngModel)]="pais">
+          <ion-option value="Argentina">Argentina</ion-option>
+          <ion-option value="Bolivia">Bolivia</ion-option>
+          <ion-option value="Brasil">Brasil</ion-option>
+          <ion-option value="Chile">Chile</ion-option>
+          <ion-option value="Colombia">Colombia</ion-option>
+          <ion-option value="Costa Rica">Costa Rica</ion-option>
+          <ion-option value="Cuba">Cuba</ion-option>
+          <ion-option value="Ecuador">Ecuador</ion-option>
+          <ion-option value="El Salvador">El Salvador</ion-option>
+          <ion-option value="Guatemala">Guatemala</ion-option>
+          <ion-option value="Honduras">Honduras</ion-option>
+          <ion-option value="México">México</ion-option>
+          <ion-option value="Nicaragua">Nicaragua</ion-option>
+          <ion-option value="Panamá">Panamá</ion-option>
+          <ion-option value="Paraguay">Paraguay</ion-option>
+          <ion-option value="Puerto Rico">Puerto Rico</ion-option>
+          <ion-option value="Perú">Perú</ion-option>
+          <ion-option value="República Dominicana">República Dominicana</ion-option>
+          <ion-option value="Uruguay">Uruguay</ion-option>
+          <ion-option value="Venezuela">Venezuela</ion-option>
+        </ion-select>
+      </ion-item>
+  
+      <button ion-button color="primary" style="margin: auto; display: block" >Guardar</button>
+     
+  </ion-content>
