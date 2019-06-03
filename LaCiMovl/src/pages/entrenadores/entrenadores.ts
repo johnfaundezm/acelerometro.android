@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
+import { AdminEntrenadorPage } from '../admin-entrenador/admin-entrenador';
 
 /**
  * Generated class for the EntrenadoresPage page.
@@ -54,7 +55,7 @@ export class EntrenadoresPage {
   }
 
   detalle(email){
-    alert(email);
+    this.navCtrl.push(AdminEntrenadorPage, {correo:email})
   }
 
 }
