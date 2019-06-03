@@ -43,13 +43,6 @@
       <ion-input [(ngModel)]="edad"></ion-input>
     </ion-item>
   
-    <!--
-    <ion-item>
-      <ion-label fixed>Edad</ion-label>
-      <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD-MMM-YYYY" [(ngModel)]="Edad"></ion-datetime>
-    </ion-item>
-    -->
-  
       <ion-item>
         <ion-label>Pais</ion-label>
         <ion-select [(ngModel)]="pais">
@@ -74,6 +67,11 @@
           <ion-option value="Uruguay">Uruguay</ion-option>
           <ion-option value="Venezuela">Venezuela</ion-option>
         </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label style="color: rgb(160, 160, 160)" fixed>Estado</ion-label>
+        <ion-toggle checked="true"></ion-toggle>>
       </ion-item>
   
       <button ion-button color="primary" style="margin: auto; display: block" >Guardar</button>
