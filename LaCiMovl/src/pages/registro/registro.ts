@@ -27,7 +27,7 @@ export class RegistroPage {
   }
 
   registrar(){
-    this.webservices.registrar(this.formulario.value.correo,this.formulario.value.pass,'null','null','null','null',0,0,0,0,'null','activada','2019-06-01',this.formulario.value.id_tipo_usuario).then(
+    this.webservices.registrar(this.formulario.value.correo,this.formulario.value.pass,' ',' ',' ',' ',0,0,0,0,' ','activada','2019-06-01',this.formulario.value.id_tipo_usuario).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
         if(this.respuesta=='OK'){
