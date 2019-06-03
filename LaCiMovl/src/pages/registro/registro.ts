@@ -32,6 +32,7 @@ export class RegistroPage {
         this.respuesta= datos[0].RESPUESTA;
         if(this.respuesta=='OK'){
           alert('El usuario ha sido creado exitosamente')
+          this.navCtrl.push(HomePage);
         }
         if(this.respuesta=='EXISTE'){
           alert('El usuario ya existe, intente con otro correo')
