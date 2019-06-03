@@ -11,13 +11,8 @@
   
       <ion-scroll scrollY="true">
         <ion-list inset *ngFor="let e of entrenador" >
-          <ion-item style="border-bottom-color: gray">
-            <ion-avatar slot="start">
-                <img src="assets/imgs/logofinal.png">
-            </ion-avatar>
-
-              <h3 (click)="detalle(e.email)">{{e.email}}</h3>
- 
+          <ion-item style="border-bottom: 1px solid; border-color: rgb(194, 191, 191)">
+            <h2 (click)="detalle(e.email)">{{e.email}}</h2>
           </ion-item>
         </ion-list>
       </ion-scroll>

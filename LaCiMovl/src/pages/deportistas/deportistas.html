@@ -10,12 +10,10 @@
     </ion-card-header>
     <ion-scroll scrollY="true">
       <ion-list inset *ngFor="let d of deportista" >
-        <ion-item>
-          <ion-avatar slot="start">
-              <img src="assets/imgs/logofinal.png">
-          </ion-avatar>
-          
+        <ion-item style="border-bottom: 1px solid; border-color: rgb(194, 191, 191)">
+        
           <h2 (click)="detalle(d.email)">{{d.email}}</h2>
+          <p style="text-align: right">oka prro</p>
             
         </ion-item>
       </ion-list>
