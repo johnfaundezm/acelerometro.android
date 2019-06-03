@@ -1,6 +1,6 @@
 <ion-content class="grad" padding>
 
-  <div style="text-align:center;margin-top:10% ;color:white">
+  <div style="text-align:center;margin-top:15% ;color:white">
     <h3>Crear Cuenta</h3>
   </div>
   <br>
@@ -41,29 +41,14 @@
     </ion-list>
 
     <div style="text-align:center;margin-top:5%">
-      <button ion-button secondary type="submit" [disabled]="!formulario.valid" class="btn_ok" (click)="registrar()">Registrarse</button>
-      <button ion-button color="light" clear secondary (click)="cancelar()">Cancelar</button>
+      <button ion-button secondary type="submit" [disabled]="!formulario.valid" class="btn_ok" (click)="registrar()">Registrarse</button>  
     </div>
 
   </form> 
-
-  <br>
-
-  <!--
-  <ion-list>
-    <ion-item class="border_r">
-      <ion-label >ROL</ion-label>
-      <ion-select [(ngModel)]="genero">
-        <ion-option value="Femenino">Femenino</ion-option>
-        <ion-option value="Masculino">Masculino</ion-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
-  -->
-
   
-
-  
+  <div style="text-align:center">
+    <button ion-button style="text-align: center" color="light" clear secondary (click)="cancelar()">Cancelar</button>
+  </div>
 
 </ion-content>
 
