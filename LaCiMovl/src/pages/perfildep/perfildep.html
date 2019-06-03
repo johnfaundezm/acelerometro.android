@@ -9,9 +9,7 @@
       Informacion Personal
     </ion-card-header>
 
-    <ion-scroll scrollY="true">
         <ion-list>
-
             <ion-item>
               <ion-label>Nombre</ion-label>
               <ion-input [(ngModel)]="nombre" class="textarea" disabled></ion-input>
@@ -61,20 +59,15 @@
               <ion-label>Pais</ion-label>
               <ion-input [(ngModel)]="pais" class="textarea" disabled></ion-input>
             </ion-item>
-      
         </ion-list>
-    </ion-scroll>
-    
-    
-    
-    <ion-item >
-      <button ion-button style="margin-top: 0px" color="secondary" block (click)="presentPopover($event)">
+
+  <ion-item >
+      <button ion-button color="secondary" block (click)="presentPopover($event)">
         <ion-icon name="create" style="margin-right: 5px" ></ion-icon>
         Editar
       </button>
-    </ion-item>
+  </ion-item>
    
-  
   </ion-card>
 
 </ion-content>
