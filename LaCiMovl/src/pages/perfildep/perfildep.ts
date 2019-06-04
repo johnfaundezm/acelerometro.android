@@ -11,6 +11,10 @@ import { WebservicesProvider } from '../../providers/webservices/webservices';
 })
 export class PerfildepPage {
 
+  parametros = {
+    correo: ''
+  }
+
   correo:any;
   pass:any;
   nombre:any;
@@ -26,6 +30,7 @@ export class PerfildepPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, private webservices: WebservicesProvider) {
     this.correo = this.navParams.get('correo');
+    this.parametros.correo = this.navParams.get('correo')
   }
 
   presentPopover(myEvent) {
