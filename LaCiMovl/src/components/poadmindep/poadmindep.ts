@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { NavController, NavParams } from 'ionic-angular';
-import { AdminDeportistaPage } from '../../pages/admin-deportista/admin-deportista';
+import { AdmintabsPage } from '../../pages/admintabs/admintabs';
 
 @Component({
   selector: 'poadmindep',
@@ -39,9 +39,10 @@ export class PoadmindepComponent {
     if(this.valor_estado==true){
       this.estado2="activada";
     }
+    alert(this.estado2);
     this.webservices.actualizar_deportista(this.correo, this.pass, this.nombre, this.apellido_p, this.apellido_m, this.genero, this.edad, this.peso, this.estatura, this.imc, this.pais, this.estado2).then(
       (resultado) =>{
-        this.navCtrl.push(AdminDeportistaPage);
+        this.navCtrl.push(AdmintabsPage);
       alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
