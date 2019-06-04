@@ -21,6 +21,7 @@ export class PoadmindepComponent {
   imc:any;
   pais:any;
   estado:any;
+  estado2:any;
   valor_estado:any;
 
   constructor(private webservices: WebservicesProvider, public navCtrl: NavController, public navParams: NavParams) {
@@ -33,12 +34,12 @@ export class PoadmindepComponent {
 
   actualizar_deportista(){
     if(this.valor_estado==false){
-      this.estado="desactivada";  
+      this.estado2="desactivada";  
     }
     if(this.valor_estado==true){
-      this.estado="activada";
+      this.estado2="activada";
     }
-    this.webservices.actualizar_deportista(this.correo, this.pass, this.nombre, this.apellido_p, this.apellido_m, this.genero, this.edad, this.peso, this.estatura, this.imc, this.pais, this.estado).then(
+    this.webservices.actualizar_deportista(this.correo, this.pass, this.nombre, this.apellido_p, this.apellido_m, this.genero, this.edad, this.peso, this.estatura, this.imc, this.pais, this.estado2).then(
       (resultado) =>{
         this.navCtrl.push(AdminDeportistaPage);
       alert('oka'+JSON.stringify(resultado));
