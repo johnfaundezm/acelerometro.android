@@ -39,7 +39,7 @@ export class DeportistasPage {
       })
   }
 
-  detalle2(email){
+  detalle(email){
     this.navCtrl.push(AdminDeportistaPage, {correo:email});
   }
 
