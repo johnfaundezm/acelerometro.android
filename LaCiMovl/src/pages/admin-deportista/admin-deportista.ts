@@ -40,6 +40,10 @@ export class AdminDeportistaPage {
     this.detalle();
   }
 
+  ionViewDidEnter(){
+   this.detalle(); 
+  }
+
   detalle(){
     this.webservices.consulta_deportista(this.correo).then(
       (datos)=>{

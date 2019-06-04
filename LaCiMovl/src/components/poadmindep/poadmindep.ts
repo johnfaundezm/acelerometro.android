@@ -42,7 +42,7 @@ export class PoadmindepComponent {
     alert(this.estado2);
     this.webservices.actualizar_deportista(this.correo, this.pass, this.nombre, this.apellido_p, this.apellido_m, this.genero, this.edad, this.peso, this.estatura, this.imc, this.pais, this.estado2).then(
       (resultado) =>{
-        this.navCtrl.push(AdmintabsPage);
+        this.navCtrl.pop();
       alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
