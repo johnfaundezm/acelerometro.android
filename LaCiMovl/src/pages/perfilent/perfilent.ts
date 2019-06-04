@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { PopovercoachComponent } from '../../components/popovercoach/popovercoach';
 
-/**
- * Generated class for the PerfilentPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,7 +10,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PerfilentPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController) {
+  }
+
+  presentPopovercoach(myEvent) {
+    let popover = this.popoverCtrl.create(PopovercoachComponent, {}, {cssClass: 'popover-tamaño'});
+    popover.present({
+      ev: myEvent
+    })
   }
 
   ionViewDidLoad() {
