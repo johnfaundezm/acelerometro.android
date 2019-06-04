@@ -28,6 +28,7 @@ export class PopoverComponent {
   estatura:any;
   imc:any;
   pais:any;
+  estado:any;
 
   text: string;
 
@@ -48,7 +49,7 @@ export class PopoverComponent {
 
 
   actualizar_deportista(){
-    this.webservices.actualizar_deportista(this.correo, this.pass, this.nombre, this.apellido_p, this.apellido_m, this.genero, this.edad, this.peso, this.estatura, this.imc, this.pais).then(
+    this.webservices.actualizar_deportista(this.correo, this.pass, this.nombre, this.apellido_p, this.apellido_m, this.genero, this.edad, this.peso, this.estatura, this.imc, this.pais, this.estado).then(
       (resultado) =>{
         this.navCtrl.push(DeportistaPage,{correo:this.correo});
         //alert('oka'+JSON.stringify(resultado));

@@ -61,19 +61,19 @@
       </ion-item>
 
       <ion-item>
-        <ion-label>Estado</ion-label>
-        <ion-input class="textarea" disabled></ion-input>
+        <ion-label>Su cuenta está:</ion-label>
+        <ion-input [(ngModel)]="estado" class="textarea" disabled></ion-input>
       </ion-item>
 
       <ion-item>
           <ion-label>Fecha Registro</ion-label>
-          <ion-input class="textarea" disabled></ion-input>
+          <ion-input [(ngModel)]="pais" class="textarea" disabled></ion-input>
         </ion-item>
     </ion-list>
 
     <ion-item >
       <button ion-button color="secondary" block (click)="poadmindep($event)">
-        <ion-icon name="create" style="margin-right: 5px" ></ion-icon>
+        <ion-icon  name="create" style="margin-right: 5px" ></ion-icon>
         Editar
       </button>
     </ion-item>

@@ -70,10 +70,10 @@
       </ion-item>
 
       <ion-item>
-        <ion-label style="color: rgb(160, 160, 160)" fixed>Estado</ion-label>
-        <ion-toggle checked="true"></ion-toggle>>
+        <ion-label style="color: rgb(160, 160, 160)" fixed>Desactivar cuenta</ion-label>
+        <ion-toggle  [(ngModel)]="valor_estado" value="valor_estado" checked="true" (click)="actualizar_deportista()"></ion-toggle>
       </ion-item>
   
-      <button ion-button color="primary" style="margin: auto; display: block" >Guardar</button>
+      <button ion-button color="primary" style="margin: auto; display: block" (click)="actualizar_deportista()">Guardar</button>
      
   </ion-content>

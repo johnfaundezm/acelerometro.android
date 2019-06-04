@@ -39,7 +39,7 @@ export class WebservicesProvider {
     });
   }
 
-  actualizar_deportista(correo,pass,nombre,apellido_p,apellido_m,genero,edad,peso,estatura,imc,pais) {
+  actualizar_deportista(correo,pass,nombre,apellido_p,apellido_m,genero,edad,peso,estatura,imc,pais,estado) {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
@@ -49,7 +49,7 @@ export class WebservicesProvider {
         headers: headers
       });
       // TODO: Encode the values using encodeURIComponent().
-      let body = 'correo='+correo + '&pass='+pass +'&nombre='+nombre +'&apellido_p='+apellido_p +'&apellido_m='+apellido_m +'&genero='+genero +'&edad='+edad +'&peso='+peso +'&estatura='+estatura +'&imc='+imc +'&pais='+pais;
+      let body = 'correo='+correo + '&pass='+pass +'&nombre='+nombre +'&apellido_p='+apellido_p +'&apellido_m='+apellido_m +'&genero='+genero +'&edad='+edad +'&peso='+peso +'&estatura='+estatura +'&imc='+imc +'&pais='+pais+'&estado='+estado;
 
       let url = "https://lacimovl.000webhostapp.com/webservices/update_deportista.php";
 

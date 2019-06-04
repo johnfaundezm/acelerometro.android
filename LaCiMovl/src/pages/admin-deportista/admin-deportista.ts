@@ -29,7 +29,7 @@ export class AdminDeportistaPage {
   }
 
   poadmindep(myEvent) {
-    let popover = this.popoverCtrl.create(PoadmindepComponent, {}, {cssClass: 'popover-tamaño'});
+    let popover = this.popoverCtrl.create(PoadmindepComponent, {correo:this.correo}, {cssClass: 'popover-tamaño'});
     popover.present({
       ev: myEvent
     })
