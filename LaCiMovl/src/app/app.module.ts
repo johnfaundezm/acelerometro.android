@@ -32,9 +32,9 @@ import { HTTP } from '@ionic-native/http';
 import { HttpClientModule } from '@angular/common/http';
 
 import { DeportistatabsPage } from '../pages/deportistatabs/deportistatabs';
+
 import { AdmintabsPage } from '../pages/admintabs/admintabs';
-
-
+import { EntrenadortabsPage } from '../pages/entrenadortabs/entrenadortabs';
 
 
 @NgModule({
@@ -52,6 +52,7 @@ import { AdmintabsPage } from '../pages/admintabs/admintabs';
     PoadmindepComponent,
     PoadminentComponent,
     DeportistatabsPage,
+    EntrenadortabsPage,
     AdmintabsPage
   ],
   imports: [
@@ -77,6 +78,7 @@ import { AdmintabsPage } from '../pages/admintabs/admintabs';
     PoadmindepComponent,
     PoadminentComponent,
     DeportistatabsPage,
+    EntrenadortabsPage,
     AdmintabsPage
   ],
   providers: [

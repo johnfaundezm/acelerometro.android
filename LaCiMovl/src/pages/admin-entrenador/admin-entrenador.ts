@@ -25,7 +25,7 @@ export class AdminEntrenadorPage {
     this.correo = this.navParams.get('correo');
   }
 
-  poadmindent(myEvent) {
+  poadminent(myEvent) {
     let popover = this.popoverCtrl.create(PoadminentComponent, {correo:this.correo}, {cssClass: 'popover-tamaño'});
     popover.present({
       ev: myEvent
