@@ -32,7 +32,7 @@ export class AdminEntrenadorPage {
     })
   }
 
-  ionViewDidLoad() {
+  ionViewCanEnter() {
     this.detalle();
   }
 

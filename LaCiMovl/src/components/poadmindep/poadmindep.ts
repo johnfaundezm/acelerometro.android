@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { NavController, NavParams } from 'ionic-angular';
-import { AdmintabsPage } from '../../pages/admintabs/admintabs';
-
 @Component({
   selector: 'poadmindep',
   templateUrl: 'poadmindep.html'
@@ -28,7 +26,7 @@ export class PoadmindepComponent {
     this.correo = this.navParams.get('correo');
   }
 
-  ionViewDidLoad() {
+  ionViewCanEnter() {
     this.consulta();
   }
 
@@ -38,10 +36,12 @@ export class PoadmindepComponent {
 
   actualizar_deportista(){
     if(this.valor_estado==false){
-      this.estado2="desactivada";  
+      this.estado2="desactivada";
+      alert('se ha desactivado con exito')  
     }
     if(this.valor_estado==true){
       this.estado2="activada";
+      alert('se ha activado con exito')
     }
     alert(this.estado2);
     this.webservices.actualizar_deportista(this.correo, this.pass, this.nombre, this.apellido_p, this.apellido_m, this.genero, this.edad, this.peso, this.estatura, this.imc, this.pais, this.estado2).then(

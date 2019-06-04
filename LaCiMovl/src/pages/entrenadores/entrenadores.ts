@@ -22,7 +22,7 @@ export class EntrenadoresPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
   }
 
-  ionViewDidLoad() {
+  ionViewCanEnter() {
     while(this.entrenador.length>0){
       this.entrenador.pop();
     }

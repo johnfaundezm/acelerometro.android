@@ -35,7 +35,7 @@ export class PerfildepPage {
     })
   }
 
-  ionViewDidLoad() {
+  ionViewCanEnter() {
     this.consulta();
   }
 

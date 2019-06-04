@@ -19,6 +19,9 @@ export class PopovercoachComponent {
   genero:any;
   edad:any;
   pais:any;
+  estado:any;
+  estado2:any;
+  valor_estado:any;
 
   constructor(public navCtrl: NavController, private webservices: WebservicesProvider, public navParams: NavParams) {
     console.log('Hello PopovercoachComponent Component');
@@ -26,12 +29,24 @@ export class PopovercoachComponent {
     this.correo = this.navParams.get('correo');
   }
 
-  ionViewDidLoad() {
+  ionViewCanEnter() {
     this.consulta();
   }
 
+  cambioestado($event) {
+    this.valor_estado = !this.valor_estado;
+ }
+
   actualizar_entrenador(){
-    this.webservices.actualizar_entrenador(this.correo, this.pass, this.nombre, this.apellido_p, this.apellido_m, this.genero, this.edad, this.pais).then(
+    if(this.valor_estado==false){
+      this.estado2="desactivada";
+      alert('se ha desactivado con exito')  
+    }
+    if(this.valor_estado==true){
+      this.estado2="activada";
+      alert('se ha activado con exito')
+    }
+    this.webservices.actualizar_entrenador(this.correo, this.pass, this.nombre, this.apellido_p, this.apellido_m, this.genero, this.edad, this.pais, this.estado2).then(
       (resultado) =>{
         this.navCtrl.push(EntrenadortabsPage,{correo:this.correo});
         //alert('oka'+JSON.stringify(resultado));
@@ -52,6 +67,7 @@ export class PopovercoachComponent {
           this.genero= datos[0].GENERO;
           this.edad= datos[0].EDAD;
           this.pais= datos[0].PAIS;
+          this.estado= datos[0].ESTADO;
       },
       (err)=>{
         alert(JSON.stringify(err))

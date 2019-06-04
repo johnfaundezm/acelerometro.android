@@ -62,7 +62,7 @@ export class WebservicesProvider {
         }, error => reject(error));
     });
   }
-  actualizar_entrenador(correo,pass,nombre,apellido_p,apellido_m,genero,edad,pais) {
+  actualizar_entrenador(correo,pass,nombre,apellido_p,apellido_m,genero,edad,pais, estado) {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
@@ -72,7 +72,7 @@ export class WebservicesProvider {
         headers: headers
       });
       // TODO: Encode the values using encodeURIComponent().
-      let body = 'correo='+correo + '&pass='+pass +'&nombre='+nombre +'&apellido_p='+apellido_p +'&apellido_m='+apellido_m +'&genero='+genero +'&edad='+edad +'&pais='+pais;
+      let body = 'correo='+correo + '&pass='+pass +'&nombre='+nombre +'&apellido_p='+apellido_p +'&apellido_m='+apellido_m +'&genero='+genero +'&edad='+edad +'&pais='+pais+'&estado='+estado;
 
       let url = "https://lacimovl.000webhostapp.com/webservices/update_entrenador.php";
 

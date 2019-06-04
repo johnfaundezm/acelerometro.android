@@ -17,12 +17,13 @@ export class DeportistasPage {
     
   }
 
-  ionViewDidLoad() {
+  ionViewCanEnter() {
     while(this.deportista.length>0){
       this.deportista.pop();
     }
     this.vista_deportista();
   }
+  
 
   vista_deportista(){
     this.webservices.vista_deportista().then(

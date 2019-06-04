@@ -32,7 +32,7 @@ export class PerfilentPage {
     })
   }
 
-  ionViewDidLoad() {
+  ionViewCanEnter() {
     this.consulta();
   }
 

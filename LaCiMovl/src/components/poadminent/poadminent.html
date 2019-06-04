@@ -66,6 +66,11 @@
       </ion-select>
   </ion-item>
 
+  <ion-item>
+    <ion-label style="color: rgb(160, 160, 160); font-size: 85%" fixed>Estado cuenta</ion-label>
+    <ion-toggle  [(ngModel)]="valor_estado" checked={{valor_estado}} (ionChange)="cambioestado($event)"></ion-toggle>
+  </ion-item>
+
 <button ion-button color="primary" style="margin: auto; display: block" (click)="actualizar_entrenador()">Guardar</button>
 
 </ion-content>

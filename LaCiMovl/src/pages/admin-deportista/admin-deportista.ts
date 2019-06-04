@@ -36,12 +36,8 @@ export class AdminDeportistaPage {
     })
   }
 
-  ionViewDidLoad() {
+  ionViewCanEnter() {
     this.detalle();
-  }
-
-  ionViewDidEnter(){
-   this.detalle(); 
   }
 
   detalle(){
