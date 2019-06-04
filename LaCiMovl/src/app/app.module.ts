@@ -36,6 +36,9 @@ import { DeportistatabsPage } from '../pages/deportistatabs/deportistatabs';
 import { AdmintabsPage } from '../pages/admintabs/admintabs';
 import { EntrenadortabsPage } from '../pages/entrenadortabs/entrenadortabs';
 
+import { Gyroscope, GyroscopeOrientation, GyroscopeOptions } from '@ionic-native/gyroscope';
+import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
+
 
 @NgModule({
   declarations: [
@@ -88,7 +91,9 @@ import { EntrenadortabsPage } from '../pages/entrenadortabs/entrenadortabs';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DatabaseProvider,
     WebservicesProvider,
-    HTTP
+    HTTP,
+    Gyroscope,
+    DeviceMotion
   ]
 })
 export class AppModule {}
