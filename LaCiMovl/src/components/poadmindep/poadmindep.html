@@ -21,7 +21,7 @@
     </ion-item>
   
       <ion-item>
-        <ion-label fixed>Genero</ion-label>
+        <ion-label>Genero</ion-label>
         <ion-select style="text-align-last: right" [(ngModel)]="genero">
           <ion-option value=Masculino>Masculino</ion-option>
           <ion-option value=Femenino>Femenino</ion-option>
@@ -44,7 +44,7 @@
     </ion-item>
   
       <ion-item>
-        <ion-label fixed>Pais</ion-label>
+        <ion-label >Pais</ion-label>
         <ion-select style="text-align-last: right" [(ngModel)]="pais">
           <ion-option value="Argentina">Argentina</ion-option>
           <ion-option value="Bolivia">Bolivia</ion-option>
@@ -71,7 +71,7 @@
 
       <ion-item>
         <ion-label style="color: rgb(160, 160, 160); font-size: 85%" fixed>Estado cuenta</ion-label>
-        <ion-toggle  [(ngModel)]="valor_estado" value="valor_estado" checked="true" (click)="actualizar_deportista()"></ion-toggle>
+        <ion-toggle  [(ngModel)]="valor_estado" value="valor_estado" checked="true"></ion-toggle>
       </ion-item>
   
       <button ion-button color="primary" style="margin: auto; display: block" (click)="actualizar_deportista()">Guardar</button>
