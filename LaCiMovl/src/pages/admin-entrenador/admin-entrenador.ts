@@ -1,13 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
-
-/**
- * Generated class for the AdminEntrenadorPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { PoadminentComponent } from '../../components/poadminent/poadminent';
 
 @IonicPage()
 @Component({
@@ -26,8 +20,15 @@ export class AdminEntrenadorPage {
   pais:any;
   estado:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider, public popoverCtrl: PopoverController) {
     this.correo = this.navParams.get('correo');
+  }
+
+  poadmindep(myEvent) {
+    let popover = this.popoverCtrl.create(PoadminentComponent, {correo:this.correo}, {cssClass: 'popover-tamaño'});
+    popover.present({
+      ev: myEvent
+    })
   }
 
   ionViewDidLoad() {

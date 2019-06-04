@@ -4,12 +4,6 @@ import { NavController, NavParams} from 'ionic-angular';//controladores de angul
 
 import { EntrenadorPage} from '../../pages/entrenador/entrenador';//conexion con las vista Entrenador
 
-/**
- * Generated class for the PopovercoachComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'popovercoach',
   templateUrl: 'popovercoach.html'

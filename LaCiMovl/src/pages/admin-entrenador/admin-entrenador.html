@@ -46,10 +46,20 @@
         <ion-input [(ngModel)]="pais" disabled class="textarea"></ion-input>
       </ion-item>
 
+      <ion-item>
+        <ion-label>Estado Cuenta</ion-label>
+        <ion-input disabled class="textarea"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Fecha Registro</ion-label>
+        <ion-input disabled class="textarea"></ion-input>
+      </ion-item>
+
     </ion-list>
 
     <ion-item >
-      <button ion-button color="secondary" block (click)="presentPopovercoach($event)">
+      <button ion-button color="secondary" block (click)="poadminent($event)">
         <ion-icon name="create" style="margin-right: 5px" ></ion-icon>
         Editar
       </button>
