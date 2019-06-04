@@ -16,11 +16,8 @@ export class DeportistatabsPage {
     correo: ''
   }
 
-  correo:any;
-
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.correo = this.navParams.get('correo');
-    this.parametros.correo = this.correo;
+    this.parametros.correo = this.navParams.get('correo');
   }
 
   

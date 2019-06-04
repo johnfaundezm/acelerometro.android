@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { NavController, NavParams } from 'ionic-angular';//controladores de angular
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 
-import { DeportistaPage} from '../../pages/deportista/deportista';//conexion con las vista Deportista
+import { DeportistatabsPage } from '../../pages/deportistatabs/deportistatabs';
 
 /**
  * Generated class for the PopoverComponent component.
@@ -30,11 +29,7 @@ export class PopoverComponent {
   pais:any;
   estado:any;
 
-  text: string;
-
-  constructor(private sqlite: SQLite, private webservices: WebservicesProvider, public navCtrl: NavController, public navParams: NavParams) {
-    console.log('Hello PopoverComponent Component');
-    this.text = 'Hello World';
+  constructor(private webservices: WebservicesProvider, public navCtrl: NavController, public navParams: NavParams) {
     //recibe variable correo
     this.correo = this.navParams.get('correo');
   }
@@ -51,7 +46,7 @@ export class PopoverComponent {
   actualizar_deportista(){
     this.webservices.actualizar_deportista(this.correo, this.pass, this.nombre, this.apellido_p, this.apellido_m, this.genero, this.edad, this.peso, this.estatura, this.imc, this.pais, this.estado).then(
       (resultado) =>{
-        this.navCtrl.push(DeportistaPage,{correo:this.correo});
+        this.navCtrl.push(DeportistatabsPage,{correo:this.correo});
         //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
@@ -79,23 +74,4 @@ export class PopoverComponent {
       })
   }
 
-/*
-  actualizarbd() {
-    this.sqlite.create({
-      name: 'LaCiMovl.db',
-      location: 'default'
-    }).then((db: SQLiteObject) => {
-      db.executeSql('SELECT * FROM expense WHERE correo=?', [this.correo])
-        .then(res => {
-          if(res.rows.length > 0) {
-            db.executeSql('UPDATE perfil_deportista SET nombre=?,apellido=?,genero=?,edad=?,pais=?,masa=?,estatura=? WHERE correo=?',[this.nombre,this.apellido,this.genero,this.edad,this.pais,this.peso,this.estatura,this.correo])
-
-          }
-        })
-      }).catch(e => {
-        console.log(e);
-        
-      });
-  }
-  */
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
  * Generated class for the EntrenadortabsPage tabs.
@@ -18,7 +18,12 @@ export class EntrenadortabsPage {
   perfilentRoot = 'PerfilentPage'
   deportistasentRoot = 'DeportistasentPage'
 
+  parametros = {
+    correo: ''
+  }
 
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.parametros.correo = this.navParams.get('correo')
+  }
 
 }

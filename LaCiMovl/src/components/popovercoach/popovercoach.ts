@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { NavController, NavParams} from 'ionic-angular';//controladores de angular
 
-import { EntrenadorPage} from '../../pages/entrenador/entrenador';//conexion con las vista Entrenador
+import { EntrenadortabsPage } from '../../pages/entrenadortabs/entrenadortabs';
 
 @Component({
   selector: 'popovercoach',
@@ -33,7 +33,7 @@ export class PopovercoachComponent {
   actualizar_entrenador(){
     this.webservices.actualizar_entrenador(this.correo, this.pass, this.nombre, this.apellido_p, this.apellido_m, this.genero, this.edad, this.pais).then(
       (resultado) =>{
-        this.navCtrl.push(EntrenadorPage,{correo:this.correo});
+        this.navCtrl.push(EntrenadortabsPage,{correo:this.correo});
         //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
