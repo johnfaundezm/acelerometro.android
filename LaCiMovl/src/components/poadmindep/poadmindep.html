@@ -6,12 +6,12 @@
     </ion-item>
   
     <ion-item>
-      <ion-label fixed>Apellido Paterno</ion-label>
+      <ion-label style="font-size: 85%" fixed>Apellido Paterno</ion-label>
       <ion-input [(ngModel)]="apellido_p"></ion-input>
     </ion-item>
   
     <ion-item>
-      <ion-label fixed>Apellido Materno</ion-label>
+      <ion-label style="font-size: 85%" fixed>Apellido Materno</ion-label>
       <ion-input [(ngModel)]="apellido_m"></ion-input>
     </ion-item>
   
@@ -21,7 +21,7 @@
     </ion-item>
   
       <ion-item>
-        <ion-label>Genero</ion-label>
+        <ion-label fixed>Genero</ion-label>
         <ion-select [(ngModel)]="genero">
           <ion-option value=Masculino>Masculino</ion-option>
           <ion-option value=Femenino>Femenino</ion-option>
@@ -44,8 +44,8 @@
     </ion-item>
   
       <ion-item>
-        <ion-label>Pais</ion-label>
-        <ion-select [(ngModel)]="pais">
+        <ion-label fixed>Pais</ion-label>
+        <ion-select style="text-align: right" [(ngModel)]="pais">
           <ion-option value="Argentina">Argentina</ion-option>
           <ion-option value="Bolivia">Bolivia</ion-option>
           <ion-option value="Brasil">Brasil</ion-option>
@@ -70,7 +70,7 @@
       </ion-item>
 
       <ion-item>
-        <ion-label style="color: rgb(160, 160, 160)" fixed>Desactivar cuenta</ion-label>
+        <ion-label style="color: rgb(160, 160, 160); font-size: 85%" fixed>Estado cuenta</ion-label>
         <ion-toggle  [(ngModel)]="valor_estado" value="valor_estado" checked="true" (click)="actualizar_deportista()"></ion-toggle>
       </ion-item>
   
