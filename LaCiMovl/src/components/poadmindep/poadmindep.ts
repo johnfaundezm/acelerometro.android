@@ -32,6 +32,10 @@ export class PoadmindepComponent {
     this.consulta();
   }
 
+  cambioestado($event) {
+     this.valor_estado = !this.valor_estado;
+  }
+
   actualizar_deportista(){
     if(this.valor_estado==false){
       this.estado2="desactivada";  
