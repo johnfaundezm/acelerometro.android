@@ -31,7 +31,7 @@ export class AdmininsertPage {
   }
 
   ionViewCanEnter() {
-    console.log('ionViewDidLoad AdmininsertPage');
+    console.log('ionViewCanEnter AdmininsertPage');
   }
 
   registrar(){
