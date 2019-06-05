@@ -5,8 +5,6 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite';//enlace con la base
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 
 import { RegistroPage} from '../registro/registro';//conexion con las vista registro
-import { EntrenadorPage} from '../entrenador/entrenador';//conexion con las vista Entrenador
-import { DeportistaPage} from '../deportista/deportista';//conexion con las vista Deportista
 import { AdministradorPage} from '../administrador/administrador';//conexion con las vista Administrador
 import { AdmintabsPage } from '../admintabs/admintabs';
 import { DeportistatabsPage } from '../deportistatabs/deportistatabs';
@@ -91,7 +89,7 @@ export class HomePage {
         alert(JSON.stringify(err))
       })
   }
-
+/*
   inicio_sesion(){
     this.sqlite.create({
       name: 'data.db',
@@ -168,6 +166,7 @@ export class HomePage {
     //  alert('Escoja un rol');
     //}  
   }
+*/
 
   registrar(){
     this.navCtrl.push(RegistroPage);
