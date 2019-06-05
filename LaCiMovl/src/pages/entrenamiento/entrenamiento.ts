@@ -7,13 +7,6 @@ import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device
 import { Observable } from 'rxjs/Observable'
 import  'rxjs/add/observable/interval' 
 
-/**
- * Generated class for the EntrenamientoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-entrenamiento',

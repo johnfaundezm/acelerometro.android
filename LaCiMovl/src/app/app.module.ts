@@ -17,8 +17,6 @@ import { AdminDeportistaPage } from '../pages/admin-deportista/admin-deportista'
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { PopoverComponent } from '../components/popover/popover';
-import { PopovercoachComponent } from '../components/popovercoach/popovercoach';
 import { PoadmindepComponent } from '../components/poadmindep/poadmindep';
 import { PoadminentComponent } from '../components/poadminent/poadminent';
 
@@ -50,8 +48,6 @@ import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device
     EntrenadorPage,
     DeportistaPage,
     AdminDeportistaPage,
-    PopoverComponent,
-    PopovercoachComponent,
     PoadmindepComponent,
     PoadminentComponent,
     DeportistatabsPage,
@@ -76,8 +72,6 @@ import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device
     EntrenadorPage,
     DeportistaPage,
     AdminDeportistaPage,
-    PopoverComponent,
-    PopovercoachComponent,
     PoadmindepComponent,
     PoadminentComponent,
     DeportistatabsPage,

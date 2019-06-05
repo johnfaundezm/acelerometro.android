@@ -46,10 +46,12 @@
   <button ion-button (click)="Accelerometer()" full>click</button>
   <!--Cronometro-->
   <h2>Cronometro</h2>
-    <button (click)="inicio()">Inicio</button>
-    <button (click)="marca()">Marca</button>
-    <button (click)="lapso()">Marcas</button> 
-    <button (click)="finalizar()">finalizar</button>
+    <button ion-button class="btn_entre" outline color="light" (click)="inicio()">
+      <ion-icon name="play"></ion-icon>
+    </button>
+    <button ion-button class="btn_entre" outline color="light" (click)="marca()">Marca</button>
+    <button ion-button class="btn_entre" outline color="light" (click)="lapso()">Marcas</button> 
+    <button ion-button class="btn_entre" outline color="light" (click)="finalizar()">finalizar</button>
   <div>
     <p>{{hora}} : {{minuto}} : {{segundos}} </p>
     <h2>Marca</h2>

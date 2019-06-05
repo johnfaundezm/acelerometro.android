@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
-import { PopoverComponent } from '../../components/popover/popover';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
+import { PoadmindepComponent } from '../../components/poadmindep/poadmindep';
 
 
 @IonicPage()
@@ -28,8 +28,8 @@ export class PerfildepPage {
     this.correo = this.navParams.get('correo');
   }
 
-  presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverComponent, {correo:this.correo}, {cssClass: 'popover-tamaño'});
+  poadmindep(myEvent) {
+    let popover = this.popoverCtrl.create(PoadmindepComponent, {correo:this.correo}, {cssClass: 'popover-tamaño'});
     popover.present({
       ev: myEvent
     })
