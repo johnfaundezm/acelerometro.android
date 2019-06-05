@@ -1,18 +1,22 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-import { HomePage } from '../home/home';
 import { DatabaseProvider } from '../../providers/database/database';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 
-
+/**
+ * Generated class for the AdmininsertPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @IonicPage()
 @Component({
-  selector: 'page-registro',
-  templateUrl: 'registro.html',
+  selector: 'page-admininsert',
+  templateUrl: 'admininsert.html',
 })
-export class RegistroPage {
+export class AdmininsertPage {
 
   private formulario: FormGroup;
   respuesta:any;
@@ -26,8 +30,12 @@ export class RegistroPage {
     });
   }
 
+  ionViewCanEnter() {
+    console.log('ionViewDidLoad AdmininsertPage');
+  }
+
   registrar(){
-    this.webservices.registrar(this.formulario.value.correo,this.formulario.value.pass,' ',' ',' ',' ',0,0,0,0,' ','activada','2019-06-01',this.formulario.value.id_tipo_usuario).then(
+    this.webservices.registrar(this.formulario.value.correo,this.formulario.value.pass,' ',' ',' ',' ',0,0,0,0,' ','activada','2019-06-05',this.formulario.value.id_tipo_usuario).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
         if(this.respuesta=='OK'){
@@ -46,52 +54,6 @@ export class RegistroPage {
         //alert('error'+JSON.stringify(error));
       })
   }
-
-  //sqlite
-  /*crearusuario(){
-
-    if(this.rol==0){
-      this.database.Create_administrador(this.correo,this.pass).then((data) =>{
-        alert('registra en la bd'+JSON.stringify(data));
-      }, (error) =>{
-        alert('no registra en la bd'+JSON.stringify(error));
-      })
-    }
-
-    if(this.rol==1){
-      this.database.Create_deportista(this.correo,this.pass).then((data) =>{
-        alert('registra en la bd'+JSON.stringify(data));
-      }, (error) =>{
-        alert('no registra en la bd'+JSON.stringify(error));
-      })
-    }
-
-    if(this.rol==2){
-      this.database.Create_entrenador(this.correo,this.pass).then((data) =>{
-        alert('registra en la bd'+JSON.stringify(data));
-      }, (error) =>{
-        alert('no registra en la bd'+JSON.stringify(error));
-      })
-    } 
-  }
-
-  GetAllUsers(){
-    this.database.GetAllUsers().then((data: any) =>{
-      console.log(data);
-     // this.ListUser = data;
-    }, (error) =>{
-      console.log(error);
-    })
-  }
-
-  DeleteUser(correo){
-    console.log(correo);
-
-  }*/
-
   
-  cancelar(){
-    this.navCtrl.push(HomePage);
-  }
 
 }

@@ -35,6 +35,7 @@ import { EntrenadortabsPage } from '../pages/entrenadortabs/entrenadortabs';
 import { Gyroscope, GyroscopeOrientation, GyroscopeOptions } from '@ionic-native/gyroscope';
 import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
 import { AdminEntrenadorPage } from '../pages/admin-entrenador/admin-entrenador';
+import { AdmininsertPage } from '../pages/admininsert/admininsert';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { AdminEntrenadorPage } from '../pages/admin-entrenador/admin-entrenador'
     PoadminentComponent,
     DeportistatabsPage,
     EntrenadortabsPage,
-    AdmintabsPage
+    AdmintabsPage,
+    AdmininsertPage
   ],
   imports: [
     BrowserAnimationsModule,
@@ -73,7 +75,8 @@ import { AdminEntrenadorPage } from '../pages/admin-entrenador/admin-entrenador'
     PoadminentComponent,
     DeportistatabsPage,
     EntrenadortabsPage,
-    AdmintabsPage
+    AdmintabsPage,
+    AdmininsertPage
   ],
   providers: [
     StatusBar,
