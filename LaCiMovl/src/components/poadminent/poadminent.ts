@@ -18,7 +18,7 @@ export class PoadminentComponent {
   pais:any;
   estado:any;
   estado2:any;
-  valor_estado:any;
+  valor_estado:boolean;
   respuesta:any;
 
   constructor(private webservices: WebservicesProvider, public navCtrl: NavController, public navParams: NavParams) {
