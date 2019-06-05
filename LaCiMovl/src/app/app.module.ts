@@ -34,6 +34,7 @@ import { EntrenadortabsPage } from '../pages/entrenadortabs/entrenadortabs';
 
 import { Gyroscope, GyroscopeOrientation, GyroscopeOptions } from '@ionic-native/gyroscope';
 import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
+import { AdminEntrenadorPage } from '../pages/admin-entrenador/admin-entrenador';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device
     ListPage,
     AdministradorPage,
     AdminDeportistaPage,
+    AdminEntrenadorPage,
     PoadmindepComponent,
     PoadminentComponent,
     DeportistatabsPage,
@@ -66,6 +68,7 @@ import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device
     ListPage,
     AdministradorPage,
     AdminDeportistaPage,
+    AdminEntrenadorPage,
     PoadmindepComponent,
     PoadminentComponent,
     DeportistatabsPage,
