@@ -11,10 +11,9 @@
     <ion-scroll scrollY="true">
       <ion-list inset *ngFor="let d of deportista" >
         <ion-item style="border-bottom: 1px solid; border-color: rgb(194, 191, 191)">
-        
           <h2 (click)="detalle(d.email)">{{d.email}}</h2>
-          <p style="text-align: right">oka oka</p>
-            
+          <p style="text-align: center">Estado: {{d.estado}}  F. registro: {{d.fecha_r}}</p>
+          
         </ion-item>
       </ion-list>
     </ion-scroll>

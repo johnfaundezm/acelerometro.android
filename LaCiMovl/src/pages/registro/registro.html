@@ -8,7 +8,7 @@
   <form [formGroup]="formulario" (ngSubmit)="registrar()">
     <ion-item style="margin-top:15%" class="border_r">
       <!--<ion-inp   ut [(ngModel)]="correo" type="text" placeholder="Correo" ></ion-input>-->
-      <ion-input type="text" formControlName="correo" placeholder="Correo"></ion-input>
+      <ion-input type="email" formControlName="correo" placeholder="Correo"></ion-input>
     </ion-item>
     <ion-item *ngIf="formulario.get('correo').errors && formulario.get('correo').dirty">
       <p color="danger" ion-text *ngIf="formulario.get('correo').hasError('required')">*El campo es requerido</p>
