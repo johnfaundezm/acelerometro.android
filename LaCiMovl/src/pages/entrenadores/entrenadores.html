@@ -13,8 +13,8 @@
         <ion-list inset *ngFor="let en of entrenador" >
           <ion-item style="border-bottom: 1px solid; border-color: rgb(194, 191, 191); height: auto">
             <h2 (click)="detalle(en.email)">{{en.email}}</h2>
-            <p style="text-align: left">{{d.estado}}</p>
-            <p style="text-align: right">{{d.fecha_r}}</p>
+            <p style="text-align: left">{{en.estado}}</p>
+            <p style="text-align: right">{{en.fecha_r}}</p>
           </ion-item>
         </ion-list>
       </ion-scroll>
