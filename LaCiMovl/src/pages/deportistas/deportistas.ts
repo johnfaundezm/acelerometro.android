@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { AdminDeportistaPage } from '../admin-deportista/admin-deportista';
 import { AdmininsertPage } from '../admininsert/admininsert';
+import { HomePage } from '../home/home';
 
 
 @IonicPage()
@@ -49,6 +50,10 @@ export class DeportistasPage {
 
   crear_usuario(){
     this.navCtrl.push(AdmininsertPage);
+  }
+
+  salir(){
+    this.navCtrl.push(HomePage);
   }
 
 }

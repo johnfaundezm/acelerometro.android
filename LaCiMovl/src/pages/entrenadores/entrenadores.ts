@@ -60,4 +60,6 @@ export class EntrenadoresPage {
     this.navCtrl.push(AdmininsertentPage);
   }
 
+  
+
 }
