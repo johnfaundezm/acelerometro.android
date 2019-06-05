@@ -16,8 +16,15 @@ export class RegistroPage {
   private formulario: FormGroup;
   respuesta:any;
 
+  mes: any;
+  //Fecha----------------------------------------
+  currentDate;
+  formattedDate;
+
   constructor(public navCtrl: NavController, private database: DatabaseProvider, private formBuilder: FormBuilder, private webservices: WebservicesProvider) {
-    
+    this.currentDate = new Date();
+    this.getFormattedDate()
+
     this.formulario = this.formBuilder.group({
       correo: ['',[Validators.required, Validators.maxLength(50), Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$')]],
       pass: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(16)]],
@@ -26,7 +33,7 @@ export class RegistroPage {
   }
 
   registrar(){
-    this.webservices.registrar(this.formulario.value.correo,this.formulario.value.pass,' ',' ',' ',' ',0,0,0,0,' ','activada','2019-06-01',this.formulario.value.id_tipo_usuario).then(
+    this.webservices.registrar(this.formulario.value.correo,this.formulario.value.pass,' ',' ',' ',' ',0,0,0,0,' ','activada',this.formattedDate,this.formulario.value.id_tipo_usuario).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
         if(this.respuesta=='OK'){
@@ -92,5 +99,17 @@ export class RegistroPage {
   cancelar(){
     this.navCtrl.pop();
   }
+
+  getFormattedDate(){
+    var dateObj =new Date()
+
+    var year = dateObj.getFullYear().toString()
+    var month = dateObj.getMonth().toString()
+    this.mes = month;
+    this.mes ++;
+    var date = dateObj.getDate().toString()
+    this.formattedDate = year+'-'+ this.mes +'-'+ date;
+  }
+  
 
 }
