@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { PoadmindepComponent } from '../../components/poadmindep/poadmindep';
+import { HomePage } from '../home/home';
 
 
 @IonicPage()
@@ -58,6 +59,10 @@ export class PerfildepPage {
       (err)=>{
         alert(JSON.stringify(err))
       })
+  }
+
+  salir(){
+    this.navCtrl.push(HomePage);
   }
 
 }
