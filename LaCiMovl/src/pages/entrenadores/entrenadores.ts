@@ -17,7 +17,7 @@ import { AdminEntrenadorPage } from '../admin-entrenador/admin-entrenador';
 })
 export class EntrenadoresPage {
 
-  entrenador: Array<{email:string}>=[{email:''}];
+  entrenador: Array<{email:string, estado:string, fecha_r:string}>=[{email:'', estado:'', fecha_r:''}];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
   }
@@ -36,8 +36,10 @@ export class EntrenadoresPage {
         let largo=Object.keys(datos).length;
         for(var i=0;i<largo;i++){
           var email= datos[i].CORREO;
+          var estado= datos[i].ESTADO;
+          var fecha_r= datos[i].FECHA_R;
 
-          this.entrenador.push({"email":email});           
+          this.entrenador.push({"email":email, "estado":estado, "fecha_r":fecha_r});           
         }
       },
       (err)=>{
