@@ -6,8 +6,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 //import { AdministradorPage } from '../pages/administrador/administrador';
-import { EntrenadorPage } from '../pages/entrenador/entrenador';
-//import { DeportistaPage } from '../pages/deportista/deportista';
 import { DeportistatabsPage} from '../pages/deportistatabs/deportistatabs';
 import { AdmintabsPage } from '../pages/admintabs/admintabs';
 import { EntrenadortabsPage } from '../pages/entrenadortabs/entrenadortabs';
@@ -38,12 +36,11 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       //{ title: 'Administrador', component: AdministradorPage },
-      { title: 'Entrenador', component: EntrenadorPage },
       { title: 'Deportistatabs', component: DeportistatabsPage},
       { title: 'Entrenadortabs', component: EntrenadortabsPage},
       { title: 'Admintabs', component: AdmintabsPage},
       //{ title: 'Deportista', component: DeportistaPage },
-      { title: 'List', component: ListPage }
+      //{ title: 'List', component: ListPage }
     ];
 
   }

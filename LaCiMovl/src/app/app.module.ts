@@ -9,8 +9,6 @@ import { HomePage } from '../pages/home/home';
 import { RegistroPage } from '../pages/registro/registro';
 import { ListPage } from '../pages/list/list';
 import { AdministradorPage } from '../pages/administrador/administrador';
-import { EntrenadorPage } from '../pages/entrenador/entrenador';
-import { DeportistaPage } from '../pages/deportista/deportista';
 import { AdminDeportistaPage } from '../pages/admin-deportista/admin-deportista';
 
 
@@ -45,8 +43,6 @@ import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device
     RegistroPage,
     ListPage,
     AdministradorPage,
-    EntrenadorPage,
-    DeportistaPage,
     AdminDeportistaPage,
     PoadmindepComponent,
     PoadminentComponent,
@@ -69,8 +65,6 @@ import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device
     RegistroPage,
     ListPage,
     AdministradorPage,
-    EntrenadorPage,
-    DeportistaPage,
     AdminDeportistaPage,
     PoadmindepComponent,
     PoadminentComponent,
