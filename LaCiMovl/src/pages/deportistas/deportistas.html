@@ -10,13 +10,18 @@
     </ion-card-header>
     <ion-scroll scrollY="true">
       <ion-list inset *ngFor="let d of deportista" >
-        <ion-item style="border-bottom: 1px solid; border-color: rgb(194, 191, 191)">
+        <ion-item style="border-bottom: 1px solid; border-color: rgb(194, 191, 191); height: auto">
           <h2 (click)="detalle(d.email)">{{d.email}}</h2>
-          <p style="text-align: center">Estado: {{d.estado}}  F. registro: {{d.fecha_r}}</p>
-          
+          <p style="text-align: left">{{d.estado}}</p>
+          <p style="text-align: right">{{d.fecha_r}}</p>
         </ion-item>
       </ion-list>
     </ion-scroll>
   </ion-card>
+
+  <button ion-button block (click)="crear_usuario()">
+    <ion-icon name="add" style="margin-right: 5px"></ion-icon>
+    Agregar Deportistas
+  </button>
 
 </ion-content>
