@@ -28,6 +28,14 @@ export class EntrenamientoPage {
   timerVal;
   tiempo_entrenamiento;
   //-------------------------
+  //Cronometro
+  public hora: number =0;
+  public minuto: number =0;
+  public segundos : number =0;
+
+  public horaMarca :number;
+  public minutoMarca :number;
+  public segundosMarca : number;
 
   //Gyroscopio y Acelerometro
   public xOrient:any;
@@ -115,7 +123,33 @@ export class EntrenamientoPage {
      }
    })
  }  
+// Cronometro
+  inicio(){
+    setInterval ( ()=>{
+      this.segundos+=1;
+      
+      if (this.segundos == 60){
+        this.segundos = 0;
+        this.minuto += 1;
+        if  (this.minuto == 60){
+          this.minuto = 0;
+          this.hora +=1;
+          if (this.hora =24) {
+              this.hora = 0;
+          }
+        }
+      }
+    },1000);
+  }
+  marca(){
+    this.horaMarca =this.hora;
+    this.minutoMarca = this.minuto;
+    this.segundosMarca = this.segundos;
+  }
 
 
+  finalizar(){
+
+  }
 
 }
