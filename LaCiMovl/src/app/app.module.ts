@@ -32,10 +32,11 @@ import { DeportistatabsPage } from '../pages/deportistatabs/deportistatabs';
 import { AdmintabsPage } from '../pages/admintabs/admintabs';
 import { EntrenadortabsPage } from '../pages/entrenadortabs/entrenadortabs';
 
-import { Gyroscope, GyroscopeOrientation, GyroscopeOptions } from '@ionic-native/gyroscope';
-import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
+import { Gyroscope } from '@ionic-native/gyroscope';
+import { DeviceMotion } from '@ionic-native/device-motion';
 import { AdminEntrenadorPage } from '../pages/admin-entrenador/admin-entrenador';
 import { AdmininsertPage } from '../pages/admininsert/admininsert';
+import { AdmininsertentPage } from '../pages/admininsertent/admininsertent';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { AdmininsertPage } from '../pages/admininsert/admininsert';
     DeportistatabsPage,
     EntrenadortabsPage,
     AdmintabsPage,
-    AdmininsertPage
+    AdmininsertPage,
+    AdmininsertentPage
   ],
   imports: [
     BrowserAnimationsModule,
@@ -76,7 +78,8 @@ import { AdmininsertPage } from '../pages/admininsert/admininsert';
     DeportistatabsPage,
     EntrenadortabsPage,
     AdmintabsPage,
-    AdmininsertPage
+    AdmininsertPage,
+    AdmininsertentPage
   ],
   providers: [
     StatusBar,

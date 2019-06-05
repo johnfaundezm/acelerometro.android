@@ -5,19 +5,12 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { AdmintabsPage } from '../admintabs/admintabs';
 
-/**
- * Generated class for the AdmininsertPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
-  selector: 'page-admininsert',
-  templateUrl: 'admininsert.html',
+  selector: 'page-admininsertent',
+  templateUrl: 'admininsertent.html',
 })
-export class AdmininsertPage {
+export class AdmininsertentPage {
 
   private formulario: FormGroup;
   respuesta:any;
@@ -35,7 +28,7 @@ export class AdmininsertPage {
   }
 
   registrar(){
-    this.webservices.registrar(this.formulario.value.correo,this.formulario.value.pass,' ',' ',' ',' ',0,0,0,0,' ','activada','2019-06-05',3).then(
+    this.webservices.registrar(this.formulario.value.correo,this.formulario.value.pass,' ',' ',' ',' ',0,0,0,0,' ','activada','2019-06-05',2).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
         if(this.respuesta=='OK'){
@@ -59,5 +52,4 @@ export class AdmininsertPage {
     this.navCtrl.pop();
   }
   
-
 }

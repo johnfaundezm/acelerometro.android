@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { AdminEntrenadorPage } from '../admin-entrenador/admin-entrenador';
-import { AdmininsertPage } from '../admininsert/admininsert';
+import { AdmininsertentPage } from '../admininsertent/admininsertent';
 
 
 @IonicPage()
@@ -57,7 +57,7 @@ export class EntrenadoresPage {
   }
 
   crear_usuario(){
-    this.navCtrl.push(AdmininsertPage);
+    this.navCtrl.push(AdmininsertentPage);
   }
 
 }
