@@ -44,16 +44,12 @@ export class PoadminentComponent {
         (datos) =>{
           this.respuesta= datos[0].RESPUESTA;
           if(this.respuesta=='OK'){
-            if(this.estado2=="activada"){
-              alert('se ha activado con exito')
-              this.navCtrl.pop();
-            }else{
-              if(this.estado2=="desactivada"){
-                alert('se ha desactivado con exito')
-                this.navCtrl.pop();
-              }
+            alert('Los cambios se han realizado satisfactoriamente')
+          }else{
+            if(this.respuesta=='ERROR'){
+              alert('Los cambios se han realizado satisfactoriamente')
             }
-
+            alert('Ha ocurrido un error en la actualizacion')
           }
         //alert('oka'+JSON.stringify(resultado));
         },
