@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-import { HomePage } from '../home/home';
 import { DatabaseProvider } from '../../providers/database/database';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
@@ -91,7 +90,7 @@ export class RegistroPage {
 
   
   cancelar(){
-    this.navCtrl.push(HomePage);
+    this.navCtrl.pop();
   }
 
 }

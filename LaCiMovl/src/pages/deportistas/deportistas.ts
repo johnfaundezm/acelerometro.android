@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { AdminDeportistaPage } from '../admin-deportista/admin-deportista';
+import { AdmininsertPage } from '../admininsert/admininsert';
 
 
 @IonicPage()
@@ -44,6 +45,10 @@ export class DeportistasPage {
 
   detalle(email){
     this.navCtrl.push(AdminDeportistaPage, {correo:email});
+  }
+
+  crear_usuario(){
+    this.navCtrl.push(AdmininsertPage);
   }
 
 }
