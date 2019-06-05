@@ -20,7 +20,8 @@ export class PoadmindepComponent {
   pais:any;
   estado:any;
   estado2:any;
-  valor_estado:any;
+  valor_estado:boolean;
+  respuesta:any;
 
   constructor(private webservices: WebservicesProvider, public navCtrl: NavController, public navParams: NavParams) {
     this.correo = this.navParams.get('correo');
@@ -30,28 +31,38 @@ export class PoadmindepComponent {
     this.consulta();
   }
 
-  cambioestado($event) {
-     this.valor_estado = !this.valor_estado;
-  }
-
   actualizar_deportista(){
     if(this.valor_estado==false){
-      this.estado2="desactivada";
-      alert('se ha desactivado con exito')  
+      this.estado2="desactivada"; 
+    }else{
+      if(this.valor_estado==true){
+        this.estado2="activada";
+      }else{
+        alert('Ha ocurrido un error')
+      }
     }
-    if(this.valor_estado==true){
-      this.estado2="activada";
-      alert('se ha activado con exito')
+    if(this.estado2=="activada" || this.estado2=="desactivada"){
+      this.webservices.actualizar_deportista(this.correo, this.pass, this.nombre, this.apellido_p, this.apellido_m, this.genero, this.edad, this.peso, this.estatura, this.imc, this.pais, this.estado2).then(
+        (datos) =>{
+          this.respuesta= datos[0].RESPUESTA;
+          if(this.respuesta=='OK'){
+            if(this.estado2=="activada"){
+              alert('se ha activado con exito')
+              this.navCtrl.pop();
+            }else{
+              if(this.estado2=="desactivada"){
+                alert('se ha desactivado con exito')
+                this.navCtrl.pop();
+              }
+            }
+
+          }
+        //alert('oka'+JSON.stringify(resultado));
+        },
+        (error) =>{
+          alert('error'+JSON.stringify(error));
+        })
     }
-    alert(this.estado2);
-    this.webservices.actualizar_deportista(this.correo, this.pass, this.nombre, this.apellido_p, this.apellido_m, this.genero, this.edad, this.peso, this.estatura, this.imc, this.pais, this.estado2).then(
-      (resultado) =>{
-        this.navCtrl.pop();
-      alert('oka'+JSON.stringify(resultado));
-      },
-      (error) =>{
-        alert('error'+JSON.stringify(error));
-      })
   }
 
   consulta(){
@@ -69,6 +80,12 @@ export class PoadmindepComponent {
           this.imc= datos[0].IMC;
           this.pais= datos[0].PAIS;
           this.estado= datos[0].ESTADO;
+
+          if(this.estado=='activada'){
+            this.valor_estado=true;
+          }else{
+            this.valor_estado=false;
+          }
       },
       (err)=>{
         alert(JSON.stringify(err))
