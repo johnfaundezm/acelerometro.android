@@ -3,6 +3,7 @@ import { IonicPage, NavController } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
+import { AdmintabsPage } from '../admintabs/admintabs';
 
 /**
  * Generated class for the AdmininsertPage page.
@@ -40,7 +41,7 @@ export class AdmininsertPage {
         this.respuesta= datos[0].RESPUESTA;
         if(this.respuesta=='OK'){
           alert('El usuario ha sido creado exitosamente')
-          this.navCtrl.pop();
+          this.navCtrl.push(AdmintabsPage);
         }
         if(this.respuesta=='EXISTE'){
           alert('El usuario ya existe, intente con otro correo')
@@ -53,6 +54,10 @@ export class AdmininsertPage {
       (error) =>{
         //alert('error'+JSON.stringify(error));
       })
+  }
+
+  salir(){
+    this.navCtrl.pop();
   }
   
 
