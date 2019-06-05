@@ -37,6 +37,9 @@ export class EntrenamientoPage {
   public minutoMarca :number;
   public segundosMarca : number;
 
+  public coleccion : Array<any> = [];
+  public contador : any;
+  
   //Gyroscopio y Acelerometro
   public xOrient:any;
   public yOrient:any;
@@ -125,21 +128,23 @@ export class EntrenamientoPage {
  }  
 // Cronometro
   inicio(){
-    setInterval ( ()=>{
-      this.segundos+=1;
-      
-      if (this.segundos == 60){
-        this.segundos = 0;
-        this.minuto += 1;
-        if  (this.minuto == 60){
-          this.minuto = 0;
-          this.hora +=1;
-          if (this.hora =24) {
-              this.hora = 0;
+    if (this.contador == undefined){
+      this.contador= setInterval ( ()=>{
+        this.segundos+=1;
+        
+        if (this.segundos == 60){
+          this.segundos = 0;
+          this.minuto += 1;
+          if  (this.minuto == 60){
+            this.minuto = 0;
+            this.hora +=1;
+            if (this.hora =24) {
+                this.hora = 0;
+            }
           }
         }
-      }
-    },1000);
+      },1000);
+    }
   }
   marca(){
     this.horaMarca =this.hora;
@@ -147,9 +152,22 @@ export class EntrenamientoPage {
     this.segundosMarca = this.segundos;
   }
 
+  lapso(){
+    let obj:any = {};
+    obj.hora = this.hora;
+    obj.minutos = this.minuto;
+    obj.segundos = this.segundos;
+
+    this.coleccion.push(obj);
+
+  }
 
   finalizar(){
-
+    clearInterval(this.contador);
+      this.hora = 0;
+      this.minuto = 0;
+      this.segundos = 0;
+      this.contador = null;
   }
 
 }
