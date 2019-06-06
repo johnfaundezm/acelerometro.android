@@ -34,7 +34,7 @@ export class MyApp {
     this.getCurrentAcceleration();
 
     this.pages = [
-      { title: 'Home', component: HomePage },
+      { title: 'Salir', component: HomePage },
       //{ title: 'Administrador', component: AdministradorPage },
       { title: 'Deportistatabs', component: DeportistatabsPage},
       { title: 'Entrenadortabs', component: EntrenadortabsPage},
@@ -96,5 +96,3 @@ export class MyApp {
 
 
 }
-
-// db.executeSql('create table if not exists usuario(id INTEGER PRIMARY KEY, correo VARCHAR(20), contraseña VARCHAR(16), nombre VARCHAR(20), apellido VARCHAR(20), genero VARCHAR(9), fecha_n DATE, edad INTEGER, masa VARCHAR(5), estatura VARCHAR(5), IMC VARCHAR(5), tipo INTEGER, estado VARCHAR(9), fecha_r DATE, pais VARCHAR(20), ciudad VARCHAR(20)', [])

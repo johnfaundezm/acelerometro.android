@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -16,8 +16,12 @@ export class DeportistatabsPage {
     correo: ''
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public menuCtrl: MenuController) {
     this.parametros.correo = this.navParams.get('correo');
+  }
+
+  ionViewCanEnter() {
+    this.menuCtrl.enable(true, 'Menu');
   }
 
   

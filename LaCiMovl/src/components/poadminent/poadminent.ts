@@ -36,7 +36,7 @@ export class PoadminentComponent {
       if(this.valor_estado==true){
         this.estado2="activada";
       }else{
-        alert('Ha ocurrido un error')
+        alert('Ha ocurrido un error al cambiar su estado')
       }
     }
     if(this.estado2=="activada" || this.estado2=="desactivada"){
@@ -47,7 +47,7 @@ export class PoadminentComponent {
             alert('Los cambios se han realizado satisfactoriamente')
           }else{
             if(this.respuesta=='ERROR'){
-              alert('Los cambios se han realizado satisfactoriamente')
+              alert('Ha ocurrido un error en la actualizacion')
             }
             alert('Ha ocurrido un error en la actualizacion')
           }

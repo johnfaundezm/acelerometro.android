@@ -1,11 +1,10 @@
 //Importaciones
 import { Component } from '@angular/core';//componentes de angular
-import { NavController } from 'ionic-angular';//controladores de angular
+import { NavController, MenuController } from 'ionic-angular';//controladores de angular
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';//enlace con la base de datos
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 
 import { RegistroPage} from '../registro/registro';//conexion con las vista registro
-import { AdministradorPage} from '../administrador/administrador';//conexion con las vista Administrador
 import { AdmintabsPage } from '../admintabs/admintabs';
 import { DeportistatabsPage } from '../deportistatabs/deportistatabs';
 import { EntrenadortabsPage } from '../entrenadortabs/entrenadortabs';
@@ -27,8 +26,11 @@ export class HomePage {
   respuesta:any;
   estado:any;
 
-  constructor(public navCtrl: NavController, private sqlite: SQLite, private webservices: WebservicesProvider) {
+  constructor(public navCtrl: NavController, private sqlite: SQLite, private webservices: WebservicesProvider, public menuCtrl: MenuController) {
+  }
 
+  ionViewCanEnter() {
+    this.menuCtrl.enable(false, 'Menu');
   }
 
   consulta_login(){
