@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, MenuController } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
@@ -21,9 +21,11 @@ export class RegistroPage {
   currentDate;
   formattedDate;
 
-  constructor(public navCtrl: NavController, private database: DatabaseProvider, private formBuilder: FormBuilder, private webservices: WebservicesProvider) {
+  constructor(public navCtrl: NavController, private database: DatabaseProvider, private formBuilder: FormBuilder, private webservices: WebservicesProvider, public menuCtrl: MenuController) {
     this.currentDate = new Date();
-    this.getFormattedDate()
+    this.getFormattedDate();
+
+    this.menuCtrl.enable(false, 'Menu');
 
     this.formulario = this.formBuilder.group({
       correo: ['',[Validators.required, Validators.maxLength(50), Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$')]],
