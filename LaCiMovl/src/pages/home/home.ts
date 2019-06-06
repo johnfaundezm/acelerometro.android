@@ -3,7 +3,6 @@ import { Component } from '@angular/core';//componentes de angular
 import { NavController, MenuController } from 'ionic-angular';//controladores de angular
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';//enlace con la base de datos
 import { WebservicesProvider } from '../../providers/webservices/webservices';
-
 import { RegistroPage} from '../registro/registro';//conexion con las vista registro
 import { AdmintabsPage } from '../admintabs/admintabs';
 import { DeportistatabsPage } from '../deportistatabs/deportistatabs';

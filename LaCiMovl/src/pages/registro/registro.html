@@ -49,6 +49,31 @@
   <div style="text-align:center">
     <button ion-button style="text-align: center" color="light" clear secondary (click)="cancelar()">Cancelar</button>
   </div>
-
+  
+  <!--
+  <ion-item>
+    <ion-label>Fecha</ion-label>
+    <ion-datetime
+      displayFormat="YYYY-MM-DD"
+      pikerFormat="YYYY MM DD"
+      [(ngModel)] = "fecha"
+      cancelText ="Cancelar"
+      doneText= "OK"
+      min = {{minFecha}}
+      max = {{maxFecha}}>
+    </ion-datetime>
+  </ion-item>
+  --><!--
+  <ion-item>
+    <ion-label>
+      {{currentDate}}
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    <ion-label>
+      {{formattedDate}}
+    </ion-label>
+  </ion-item>
+  -->
 </ion-content>
 
