@@ -102,18 +102,18 @@ export class EntrenamientoPage {
         this.accZ=acceleration.z;
 
         this.vector[x] = ((this.accX^2) + (this.accY^2) + (this.accZ^2))^0.5;
-        alert ('x'+this.accX );
-        alert ('y'+this.accY );
-        alert ('z'+this.accZ );
-        alert ('vector'+this.vector[x] );
-        alert (x);
+        alert ('x : '+this.accX );
+        alert ('y : '+this.accY );
+        alert ('z : '+this.accZ );
+        alert ('vector : '+this.vector[x] );
+        alert ('ciclo : 'x);
         this.accmed=this.accmed + this.vector[x];
       });
       x=x+1;
   }
   alert ('el promedio es:')
   this.accmed =this.accmed/x;
-  alert ('accmed'+this.accmed);
+  alert ('accmed : '+this.accmed);
   }
   //--------------------------------------------------------------------------------------------------------   
   /* Elerta Cuanto terminal el tiempo
