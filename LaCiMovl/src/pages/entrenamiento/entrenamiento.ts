@@ -102,10 +102,10 @@ export class EntrenamientoPage {
         this.accZ=acceleration.z;
 
         this.vector[x] = ((this.accX^2) + (this.accY^2) + (this.accZ^2))^0.5;
-        alert (this.accX );
-        alert (this.accY );
-        alert (this.accZ );
-        alert (this.vector[x] );
+        alert ('x'+this.accX );
+        alert ('y'+this.accY );
+        alert ('z'+this.accZ );
+        alert ('vector'+this.vector[x] );
         alert (x);
         this.accmed=this.accmed + this.vector[x];
       });
@@ -113,7 +113,7 @@ export class EntrenamientoPage {
   }
   alert ('el promedio es:')
   this.accmed =this.accmed/x;
-  alert (this.accmed);
+  alert ('accmed'+this.accmed);
   }
   //--------------------------------------------------------------------------------------------------------   
   /* Elerta Cuanto terminal el tiempo
