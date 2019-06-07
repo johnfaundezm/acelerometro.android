@@ -114,6 +114,7 @@ export class EntrenamientoPage {
   this.accmed =this.accmed/x;
   x=0;
   alert ('el promedio accmed es : '+this.accmed);
+  this.accmed=0;
   }
   //--------------------------------------------------------------------------------------------------------   
   /* Elerta Cuanto terminal el tiempo
