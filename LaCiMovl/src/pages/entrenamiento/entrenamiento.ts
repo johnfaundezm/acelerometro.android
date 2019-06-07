@@ -106,7 +106,7 @@ export class EntrenamientoPage {
         alert ('y : '+this.accY );
         alert ('z : '+this.accZ );
         alert ('vector : '+this.vector[x] );
-        alert ('ciclo : 'x);
+        alert ('ciclo : '+x);
         this.accmed=this.accmed + this.vector[x];
       });
       x=x+1;
