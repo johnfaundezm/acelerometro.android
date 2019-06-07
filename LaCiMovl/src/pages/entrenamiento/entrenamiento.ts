@@ -101,7 +101,7 @@ export class EntrenamientoPage {
         this.accY=acceleration.y;
         this.accZ=acceleration.z;
 
-        this.vector[x] = ((this.accX^2) + (this.accY^2) + (this.accZ^2))^0.5;
+        this.vector[x] = ((this.accX**2) + (this.accY**2) + (this.accZ**2))**0.5;
         alert ('x : '+this.accX );
         alert ('y : '+this.accY );
         alert ('z : '+this.accZ );
@@ -111,9 +111,9 @@ export class EntrenamientoPage {
       });
       x=x+1;
   }
-  alert ('el promedio es:')
+  x=0;
   this.accmed =this.accmed/x;
-  alert ('accmed : '+this.accmed);
+  alert ('el promedio accmed es : '+this.accmed);
   }
   //--------------------------------------------------------------------------------------------------------   
   /* Elerta Cuanto terminal el tiempo
