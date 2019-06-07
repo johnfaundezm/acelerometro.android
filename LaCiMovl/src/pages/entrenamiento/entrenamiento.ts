@@ -42,6 +42,8 @@ export class EntrenamientoPage {
   public accY:any;
   public accZ:any;
   //--------------------------
+  public vector : Array<any> = [];
+  public accmed : any = 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private gyroscope:Gyroscope, private deviceMotion: DeviceMotion) {
   }
@@ -79,21 +81,39 @@ export class EntrenamientoPage {
   }
 
   Accelerometer(){
-    this.deviceMotion.getCurrentAcceleration().then(
-      (acceleration: DeviceMotionAccelerationData) =>
-       console.log(acceleration),
-   
-    //  (error: any) => console.log(error)
- 
-    );
+    var x = 0;
+    var i = 0;
+
+    while(x!= 10){
     
-    // Watch device acceleration
-    var subscription = this.deviceMotion.watchAcceleration().subscribe((acceleration: DeviceMotionAccelerationData) => {
-      console.log(acceleration);
-      this.accX=acceleration.x;
-      this.accY=acceleration.y;
-      this.accZ=acceleration.z;
-    });
+      this.deviceMotion.getCurrentAcceleration().then(
+        (acceleration: DeviceMotionAccelerationData) =>
+        console.log(acceleration),
+    
+      //  (error: any) => console.log(error)
+  
+      );
+      
+      // Watch device acceleration
+      var subscription = this.deviceMotion.watchAcceleration().subscribe((acceleration: DeviceMotionAccelerationData) => {
+        console.log(acceleration);
+        this.accX=acceleration.x;
+        this.accY=acceleration.y;
+        this.accZ=acceleration.z;
+
+        this.vector[x] = ((this.accX^2) + (this.accY^2) + (this.accZ^2))^0.5;
+        alert (this.accX );
+        alert (this.accY );
+        alert (this.accZ );
+        alert (this.vector[x] );
+        alert (x);
+        this.accmed=this.accmed + this.vector[x];
+      });
+      x=x+1;
+  }
+  alert ('el promedio es:')
+  this.accmed =this.accmed/x;
+  alert (this.accmed);
   }
   //--------------------------------------------------------------------------------------------------------   
   /* Elerta Cuanto terminal el tiempo
