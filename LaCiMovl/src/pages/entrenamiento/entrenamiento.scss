@@ -13,6 +13,20 @@ page-entrenamiento {
     }
 
     .btn_entre {
-        border-radius: 20%;
+        border-radius: 10px;
+        width: 22%;
+        height: 30px;
+    }
+
+    .crono {
+        text-align: center;
+        font-size: 50px;
+        color: whitesmoke;
+    }
+
+    .icon_crono {
+        margin-right: 5px;
+        color: whitesmoke;
+        font-size: 35px;
     }
 }

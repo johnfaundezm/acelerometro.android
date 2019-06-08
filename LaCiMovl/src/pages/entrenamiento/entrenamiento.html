@@ -48,8 +48,12 @@
   <!--Cronometro-->
   <ion-label>Cronometro</ion-label>
 
-  <ion-label>{{hora}} : {{minuto}} : {{segundos}} </ion-label>
-
+  <ion-label class="crono">
+      <ion-icon name="alarm" class="icon_crono"></ion-icon>
+      {{hora}} : {{minuto}} : {{segundos}} 
+  </ion-label>
+  
+  
     <button ion-button class="btn_entre" outline color="light" (click)="inicio()">
       <ion-icon name="play"></ion-icon>
     </button>
@@ -68,12 +72,13 @@
     <ion-label>{{horaMarca}} : {{minutoMarca}} : {{segundosMarca}}</ion-label>
   </ion-item>
 
-  <ion-label>Marcas</ion-label>
-  <ion-list inset *ngFor="let cole of coleccion">
-    <ion-item>
-      <ion-label >{{cole.hora}} : {{cole.minutos}} : {{cole.segundos}}</ion-label>
-    </ion-item>
-  </ion-list>
+  <ion-card>
+    <ion-label>Marcas</ion-label>
+    <ion-list inset *ngFor="let cole of coleccion">
+      <ion-item>
+        <ion-label >{{cole.hora}} : {{cole.minutos}} : {{cole.segundos}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
   
-
 </ion-content>
