@@ -44,21 +44,36 @@
   </ion-item>
   
   <button ion-button (click)="Accelerometer()" full>click</button>
+
   <!--Cronometro-->
-  <h2>Cronometro</h2>
+  <ion-label>Cronometro</ion-label>
+
+  <ion-label>{{hora}} : {{minuto}} : {{segundos}} </ion-label>
+
     <button ion-button class="btn_entre" outline color="light" (click)="inicio()">
       <ion-icon name="play"></ion-icon>
     </button>
-    <button ion-button class="btn_entre" outline color="light" (click)="marca()">Marca</button>
-    <button ion-button class="btn_entre" outline color="light" (click)="lapso()">Marcas</button> 
-    <button ion-button class="btn_entre" outline color="light" (click)="finalizar()">finalizar</button>
-  <div>
-    <p>{{hora}} : {{minuto}} : {{segundos}} </p>
-    <h2>Marca</h2>
-    <p>{{horaMarca}} : {{minutoMarca}} : {{segundosMarca}}</p>
-    <h2>Marcas</h2>
-    <p *ngFor="let cole of coleccion">
-      {{cole.hora}} : {{cole.minutos}} : {{cole.segundos}}</p>
-    
-  </div>
+    <button ion-button class="btn_entre" outline color="light" (click)="marca()">
+      <ion-icon name="bookmark"></ion-icon>
+    </button>
+    <button ion-button class="btn_entre" outline color="light" (click)="lapso()">
+      <ion-icon name="bookmarks"></ion-icon>
+    </button> 
+    <button ion-button class="btn_entre" outline color="light" (click)="finalizar()">
+      <ion-icon name="close"></ion-icon>
+    </button>
+
+  <ion-item>
+    <ion-label>Marca</ion-label>
+    <ion-label>{{horaMarca}} : {{minutoMarca}} : {{segundosMarca}}</ion-label>
+  </ion-item>
+
+  <ion-label>Marcas</ion-label>
+  <ion-list inset *ngFor="let cole of coleccion">
+    <ion-item>
+      <ion-label >{{cole.hora}} : {{cole.minutos}} : {{cole.segundos}}</ion-label>
+    </ion-item>
+  </ion-list>
+  
+
 </ion-content>
