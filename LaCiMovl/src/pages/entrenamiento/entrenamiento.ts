@@ -22,9 +22,16 @@ export class EntrenamientoPage {
   tiempo_entrenamiento;
   //-------------------------
   //Cronometro
+  /*
   public hora: number =0;
   public minuto: number =0;
   public segundos : number =0;
+  */
+  public hora: number =0;
+  public min1: number =0;
+  public min2: number =0;
+  public seg1: number =0;
+  public seg2: number =0;
 
   public horaMarca :number;
   public minutoMarca :number;
@@ -141,6 +148,7 @@ export class EntrenamientoPage {
    })
  }  
 // Cronometro
+/*
   inicio(){
     if (this.contador == undefined){
       this.contador= setInterval ( ()=>{
@@ -160,6 +168,7 @@ export class EntrenamientoPage {
       },1000);
     }
   }
+
   marca(){
     this.horaMarca =this.hora;
     this.minutoMarca = this.minuto;
@@ -183,5 +192,26 @@ export class EntrenamientoPage {
       this.segundos = 0;
       this.contador = null;
   }
+*/
 
+  inicio(){
+    if (this.contador == undefined){
+      this.contador= setInterval ( ()=>{
+        this.seg1+=1;
+        
+        if (this.seg1 == 10){
+          this.seg1 = 0;
+          this.seg2 += 1;
+          if  (this.seg2 == 6){
+            this.seg2 = 0;
+            this.min1 +=1;
+            if (this.min1 ==10) {
+                this.min1 = 0;
+                this.min2 += 1; 
+            }
+          }
+        }
+      },1000);
+    }
+  }
 }
