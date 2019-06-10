@@ -33,12 +33,24 @@ export class EntrenamientoPage {
   public seg1: number =0;
   public seg2: number =0;
 
+  public centesima : number = 0;
+  public cen1 : number = 0;
+  public cen2 : number = 0;
+
   public horaMarca :number;
   public minutoMarca :number;
   public segundosMarca : number;
+  public centesimaMarca : number;
+  public min2Marca :number;
+  public min1Marca :number;
+  public seg2Marca :number;
+  public seg1Marca :number;
+  public cen2Marca :number;
+  public cen1Marca :number;
 
   public coleccion : Array<any> = [];
   public contador : any;
+  
   
   //Gyroscopio y Acelerometro
   public xOrient:any;
@@ -173,6 +185,7 @@ export class EntrenamientoPage {
     this.horaMarca =this.hora;
     this.minutoMarca = this.minuto;
     this.segundosMarca = this.segundos;
+    this.centesimaMarca = this.centesima;
   }
 
   lapso(){
@@ -195,23 +208,40 @@ export class EntrenamientoPage {
 */
 
   inicio(){
-    if (this.contador == undefined){
-      this.contador= setInterval ( ()=>{
-        this.seg1+=1;
-        
-        if (this.seg1 == 10){
-          this.seg1 = 0;
-          this.seg2 += 1;
-          if  (this.seg2 == 6){
-            this.seg2 = 0;
-            this.min1 +=1;
-            if (this.min1 ==10) {
-                this.min1 = 0;
-                this.min2 += 1; 
+
+    if(this.contador ==undefined){
+      
+      this.contador = setInterval (()=>{
+        this.cen1+=1;
+        if (this.cen1 == 10){
+          this.cen1 = 0;
+          this.cen2 += 1;
+          if  (this.cen2 == 10){
+            this.cen2 = 0;
+            this.seg1 +=1;
+            if (this.seg1 ==10) {
+                this.seg1 = 0;
+                this.seg2 += 1;
+                if  (this.seg2 == 6){
+                  this.seg2 = 0;
+                  this.min1 +=1;
+                }
             }
           }
         }
-      },1000);
+      },10);
     }
   }
+
+  marca(){
+
+    
+    this.min2Marca = this.min2;
+    this.min1Marca = this.min1;
+    this.seg2Marca = this.seg2;
+    this.seg1Marca = this.seg1;
+    this.cen2Marca = this.cen2;
+    this.cen1Marca = this.cen1;
+  }
+
 }
