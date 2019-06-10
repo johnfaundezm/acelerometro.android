@@ -3,6 +3,7 @@ import { IonicPage, NavController, MenuController } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
+import { LoadingController } from 'ionic-angular';
 
 
 
@@ -21,7 +22,7 @@ export class RegistroPage {
   currentDate;
   formattedDate;
 
-  constructor(public navCtrl: NavController, private database: DatabaseProvider, private formBuilder: FormBuilder, private webservices: WebservicesProvider, public menuCtrl: MenuController) {
+  constructor(public navCtrl: NavController, private database: DatabaseProvider, private formBuilder: FormBuilder, private webservices: WebservicesProvider, public menuCtrl: MenuController, public loadingCtrl: LoadingController) {
     this.currentDate = new Date();
     this.getFormattedDate();
 
@@ -38,9 +39,18 @@ export class RegistroPage {
     
   }
 
+  presentLoading() {
+    const loader = this.loadingCtrl.create({
+      content: "Espere por favor...",
+      duration: 3000
+    });
+    loader.present();
+  }
+
   
 
   registrar(){
+    this.presentLoading();
     this.getFormattedDate();
     this.webservices.registrar(this.formulario.value.correo,this.formulario.value.pass,' ',' ',' ',' ',0,0,0,0,' ','activada',this.formattedDate,this.formulario.value.id_tipo_usuario).then(
       (datos) =>{

@@ -1,6 +1,6 @@
 //Importaciones
 import { Component } from '@angular/core';//componentes de angular
-import { NavController, MenuController } from 'ionic-angular';//controladores de angular
+import { NavController, MenuController, LoadingController } from 'ionic-angular';//controladores de angular
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';//enlace con la base de datos
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { RegistroPage} from '../registro/registro';//conexion con las vista registro
@@ -25,14 +25,24 @@ export class HomePage {
   respuesta:any;
   estado:any;
 
-  constructor(public navCtrl: NavController, private sqlite: SQLite, private webservices: WebservicesProvider, public menuCtrl: MenuController) {
+  constructor(public navCtrl: NavController, private sqlite: SQLite, private webservices: WebservicesProvider, public menuCtrl: MenuController, public loadingCtrl: LoadingController) {
   }
 
   ionViewCanEnter() {
     this.menuCtrl.enable(false, 'Menu');
   }
 
+  presentLoading() {
+    const loader = this.loadingCtrl.create({
+      content: "Cargando...",
+      duration: 3000
+    });
+    loader.present();
+  }
+
   consulta_login(){
+    this.presentLoading()
+
     this.webservices.consulta_login(this.correo).then(
       (datos)=>{
         //alert(JSON.stringify(datos));
