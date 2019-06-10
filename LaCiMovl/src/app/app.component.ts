@@ -6,9 +6,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 //import { ListPage } from '../pages/list/list';
 //import { AdministradorPage } from '../pages/administrador/administrador';
-import { DeportistatabsPage} from '../pages/deportistatabs/deportistatabs';
-import { AdmintabsPage } from '../pages/admintabs/admintabs';
-import { EntrenadortabsPage } from '../pages/entrenadortabs/entrenadortabs';
+//import { DeportistatabsPage} from '../pages/deportistatabs/deportistatabs';
+//import { AdmintabsPage } from '../pages/admintabs/admintabs';
+//import { EntrenadortabsPage } from '../pages/entrenadortabs/entrenadortabs';
 
 import { DatabaseProvider } from '../providers/database/database';
 
@@ -36,9 +36,9 @@ export class MyApp {
     this.pages = [
       { title: 'Salir', component: HomePage },
       //{ title: 'Administrador', component: AdministradorPage },
-      { title: 'Deportistatabs', component: DeportistatabsPage},
-      { title: 'Entrenadortabs', component: EntrenadortabsPage},
-      { title: 'Admintabs', component: AdmintabsPage},
+      //{ title: 'Deportistatabs', component: DeportistatabsPage},
+      //{ title: 'Entrenadortabs', component: EntrenadortabsPage},
+      //{ title: 'Admintabs', component: AdmintabsPage},
       //{ title: 'Deportista', component: DeportistaPage },
       //{ title: 'List', component: ListPage }
     ];
