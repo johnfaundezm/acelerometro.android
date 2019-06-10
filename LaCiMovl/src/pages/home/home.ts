@@ -32,16 +32,44 @@ export class HomePage {
     this.menuCtrl.enable(false, 'Menu');
   }
 
-  presentLoading() {
-    const loader = this.loadingCtrl.create({
-      content: "Cargando...",
-      duration: 3000
+  ionViewWillLeave(){
+    this.loadsalir();
+  }
+
+  loadconsulta_login() {
+    let loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Cargando...',
     });
-    loader.present();
+  
+    loading.present();
+  /*
+    setTimeout(() => {
+      this.consulta_login();
+    }, 1000);
+  */
+    setTimeout(() => {
+      this.consulta_login();
+      loading.dismiss();
+    });
+  }
+
+  loadsalir() {
+    let loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Cargando...',
+      dismissOnPageChange: true
+    });
+  
+    loading.present();
+
+    setTimeout(() => {
+      loading.dismiss();
+    }, 2000);
   }
 
   consulta_login(){
-    this.presentLoading()
+    //this.presentLoading()
 
     this.webservices.consulta_login(this.correo).then(
       (datos)=>{

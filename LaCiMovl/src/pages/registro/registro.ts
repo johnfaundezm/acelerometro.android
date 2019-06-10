@@ -39,18 +39,42 @@ export class RegistroPage {
     
   }
 
-  presentLoading() {
-    const loader = this.loadingCtrl.create({
-      content: "Espere por favor...",
-      duration: 3000
+  ionViewWillLeave(){
+    this.loadsalir();
+  }
+
+  loadsalir() {
+    let loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Cargando...',
+      dismissOnPageChange: true
     });
-    loader.present();
+  
+    loading.present();
+
+    setTimeout(() => {
+      loading.dismiss();
+    }, 1000);
+  }
+
+  loadregistrar() {
+    let loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Cargando...',
+      dismissOnPageChange: true
+    });
+  
+    loading.present();
+
+    setTimeout(() => {
+      this.registrar();
+      loading.dismiss();
+    });
   }
 
   
 
   registrar(){
-    this.presentLoading();
     this.getFormattedDate();
     this.webservices.registrar(this.formulario.value.correo,this.formulario.value.pass,' ',' ',' ',' ',0,0,0,0,' ','activada',this.formattedDate,this.formulario.value.id_tipo_usuario).then(
       (datos) =>{
