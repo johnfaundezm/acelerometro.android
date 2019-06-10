@@ -4,7 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Gyroscope, GyroscopeOrientation, GyroscopeOptions } from '@ionic-native/gyroscope';
 import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
 
-import { Observable } from 'rxjs/Observable'
+//import { Observable } from 'rxjs/Observable'
 import  'rxjs/add/observable/interval' 
 
 @IonicPage()
@@ -50,9 +50,19 @@ export class EntrenamientoPage {
   public accY:any;
   public accZ:any;
   //--------------------------
-  public vector : Array<any> = [];
-  public accmed : any = 0;
+  public vectorX : Array<any> = [];
+  public vectorY : Array<any> = [];
+  public vectorZ : Array<any> = [];
+  //--------------------------
+  public fuerzaX : Array<any> = [];
+  public fuerzaY : Array<any> = [];
+  public fuerzaZ : Array<any> = [];
+  //--------------------------
+  public potenciaX : Array<any> = [];
+  public potenciaY : Array<any> = [];
+  public potenciaZ : Array<any> = [];
 
+  
   constructor(public navCtrl: NavController, public navParams: NavParams, private gyroscope:Gyroscope, private deviceMotion: DeviceMotion) {
   }
 
@@ -89,11 +99,7 @@ export class EntrenamientoPage {
   }
 
   Accelerometer(){
-    var x = 0;
-    var i = 0;
-
-    while(x!= 10){
-    
+      
       this.deviceMotion.getCurrentAcceleration().then(
         (acceleration: DeviceMotionAccelerationData) =>
         console.log(acceleration),
@@ -108,21 +114,8 @@ export class EntrenamientoPage {
         this.accX=acceleration.x;
         this.accY=acceleration.y;
         this.accZ=acceleration.z;
-
-        this.vector[x] = ((this.accX**2) + (this.accY**2) + (this.accZ**2))**0.5;
-        //alert ('x : '+this.accX );
-        //alert ('y : '+this.accY );
-        //alert ('z : '+this.accZ );
-        //alert ('vector : '+this.vector[x] );
-        //alert ('ciclo : '+x);
-        this.accmed=this.accmed + this.vector[x];
-      });
-      x=x+1;
-  }
-  this.accmed =this.accmed/x;
-  x=0;
-  alert ('el promedio accmed es : '+this.accmed);
-  this.accmed=0;
+    });
+  
   }
 
 //Cronometro
@@ -206,5 +199,34 @@ export class EntrenamientoPage {
     })
   }*/  
 
+  Accelero(){
+    
+    var i :any;
+    
+    for(i=0;i<10;i++){
+      this.deviceMotion.getCurrentAcceleration().then(
+        (acceleration: DeviceMotionAccelerationData) =>
+        console.log(acceleration),
+    
+      //  (error: any) => console.log(error)
 
+      );
+      
+      // Watch device acceleration
+      var subscription = this.deviceMotion.watchAcceleration().subscribe((acceleration: DeviceMotionAccelerationData) => {
+        console.log(acceleration);
+        this.accX=acceleration.x;
+        this.accY=acceleration.y;
+        this.accZ=acceleration.z;
+        
+        this.vectorX[i]= acceleration.x;
+        this.vectorY[i]= acceleration.y;
+        this.vectorY[i]= acceleration.z;
+      });
+    }
+  //-------------------------------------
+    for(i=0;i<10;i++){
+      alert(this.vectorX[i]);
+    }    
+  }
 }
