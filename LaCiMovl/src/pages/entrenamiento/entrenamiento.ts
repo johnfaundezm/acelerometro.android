@@ -21,36 +21,25 @@ export class EntrenamientoPage {
   timerVal;
   tiempo_entrenamiento;
   //-------------------------
+  
   //Cronometro
-  /*
-  public hora: number =0;
-  public minuto: number =0;
-  public segundos : number =0;
-  */
-  public hora: number =0;
   public min1: number =0;
   public min2: number =0;
   public seg1: number =0;
   public seg2: number =0;
-
-  public centesima : number = 0;
   public cen1 : number = 0;
   public cen2 : number = 0;
-
-  public horaMarca :number;
-  public minutoMarca :number;
-  public segundosMarca : number;
-  public centesimaMarca : number;
+  //--Marcas
   public min2Marca :number;
   public min1Marca :number;
   public seg2Marca :number;
   public seg1Marca :number;
   public cen2Marca :number;
   public cen1Marca :number;
-
+//---Contador
   public coleccion : Array<any> = [];
   public contador : any;
-  
+//-----------------------------------
   
   //Gyroscopio y Acelerometro
   public xOrient:any;
@@ -135,78 +124,8 @@ export class EntrenamientoPage {
   alert ('el promedio accmed es : '+this.accmed);
   this.accmed=0;
   }
-  //--------------------------------------------------------------------------------------------------------   
-  /* Elerta Cuanto terminal el tiempo
-  startTimer(){
-    setTimeout(function(){
-      alert('ok');
-    },3000)
-  } */
-  intervale(){
-    var intervalVar = setInterval(function(){
-       this.timer++;
-   }.bind(this),1000)
- }
 
- startTimer(){
-   this.timerVar = Observable.interval(1000).subscribe ( x=>{
-     console.log(x)
-     this.timerVal = x;
-
-     if( x == 10 ){
-       this.timerVar.unsubscribe()
-       alert('Entrenamiento terminado');
-     }
-   })
- }  
-// Cronometro
-/*
-  inicio(){
-    if (this.contador == undefined){
-      this.contador= setInterval ( ()=>{
-        this.segundos+=1;
-        
-        if (this.segundos == 60){
-          this.segundos = 0;
-          this.minuto += 1;
-          if  (this.minuto == 60){
-            this.minuto = 0;
-            this.hora +=1;
-            if (this.hora =24) {
-                this.hora = 0;
-            }
-          }
-        }
-      },1000);
-    }
-  }
-
-  marca(){
-    this.horaMarca =this.hora;
-    this.minutoMarca = this.minuto;
-    this.segundosMarca = this.segundos;
-    this.centesimaMarca = this.centesima;
-  }
-
-  lapso(){
-    let obj:any = {};
-    obj.hora = this.hora;
-    obj.minutos = this.minuto;
-    obj.segundos = this.segundos;
-
-    this.coleccion.push(obj);
-
-  }
-
-  finalizar(){
-    clearInterval(this.contador);
-      this.hora = 0;
-      this.minuto = 0;
-      this.segundos = 0;
-      this.contador = null;
-  }
-*/
-
+//Cronometro
   inicio(){
 
     if(this.contador ==undefined){
@@ -267,4 +186,25 @@ export class EntrenamientoPage {
     this.coleccion.push(obj);
 
   }
+  
+/*Funciones adicionales
+  intervale(){
+    var intervalVar = setInterval(function(){
+       this.timer++;
+   }.bind(this),1000)
+  }
+
+  startTimer(){
+    this.timerVar = Observable.interval(1000).subscribe ( x=>{
+      console.log(x)
+      this.timerVal = x;
+
+      if( x == 10 ){
+        this.timerVar.unsubscribe()
+        alert('Entrenamiento terminado');
+      }
+    })
+  }*/  
+
+
 }
