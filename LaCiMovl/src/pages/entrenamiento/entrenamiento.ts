@@ -254,4 +254,17 @@ export class EntrenamientoPage {
       this.cen1 = 0;
       this.contador = null;
   }
+
+  lapso(){
+    let obj:any = {};
+    obj.min2 = this.min2;
+    obj.min1 = this.min1;
+    obj.seg2 = this.seg2;
+    obj.seg1 = this.seg1;
+    obj.cen2 = this.cen1;
+    obj.cen1 = this.cen1;
+
+    this.coleccion.push(obj);
+
+  }
 }
