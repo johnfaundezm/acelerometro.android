@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, LoadingController } from 'ionic-angular';
 
 /**
  * Generated class for the EntrenadortabsPage tabs.
@@ -21,13 +21,18 @@ export class EntrenadortabsPage {
   parametros = {
     correo: ''
   }
+  loading:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public menuCtrl: MenuController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public menuCtrl: MenuController, public loadingCtrl: LoadingController) {
     this.parametros.correo = this.navParams.get('correo')
   }
 
   ionViewCanEnter() {
     this.menuCtrl.enable(true, 'Menu');
+  }
+
+  ionViewDidEnter(){
+    this.loading.dismiss();
   }
 
 }

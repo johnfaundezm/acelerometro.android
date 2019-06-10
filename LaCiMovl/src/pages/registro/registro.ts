@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, MenuController, ToastController } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
@@ -22,7 +22,7 @@ export class RegistroPage {
   currentDate;
   formattedDate;
 
-  constructor(public navCtrl: NavController, private database: DatabaseProvider, private formBuilder: FormBuilder, private webservices: WebservicesProvider, public menuCtrl: MenuController, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, private database: DatabaseProvider, private formBuilder: FormBuilder, private webservices: WebservicesProvider, public menuCtrl: MenuController, public loadingCtrl: LoadingController,public toastCtrl: ToastController) {
     this.currentDate = new Date();
     this.getFormattedDate();
 
@@ -46,15 +46,14 @@ export class RegistroPage {
   loadsalir() {
     let loading = this.loadingCtrl.create({
       spinner: 'ios',
-      content: 'Cargando...',
-      dismissOnPageChange: true
+      content: 'Cargando...'
     });
   
     loading.present();
 
     setTimeout(() => {
       loading.dismiss();
-    }, 1000);
+    });
   }
 
   loadregistrar() {
@@ -66,11 +65,23 @@ export class RegistroPage {
   
     loading.present();
 
+    this.registrar();
+
     setTimeout(() => {
-      this.registrar();
       loading.dismiss();
     });
   }
+
+  mensaje() {
+    const toast = this.toastCtrl.create({
+      message: 'Cambios guardados correctamente',
+      showCloseButton: true,
+      closeButtonText: 'Ok'
+    });
+    toast.present();
+  }
+
+  
 
   
 
@@ -80,7 +91,7 @@ export class RegistroPage {
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
         if(this.respuesta=='OK'){
-          alert('El usuario ha sido creado exitosamente')
+          this.mensaje();
           this.navCtrl.pop();
         }
         if(this.respuesta=='EXISTE'){
