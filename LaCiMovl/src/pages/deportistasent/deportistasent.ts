@@ -16,7 +16,7 @@ import { WebservicesProvider } from '../../providers/webservices/webservices';
 })
 export class DeportistasentPage {
 
-  enlace: Array<{email:string, nombre_t:string, fecha:string}>=[{email:'', nombre_t:'', fecha:''}];
+  enlaces: Array<{email:string, entrenamiento_n:string, fecha:string}>=[{email:'', entrenamiento_n:'', fecha:''}];
   correo:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
@@ -24,8 +24,8 @@ export class DeportistasentPage {
   }
 
   ionViewCanEnter() {
-    while(this.enlace.length>0){
-      this.enlace.pop();
+    while(this.enlaces.length>0){
+      this.enlaces.pop();
     }
 
     this.consulta_enlace();
@@ -38,12 +38,9 @@ export class DeportistasentPage {
         let largo=Object.keys(datos).length;
         for(var i=0;i<largo;i++){
           var email= datos[i].DEPORTISTA;
-          var nombre_t= datos[i].NOMBRE_T;
+          var entrenamiento_n= datos[i].NOMBRE_T;
           var fecha= datos[i].FECHA;
-          alert(email)
-          alert(nombre_t)
-          alert(fecha)
-          this.enlace.push({"email":email, "nombre_t":nombre_t, "fecha":fecha});
+          this.enlaces.push({"email":email, "entrenamiento_n":entrenamiento_n, "fecha":fecha});
         }
       },
       (err)=>{
