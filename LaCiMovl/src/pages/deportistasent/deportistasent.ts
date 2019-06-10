@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { WebservicesProvider } from '../../providers/webservices/webservices';
 
 /**
  * Generated class for the DeportistasentPage page.
@@ -15,11 +16,37 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DeportistasentPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  enlace: Array<{email:string, nombre_t:string, fecha:string}>=[{email:'', nombre_t:'', fecha:''}];
+  correo:any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
+    this.correo = this.navParams.get('correo');
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DeportistasentPage');
+  ionViewCanEnter() {
+    while(this.consulta_enlace.length>0){
+      this.enlace.pop();
+    }
+
+    this.consulta_enlace();
+  }
+
+  consulta_enlace(){
+    this.webservices.consulta_enlace(this.correo).then(
+      (datos)=>{
+        //alert(JSON.stringify(datos));
+        let largo=Object.keys(datos).length;
+        for(var i=0;i<largo;i++){
+          var email= datos[i].DEPORTISTA;
+          var nombre_t= datos[i].NOMBRE_T;
+          var fecha= datos[i].FECHA;
+
+          this.enlace.push({"email":email, "nombre_t":nombre_t, "fecha":fecha});
+        }
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
   }
 
 }

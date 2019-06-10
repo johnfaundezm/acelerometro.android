@@ -14,7 +14,11 @@
       </ion-refresher-content>
     </ion-refresher>
     -->
-    
+    <button ion-button block (click)="crear_usuario()">
+      <ion-icon name="add" style="margin-right: 5px"></ion-icon>
+      Agregar Entrenador
+    </button>
+    <br>
     <ion-card class="border_card">
       <ion-card-header class="title_card">
         Entrenadores
@@ -30,10 +34,5 @@
         </ion-list>
       </ion-scroll>
     </ion-card>
-
-    <button ion-button block (click)="crear_usuario()">
-      <ion-icon name="add" style="margin-right: 5px"></ion-icon>
-      Agregar Entrenador
-    </button>
 
 </ion-content>

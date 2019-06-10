@@ -9,6 +9,16 @@
       Deportistas
     </ion-card-header>
 
+    <ion-scroll scrollY="true">
+      <ion-list inset *ngFor="let e of enlace" >
+        <ion-item style="border-bottom: 1px solid; border-color: rgb(194, 191, 191); height: auto">
+          <h2>{{e.email}}</h2>
+          <p style="text-align: left">{{e.nombre_t}}</p>
+          <p style="text-align: right">{{e.fecha}}</p>
+        </ion-item>
+      </ion-list>
+    </ion-scroll>
+
   </ion-card>
 
 </ion-content>
