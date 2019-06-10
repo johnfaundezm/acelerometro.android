@@ -244,4 +244,14 @@ export class EntrenamientoPage {
     this.cen1Marca = this.cen1;
   }
 
+  finalizar(){
+    clearInterval(this.contador);
+      this.min2 = 0;
+      this.min1 = 0;
+      this.seg2 = 0;
+      this.seg1 = 0;
+      this.cen2 = 0;
+      this.cen1 = 0;
+      this.contador = null;
+  }
 }
