@@ -62,4 +62,29 @@ export class AdminDeportistaPage {
       })
   }
 
+  imc_perfil(){
+    var i_m_c :any;
+    var condición : String;
+    i_m_c= (this.peso/(this.estatura*this.estatura));
+    if( i_m_c>=40){
+      condición='obesidad morbida';
+    }else{
+      if((i_m_c<40) && i_m_c>=30){
+        condición='obesidad';
+      }else{
+        if((i_m_c<30) && (i_m_c>=25)){
+          condición='sobrepeso';
+        }else{
+          if((i_m_c<25) && (i_m_c>=18.5)){
+            condición='normal';
+          }else{
+            if(i_m_c<18.5){
+              condición='bajo peso';
+            }
+          }
+        }
+      }
+    }
+  }
+
 }
