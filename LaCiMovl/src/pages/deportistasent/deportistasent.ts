@@ -24,7 +24,7 @@ export class DeportistasentPage {
   }
 
   ionViewCanEnter() {
-    while(this.consulta_enlace.length>0){
+    while(this.enlace.length>0){
       this.enlace.pop();
     }
 
@@ -40,7 +40,9 @@ export class DeportistasentPage {
           var email= datos[i].DEPORTISTA;
           var nombre_t= datos[i].NOMBRE_T;
           var fecha= datos[i].FECHA;
-
+          alert(email)
+          alert(nombre_t)
+          alert(fecha)
           this.enlace.push({"email":email, "nombre_t":nombre_t, "fecha":fecha});
         }
       },

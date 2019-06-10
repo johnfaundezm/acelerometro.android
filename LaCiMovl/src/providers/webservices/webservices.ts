@@ -277,7 +277,7 @@ export class WebservicesProvider {
       // TODO: Encode the values using encodeURIComponent().
       let body = 'correo='+correo;
 
-      let url = "https://lacimovl.000webhostapp.com/webservices/vista_enlace.php";
+      let url = "https://lacimovl.000webhostapp.com/webservices/entrenador_enlace.php";
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
