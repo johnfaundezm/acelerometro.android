@@ -40,6 +40,7 @@ export class HomePage {
     let loading = this.loadingCtrl.create({
       spinner: 'ios',
       content: 'Cargando...',
+      dismissOnPageChange: true
     });
   
     loading.present();
