@@ -4,6 +4,7 @@ import { DatabaseProvider } from '../../providers/database/database';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { LoadingController } from 'ionic-angular';
+import { elementAttribute } from '@angular/core/src/render3/instructions';
 
 
 
@@ -70,10 +71,13 @@ export class RegistroPage {
   mensaje() {
     const toast = this.toastCtrl.create({
       message: 'Cambios guardados correctamente',
-      showCloseButton: true,
-      closeButtonText: 'Ok'
+      position: 'middle',
     });
     toast.present();
+
+    setTimeout(() => {
+      toast.dismiss();
+    },1000);
   }
 
   
