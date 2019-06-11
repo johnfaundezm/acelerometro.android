@@ -28,7 +28,7 @@ export class AdmininsertentPage {
   }
 
   registrar(){
-    this.webservices.registrar(this.formulario.value.correo,this.formulario.value.pass,' ',' ',' ',' ',0,0,0,0,' ','activada','2019-06-05',2).then(
+    this.webservices.registrar(this.formulario.value.correo,this.formulario.value.pass,' ',' ',' ',' ',0,0,0,0,'ESPECIFICAR','activada','2019-06-05',2).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
         if(this.respuesta=='OK'){

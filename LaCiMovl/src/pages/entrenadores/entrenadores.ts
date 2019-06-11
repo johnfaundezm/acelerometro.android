@@ -25,16 +25,6 @@ export class EntrenadoresPage {
     this.vista_entrenador();
   }
 
-  doRefresh(refresher) {
-    console.log('Begin async operation', refresher);
-    this.vista_entrenador();
-
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      refresher.complete();
-    }, 2000);
-  }
-
   vista_entrenador(){
     this.webservices.vista_entrenador().then(
       (datos) =>{
