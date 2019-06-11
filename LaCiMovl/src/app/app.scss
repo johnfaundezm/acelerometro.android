@@ -2,9 +2,8 @@
     width: 80% ;
 };
 
-.mensaje-toast { .toast-message { 
+.mensaje-toast .toast-container { 
     border-radius: 20px !important;
     background-color: green;
-    width: 80%;
-    text-align: center; } 
+    width: 50%; 
 }
