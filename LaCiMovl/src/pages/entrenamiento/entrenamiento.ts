@@ -7,6 +7,7 @@ import { DeviceMotion, DeviceMotionAccelerationData, DeviceMotionAccelerometerOp
 //import { Observable } from 'rxjs/Observable'
 import  'rxjs/add/observable/interval' 
 import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { WebservicesProvider } from '../../providers/webservices/webservices';
 
 @IonicPage()
 @Component({
@@ -22,7 +23,8 @@ export class EntrenamientoPage {
   timerVal;
   tiempo_entrenamiento;
   //-------------------------
-  
+  vec:string;
+
   //Cronometro
   public min1: number =0;
   public min2: number =0;
@@ -65,7 +67,7 @@ export class EntrenamientoPage {
   public potenciaZ : Array<any> = [];
 
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, private gyroscope:Gyroscope, private deviceMotion: DeviceMotion) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private gyroscope:Gyroscope, private deviceMotion: DeviceMotion, private webservices: WebservicesProvider) {
   }
 
   ionViewDidLoad() {
@@ -248,7 +250,16 @@ export class EntrenamientoPage {
         this.accY = acc.y;
         this.accZ = acc.z;
         this.timestamp = acc.timestamp;
-        
+        this.vec ='x:' + this.accX+ '-' + 'y:' + this.accY+ '-'+ 'z:' + this.accZ
+        this.webservices.acelerometro_datos(this.vec).then(
+          (resultado) =>{
+            //alert('oka'+JSON.stringify(resultado));
+          },
+          (error) =>{
+            alert('error'+JSON.stringify(error));
+          }
+        )
+
           this.vectorX[i] = this.accX;
           alert(this.vectorX[i]);
           if (i==(tiempo-1)){

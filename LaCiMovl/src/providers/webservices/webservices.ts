@@ -313,6 +313,30 @@ export class WebservicesProvider {
     });
   }
 
+  acelerometro_datos(aceleracion) {
+    return new Promise( (resolve, reject) => {
+      
+      let headers = new Headers({
+        "Content-Type": "application/x-www-form-urlencoded"
+      });
+      let options = new RequestOptions({
+        headers: headers
+      });
+      // TODO: Encode the values using encodeURIComponent().
+      let body = 'aceleracion='+aceleracion;
+
+      let url = "https://lacimovl.000webhostapp.com/webservices/insert_usuario.php";
+
+      this.http.post(url, body, options)
+        .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
+        .subscribe(data => {
+          //alert(JSON.stringify(data));
+          if (data != 'null') resolve( data );  
+          else resolve (false);
+        }, error => reject(error));
+    });
+  }
+
 
 
 }
