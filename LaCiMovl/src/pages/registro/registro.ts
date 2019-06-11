@@ -4,6 +4,7 @@ import { DatabaseProvider } from '../../providers/database/database';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { LoadingController } from 'ionic-angular';
+import { elementAttribute } from '@angular/core/src/render3/instructions';
 
 
 
@@ -70,10 +71,15 @@ export class RegistroPage {
   mensaje() {
     const toast = this.toastCtrl.create({
       message: 'Cambios guardados correctamente',
-      showCloseButton: true,
-      closeButtonText: 'Ok'
+      position: 'middle',
+      cssClass: 'mensaje-toast'
     });
     toast.present();
+
+    setTimeout(() => {
+      this.navCtrl.pop();
+      toast.dismiss();
+    },1000);
   }
 
   
@@ -83,11 +89,11 @@ export class RegistroPage {
   registrar(){
     this.loadregistrar()
     this.getFormattedDate();
-    this.webservices.registrar(this.formulario.value.correo,this.formulario.value.pass,' ',' ',' ',' ',0,0,0,0,' ','activada',this.formattedDate,this.formulario.value.id_tipo_usuario).then(
+    this.webservices.registrar(this.formulario.value.correo,this.formulario.value.pass,'',' ',' ',' ',0,0,0,0,'ESPECIFICAR','activada',this.formattedDate,this.formulario.value.id_tipo_usuario).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
         if(this.respuesta=='OK'){
-          this.navCtrl.pop();
+          this.mensaje();
           this.loading.dismiss();
         }
         if(this.respuesta=='EXISTE'){
