@@ -254,7 +254,7 @@ export class EntrenamientoPage {
         this.vec ='x:' + this.accX+ '-' + 'y:' + this.accY+ '-'+ 'z:' + this.accZ;
         this.webservices.acelerometro_datos(1, this.vec).then(
           (resultado) =>{
-            alert('oka'+JSON.stringify(resultado));
+            //alert('oka'+JSON.stringify(resultado));
           },
           (error) =>{
             alert('error'+JSON.stringify(error));
@@ -262,7 +262,7 @@ export class EntrenamientoPage {
         )
 
           this.vectorX[i] = this.accX;
-          alert(this.vectorX[i]);
+          //alert(this.vectorX[i]);
           if (i==(tiempo-1)){
             this.id.unsubscribe();
           }
