@@ -4,5 +4,7 @@
 
 .mensaje-toast { .toast-message { 
     border-radius: 20px !important;
-    background: color($colors, primary) } 
+    background-color: green;
+    width: 80%;
+    text-align: center; } 
 }
