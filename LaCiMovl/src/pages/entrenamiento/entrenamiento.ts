@@ -250,10 +250,10 @@ export class EntrenamientoPage {
         this.accY = acc.y;
         this.accZ = acc.z;
         this.timestamp = acc.timestamp;
-        this.vec ='x:' + this.accX+ '-' + 'y:' + this.accY+ '-'+ 'z:' + this.accZ
-        this.webservices.acelerometro_datos(this.vec).then(
+        this.vec ='x:' + this.accX+ '-' + 'y:' + this.accY+ '-'+ 'z:' + this.accZ;
+        this.webservices.acelerometro_datos(1, this.vec).then(
           (resultado) =>{
-            //alert('oka'+JSON.stringify(resultado));
+            alert('oka'+JSON.stringify(resultado));
           },
           (error) =>{
             alert('error'+JSON.stringify(error));

@@ -313,7 +313,7 @@ export class WebservicesProvider {
     });
   }
 
-  acelerometro_datos(aceleracion) {
+  acelerometro_datos(id, aceleracion) {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
@@ -323,9 +323,9 @@ export class WebservicesProvider {
         headers: headers
       });
       // TODO: Encode the values using encodeURIComponent().
-      let body = 'aceleracion='+aceleracion;
+      let body = 'id='+id + 'aceleracion='+aceleracion;
 
-      let url = "https://lacimovl.000webhostapp.com/webservices/insert_usuario.php";
+      let url = "https://lacimovl.000webhostapp.com/webservices/insert_acc_datos.php";
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
