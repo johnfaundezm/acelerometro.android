@@ -231,20 +231,38 @@ export class EntrenamientoPage {
   };
 
   comienzoAcelerometro(){
+    var tiempo =60;
+    var i=0 ;
+    this.vectorX[0] = 0;
+    this.vectorY[0] = 0;
+    this.vectorZ[0] = 0;
+    
     try{
       var option : DeviceMotionAccelerometerOptions ={
         frequency : 200
       };
+    
       this.id = this.deviceMotion.watchAcceleration(option).subscribe((acc:DeviceMotionAccelerationData) =>{
+        while( i<60){
         this.accX = acc.x;
         this.accY = acc.y;
         this.accZ = acc.z;
         this.timestamp = acc.timestamp;
-      }
-      );
+        
+          this.vectorX[i] = this.accX;
+          alert(this.vectorX[i]);
+          if (i==(tiempo-1)){
+            this.id.unsubscribe();
+          }
+          i++;
+          
+      }}
+      );      
     }catch(err){
     alert("Error" + err);
     }
+    
+  
   }
   detenerAcelerometro(){
     this.id.unsubscribe();
