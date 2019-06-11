@@ -90,6 +90,7 @@ export class PoadmindepComponent {
           this.respuesta= datos[0].RESPUESTA;
           if(this.respuesta=='OK'){
             this.loading.dismiss();
+            this.navCtrl.pop();
             alert('Los cambios se han realizado satisfactoriamente')
           }else{
             if(this.respuesta=='ERROR'){
