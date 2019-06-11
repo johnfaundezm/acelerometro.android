@@ -72,6 +72,7 @@ export class RegistroPage {
     const toast = this.toastCtrl.create({
       message: 'Cambios guardados correctamente',
       position: 'middle',
+      cssClass: 'mensaje-toast'
     });
     toast.present();
 
