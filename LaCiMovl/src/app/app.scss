@@ -2,6 +2,7 @@
     width: 80% ;
 };
 
-.mensaje-toast .toast-content {
-    background-color: orangered;
+.mensaje-toast { .toast-message { 
+    border-radius: 20px !important;
+    background: color($colors, primary) } 
 }
