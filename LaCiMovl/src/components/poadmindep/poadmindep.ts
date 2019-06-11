@@ -72,8 +72,6 @@ export class PoadmindepComponent {
     if(this.peso!=0 && this.estatura!=0){
       this.imc_perfil();
     }
-    
-    alert(this.imc)
 
     if(this.valor_estado==false){
       this.estado2="desactivada"; 
@@ -81,6 +79,7 @@ export class PoadmindepComponent {
       if(this.valor_estado==true){
         this.estado2="activada";
       }else{
+        this.loading.dismiss();
         alert('Ha ocurrido un error al cambiar su estado')
       }
     }

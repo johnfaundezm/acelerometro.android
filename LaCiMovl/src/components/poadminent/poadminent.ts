@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
 @Component({
   selector: 'poadminent',
@@ -20,8 +20,9 @@ export class PoadminentComponent {
   estado2:any;
   valor_estado:boolean;
   respuesta:any;
+  loading:any;
 
-  constructor(private webservices: WebservicesProvider, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private webservices: WebservicesProvider, public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
     this.correo = this.navParams.get('correo');
   }
 
@@ -29,13 +30,25 @@ export class PoadminentComponent {
     this.consulta();
   }
 
+  loadactualizacion() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Cargando...',
+    });
+  
+    this.loading.present();
+  }
+  
+
   actualizar_entrenador(){
+    this.loadactualizacion();
     if(this.valor_estado==false){
       this.estado2="desactivada"; 
     }else{
       if(this.valor_estado==true){
         this.estado2="activada";
       }else{
+        this.loading.dismiss();
         alert('Ha ocurrido un error al cambiar su estado')
       }
     }
@@ -44,16 +57,22 @@ export class PoadminentComponent {
         (datos) =>{
           this.respuesta= datos[0].RESPUESTA;
           if(this.respuesta=='OK'){
+            this.loading.dismiss();
+            this.navCtrl.pop();
             alert('Los cambios se han realizado satisfactoriamente')
           }else{
             if(this.respuesta=='ERROR'){
+              this.loading.dismiss();
               alert('Ha ocurrido un error en la actualizacion')
-            }
-            alert('Ha ocurrido un error en la actualizacion')
+            }else{
+              this.loading.dismiss();
+              alert('Ha ocurrido un error en la actualizacion')
+            }  
           }
         //alert('oka'+JSON.stringify(resultado));
         },
         (error) =>{
+          this.loading.dismiss();
           alert('error'+JSON.stringify(error));
         })
     }
