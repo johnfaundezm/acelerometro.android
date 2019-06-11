@@ -245,7 +245,7 @@ export class EntrenamientoPage {
       };
     
       this.id = this.deviceMotion.watchAcceleration(option).subscribe((acc:DeviceMotionAccelerationData) =>{
-        while( i<60){
+        
         this.accX = acc.x;
         this.accY = acc.y;
         this.accZ = acc.z;
@@ -267,7 +267,7 @@ export class EntrenamientoPage {
           }
           i++;
           
-      }}
+      }
       );      
     }catch(err){
     alert("Error" + err);
