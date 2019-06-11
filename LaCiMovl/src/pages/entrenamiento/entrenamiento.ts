@@ -246,7 +246,9 @@ export class EntrenamientoPage {
     alert("Error" + err);
     }
   }
-
+  detenerAcelerometro(){
+    this.id.unsubscribe();
+  }
 
 
 
