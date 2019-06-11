@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Gyroscope, GyroscopeOrientation, GyroscopeOptions } from '@ionic-native/gyroscope';
-import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
+import { DeviceMotion, DeviceMotionAccelerationData, DeviceMotionAccelerometerOptions } from '@ionic-native/device-motion';
 
 //import { Observable } from 'rxjs/Observable'
 import  'rxjs/add/observable/interval' 
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @IonicPage()
 @Component({
@@ -42,6 +43,7 @@ export class EntrenamientoPage {
 //-----------------------------------
   
   //Gyroscopio y Acelerometro
+  public id : any;
   public xOrient:any;
   public yOrient:any;
   public zOrient:any;
@@ -200,33 +202,52 @@ export class EntrenamientoPage {
   }*/  
 
   Accelero(){
-    
-    var i :any;
-    
-    for(i=0;i<10;i++){
-      this.deviceMotion.getCurrentAcceleration().then(
-        (acceleration: DeviceMotionAccelerationData) =>
-        console.log(acceleration),
-    
-      //  (error: any) => console.log(error)
+    var tiempo =10;
+    var i=0 ;
+    this.vectorX[0] = 0;
+    this.vectorY[0] = 0;
+    this.vectorZ[0] = 0;
 
-      );
+    this.deviceMotion.getCurrentAcceleration().then(
+      (acceleration: DeviceMotionAccelerationData) =>
+      console.log(acceleration),
+  
+    
+    );
+    var subscription = this.deviceMotion.watchAcceleration().subscribe((acceleration: DeviceMotionAccelerationData) => {
+      console.log(acceleration);
       
-      // Watch device acceleration
-      var subscription = this.deviceMotion.watchAcceleration().subscribe((acceleration: DeviceMotionAccelerationData) => {
-        console.log(acceleration);
-        this.accX=acceleration.x;
-        this.accY=acceleration.y;
-        this.accZ=acceleration.z;
-        
-        this.vectorX[i]= acceleration.x;
-        this.vectorY[i]= acceleration.y;
-        this.vectorY[i]= acceleration.z;
-      });
+      this.accX=acceleration.x;
+      this.accY=acceleration.y;
+      this.accZ=acceleration.z;
+      if(this.accX != this.vectorX[i]){
+        this.vectorX[i] = this.accX;
+        i++;
+        if (i==(tiempo-1)){
+          subscription.unsubscribe();
+        }
+      }
+    })
+  };
+
+  comienzoAcelerometro(){
+    try{
+      var option : DeviceMotionAccelerometerOptions ={
+        frequency : 200
+      };
+      this.id = this.deviceMotion.watchAcceleration(option).subscribe((acc:DeviceMotionAccelerationData) =>{
+        this.accX = acc.x;
+        this.accY = acc.y;
+        this.accZ = acc.z;
+        this.timestamp = acc.timestamp;
+      }
+      );
+    }catch(err){
+    alert("Error" + err);
     }
-  //-------------------------------------
-    for(i=0;i<10;i++){
-      alert(this.vectorX[i]);
-    }    
   }
+
+
+
+
 }
