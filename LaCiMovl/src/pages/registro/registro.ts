@@ -77,6 +77,7 @@ export class RegistroPage {
     toast.present();
 
     setTimeout(() => {
+      this.navCtrl.pop();
       toast.dismiss();
     },1000);
   }
@@ -92,7 +93,7 @@ export class RegistroPage {
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
         if(this.respuesta=='OK'){
-          this.navCtrl.pop();
+          this.mensaje();
           this.loading.dismiss();
         }
         if(this.respuesta=='EXISTE'){
