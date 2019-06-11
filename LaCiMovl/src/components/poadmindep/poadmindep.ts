@@ -69,7 +69,11 @@ export class PoadmindepComponent {
 
   actualizar_deportista(){
     this.loadactualizacion();
-    this.imc_perfil();
+    if(this.peso!=0 && this.estatura!=0){
+      this.imc_perfil();
+    }
+    
+    alert(this.imc)
 
     if(this.valor_estado==false){
       this.estado2="desactivada"; 
@@ -91,9 +95,10 @@ export class PoadmindepComponent {
             if(this.respuesta=='ERROR'){
               this.loading.dismiss();
               alert('Ha ocurrido un error en la actualizacion')
+            }else{
+              this.loading.dismiss();
+              alert('Ha ocurrido un error en la actualizacion')
             }
-            this.loading.dismiss();
-            alert('Ha ocurrido un error en la actualizacion')
           }
         //alert('oka'+JSON.stringify(resultado));
         },
