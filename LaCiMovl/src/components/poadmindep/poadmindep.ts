@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 @Component({
   selector: 'poadmindep',
   templateUrl: 'poadmindep.html'
@@ -22,8 +22,9 @@ export class PoadmindepComponent {
   estado2:any;
   valor_estado:boolean;
   respuesta:any;
+  loading:any;
 
-  constructor(private webservices: WebservicesProvider, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private webservices: WebservicesProvider, public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
     this.correo = this.navParams.get('correo');
   }
 
@@ -31,7 +32,45 @@ export class PoadmindepComponent {
     this.consulta();
   }
 
+  loadactualizacion() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Cargando...',
+    });
+  
+    this.loading.present();
+  }
+
+  imc_perfil(){
+    var i_m_c :any;
+    var condición : String;
+    i_m_c= (this.peso/(this.estatura*this.estatura));
+    this.imc=i_m_c;
+    if( i_m_c>=40){
+      condición='obesidad morbida';
+    }else{
+      if((i_m_c<40) && i_m_c>=30){
+        condición='obesidad';
+      }else{
+        if((i_m_c<30) && (i_m_c>=25)){
+          condición='sobrepeso';
+        }else{
+          if((i_m_c<25) && (i_m_c>=18.5)){
+            condición='normal';
+          }else{
+            if(i_m_c<18.5){
+              condición='bajo peso';
+            }
+          }
+        }
+      }
+    }
+  }
+
   actualizar_deportista(){
+    this.loadactualizacion();
+    this.imc_perfil();
+
     if(this.valor_estado==false){
       this.estado2="desactivada"; 
     }else{
@@ -46,16 +85,20 @@ export class PoadmindepComponent {
         (datos) =>{
           this.respuesta= datos[0].RESPUESTA;
           if(this.respuesta=='OK'){
+            this.loading.dismiss();
             alert('Los cambios se han realizado satisfactoriamente')
           }else{
             if(this.respuesta=='ERROR'){
+              this.loading.dismiss();
               alert('Ha ocurrido un error en la actualizacion')
             }
+            this.loading.dismiss();
             alert('Ha ocurrido un error en la actualizacion')
           }
         //alert('oka'+JSON.stringify(resultado));
         },
         (error) =>{
+          this.loading.dismiss();
           alert('error'+JSON.stringify(error));
         })
     }

@@ -104,6 +104,7 @@ export class HomePage {
 
       },
       (err)=>{
+        this.loading.dismiss();
         alert(JSON.stringify(err))
       })
   }

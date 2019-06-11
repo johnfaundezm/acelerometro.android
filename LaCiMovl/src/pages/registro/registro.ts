@@ -16,6 +16,7 @@ export class RegistroPage {
 
   private formulario: FormGroup;
   respuesta:any;
+  loading:any;
 
   mes: any;
   //Fecha----------------------------------------
@@ -57,19 +58,13 @@ export class RegistroPage {
   }
 
   loadregistrar() {
-    let loading = this.loadingCtrl.create({
+    this.loading = this.loadingCtrl.create({
       spinner: 'ios',
       content: 'Cargando...',
       dismissOnPageChange: true
     });
   
-    loading.present();
-
-    this.registrar();
-
-    setTimeout(() => {
-      loading.dismiss();
-    });
+    this.loading.present();
   }
 
   mensaje() {
@@ -86,24 +81,28 @@ export class RegistroPage {
   
 
   registrar(){
+    this.loadregistrar()
     this.getFormattedDate();
     this.webservices.registrar(this.formulario.value.correo,this.formulario.value.pass,' ',' ',' ',' ',0,0,0,0,' ','activada',this.formattedDate,this.formulario.value.id_tipo_usuario).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
         if(this.respuesta=='OK'){
-          this.mensaje();
           this.navCtrl.pop();
+          this.loading.dismiss();
         }
         if(this.respuesta=='EXISTE'){
+          this.loading.dismiss();
           alert('El usuario ya existe, intente con otro correo')
         }
         if(this.respuesta=='ERROR'){
+          this.loading.dismiss();
           alert('Ha ocurrido un error inesperado')
         }
         //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
-        //alert('error'+JSON.stringify(error));
+        this.loading.dismiss();
+        alert('error'+JSON.stringify(error));
       })
   }
 
