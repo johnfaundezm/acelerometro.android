@@ -24,6 +24,7 @@ export class EntrenamientoPage {
   tiempo_entrenamiento;
   //-------------------------
   vec:string;
+  recib_acc:any;
 
   //Cronometro
   public min1: number =0;
@@ -279,6 +280,19 @@ export class EntrenamientoPage {
     this.id.unsubscribe();
   }
 
+
+  consultar_acc(){
+    this.webservices.consulta_acelerometro_datos(1).then(
+      (datos) =>{
+        this.recib_acc= datos[0].ACELERACION;
+        //alert('oka'+JSON.stringify(resultado));
+      },
+      (error) =>{
+        alert('error'+JSON.stringify(error));
+      }
+    )
+  }
+  
 
 
 }

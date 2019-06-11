@@ -46,6 +46,12 @@
   <button ion-button (click)="comienzoAcelerometro()" full>inicio</button>
   <button ion-button (click)="detenerAcelerometro()" full>detener</button>
 
+  <ion-item> 
+    <ion-label>aceleracion</ion-label>
+    <ion-input type="text" [(ngModel)]="recib_acc"></ion-input>
+  </ion-item>
+  <button ion-button (click)="consultar_acc()" full>consultar aceleracion</button>
+
   <!--Cronometro-->
   <ion-label>Cronometro</ion-label>
 
