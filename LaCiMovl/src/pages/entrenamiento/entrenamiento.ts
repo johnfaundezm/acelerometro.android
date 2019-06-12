@@ -163,7 +163,6 @@ export class EntrenamientoPage {
 
   marca(){
 
-    
     this.detenerAcelerometro();
     this.min2Marca = this.min2;
     this.min1Marca = this.min1;
