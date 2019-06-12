@@ -8,6 +8,8 @@ import { DeviceMotion, DeviceMotionAccelerationData, DeviceMotionAccelerometerOp
 import  'rxjs/add/observable/interval' 
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
+import { a } from '@angular/core/src/render3';
+import { asTextData } from '@angular/core/src/view';
 
 @IonicPage()
 @Component({
@@ -49,10 +51,12 @@ export class EntrenamientoPage {
   
   //Gyroscopio y Acelerometro
   public id : any;
+  public idg: any;
   public xOrient:any;
   public yOrient:any;
   public zOrient:any;
-  public timestamp:any
+  public timestamp:any;
+  public timestampd:any;
   public accX:any;
   public accY:any;
   public accZ:any;
@@ -95,7 +99,7 @@ export class EntrenamientoPage {
         this.xOrient=orientation.x;
         this.yOrient=orientation.y;
         this.zOrient=orientation.z;
-        this.timestamp=orientation.timestamp;
+        this.timestampd=orientation.timestamp;
 
       })
      .catch()
@@ -135,7 +139,6 @@ export class EntrenamientoPage {
   inicio(){
 
     if(this.contador ==undefined){
-      
       this.contador = setInterval (()=>{
         this.cen1+=1;
         if (this.cen1 == 10){
@@ -161,6 +164,7 @@ export class EntrenamientoPage {
   marca(){
 
     
+    this.detenerAcelerometro();
     this.min2Marca = this.min2;
     this.min1Marca = this.min1;
     this.seg2Marca = this.seg2;
@@ -185,6 +189,7 @@ export class EntrenamientoPage {
   }
 
   finalizar(){
+    this.detenerAcelerometro();
     clearInterval(this.contador);
       this.min2 = 0;
       this.min1 = 0;
@@ -262,10 +267,10 @@ export class EntrenamientoPage {
     this.vectorX[0] = 0;
     this.vectorY[0] = 0;
     this.vectorZ[0] = 0;
-    
+    this.inicio();
     try{
       var option : DeviceMotionAccelerometerOptions ={
-        frequency : 200
+        frequency : 1000
       };
     
       this.id = this.deviceMotion.watchAcceleration(option).subscribe((acc:DeviceMotionAccelerationData) =>{
@@ -301,7 +306,6 @@ export class EntrenamientoPage {
   detenerAcelerometro(){
     this.id.unsubscribe();
   }
-
 
   load() {
     this.loading = this.loadingCtrl.create({
@@ -353,6 +357,22 @@ export class EntrenamientoPage {
     )
   }
   
+  giroscopio(){
+    try{
+      var options : GyroscopeOptions={
+        frequency : 1000
+      };
+      this.idg = this.gyroscope.watch(options).subscribe((orientation: GyroscopeOrientation) => {
+        console.log(orientation.x, orientation.y, orientation.z, orientation.timestamp);
+        this.xOrient=orientation.x;
+        this.yOrient=orientation.y;
+        this.zOrient=orientation.z;
+        this.timestampd=orientation.timestamp;
+     });
+  }catch(err){
+    alert("Error" + err);
+  } 
+}
 
 
 }
