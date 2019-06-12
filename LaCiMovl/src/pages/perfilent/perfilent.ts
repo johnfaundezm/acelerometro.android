@@ -36,6 +36,11 @@ export class PerfilentPage {
     this.consulta();
   }
 
+  doRefresh(refresher) {
+    this.consulta();
+    refresher.complete();
+  } 
+
   consulta(){
     this.webservices.consulta(this.correo).then(
       (datos)=>{
