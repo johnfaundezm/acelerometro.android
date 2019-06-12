@@ -20,7 +20,6 @@ export class AdminEntrenadorPage {
   pais:any;
   estado:any;
   fecha_r:any;
-  refresher:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider, public popoverCtrl: PopoverController) {
     this.correo = this.navParams.get('correo');
@@ -38,9 +37,8 @@ export class AdminEntrenadorPage {
   }
 
   doRefresh(refresher) {
-    this.refresher=refresher;
     this.detalle();
-    
+    refresher.complete();
   } 
 
   detalle(){
@@ -57,7 +55,7 @@ export class AdminEntrenadorPage {
           this.estado= datos[0].ESTADO;
           this.fecha_r= datos[0].FECHA_R;
           
-          this.refresher.complete();
+          
       },
       (err)=>{
         alert(JSON.stringify(err))
