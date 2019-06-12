@@ -167,6 +167,21 @@ export class EntrenamientoPage {
     this.seg1Marca = this.seg1;
     this.cen2Marca = this.cen2;
     this.cen1Marca = this.cen1;
+
+    this.min2 = 0;
+    this.min1 = 0;
+    this.seg2 = 0;
+    this.seg1 = 0;
+    this.cen2 = 0;
+    this.cen1 = 0;
+    clearInterval(this.contador);
+    this.contador = null;
+    this.min2 = this.min2Marca;
+    this.min1 = this.min1Marca;
+    this.seg2 = this.seg2Marca;
+    this.seg1 = this.seg1Marca;
+    this.cen2 = this.cen2Marca;
+    this.cen1 = this.cen1Marca;
   }
 
   finalizar(){
