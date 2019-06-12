@@ -79,7 +79,7 @@ export class RegistroPage {
     setTimeout(() => {
       this.navCtrl.pop();
       toast.dismiss();
-    },5000);
+    },10000);
   }
 
   
