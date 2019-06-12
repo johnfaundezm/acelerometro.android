@@ -1,4 +1,13 @@
-<ion-content class="grad" padding view-cached="false">
+<ion-content class="grad" padding>
+
+  <ion-refresher  (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refrescando...">
+    </ion-refresher-content>
+  </ion-refresher>
 
   <button ion-button color="light" menuToggle clear>
     <ion-icon name="menu"></ion-icon>
