@@ -1,12 +1,21 @@
 .popover-tamaño .popover-content{
     width: 80% ;
 };
-
+/*
 ion-toast.mensaje-toast { 
    // border-radius: 20px !important;
    // background-color:transparent !important;
     width: 86%; 
     left: 7%;
+}
+*/
+
+.mensaje-toast { 
+    .toast-wrapper { 
+    background-color: #0d8d94; 
+    border-radius: 15px !important;
+    width: 86%;
+    } 
 }
 
 .has-refresher > .scroll-content { 
