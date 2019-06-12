@@ -2,12 +2,14 @@
     width: 80% ;
 };
 
-.mensaje-toast .toast-container { 
-    border-radius: 20px !important;
-    background-color: green;
-    width: 50%; 
+ion-toast.mensaje-toast { 
+   // border-radius: 20px !important;
+   // background-color:transparent !important;
+    width: 86%; 
+    left: 7%;
 }
 
 .has-refresher > .scroll-content { 
-    background-color: transparent !important; 
+    background-color: transparent !important;
+    color: white; 
 }
