@@ -30,4 +30,9 @@ page-entrenamiento {
         color: whitesmoke;
         font-size: 35px;
     }
+
+    ion-scroll {
+        white-space: nowrap;
+        height: 100%;
+      }
 }

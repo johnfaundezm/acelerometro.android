@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 
 import { Gyroscope, GyroscopeOrientation, GyroscopeOptions } from '@ionic-native/gyroscope';
 import { DeviceMotion, DeviceMotionAccelerationData, DeviceMotionAccelerometerOptions } from '@ionic-native/device-motion';
@@ -15,6 +15,8 @@ import { WebservicesProvider } from '../../providers/webservices/webservices';
   templateUrl: 'entrenamiento.html',
 })
 export class EntrenamientoPage {
+
+  datos_acc: Array<{varx:string, vary:string, varz:string}>=[{varx:'', vary:'', varz:''}];
   
   //Timer
   intervalVal;
@@ -23,8 +25,8 @@ export class EntrenamientoPage {
   timerVal;
   tiempo_entrenamiento;
   //-------------------------
-  vec:string;
-  recib_acc:any;
+
+  loading:any;
 
   //Cronometro
   public min1: number =0;
@@ -68,11 +70,17 @@ export class EntrenamientoPage {
   public potenciaZ : Array<any> = [];
 
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, private gyroscope:Gyroscope, private deviceMotion: DeviceMotion, private webservices: WebservicesProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private gyroscope:Gyroscope, private deviceMotion: DeviceMotion, private webservices: WebservicesProvider, public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EntrenamientoPage');
+  }
+
+  ionViewCanEnter() {
+    while(this.datos_acc.length>0){
+      this.datos_acc.pop();
+    }
   }
 
   gyrascope(){
@@ -251,8 +259,7 @@ export class EntrenamientoPage {
         this.accY = acc.y;
         this.accZ = acc.z;
         this.timestamp = acc.timestamp;
-        this.vec ='x:' + this.accX+ '-' + 'y:' + this.accY+ '-'+ 'z:' + this.accZ;
-        this.webservices.acelerometro_datos(1, this.vec).then(
+        this.webservices.acelerometro_datos(this.accX, this.accY, this.accZ).then(
           (resultado) =>{
             //alert('oka'+JSON.stringify(resultado));
           },
@@ -281,10 +288,48 @@ export class EntrenamientoPage {
   }
 
 
+  load() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Procesando Solicitud...',
+      dismissOnPageChange: true
+    });
+    
+    this.loading.present();
+  }
+
   consultar_acc(){
-    this.webservices.consulta_acelerometro_datos(1).then(
+    this.load();
+    this.webservices.consulta_acelerometro_datos().then(
       (datos) =>{
-        this.recib_acc= datos[0].ACELERACION;
+        let largo=Object.keys(datos).length;
+        for(var i=0;i<largo;i++){
+          var varx= datos[i].ACELERACIONX;
+          var vary= datos[i].ACELERACIONY;
+          var varz= datos[i].ACELERACIONZ;
+          this.loading.dismiss();
+          this.datos_acc.push({"varx":varx, "vary":vary, "varz":varz});           
+        }
+        //alert('oka'+JSON.stringify(resultado));
+      },
+      (error) =>{
+        alert('error'+JSON.stringify(error));
+      }
+    )
+  }
+
+  borrar_acc(){
+    this.load();
+    this.webservices.delete_acelerometro_datos().then(
+      (datos) =>{
+        var respuesta= datos[0].RESPUESTA;
+        this.loading.dismiss();
+        if(respuesta=='OK'){
+          this.navCtrl.push(EntrenamientoPage);
+          alert('Los datos se han borrado satisfactoriamente');
+        }else{
+          alert('Ha ocurrido un error en el borrado');
+        }
         //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
