@@ -2,13 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 
-/**
- * Generated class for the DeportistasentPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-deportistasent',
@@ -18,6 +11,8 @@ export class DeportistasentPage {
 
   enlaces: Array<{email:string, entrenamiento_n:string, fecha:string}>=[{email:'', entrenamiento_n:'', fecha:''}];
   correo:any;
+
+  actividades: string ='deportistas';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
     this.correo = this.navParams.get('correo');

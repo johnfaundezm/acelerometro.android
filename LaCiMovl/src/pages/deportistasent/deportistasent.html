@@ -4,6 +4,42 @@
       <ion-icon name="menu"></ion-icon>
   </button>
 
+  <ion-segment [(ngModel)]="actividades">
+    <ion-segment-button style="color: whitesmoke" value="deportistas">
+      Deportistas
+    </ion-segment-button>
+    <ion-segment-button style="color: whitesmoke" value="solicitud">
+      Solicitudes
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="actividades">
+    <div *ngSwitchCase="'deportistas'">
+      <ion-card style="height: 500px" class="border_card">
+        <ion-card-header class="title_card">
+          Deportistas
+        </ion-card-header>
+    
+        <ion-scroll scrollY="true">
+          <ion-list inset *ngFor="let e of enlaces" >
+            <ion-item style="border-bottom: 1px solid; border-color: rgb(194, 191, 191); height: auto">
+              <h2>{{e.email}}</h2>
+              <p style="text-align: left">{{e.entrenamiento_n}}</p>
+              <p style="text-align: right">{{e.fecha}}</p>
+            </ion-item>
+          </ion-list>
+        </ion-scroll>
+      </ion-card>
+    </div>
+  
+    <div *ngSwitchCase="'solicitud'">
+      
+    </div>
+  </div>
+
+
+
+  <!--
   <ion-card class="border_card">
     <ion-card-header class="title_card">
       Deportistas
@@ -19,5 +55,7 @@
       </ion-list>
     </ion-scroll>
   </ion-card>
+  -->
+  
 
 </ion-content>
