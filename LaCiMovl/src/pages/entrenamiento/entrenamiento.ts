@@ -73,6 +73,7 @@ export class EntrenamientoPage {
   public potenciaY : Array<any> = [];
   public potenciaZ : Array<any> = [];
 
+  actividades: string = 'ejercicio';
   
   constructor(public navCtrl: NavController, public navParams: NavParams, private gyroscope:Gyroscope, private deviceMotion: DeviceMotion, private webservices: WebservicesProvider, public loadingCtrl: LoadingController) {
   }

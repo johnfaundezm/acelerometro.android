@@ -4,13 +4,128 @@
     <ion-icon name="menu"></ion-icon>
   </button>
 
+  <ion-segment [(ngModel)]="actividades">
+    <ion-segment-button style="color: whitesmoke" value="ejercicio">
+      Ejercicios
+    </ion-segment-button>
+    <ion-segment-button style="color: whitesmoke" value="solicitud">
+      Solicitudes
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="actividades">
+    <div *ngSwitchCase="'ejercicio'">
+      <ion-card class="border_card">
+        <ion-card-header class="title_card">
+          Entrenamiento
+        </ion-card-header>
+      </ion-card>
+      
+      
+      <ion-item> 
+        <ion-label>X orientation</ion-label>
+      <ion-input type="text" [(ngModel)]="xOrient"></ion-input>
+      </ion-item>
+      <ion-item> 
+        <ion-label>Y orientation</ion-label>
+        <ion-input type="text" [(ngModel)]="yOrient"></ion-input>
+      </ion-item>
+      <ion-item> 
+          <ion-label>Z orientation</ion-label>
+          <ion-input type="text" [(ngModel)]="zOrient"></ion-input>
+      </ion-item>
+      <ion-item> 
+          <ion-label>Time Stamp</ion-label>
+          <ion-input type="text" [(ngModel)]="timestampd"></ion-input>
+      </ion-item>
+    
+      <button ion-button (click)="giroscopio()" full>click</button>
+    
+      <ion-item> 
+        <ion-label>Acceleration X</ion-label>
+        <ion-input type="text" [(ngModel)]="accX"></ion-input>
+      </ion-item>
+      <ion-item> 
+        <ion-label>Acceleration Y</ion-label>
+        <ion-input type="text" [(ngModel)]="accY"></ion-input>
+      </ion-item>
+      <ion-item> 
+        <ion-label>Acceleration Z</ion-label>
+        <ion-input type="text" [(ngModel)]="accZ"></ion-input>
+      </ion-item>
+      
+      <button ion-button (click)="comienzoAcelerometro()" full>inicio</button>
+      <button ion-button (click)="detenerAcelerometro()" full>detener</button>
+    
+    
+      <br>
+    
+      <ion-card style="height: 300px">
+        <ion-scroll scrollY="true">
+          <ion-list inset *ngFor="let a of datos_acc" >
+            <ion-item style="border-bottom: 1px solid; border-color: rgb(194, 191, 191); height: auto">
+              <h2>aceleracion eje x: {{a.varx}}</h2>
+              <h2>aceleracion eje y: {{a.vary}}</h2>
+              <h2>aceleracion eje z: {{a.varz}}</h2>
+            </ion-item>
+          </ion-list>
+        </ion-scroll>
+      </ion-card>
+    
+      <button ion-button (click)="consultar_acc()" full>consultar aceleraciones</button>
+      <button ion-button (click)="borrar_acc()" full>Borrar aceleraciones</button>
+    
+      
+      <ion-label>Cronometro</ion-label>
+    
+      <ion-label class="crono">
+          <ion-icon name="alarm" class="icon_crono"></ion-icon>
+          {{min2}}{{min1}} : {{seg2}}{{seg1}} : {{cen2}}{{cen1}}
+      </ion-label>
+      
+    
+        <button ion-button class="btn_entre" outline color="light" (click)="inicio()">
+          <ion-icon name="play"></ion-icon>
+        </button>
+        <button ion-button class="btn_entre" outline color="light" (click)="marca()">
+          <ion-icon name="pause"></ion-icon>
+        </button>
+        <button ion-button class="btn_entre" outline color="light" (click)="lapso()">
+          <ion-icon name="bookmark"></ion-icon>
+        </button> 
+        <button ion-button class="btn_entre" outline color="light" (click)="finalizar()">
+          <ion-icon name="close"></ion-icon>
+        </button>
+    
+      <ion-item>
+        <ion-label>Marca</ion-label>
+        <ion-label>{{min2Marca}}{{min1Marca}} : {{seg2Marca}}{{seg1Marca}} : {{cen2Marca}}{{cen1Marca}}</ion-label>
+      </ion-item>
+    
+      <ion-card>
+        <ion-label>Marcas</ion-label>
+        <ion-list inset *ngFor="let cole of coleccion">
+          <ion-item>
+            <ion-label>{{cole.min2}}{{cole.min1}} : {{cole.seg2}}{{cole.seg1}} : {{cole.cen2}}{{cole.cen1}}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card>
+      
+    </div>
+  
+    <ion-content *ngSwitchCase="'solicitud'">
+      
+    </ion-content>
+  </div>
+
+  <!--
   <ion-card class="border_card">
     <ion-card-header class="title_card">
       Entrenamiento
     </ion-card-header>
   </ion-card>
   
-  <!--Prueba de funciones-->
+  
   <ion-item> 
     <ion-label>X orientation</ion-label>
   <ion-input type="text" [(ngModel)]="xOrient"></ion-input>
@@ -62,7 +177,7 @@
   <button ion-button (click)="consultar_acc()" full>consultar aceleraciones</button>
   <button ion-button (click)="borrar_acc()" full>Borrar aceleraciones</button>
 
-  <!--Cronometro-->
+  
   <ion-label>Cronometro</ion-label>
 
   <ion-label class="crono">
@@ -98,4 +213,5 @@
     </ion-list>
   </ion-card>
   
+-->
 </ion-content>
