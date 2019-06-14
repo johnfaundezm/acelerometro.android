@@ -56,26 +56,7 @@
       
       <button ion-button (click)="comienzoAcelerometro()" full>inicio</button>
       <button ion-button (click)="detenerAcelerometro()" full>detener</button>
-    
-    
-      <br>
-    
-      <ion-card style="height: 300px">
-        <ion-scroll scrollY="true">
-          <ion-list inset *ngFor="let a of datos_acc" >
-            <ion-item style="border-bottom: 1px solid; border-color: rgb(194, 191, 191); height: auto">
-              <h2>aceleracion eje x: {{a.varx}}</h2>
-              <h2>aceleracion eje y: {{a.vary}}</h2>
-              <h2>aceleracion eje z: {{a.varz}}</h2>
-            </ion-item>
-          </ion-list>
-        </ion-scroll>
-      </ion-card>
-    
-      <button ion-button (click)="consultar_acc()" full>consultar aceleraciones</button>
-      <button ion-button (click)="borrar_acc()" full>Borrar aceleraciones</button>
-    
-      
+
       <ion-label>Cronometro</ion-label>
     
       <ion-label class="crono">
@@ -96,6 +77,24 @@
         <button ion-button class="btn_entre" outline color="light" (click)="finalizar()">
           <ion-icon name="close"></ion-icon>
         </button>
+    
+    
+      <br>
+    
+      <ion-card style="height: 300px">
+        <ion-scroll scrollY="true">
+          <ion-list inset *ngFor="let a of datos_acc" >
+            <ion-item style="border-bottom: 1px solid; border-color: rgb(194, 191, 191); height: auto">
+              <h2>aceleracion eje x: {{a.varx}}</h2>
+              <h2>aceleracion eje y: {{a.vary}}</h2>
+              <h2>aceleracion eje z: {{a.varz}}</h2>
+            </ion-item>
+          </ion-list>
+        </ion-scroll>
+      </ion-card>
+    
+      <button ion-button (click)="consultar_acc()" full>consultar aceleraciones</button>
+      <button ion-button (click)="borrar_acc()" full>Borrar aceleraciones</button>
     
       <ion-item>
         <ion-label>Marca</ion-label>
