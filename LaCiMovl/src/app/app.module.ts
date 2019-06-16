@@ -39,6 +39,7 @@ import { AdminEntrenadorPage } from '../pages/admin-entrenador/admin-entrenador'
 import { AdmininsertPage } from '../pages/admininsert/admininsert';
 import { AdmininsertentPage } from '../pages/admininsertent/admininsertent';
 
+import { ChartsModule } from 'ng2-charts-x';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { AdmininsertentPage } from '../pages/admininsertent/admininsertent';
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
