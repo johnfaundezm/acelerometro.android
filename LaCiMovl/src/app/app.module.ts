@@ -32,6 +32,7 @@ import { DeportistatabsPage } from '../pages/deportistatabs/deportistatabs';
 import { AdmintabsPage } from '../pages/admintabs/admintabs';
 import { EntrenadortabsPage } from '../pages/entrenadortabs/entrenadortabs';
 
+import {  NativeAudio } from '@ionic-native/native-audio'
 import { Gyroscope } from '@ionic-native/gyroscope';
 import { DeviceMotion } from '@ionic-native/device-motion';
 import { AdminEntrenadorPage } from '../pages/admin-entrenador/admin-entrenador';
@@ -90,7 +91,8 @@ import { AdmininsertentPage } from '../pages/admininsertent/admininsertent';
     WebservicesProvider,
     HTTP,
     Gyroscope,
-    DeviceMotion
+    DeviceMotion,
+    NativeAudio
   ]
 })
 export class AppModule {}

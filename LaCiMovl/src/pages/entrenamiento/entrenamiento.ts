@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController,Platform } from 'ionic-angular';
 
 import { Gyroscope, GyroscopeOrientation, GyroscopeOptions } from '@ionic-native/gyroscope';
 import { DeviceMotion, DeviceMotionAccelerationData, DeviceMotionAccelerometerOptions } from '@ionic-native/device-motion';
+import { NativeAudio } from '@ionic-native/native-audio';
 
 //import { Observable } from 'rxjs/Observable'
 import  'rxjs/add/observable/interval' 
@@ -10,6 +11,7 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { a } from '@angular/core/src/render3';
 import { asTextData } from '@angular/core/src/view';
+
 
 @IonicPage()
 @Component({
@@ -29,7 +31,7 @@ export class EntrenamientoPage {
   //-------------------------
 
   loading:any;
-
+  
   //Cronometro
   public min1: number =0;
   public min2: number =0;
@@ -75,7 +77,29 @@ export class EntrenamientoPage {
 
   actividades: string = 'ejercicio';
   
-  constructor(public navCtrl: NavController, public navParams: NavParams, private gyroscope:Gyroscope, private deviceMotion: DeviceMotion, private webservices: WebservicesProvider, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public platform: Platform, private gyroscope:Gyroscope, private deviceMotion: DeviceMotion, private webservices: WebservicesProvider, public loadingCtrl: LoadingController,private nativeAudio: NativeAudio) {
+    this.platform.ready().then(() => { 
+      console.log("platform ready");
+
+      // This is used to unload the track. It's useful if you're experimenting with track locations
+      this.nativeAudio.unload('trackID').then(function() {
+          console.log("unloaded audio!");
+      }, function(err) {
+          console.log("couldn't unload audio... " + err);
+      });
+
+      // 'trackID' can be anything
+      this.nativeAudio.preloadComplex('inicio', 'assets/audio/inicio.mp3', 1, 1, 0).then(function() {
+          console.log("audio loaded!");
+      }, function(err) {
+          console.log("audio failed: " + err);
+      });
+      this.nativeAudio.preloadComplex('finalizar', 'assets/audio/finalizacion.mp3', 1, 1, 0).then(function() {
+        console.log("audio loaded!");
+    }, function(err) {
+        console.log("audio failed: " + err);
+    });
+    });
   }
 
   ionViewDidLoad() {
@@ -189,6 +213,7 @@ export class EntrenamientoPage {
   }
 
   finalizar(){
+    this.playAudiof();
     this.detenerAcelerometro();
     clearInterval(this.contador);
       this.min2 = 0;
@@ -267,6 +292,7 @@ export class EntrenamientoPage {
     this.vectorX[0] = 0;
     this.vectorY[0] = 0;
     this.vectorZ[0] = 0;
+    this.playAudioi();
     this.inicio();
     try{
       var option : DeviceMotionAccelerometerOptions ={
@@ -369,10 +395,27 @@ export class EntrenamientoPage {
         this.zOrient=orientation.z;
         this.timestampd=orientation.timestamp;
      });
-  }catch(err){
-    alert("Error" + err);
-  } 
-}
+    }catch(err){
+      alert("Error" + err);
+    } 
+  }
+  playAudioi() {
+    console.log("playing audio");
 
+    this.nativeAudio.play('inicio').then(function() {
+        console.log("playing audio!");
+    }, function(err) {
+        console.log("error playing audio: " + err);
+    });
+  }
+  playAudiof() {
+    console.log("playing audio");
+
+    this.nativeAudio.play('finalizar').then(function() {
+        console.log("playing audio!");
+    }, function(err) {
+        console.log("error playing audio: " + err);
+    });
+  }
 
 }
