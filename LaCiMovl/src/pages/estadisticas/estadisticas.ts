@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 
@@ -16,42 +16,59 @@ export class EstadisticasPage {
   usuarioschartvar: any;
   semanachartvar: any;
 
-  cant_dep:number;
-  cant_ent:number;
-  total_usuarios:number;
+  loading:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
+  cant_dep:any;
+  cant_ent:any;
+  total_usuarios:any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider, public loadingCtrl: LoadingController) {
   }
 
 
   ionViewCanEnter() {
-    this.cantidad_usuarios();
+    
     setTimeout(() => {
-      this.cantidadusuarios();
+      this.cantidad_usuarios();
       this.porsemana();
     }, 150)
   }
 
+  loadconsulta_login() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Cargando...',
+    });
+  
+    this.loading.present();
+  }
+
   cantidad_usuarios(){
+    this.loadconsulta_login();
     this.webservices.vista_deportista().then(
       (datos) =>{
         this.cant_dep=Object.keys(datos).length;
-        alert('deportistas: '+this.cant_dep)
+          this.webservices.vista_entrenador().then(
+          (datos) =>{
+            this.cant_ent=Object.keys(datos).length;
+            this.total_usuarios=this.cant_dep+this.cant_ent;
+            this.loading.dismiss();
+            this.cantidadusuarios();
+
+          },
+          (err)=>{
+            this.loading.dismiss();
+            alert(JSON.stringify(err))
+          })
       },
       (err)=>{
+        this.loading.dismiss();
         alert(JSON.stringify(err))
       })
     
-    this.webservices.vista_entrenador().then(
-      (datos) =>{
-        this.cant_ent=Object.keys(datos).length;
-        alert('entrenadores: '+this.cant_ent)
-      },
-      (err)=>{
-        alert(JSON.stringify(err))
-      })
+    
 
-      this.total_usuarios=this.cant_dep+this.cant_ent;
+      
 
   }
 
@@ -61,7 +78,7 @@ export class EstadisticasPage {
       type: 'doughnut',
       data: {
         datasets: [{
-          data: [46, 26],
+          data: [this.cant_dep, this.cant_ent],
           backgroundColor: [
             'rgba(11, 169, 3, 1)',
             'rgba(255, 148, 52, 1)'
@@ -86,6 +103,8 @@ export class EstadisticasPage {
       }
     })
   }
+
+  
 
   porsemana(){
     this.semanachartvar = new Chart(this.usuariosporsemanachart.nativeElement, {
@@ -120,10 +139,6 @@ export class EstadisticasPage {
         }
       }
     })
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EstadisticasPage');
   }
 
 }
