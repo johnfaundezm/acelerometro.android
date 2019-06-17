@@ -57,10 +57,12 @@ export class EstadisticasPage {
 
           },
           (err)=>{
+            this.loading.dismiss();
             alert(JSON.stringify(err))
           })
       },
       (err)=>{
+        this.loading.dismiss();
         alert(JSON.stringify(err))
       })
     
