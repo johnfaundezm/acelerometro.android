@@ -26,9 +26,13 @@ export class EstadisticasPage {
   currentDate;
 
   sem1;
+  cant_sem1:any;
   sem2;
+  cant_sem2:any;
   sem3;
+  cant_sem3:any;
   sem4;
+  cant_sem4:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider, public loadingCtrl: LoadingController) {
   }
@@ -36,8 +40,7 @@ export class EstadisticasPage {
 
   ionViewCanEnter() {
     this.cantidad_usuarios();
-    this.getFormattedDate();
-    this.porsemana();
+    this.cantidad_users_por_semana();
   }
 
   loadconsulta_login() {
@@ -70,13 +73,7 @@ export class EstadisticasPage {
         this.loading.dismiss();
         alert(JSON.stringify(err))
       })
-    
-    
-
-      
-
   }
-
 
   cantidadusuarios(){
     this.usuarioschartvar = new Chart(this.usuarioschart.nativeElement, {
@@ -109,7 +106,7 @@ export class EstadisticasPage {
     })
   }
 
-  getFormattedDate(){
+  cantidad_users_por_semana(){
     var dateObj =new Date()
 
     // 1 semana atrás
@@ -121,8 +118,6 @@ export class EstadisticasPage {
     var date = dateObj.getDate().toString()
     this.sem1 = year+'-'+ mes +'-'+ date;
 
-    alert(this.sem1)
-
     // 2 semanas atrás
     dateObj.setDate(dateObj.getDate() - 7);
     var year = dateObj.getFullYear().toString()
@@ -131,8 +126,6 @@ export class EstadisticasPage {
     mes ++;
     var date = dateObj.getDate().toString()
     this.sem2 = year+'-'+ mes +'-'+ date;
-
-    alert(this.sem2)
 
     // 3 semanas atrás
     dateObj.setDate(dateObj.getDate() - 7);
@@ -143,8 +136,6 @@ export class EstadisticasPage {
     var date = dateObj.getDate().toString()
     this.sem3 = year+'-'+ mes +'-'+ date;
 
-    alert(this.sem3)
-
     // 4 semanas atrás
     dateObj.setDate(dateObj.getDate() - 7);
     var year = dateObj.getFullYear().toString()
@@ -154,17 +145,55 @@ export class EstadisticasPage {
     var date = dateObj.getDate().toString()
     this.sem4 = year+'-'+ mes +'-'+ date;
 
-    alert(this.sem4)
+    //consulta de ususarios por semanas
+    this.webservices.semanas(this.sem1).then(
+      (datos) =>{
+        this.cant_sem1=Object.keys(datos).length;
+          this.webservices.semanas(this.sem2).then(
+          (datos) =>{
+            this.cant_sem2=Object.keys(datos).length;
+            this.webservices.semanas(this.sem3).then(
+              (datos) =>{
+                this.cant_sem3=Object.keys(datos).length;
+                this.webservices.semanas(this.sem4).then(
+                  (datos) =>{
+                    this.cant_sem4=Object.keys(datos).length;
+                    this.loading.dismiss();
+                    this.porsemana();
+                  },
+                  (err)=>{
+                    this.loading.dismiss();
+                    alert(JSON.stringify(err))
+                  })
+              },
+              (err)=>{
+                this.loading.dismiss();
+                alert(JSON.stringify(err))
+              })
+          },
+          (err)=>{
+            this.loading.dismiss();
+            alert(JSON.stringify(err))
+          })
+      },
+      (err)=>{
+        this.loading.dismiss();
+        alert(JSON.stringify(err))
+      })
     
   }
   
 
   porsemana(){
+    alert(this.cant_sem1)
+    alert(this.cant_sem2)
+    alert(this.cant_sem3)
+    alert(this.cant_sem4)
     this.semanachartvar = new Chart(this.usuariosporsemanachart.nativeElement, {
       type: 'horizontalBar',
       data: {
         datasets: [{
-          data: [2, 10, 30, 5],
+          data: [this.cant_sem4, this.cant_sem3, this.cant_sem2, this.cant_sem1],
           backgroundColor: [
             'rgba(14, 10, 132, 1)',
             'rgba(1, 176, 4, 1)',
