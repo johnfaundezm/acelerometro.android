@@ -24,23 +24,30 @@ export class EstadisticasdepPage {
 
   acelerachart(){
     this.aceleracionchartvar = new Chart(this.aceleracionchart.nativeElement, {
-      type: 'line',
+      type: 'scatter',
       data: {
         datasets: [{
-          data: [0.8, 3.4, 7.5, 9.8, 17.8, 14.4, 19.5, 11.3, 6.4, 2.9, 0.8],
+          data: [
+            {x: 0, y: 0}, 
+            {x: 1, y: 2}, 
+            {x: 2, y: 4}, 
+            {x: 3, y: 8}, 
+            {x: 4, y: 16}, 
+            {x: 5, y: 32}, 
+            {x: 6, y: 64}, 
+            {x: 7, y: 3}, 
+            {x: 8, y: 9},
+            {x: 9, y: 1}
+          ],
+          showLine: true,
           borderColor: 'rgba(214, 225, 9, 1)',
           fill: false,
                         backgroundColor: 'rgba(75,192,192,0.4)',
-                        borderCapStyle: 'butt',
-                        borderJoinStyle: 'miter',
                         pointBorderColor: 'rgba(75,192,192,1)',
                         pointBorderWidth: 1,     
                         pointRadius: 3,
                         pointHitRadius: 10,
-        }],
-        labels: [
-          '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'
-        ]
+        }]
       },
 
       options: {
@@ -49,6 +56,12 @@ export class EstadisticasdepPage {
         },
         tooltips: {
           enabled: true
+        },
+        scales: {
+          xAxes: [{
+              type: 'linear',
+              position: 'bottom'
+          }]
         }
       }
     })

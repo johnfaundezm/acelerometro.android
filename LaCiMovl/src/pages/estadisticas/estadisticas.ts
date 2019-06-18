@@ -63,7 +63,6 @@ export class EstadisticasPage {
             this.total_usuarios=this.cant_dep+this.cant_ent;
             this.loading.dismiss();
             this.cantidadusuarios();
-
           },
           (err)=>{
             this.loading.dismiss();
