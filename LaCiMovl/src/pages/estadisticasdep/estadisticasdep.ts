@@ -43,8 +43,6 @@ export class EstadisticasdepPage {
           borderColor: 'rgba(214, 225, 9, 1)',
           fill: false,
                         backgroundColor: 'rgba(75,192,192,0.4)',
-                        borderCapStyle: 'butt',
-                        borderJoinStyle: 'miter',
                         pointBorderColor: 'rgba(75,192,192,1)',
                         pointBorderWidth: 1,     
                         pointRadius: 3,
