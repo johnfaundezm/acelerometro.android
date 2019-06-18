@@ -35,12 +35,9 @@ export class EstadisticasPage {
 
 
   ionViewCanEnter() {
-    
-    setTimeout(() => {
-      this.cantidad_usuarios();
-      this.getFormattedDate();
-      this.porsemana();
-    }, 150)
+    this.cantidad_usuarios();
+    this.getFormattedDate();
+    this.porsemana();
   }
 
   loadconsulta_login() {
