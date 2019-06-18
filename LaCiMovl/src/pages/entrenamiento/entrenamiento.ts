@@ -22,16 +22,14 @@ export class EntrenamientoPage {
 
   datos_acc: Array<{varx:string, vary:string, varz:string}>=[{varx:'', vary:'', varz:''}];
   
-  //Timer
-  intervalVal;
-  timer = 0;
-  timerVar;
-  timerVal;
-  tiempo_entrenamiento;
-  //-------------------------
-
   loading:any;
-  
+  //Funcion de entrenamiento
+  public tiempo_entrenamiento: number = 60;
+  public inicioseg : number=0;
+  public contador_entrenamiento : any;
+  public potencia : any;
+  public fuerza: any;
+  //________________________
   //Cronometro
   public min1: number =0;
   public min2: number =0;
@@ -57,6 +55,8 @@ export class EntrenamientoPage {
   public xOrient:any;
   public yOrient:any;
   public zOrient:any;
+  public giro_x_y_z : any;
+  public acel_x_y_z : any;
   public timestamp:any;
   public timestampd:any;
   public accX:any;
@@ -99,6 +99,12 @@ export class EntrenamientoPage {
       }, function(err) {
         console.log("audio failed: " + err);
       });
+      this.nativeAudio.preloadComplex('finentrenamiento', 'assets/audio/finentrenamiento.mp3', 1, 1, 0).then(function() {
+        console.log("audio loaded!");
+      }, function(err) {
+        console.log("audio failed: " + err);
+      });
+
     });
   }
 
@@ -111,6 +117,21 @@ export class EntrenamientoPage {
       this.datos_acc.pop();
     }
   }
+// Funcion Entrenamiento
+  nuevoEntrenamiento(){
+    if(this.contador_entrenamiento == undefined){
+      this.playAudioi();
+      this.contador_entrenamiento = setInterval(()=>{
+        this.inicioseg+=1;
+        
+        if(this.inicioseg==3){
+          this.comienzoAcelerometro();
+          this.comienzoGiroscopio();
+        }
+      },1000);
+    }
+  }
+// _____________________
 //Cronometro
   inicio(){
 
@@ -138,8 +159,8 @@ export class EntrenamientoPage {
   }
 
   marca(){
-
-    this.detenerAcelerometro();
+    this.playAudiof();
+    this.id.unsubscribe();
     this.min2Marca = this.min2;
     this.min1Marca = this.min1;
     this.seg2Marca = this.seg2;
@@ -165,7 +186,10 @@ export class EntrenamientoPage {
 
   finalizar(){
     this.playAudiof();
+    this.playAudiofn();
     this.detenerAcelerometro();
+    this.detenerGiroscopio();
+
     clearInterval(this.contador);
       this.min2 = 0;
       this.min1 = 0;
@@ -188,20 +212,16 @@ export class EntrenamientoPage {
     this.coleccion.push(obj);
 
   }
-  //Perifericos (Gyroscopio,acelerometro,Sonidos)
 
-  //Acelerometro
+//Perifericos (Gyroscopio,acelerometro,Sonidos)
+//Acelerometro
   comienzoAcelerometro(){
-    var tiempo =60;
-    var i=0 ;
-    this.vectorX[0] = 0;
-    this.vectorY[0] = 0;
-    this.vectorZ[0] = 0;
-    this.playAudioi();
+    var i=1 ;
+    //this.playAudioi();
     this.inicio();
     try{
       var option : DeviceMotionAccelerometerOptions ={
-        frequency : 1000
+        frequency : 500
       };
     
       this.id = this.deviceMotion.watchAcceleration(option).subscribe((acc:DeviceMotionAccelerationData) =>{
@@ -210,6 +230,13 @@ export class EntrenamientoPage {
         this.accY = acc.y;
         this.accZ = acc.z;
         this.timestamp = acc.timestamp;
+        //Calculos____________________
+        this.acel_x_y_z= (this.accX + this.accY + this.accZ)/3;
+        
+        this.fuerza = 1/*masa_deportista*/* this.acel_x_y_z;
+
+        this.potencia = this.fuerza * this.acel_x_y_z;
+
         this.webservices.acelerometro_datos(this.accX, this.accY, this.accZ).then(
           (resultado) =>{
             //alert('oka'+JSON.stringify(resultado));
@@ -217,14 +244,11 @@ export class EntrenamientoPage {
           (error) =>{
             alert('error'+JSON.stringify(error));
           }
-        )
-
-          this.vectorX[i] = this.accX;
-          //alert(this.vectorX[i]);
-          if (i==(tiempo-1)){
-            this.id.unsubscribe();
-          }
-          i++;
+        )  
+        if (i==(this.tiempo_entrenamiento)){
+          this.finalizar();
+        }
+        i++;
           
       }
       );      
@@ -235,6 +259,7 @@ export class EntrenamientoPage {
   
   }
   detenerAcelerometro(){
+    this.playAudiofn();
     this.id.unsubscribe();
   }
 
@@ -288,10 +313,11 @@ export class EntrenamientoPage {
     )
   }
 //Gyroscopio  
-  giroscopio(){
+  comienzoGiroscopio(){
+    var i = 1;
     try{
       var options : GyroscopeOptions={
-        frequency : 1000
+        frequency : 500
       };
       this.idg = this.gyroscope.watch(options).subscribe((orientation: GyroscopeOrientation) => {
         console.log(orientation.x, orientation.y, orientation.z, orientation.timestamp);
@@ -299,10 +325,28 @@ export class EntrenamientoPage {
         this.yOrient=orientation.y;
         this.zOrient=orientation.z;
         this.timestampd=orientation.timestamp;
+        //Calculos____________________
+        this.giro_x_y_z = (this.xOrient+this.yOrient+this.zOrient)/3;
+
+        this.webservices.giroscopio_datos(this.xOrient, this.yOrient, this.zOrient).then(
+          (resultado) =>{
+            //alert('oka'+JSON.stringify(resultado));
+          },
+          (error) =>{
+            alert('error'+JSON.stringify(error));
+          }
+        )  
+        if (i==(this.tiempo_entrenamiento)){
+          this.finalizar();
+        }
+        i++;
      });
     }catch(err){
       alert("Error" + err);
     } 
+  }
+  detenerGiroscopio(){
+    this.idg.unsubscribe();
   }
 //Sonidos  
   playAudioi() {
@@ -318,6 +362,15 @@ export class EntrenamientoPage {
     console.log("playing audio");
 
     this.nativeAudio.play('finalizar').then(function() {
+        console.log("playing audio!");
+    }, function(err) {
+        console.log("error playing audio: " + err);
+    });
+  }
+  playAudiofn() {
+    console.log("playing audio");
+
+    this.nativeAudio.play('finentrenamiento').then(function() {
         console.log("playing audio!");
     }, function(err) {
         console.log("error playing audio: " + err);
