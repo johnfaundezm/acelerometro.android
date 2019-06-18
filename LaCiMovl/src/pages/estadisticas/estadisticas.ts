@@ -22,6 +22,14 @@ export class EstadisticasPage {
   cant_ent:any;
   total_usuarios:any;
 
+  //Fecha----------------------------------------
+  currentDate;
+
+  sem1;
+  sem2;
+  sem3;
+  sem4;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider, public loadingCtrl: LoadingController) {
   }
 
@@ -30,6 +38,7 @@ export class EstadisticasPage {
     
     setTimeout(() => {
       this.cantidad_usuarios();
+      this.getFormattedDate();
       this.porsemana();
     }, 150)
   }
@@ -104,6 +113,54 @@ export class EstadisticasPage {
     })
   }
 
+  getFormattedDate(){
+    var dateObj =new Date()
+
+    // 1 semana atrás
+    dateObj.setDate(dateObj.getDate() - 7);
+    var year = dateObj.getFullYear().toString()
+    var month = dateObj.getMonth().toString()
+    var mes:any = month;
+    mes ++;
+    var date = dateObj.getDate().toString()
+    this.sem1 = year+'-'+ mes +'-'+ date;
+
+    alert(this.sem1)
+
+    // 2 semanas atrás
+    dateObj.setDate(dateObj.getDate() - 7);
+    var year = dateObj.getFullYear().toString()
+    var month = dateObj.getMonth().toString()
+    var mes:any = month;
+    mes ++;
+    var date = dateObj.getDate().toString()
+    this.sem2 = year+'-'+ mes +'-'+ date;
+
+    alert(this.sem2)
+
+    // 3 semanas atrás
+    dateObj.setDate(dateObj.getDate() - 7);
+    var year = dateObj.getFullYear().toString()
+    var month = dateObj.getMonth().toString()
+    var mes:any = month;
+    mes ++;
+    var date = dateObj.getDate().toString()
+    this.sem3 = year+'-'+ mes +'-'+ date;
+
+    alert(this.sem3)
+
+    // 4 semanas atrás
+    dateObj.setDate(dateObj.getDate() - 7);
+    var year = dateObj.getFullYear().toString()
+    var month = dateObj.getMonth().toString()
+    var mes:any = month;
+    mes ++;
+    var date = dateObj.getDate().toString()
+    this.sem4 = year+'-'+ mes +'-'+ date;
+
+    alert(this.sem4)
+    
+  }
   
 
   porsemana(){
