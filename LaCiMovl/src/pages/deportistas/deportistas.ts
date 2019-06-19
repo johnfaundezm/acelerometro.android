@@ -25,7 +25,11 @@ export class DeportistasPage {
     }
     this.vista_deportista();
   }
-  
+
+  doRefresh(refresher) {
+    this.vista_deportista();
+    refresher.complete();
+  } 
 
   vista_deportista(){
     this.webservices.vista_deportista().then(
