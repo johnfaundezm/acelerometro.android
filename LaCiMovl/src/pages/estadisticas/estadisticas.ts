@@ -43,6 +43,12 @@ export class EstadisticasPage {
     this.cantidad_users_por_semana();
   }
 
+  doRefresh(refresher) {
+    this.cantidad_usuarios();
+    this.cantidad_users_por_semana();
+    refresher.complete();
+  } 
+
   loadconsulta_login() {
     this.loading = this.loadingCtrl.create({
       spinner: 'ios',
@@ -185,21 +191,24 @@ export class EstadisticasPage {
   
 
   porsemana(){
-    alert(this.cant_sem1)
-    alert(this.cant_sem2)
-    alert(this.cant_sem3)
-    alert(this.cant_sem4)
     this.semanachartvar = new Chart(this.usuariosporsemanachart.nativeElement, {
       type: 'horizontalBar',
       data: {
         datasets: [{
           data: [this.cant_sem4, this.cant_sem3, this.cant_sem2, this.cant_sem1],
           backgroundColor: [
+            'rgba(14, 10, 132, 0.3)',
+            'rgba(1, 176, 4, 0.3)',
+            'rgba(208, 217, 26, 0.3)',
+            'rgba(209, 4, 4, 0.3)'
+          ],
+          borderColor: [
             'rgba(14, 10, 132, 1)',
             'rgba(1, 176, 4, 1)',
             'rgba(208, 217, 26, 1)',
             'rgba(209, 4, 4, 1)'
-          ]
+          ],
+          borderWidth: 1
         }],
         labels: [
           '4 semanas',
