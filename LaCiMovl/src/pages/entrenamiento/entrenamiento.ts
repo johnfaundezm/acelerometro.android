@@ -20,7 +20,7 @@ export class EntrenamientoPage {
   
   loading:any;
   //Funcion de entrenamiento
-  public tiempo_entrenamiento: number = 20;
+  public tiempo_entrenamiento: number = 10;
   public inicioseg : number=0;
   public contador_entrenamiento : any;
   public potencia : any;
@@ -201,7 +201,6 @@ export class EntrenamientoPage {
       this.contador = null;
       this.contador_entrenamiento = null;
       
-    this.inicioseg=0;
   }
 
   lapso(){
