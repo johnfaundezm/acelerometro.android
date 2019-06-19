@@ -20,7 +20,7 @@ export class EntrenamientoPage {
   
   loading:any;
   //Funcion de entrenamiento
-  public tiempo_entrenamiento: number = 10;
+  public tiempo_entrenamiento: number = 10
   public inicioseg : number=0;
   public contador_entrenamiento : any;
   public potencia : any;
@@ -124,7 +124,7 @@ export class EntrenamientoPage {
           this.comienzoAcelerometro();
           this.comienzoGiroscopio();
         }
-        if (this.inicioseg==this.tiempo_entrenamiento ){
+        if (this.inicioseg==this.tiempo_entrenamiento+6){
           this.finalizar();
         }
         
