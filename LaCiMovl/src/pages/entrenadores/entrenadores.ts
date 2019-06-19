@@ -25,6 +25,11 @@ export class EntrenadoresPage {
     this.vista_entrenador();
   }
 
+  doRefresh(refresher) {
+    this.vista_entrenador();
+    refresher.complete();
+  } 
+
   vista_entrenador(){
     this.webservices.vista_entrenador().then(
       (datos) =>{
