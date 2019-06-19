@@ -313,7 +313,7 @@ export class WebservicesProvider {
     });
   }
 
-  acelerometro_datos(aceleracionX, aceleracionY, aceleracionZ) {
+  acelerometro_datos(aceleracionX, aceleracionY, aceleracionZ, aceleracion, trabajo, potencia) {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
@@ -323,7 +323,7 @@ export class WebservicesProvider {
         headers: headers
       });
       // TODO: Encode the values using encodeURIComponent().
-      let body = 'aceleracionX='+aceleracionX+'&aceleracionY='+aceleracionY+'&aceleracionZ='+aceleracionZ;
+      let body = 'aceleracionX='+aceleracionX+'&aceleracionY='+aceleracionY+'&aceleracionZ='+aceleracionZ+'&aceleracion='+aceleracion+'&trabajo='+trabajo+'&potencia='+potencia;
 
       let url = "https://lacimovl.000webhostapp.com/webservices/insert_acc_datos.php";
 
