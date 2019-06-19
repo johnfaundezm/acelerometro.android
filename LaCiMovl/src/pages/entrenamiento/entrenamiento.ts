@@ -7,11 +7,7 @@ import { NativeAudio } from '@ionic-native/native-audio';
 
 //import { Observable } from 'rxjs/Observable'
 import  'rxjs/add/observable/interval' 
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
-import { a } from '@angular/core/src/render3';
-import { asTextData } from '@angular/core/src/view';
-
 
 @IonicPage()
 @Component({
@@ -24,7 +20,7 @@ export class EntrenamientoPage {
   
   loading:any;
   //Funcion de entrenamiento
-  public tiempo_entrenamiento: number = 60;
+  public tiempo_entrenamiento: number = 20;
   public inicioseg : number=0;
   public contador_entrenamiento : any;
   public potencia : any;
@@ -128,6 +124,10 @@ export class EntrenamientoPage {
           this.comienzoAcelerometro();
           this.comienzoGiroscopio();
         }
+        if (this.inicioseg==this.tiempo_entrenamiento ){
+          this.finalizar();
+        }
+        
       },1000);
     }
   }
@@ -161,6 +161,7 @@ export class EntrenamientoPage {
   marca(){
     this.playAudiof();
     this.id.unsubscribe();
+    this.idg.unsubscribe();
     this.min2Marca = this.min2;
     this.min1Marca = this.min1;
     this.seg2Marca = this.seg2;
@@ -198,6 +199,9 @@ export class EntrenamientoPage {
       this.cen2 = 0;
       this.cen1 = 0;
       this.contador = null;
+      this.contador_entrenamiento = null;
+      
+    this.inicioseg=0;
   }
 
   lapso(){
@@ -216,12 +220,11 @@ export class EntrenamientoPage {
 //Perifericos (Gyroscopio,acelerometro,Sonidos)
 //Acelerometro
   comienzoAcelerometro(){
-    var i=1 ;
     //this.playAudioi();
     this.inicio();
     try{
       var option : DeviceMotionAccelerometerOptions ={
-        frequency : 500
+        frequency : 100
       };
     
       this.id = this.deviceMotion.watchAcceleration(option).subscribe((acc:DeviceMotionAccelerationData) =>{
@@ -244,12 +247,7 @@ export class EntrenamientoPage {
           (error) =>{
             alert('error'+JSON.stringify(error));
           }
-        )  
-        if (i==(this.tiempo_entrenamiento)){
-          this.finalizar();
-        }
-        i++;
-          
+        )   
       }
       );      
     }catch(err){
@@ -314,10 +312,9 @@ export class EntrenamientoPage {
   }
 //Gyroscopio  
   comienzoGiroscopio(){
-    var i = 1;
     try{
       var options : GyroscopeOptions={
-        frequency : 500
+        frequency : 100
       };
       this.idg = this.gyroscope.watch(options).subscribe((orientation: GyroscopeOrientation) => {
         console.log(orientation.x, orientation.y, orientation.z, orientation.timestamp);
@@ -336,10 +333,6 @@ export class EntrenamientoPage {
             alert('error'+JSON.stringify(error));
           }
         )  
-        if (i==(this.tiempo_entrenamiento)){
-          this.finalizar();
-        }
-        i++;
      });
     }catch(err){
       alert("Error" + err);
