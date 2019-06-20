@@ -122,7 +122,7 @@ export class WebservicesProvider {
       // TODO: Encode the values using encodeURIComponent().
       let body = 'correo='+correo;
 
-      let url = "https://192.81.216.141/webservices/select_login.php";
+      let url = "http://192.81.216.141/webservices/select_login.php";
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
