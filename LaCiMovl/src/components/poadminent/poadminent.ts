@@ -26,7 +26,7 @@ export class PoadminentComponent {
     this.correo = this.navParams.get('correo');
   }
 
-  ionViewCanEnter() {
+  ionViewDidLoad() {
     this.consulta();
   }
 
