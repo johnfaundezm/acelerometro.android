@@ -1,0 +1,31 @@
+page-cronometro {
+
+    .grad {
+        background-color: #252121;
+    }
+
+    .crono {
+        text-align: center;
+        font-size: 50px;
+        color: whitesmoke;
+    }
+    
+    .icon_crono {
+        margin-right: 5px;
+        color: whitesmoke;
+        font-size: 35px;
+    }
+
+    .btn_entre {
+        border-radius: 10px;
+        border-width: 2px;
+        width: 22%;
+        height: 30px;
+    }
+
+    ion-scroll {
+        white-space: nowrap;
+        height: 100%;
+    }
+
+}
