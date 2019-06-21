@@ -59,6 +59,8 @@ export class HomePage {
         this.rol= datos[0].TIPO;
         this.respuesta= datos[0].RESPUESTA;
         this.loading.dismiss();
+        console.log(datos);
+
         if(this.estado=='activada'){
         
           if(this.rol==1){

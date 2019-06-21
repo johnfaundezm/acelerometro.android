@@ -27,7 +27,7 @@ export class WebservicesProvider {
       // TODO: Encode the values using encodeURIComponent().
       let body = 'correo='+correo +'&pass='+pass +'&nombre='+nombre +'&apellido_p='+apellido_p +'&apellido_m='+apellido_m+'&genero='+genero+'&edad='+edad+'&peso='+peso+'&estatura='+estatura+'&imc='+imc+'&pais='+pais+'&estado='+estado+'&fecha_r='+fecha_r+'&id_tipo_usuario='+id_tipo_usuario;
 
-      let url = "https://lacimovl.000webhostapp.com/webservices/insert_usuario.php";
+      let url = "http://192.81.216.141/webservices/insert_usuario.php";
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
@@ -51,7 +51,7 @@ export class WebservicesProvider {
       // TODO: Encode the values using encodeURIComponent().
       let body = 'correo='+correo + '&pass='+pass +'&nombre='+nombre +'&apellido_p='+apellido_p +'&apellido_m='+apellido_m +'&genero='+genero +'&edad='+edad +'&peso='+peso +'&estatura='+estatura +'&imc='+imc +'&pais='+pais+'&estado='+estado;
 
-      let url = "https://lacimovl.000webhostapp.com/webservices/update_deportista.php";
+      let url = "http://192.81.216.141/webservices/update_deportista.php";
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
@@ -74,7 +74,7 @@ export class WebservicesProvider {
       // TODO: Encode the values using encodeURIComponent().
       let body = 'correo='+correo + '&pass='+pass +'&nombre='+nombre +'&apellido_p='+apellido_p +'&apellido_m='+apellido_m +'&genero='+genero +'&edad='+edad +'&pais='+pais+'&estado='+estado;
 
-      let url = "https://lacimovl.000webhostapp.com/webservices/update_entrenador.php";
+      let url = "http://192.81.216.141/webservices/update_entrenador.php";
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
@@ -98,7 +98,7 @@ export class WebservicesProvider {
       // TODO: Encode the values using encodeURIComponent().
       let body = 'correo='+correo;
 
-      let url = "https://lacimovl.000webhostapp.com/webservices/select_usuario.php";
+      let url = "http://192.81.216.141/webservices/select_usuario.php";
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
@@ -114,7 +114,7 @@ export class WebservicesProvider {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded",
       });
       let options = new RequestOptions({
         headers: headers
@@ -122,12 +122,12 @@ export class WebservicesProvider {
       // TODO: Encode the values using encodeURIComponent().
       let body = 'correo='+correo;
 
-      let url = "https://lacimovl.000webhostapp.com/webservices/select_login.php";
+      let url = "http://192.81.216.141/webservices/select_login.php/";
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
         .subscribe(data => {
-          
+          console.log(data);
           if (data != 'null'){
             //alert('alerta 1'+JSON.stringify(data));
             resolve( data );
@@ -153,7 +153,7 @@ export class WebservicesProvider {
       // TODO: Encode the values using encodeURIComponent().
       let body = '';
 
-      let url = "https://lacimovl.000webhostapp.com/webservices/vista_entrenador.php";
+      let url = "http://192.81.216.141/webservices/vista_entrenador.php";
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
@@ -184,7 +184,7 @@ export class WebservicesProvider {
       // TODO: Encode the values using encodeURIComponent().
       let body = '';
 
-      let url = "https://lacimovl.000webhostapp.com/webservices/vista_deportista.php";
+      let url = "http://192.81.216.141/webservices/vista_deportista.php";
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
@@ -215,7 +215,7 @@ export class WebservicesProvider {
       // TODO: Encode the values using encodeURIComponent().
       let body = 'correo='+correo;
 
-      let url = "https://lacimovl.000webhostapp.com/webservices/consulta_vista_deportista.php";
+      let url = "http://192.81.216.141/webservices/consulta_vista_deportista.php";
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
@@ -246,7 +246,7 @@ export class WebservicesProvider {
       // TODO: Encode the values using encodeURIComponent().
       let body = 'correo='+correo;//variables a enviar al php
 
-      let url = "https://lacimovl.000webhostapp.com/webservices/consulta_vista_entrenador.php";
+      let url = "http://192.81.216.141/webservices/consulta_vista_entrenador.php";
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
@@ -277,7 +277,7 @@ export class WebservicesProvider {
       // TODO: Encode the values using encodeURIComponent().
       let body = 'correo='+correo;//variables a enviar al php
 
-      let url = "https://lacimovl.000webhostapp.com/webservices/entrenador_enlace.php";
+      let url = "http://192.81.216.141/webservices/entrenador_enlace.php";
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
@@ -301,7 +301,7 @@ export class WebservicesProvider {
       // TODO: Encode the values using encodeURIComponent().
       let body = 'correo='+correo;//variables a enviar al php
 
-      let url = "https://lacimovl.000webhostapp.com/webservices/deportista_enlace.php";
+      let url = "http://192.81.216.141/webservices/deportista_enlace.php";
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
@@ -325,7 +325,7 @@ export class WebservicesProvider {
       // TODO: Encode the values using encodeURIComponent().
       let body = 'aceleracionX='+aceleracionX+'&aceleracionY='+aceleracionY+'&aceleracionZ='+aceleracionZ+'&aceleracion='+aceleracion+'&trabajo='+trabajo+'&potencia='+potencia;//variables a enviar al php
 
-      let url = "https://lacimovl.000webhostapp.com/webservices/insert_acc_datos.php";
+      let url = "http://192.81.216.141/webservices/insert_acc_datos.php";
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
@@ -349,7 +349,7 @@ export class WebservicesProvider {
       // TODO: Encode the values using encodeURIComponent().
       let body = 'orientacionX='+orientacionX+'&orientacionY='+orientacionY+'&orientacionZ='+orientacionZ;//variables a enviar al php
 
-      let url = "https://lacimovl.000webhostapp.com/webservices/insert_gir_datos.php";
+      let url = "http://192.81.216.141/webservices/insert_gir_datos.php";
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
@@ -375,7 +375,7 @@ export class WebservicesProvider {
       // TODO: Encode the values using encodeURIComponent().
       let body = '';//variables a enviar al php
 
-      let url = "https://lacimovl.000webhostapp.com/webservices/select_acc_datos.php";
+      let url = "http://192.81.216.141/webservices/select_acc_datos.php";
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
@@ -399,7 +399,7 @@ export class WebservicesProvider {
       // TODO: Encode the values using encodeURIComponent().
       let body = '';//variables a enviar al php
 
-      let url = "https://lacimovl.000webhostapp.com/webservices/delete_acc_datos.php";
+      let url = "http://192.81.216.141/webservices/delete_acc_datos.php";
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
@@ -423,7 +423,7 @@ export class WebservicesProvider {
       // TODO: Encode the values using encodeURIComponent().
       let body = '';//variables a enviar al php
 
-      let url = "https://lacimovl.000webhostapp.com/webservices/delete_gir_datos.php"; //direccion del php en el hosting
+      let url = "http://192.81.216.141/webservices/delete_gir_datos.php"; //direccion del php en el hosting
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
@@ -447,7 +447,7 @@ export class WebservicesProvider {
       // TODO: Encode the values using encodeURIComponent().
       let body = 'fecha_r='+fecha_r;//variables a enviar al php
 
-      let url = "https://lacimovl.000webhostapp.com/webservices/semana.php";
+      let url = "http://192.81.216.141/webservices/semana.php";
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
