@@ -21,8 +21,8 @@ page-home {
 	}
 	/*Estilo de texto pie de pagina (derechos reservados)*/
 	.pie_page {
+		display: block;
 		text-align: center;	/*ubicacion del texto horizontal*/
-		margin-top: 30%;	/*ubicacion del texto vertical*/
 		color: white;	  /*Color de la fuente*/
 		font-size: 75%;		/*tamaño de la fuente*/
 	}
