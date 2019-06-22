@@ -100,6 +100,11 @@ export class EntrenamientoPage {
       }, function(err) {
         console.log("audio failed: " + err);
       });
+      this.nativeAudio.preloadComplex('comienzoentrenamiento', 'assets/audio/comienzoentrenamiento.mp3', 1, 1, 0).then(function() {
+        console.log("audio loaded!");
+      }, function(err) {
+        console.log("audio failed: " + err);
+      });
 
     });
   }
@@ -121,10 +126,11 @@ export class EntrenamientoPage {
         this.inicioseg+=1;
         
         if(this.inicioseg==3){
+          this.playAudiocomienzo();
           this.comienzoAcelerometro();
           this.comienzoGiroscopio();
         }
-        if (this.inicioseg==this.tiempo_entrenamiento+6){
+        if (this.inicioseg==this.tiempo_entrenamiento+5){
           this.finalizar();
         }
         
@@ -368,5 +374,13 @@ export class EntrenamientoPage {
         console.log("error playing audio: " + err);
     });
   }
+  playAudiocomienzo() {
+    console.log("playing audio");
 
+    this.nativeAudio.play('comienzoentrenamiento').then(function() {
+        console.log("playing audio!");
+    }, function(err) {
+        console.log("error playing audio: " + err);
+    });
+  }
 }
