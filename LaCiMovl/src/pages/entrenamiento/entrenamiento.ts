@@ -20,7 +20,8 @@ export class EntrenamientoPage {
   
   loading:any;
   //Funcion de entrenamiento
-  public tiempo_entrenamiento: number = 10
+  public tiempo : number = -3;
+  public tiempo_entrenamiento: number = 10;
   public inicioseg : number=0;
   public contador_entrenamiento : any;
   public potencia : any;
@@ -40,6 +41,7 @@ export class EntrenamientoPage {
   public seg1Marca :number;
   public cen2Marca :number;
   public cen1Marca :number;
+
 //---Contador
   public coleccion : Array<any> = [];
   public contador : any;
@@ -120,20 +122,21 @@ export class EntrenamientoPage {
   }
 // Funcion Entrenamiento
   nuevoEntrenamiento(){
+    this.inicioseg=0;
     if(this.contador_entrenamiento == undefined){
       this.playAudioi();
       this.contador_entrenamiento = setInterval(()=>{
         this.inicioseg+=1;
-        
+        this.tiempo+=1;
         if(this.inicioseg==3){
+          this.inicio();
           this.playAudiocomienzo();
           this.comienzoAcelerometro();
           this.comienzoGiroscopio();
         }
-        if (this.inicioseg==this.tiempo_entrenamiento+5){
+        if(this.tiempo==this.tiempo_entrenamiento){
           this.finalizar();
         }
-        
       },1000);
     }
   }
@@ -164,17 +167,39 @@ export class EntrenamientoPage {
     }
   }
 
-  marca(){
+  pausa(){
+    this.detenerAcelerometro();
+    this.detenerGiroscopio();
     this.playAudiof();
-    this.id.unsubscribe();
-    this.idg.unsubscribe();
     this.min2Marca = this.min2;
     this.min1Marca = this.min1;
     this.seg2Marca = this.seg2;
     this.seg1Marca = this.seg1;
     this.cen2Marca = this.cen2;
     this.cen1Marca = this.cen1;
+    this.seg2 = 0;
+    this.seg1 = 0;
+    this.cen2 = 0;
+    this.cen1 = 0;
+    clearInterval(this.contador);
+    clearInterval(this.contador_entrenamiento);
+    this.contador = null;
+    this.contador_entrenamiento = null;
+    this.min2 = this.min2Marca;
+    this.min1 = this.min1Marca;
+    this.seg2 = this.seg2Marca;
+    this.seg1 = this.seg1Marca;
+    this.cen2 = this.cen2Marca;
+    this.cen1 = this.cen1Marca;
+    
+    this.tiempo=this.tiempo - 3;
+  }
 
+  finalizar(){
+    this.detenerAcelerometro();
+    this.detenerGiroscopio();
+    this.playAudiof();
+    this.playAudiofn();
     this.min2 = 0;
     this.min1 = 0;
     this.seg2 = 0;
@@ -182,31 +207,10 @@ export class EntrenamientoPage {
     this.cen2 = 0;
     this.cen1 = 0;
     clearInterval(this.contador);
+    clearInterval(this.contador_entrenamiento);
     this.contador = null;
-    this.min2 = this.min2Marca;
-    this.min1 = this.min1Marca;
-    this.seg2 = this.seg2Marca;
-    this.seg1 = this.seg1Marca;
-    this.cen2 = this.cen2Marca;
-    this.cen1 = this.cen1Marca;
-  }
-
-  finalizar(){
-    this.playAudiof();
-    this.playAudiofn();
-    this.detenerAcelerometro();
-    this.detenerGiroscopio();
-
-    clearInterval(this.contador);
-      this.min2 = 0;
-      this.min1 = 0;
-      this.seg2 = 0;
-      this.seg1 = 0;
-      this.cen2 = 0;
-      this.cen1 = 0;
-      this.contador = null;
-      this.contador_entrenamiento = null;
-      
+    this.contador_entrenamiento = null;
+    this.tiempo=-3;
   }
 
   lapso(){
@@ -226,7 +230,6 @@ export class EntrenamientoPage {
 //Acelerometro
   comienzoAcelerometro(){
     //this.playAudioi();
-    this.inicio();
     try{
       var option : DeviceMotionAccelerometerOptions ={
         frequency : 100
@@ -262,7 +265,6 @@ export class EntrenamientoPage {
   
   }
   detenerAcelerometro(){
-    this.playAudiofn();
     this.id.unsubscribe();
   }
 

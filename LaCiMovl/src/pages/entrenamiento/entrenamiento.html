@@ -39,7 +39,7 @@
           <ion-input type="text" [(ngModel)]="timestampd"></ion-input>
       </ion-item>
     
-      <button ion-button (click)="giroscopio()" full>click</button>
+      <!--<button ion-button (click)="giroscopio()" full>click</button>-->
     
       <ion-item> 
         <ion-label>Acceleration X</ion-label>
@@ -54,8 +54,8 @@
         <ion-input type="text" [(ngModel)]="accZ"></ion-input>
       </ion-item>
       
-      <button ion-button (click)="nuevoEntrenamiento()" full>inicio</button>
-      <button ion-button (click)="detenerAcelerometro()" full>detener</button>
+      <!--<button ion-button (click)="nuevoEntrenamiento()" full>inicio</button>
+      <button ion-button (click)="detenerAcelerometro()" full>detener</button>-->
 
       <ion-label>Cronometro</ion-label>
     
@@ -65,10 +65,10 @@
       </ion-label>
       
     
-        <button ion-button class="btn_entre" outline color="light" (click)="inicio()">
+        <button ion-button class="btn_entre" outline color="light" (click)="nuevoEntrenamiento()">
           <ion-icon name="play"></ion-icon>
         </button>
-        <button ion-button class="btn_entre" outline color="light" (click)="marca()">
+        <button ion-button class="btn_entre" outline color="light" (click)="pausa()">
           <ion-icon name="pause"></ion-icon>
         </button>
         <button ion-button class="btn_entre" outline color="light" (click)="lapso()">
