@@ -300,20 +300,30 @@ export class EntrenamientoPage {
     this.load();
     this.webservices.delete_acelerometro_datos().then(
       (datos) =>{
-        var respuesta= datos[0].RESPUESTA;
-        this.loading.dismiss();
-        if(respuesta=='OK'){
-          this.navCtrl.push(EntrenamientoPage);
-          alert('Los datos se han borrado satisfactoriamente');
-        }else{
-          alert('Ha ocurrido un error en el borrado');
-        }
+        this.webservices.delete_giroscopio_datos().then(
+          (datos) =>{
+            var respuesta= datos[0].RESPUESTA;
+            this.loading.dismiss();
+            if(respuesta=='OK'){
+              this.navCtrl.push(EntrenamientoPage);
+              alert('Los datos se han borrado satisfactoriamente');
+            }else{
+              alert('Ha ocurrido un error en el borrado');
+            }
+            //alert('oka'+JSON.stringify(resultado));
+          },
+          (error) =>{
+            alert('error'+JSON.stringify(error));
+          }
+        )
         //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
         alert('error'+JSON.stringify(error));
       }
     )
+
+
   }
 //Gyroscopio  
   comienzoGiroscopio(){
