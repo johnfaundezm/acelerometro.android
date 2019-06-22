@@ -49,7 +49,7 @@ export class HomePage {
   consulta_login(){
     this.loadconsulta_login()
     
-    this.webservices.consulta_login(this.correo).then(
+    this.webservices.consulta_login(this.correo, this.pass).then(
       (datos)=>{
 
         //alert(JSON.stringify(datos));
@@ -59,51 +59,53 @@ export class HomePage {
         this.rol= datos[0].TIPO;
         this.respuesta= datos[0].RESPUESTA;
         this.loading.dismiss();
-        console.log(datos);
 
-        if(this.estado=='activada'){
-        
-          if(this.rol==1){
-            
-            if(this.correo==this.email && this.pass==this.pass2){
-              this.navCtrl.push(AdmintabsPage, {correo:this.correo});
-            }
-            else(
-              alert('El correo no existe o su contraseña es incorrecta')
-            )  
-          }
-
-          if(this.rol==2){
-            
-            if(this.correo==this.email && this.pass==this.pass2){
-              this.navCtrl.push(EntrenadortabsPage, {correo:this.correo});
-            }
-            else(
-              alert('El correo no existe o su contraseña es incorrecta')
-            )
-          }
-    
-          if(this.rol==3){
-            
-            if(this.correo==this.email && this.pass==this.pass2){
-              this.navCtrl.push(DeportistatabsPage, {correo:this.correo});
-            }
-            else(
-              alert('El correo no existe o su contraseña es incorrecta')
-            )
-          }
-        }
-        if(this.estado=='desactivada'){
-          if(this.pass==this.pass2){
-            alert('Su cuenta esta desactivada')
-          }else{
-            alert('El correo no existe o su contraseña es incorrecta')
-          }
-        }
         if(this.respuesta=='ERROR'){
           alert('El correo no existe o su contraseña es incorrecta')
         }
-
+        else{
+          if(this.estado==1){//si estado es 1, entonces la cuenta esta activada
+        
+            if(this.rol==1){ //si rol es 1 entonces es un administrador
+              
+              if(this.pass2==1){//si pass es 1 entonces la constraseña es correcta
+                this.navCtrl.push(AdmintabsPage, {correo:this.correo}); //se ingresa a la vista administrador y se envia la variable correo
+              }
+              else(
+                alert('El correo no existe o su contraseña es incorrecta')//mensaje de error si no se cumple el if
+              )  
+            }
+  
+            if(this.rol==2){//si rol es 2 entonces es un entrenador
+              
+              if(this.pass2==1){//si pass es 1 entonces la constraseña es correcta
+                this.navCtrl.push(EntrenadortabsPage, {correo:this.correo});//se ingresa a la vista entrenador y se envia la variable correo
+              }
+              else(
+                alert('El correo no existe o su contraseña es incorrecta')//mensaje de error si no se cumple el if
+              )
+            }
+      
+            if(this.rol==3){//si rol es 3 entonces es un deportista
+              
+              if(this.pass2==1){//si pass es 1 entonces la constraseña es correcta
+                this.navCtrl.push(DeportistatabsPage, {correo:this.correo});//se ingresa a la vista deportista y se envia la variable correo
+              }
+              else(
+                alert('El correo no existe o su contraseña es incorrecta')//mensaje de error si no se cumple el if
+              )
+            }
+          }
+          else{
+            if(this.estado==2){//si estado es 0, entonces la cuenta esta desactivada
+              if(this.pass2==1){
+                alert('Su cuenta esta desactivada')
+              }else{
+                alert('El correo no existe o su contraseña es incorrecta')
+              }
+            }
+          }
+        }
       },
       (err)=>{
         this.loading.dismiss();

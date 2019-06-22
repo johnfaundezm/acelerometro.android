@@ -110,7 +110,7 @@ export class WebservicesProvider {
     });
   }
 
-  consulta_login(correo) {
+  consulta_login(correo, pass) {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
@@ -120,7 +120,7 @@ export class WebservicesProvider {
         headers: headers
       });
       // TODO: Encode the values using encodeURIComponent().
-      let body = 'correo='+correo;
+      let body = 'correo='+correo+'&pass='+pass;
 
       let url = "http://192.81.216.141/webservices/select_login.php/";
 
