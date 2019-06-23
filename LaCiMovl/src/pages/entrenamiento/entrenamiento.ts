@@ -20,8 +20,8 @@ export class EntrenamientoPage {
   
   loading:any;
   //Funcion de entrenamiento
-  public tiempo : number = -3;
-  public tiempo_entrenamiento: number = 10;
+  public tiempo : number = 0;
+  public tiempo_entrenamiento: number = 6;
   public inicioseg : number=0;
   public contador_entrenamiento : any;
   public potencia : any;
@@ -74,6 +74,7 @@ export class EntrenamientoPage {
   public potenciaZ : Array<any> = [];
 
   actividades: string = 'ejercicio';
+  tiempoMarca: any;
   
   constructor(public navCtrl: NavController, public navParams: NavParams,public platform: Platform, private gyroscope:Gyroscope, private deviceMotion: DeviceMotion, private webservices: WebservicesProvider, public loadingCtrl: LoadingController,private nativeAudio: NativeAudio) {
     this.platform.ready().then(() => { 
@@ -127,12 +128,9 @@ export class EntrenamientoPage {
       this.playAudioi();
       this.contador_entrenamiento = setInterval(()=>{
         this.inicioseg+=1;
-        this.tiempo+=1;
         if(this.inicioseg==3){
           this.inicio();
           this.playAudiocomienzo();
-          this.comienzoAcelerometro();
-          this.comienzoGiroscopio();
         }
         if(this.tiempo==this.tiempo_entrenamiento){
           this.finalizar();
@@ -145,6 +143,8 @@ export class EntrenamientoPage {
   inicio(){
 
     if(this.contador ==undefined){
+      this.comienzoAcelerometro();
+      this.comienzoGiroscopio();
       this.contador = setInterval (()=>{
         this.cen1+=1;
         if (this.cen1 == 10){
@@ -153,6 +153,7 @@ export class EntrenamientoPage {
           if  (this.cen2 == 10){
             this.cen2 = 0;
             this.seg1 +=1;
+            this.tiempo+=1;
             if (this.seg1 ==10) {
                 this.seg1 = 0;
                 this.seg2 += 1;
@@ -163,6 +164,7 @@ export class EntrenamientoPage {
             }
           }
         }
+
       },10);
     }
   }
@@ -177,10 +179,12 @@ export class EntrenamientoPage {
     this.seg1Marca = this.seg1;
     this.cen2Marca = this.cen2;
     this.cen1Marca = this.cen1;
+    this.tiempoMarca = this.tiempo;
     this.seg2 = 0;
     this.seg1 = 0;
     this.cen2 = 0;
     this.cen1 = 0;
+
     clearInterval(this.contador);
     clearInterval(this.contador_entrenamiento);
     this.contador = null;
@@ -191,8 +195,8 @@ export class EntrenamientoPage {
     this.seg1 = this.seg1Marca;
     this.cen2 = this.cen2Marca;
     this.cen1 = this.cen1Marca;
-    
-    this.tiempo=this.tiempo - 3;
+    this.tiempo = this.tiempoMarca;
+
   }
 
   finalizar(){
@@ -210,7 +214,7 @@ export class EntrenamientoPage {
     clearInterval(this.contador_entrenamiento);
     this.contador = null;
     this.contador_entrenamiento = null;
-    this.tiempo=-3;
+    this.tiempo=0;
   }
 
   lapso(){
