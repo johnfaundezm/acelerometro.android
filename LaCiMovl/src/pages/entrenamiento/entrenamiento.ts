@@ -20,61 +20,61 @@ export class EntrenamientoPage {
   
   loading:any;
   //Funcion de entrenamiento
-  public tiempo : number = 0;
-  public tiempo_entrenamiento: number = 6;
-  public inicioseg : number=0;
-  public contador_entrenamiento : any;
-  public potencia : any;
-  public fuerza: any;
+  public tiempo : number = 0; //tiempo transcurrido del entrenamiento
+  public tiempo_entrenamiento: number = 60; //duración del entrenamiento
+  public inicioseg : number=0; //cronometro de inicio de entrenamiento
+  public contador_entrenamiento : any; // variable de intervalo de entrenamiento
+  public potencia : any;  //potencia del usuario durante el entrenamiento
+  public fuerza: any; // fuerza del usuario durante el entrenamiento
   //________________________
   //Cronometro
-  public min1: number =0;
-  public min2: number =0;
-  public seg1: number =0;
-  public seg2: number =0;
-  public cen1 : number = 0;
-  public cen2 : number = 0;
+  public min1: number =0;   //minuto unidad
+  public min2: number =0; //minuto decena
+  public seg1: number =0; //segundo unidad
+  public seg2: number =0; //segundo decena
+  public cen1 : number = 0; // centesima unidad
+  public cen2 : number = 0; // centesima decena
   //--Marcas
-  public min2Marca :number;
-  public min1Marca :number;
-  public seg2Marca :number;
-  public seg1Marca :number;
-  public cen2Marca :number;
-  public cen1Marca :number;
+  public min2Marca :number; //marca min2 para pausas
+  public min1Marca :number; //marca min1 para pausas
+  public seg2Marca :number; //marca seg2 para pausas
+  public seg1Marca :number; //marca seg1 para pausas
+  public cen2Marca :number; //marca cen2 para pausas
+  public cen1Marca :number; //marca cen1 para pausas
 
 //---Contador
   public coleccion : Array<any> = [];
-  public contador : any;
+  public contador : any; //variable de intervalo para cronometro
 //-----------------------------------
   
   //Gyroscopio y Acelerometro
-  public id : any;
-  public idg: any;
-  public xOrient:any;
-  public yOrient:any;
-  public zOrient:any;
-  public giro_x_y_z : any;
-  public acel_x_y_z : any;
-  public timestamp:any;
-  public timestampd:any;
-  public accX:any;
-  public accY:any;
-  public accZ:any;
+  public id : any;  //variable receptora acelerometro
+  public idg: any; //variable receptora giroscopio
+  public xOrient:any; //giroscopio x
+  public yOrient:any; //giroscopio y
+  public zOrient:any; //giroscopio z
+  public giro_x_y_z : any; //variable xyz giroscopio para operaciones
+  public acel_x_y_z : any; // variable xyz acelerometro para operaciones
+  public timestamp:any;  // marca del tiempo de acelerometro
+  public timestampd:any; // marca del tiempo de giroscopio
+  public accX:any; //acelerometro x
+  public accY:any; //acelerometro y
+  public accZ:any; //acelerometro z
   //--------------------------
-  public vectorX : Array<any> = [];
-  public vectorY : Array<any> = [];
-  public vectorZ : Array<any> = [];
+  public vectorX : Array<any> = []; //arreglo para almacenar x
+  public vectorY : Array<any> = []; //arreglo para almacenar y
+  public vectorZ : Array<any> = []; //arreglo para almacenar z
   //--------------------------
-  public fuerzaX : Array<any> = [];
-  public fuerzaY : Array<any> = [];
-  public fuerzaZ : Array<any> = [];
+  public fuerzaX : Array<any> = []; //arreglo para almacenar fuerza x
+  public fuerzaY : Array<any> = []; //arreglo para almacenar fuerza y
+  public fuerzaZ : Array<any> = []; //arreglo para almacenar fuerza z
   //--------------------------
-  public potenciaX : Array<any> = [];
-  public potenciaY : Array<any> = [];
-  public potenciaZ : Array<any> = [];
+  public potenciaX : Array<any> = []; //arreglo para almacenar potencia x
+  public potenciaY : Array<any> = []; //arreglo para almacenar potencia y
+  public potenciaZ : Array<any> = []; //arreglo para almacenar potencia z
 
   actividades: string = 'ejercicio';
-  tiempoMarca: any;
+  tiempoMarca: any;  //marca del tiempo para pausas
   
   constructor(public navCtrl: NavController, public navParams: NavParams,public platform: Platform, private gyroscope:Gyroscope, private deviceMotion: DeviceMotion, private webservices: WebservicesProvider, public loadingCtrl: LoadingController,private nativeAudio: NativeAudio) {
     this.platform.ready().then(() => { 
@@ -123,29 +123,29 @@ export class EntrenamientoPage {
   }
 // Funcion Entrenamiento
   nuevoEntrenamiento(){
-    this.inicioseg=0;
-    if(this.contador_entrenamiento == undefined){
-      this.playAudioi();
+    this.inicioseg=0; // se inicializa el tiempo en 0
+    if(this.contador_entrenamiento == undefined){ // se analiza si el contador fue definido o aun no
+      this.playAudioi(); // se reproduce audio de inicio con timer
       this.contador_entrenamiento = setInterval(()=>{
-        this.inicioseg+=1;
-        if(this.inicioseg==3){
-          this.inicio();
-          this.playAudiocomienzo();
+        this.inicioseg+=1; //inicia el timer de inicio  de entrenamiento
+        if(this.inicioseg==3){ // si el timer es igual a 3 se comienza el entrenamiento
+          this.playAudiocomienzo(); // se reproduce audio de inicio con voz
+          this.inicio(); // se comienza la funcion de entrenamiento 
         }
-        if(this.tiempo==this.tiempo_entrenamiento){
-          this.finalizar();
+        if(this.tiempo==this.tiempo_entrenamiento){ // se compara si el tiempo de entrenamiento es igual al tiempo asignado como tiempo de entrenamiento para finalizar el entrenamiento
+          this.finalizar(); // se finaliza el entrenamiento
         }
-      },1000);
+      },1000); // timer de control de entrenamiento en 1000 milisegundos= 1 segundo
     }
   }
 // _____________________
 //Cronometro
   inicio(){
 
-    if(this.contador ==undefined){
-      this.comienzoAcelerometro();
-      this.comienzoGiroscopio();
-      this.contador = setInterval (()=>{
+    if(this.contador ==undefined){ // se analiza si el contador fue definido o aun no
+      this.comienzoAcelerometro(); // se comienza la funcion de acelerometro
+      this.comienzoGiroscopio(); // se comienza la funcion de giroscopio
+      this.contador = setInterval (()=>{ // se inicia el cronometro junto con el entrenamiento
         this.cen1+=1;
         if (this.cen1 == 10){
           this.cen1 = 0;
@@ -153,7 +153,7 @@ export class EntrenamientoPage {
           if  (this.cen2 == 10){
             this.cen2 = 0;
             this.seg1 +=1;
-            this.tiempo+=1;
+            this.tiempo+=1; // se sincroniza el cronometro de segundos transcurridos de entrenamiento con el cronometro visual  de centesimas de segundo
             if (this.seg1 ==10) {
                 this.seg1 = 0;
                 this.seg2 += 1;
@@ -165,59 +165,66 @@ export class EntrenamientoPage {
           }
         }
 
-      },10);
+      },10); // se define el cronometro visual en intervalo de centesimas de segundo
     }
   }
 
   pausa(){
-    this.detenerAcelerometro();
-    this.detenerGiroscopio();
-    this.playAudiof();
-    this.min2Marca = this.min2;
-    this.min1Marca = this.min1;
-    this.seg2Marca = this.seg2;
-    this.seg1Marca = this.seg1;
-    this.cen2Marca = this.cen2;
-    this.cen1Marca = this.cen1;
-    this.tiempoMarca = this.tiempo;
-    this.seg2 = 0;
-    this.seg1 = 0;
-    this.cen2 = 0;
-    this.cen1 = 0;
+    this.detenerAcelerometro(); // se detiene el acelerometro
+    this.detenerGiroscopio(); // se detiene el giroscopio
+    this.playAudiof(); // se reproduce audio de finalización para pausa
+    this.min2Marca = this.min2; // se almacena la marca de tiempo de  min2
+    this.min1Marca = this.min1; // se almacena la marca de tiempo de  min1
+    this.seg2Marca = this.seg2; // se almacena la marca de tiempo de  seg2
+    this.seg1Marca = this.seg1; // se almacena la marca de tiempo de  seg1
+    this.cen2Marca = this.cen2; // se almacena la marca de tiempo de  cen2
+    this.cen1Marca = this.cen1; // se almacena la marca de tiempo de  cen1
+    this.tiempoMarca = this.tiempo;  // se almacena la marca de tiempo de "tiempo"
+    
+    this.min2 = 0;  //se limpia el valor de la variable min2
+    this.min1 = 0;  //se limpia el valor de la variable min1
+    this.seg2 = 0;  //se limpia el valor de la variable seg2
+    this.seg1 = 0;  //se limpia el valor de la variable seg1
+    this.cen2 = 0;  //se limpia el valor de la variable cen2
+    this.cen1 = 0;  //se limpia el valor de la variable cen1
 
-    clearInterval(this.contador);
-    clearInterval(this.contador_entrenamiento);
-    this.contador = null;
-    this.contador_entrenamiento = null;
-    this.min2 = this.min2Marca;
-    this.min1 = this.min1Marca;
-    this.seg2 = this.seg2Marca;
-    this.seg1 = this.seg1Marca;
-    this.cen2 = this.cen2Marca;
-    this.cen1 = this.cen1Marca;
-    this.tiempo = this.tiempoMarca;
+    clearInterval(this.contador); // se detiene intervalo de contador
+    clearInterval(this.contador_entrenamiento); // se detiene intervalo de contador_entrenamiento
+    this.contador = null; // se limpia el valor del contador
+    this.contador_entrenamiento = null; // se limpia el valor de contador_entrenamiento
+    this.min2 = this.min2Marca; // se le entrega el valor de pausa almacenado a min2
+    this.min1 = this.min1Marca; // se le entrega el valor de pausa almacenado a min1 
+    this.seg2 = this.seg2Marca; // se le entrega el valor de pausa almacenado a seg2
+    this.seg1 = this.seg1Marca; // se le entrega el valor de pausa almacenado a seg1
+    this.cen2 = this.cen2Marca; // se le entrega el valor de pausa almacenado a cen2
+    this.cen1 = this.cen1Marca; // se le entrega el valor de pausa almacenado a cen1
+    this.tiempo = this.tiempoMarca; // se le entrega el valor de pausa almacenado a tiempo
 
   }
 
   finalizar(){
-    this.detenerAcelerometro();
-    this.detenerGiroscopio();
-    this.playAudiof();
-    this.playAudiofn();
-    this.min2 = 0;
-    this.min1 = 0;
+    this.detenerAcelerometro(); // se detiene acelerometro
+    this.detenerGiroscopio(); // se detiene giroscopio
+    this.playAudiof(); // se reproduce audio de finalizacion
+    this.playAudiofn(); // se reproduce audio de finalizacion por voz
+    // se restaura el cronometro como 0
+    this.min2 = 0; 
+    this.min1 = 0; 
     this.seg2 = 0;
     this.seg1 = 0;
     this.cen2 = 0;
     this.cen1 = 0;
+    // se limpian los intervalos de los contadores y se dejan como nulos
     clearInterval(this.contador);
     clearInterval(this.contador_entrenamiento);
     this.contador = null;
     this.contador_entrenamiento = null;
+    // se redefine el timepo de entrenamiento como 0
     this.tiempo=0;
   }
 
   lapso(){
+    //se define un objeto para almacenar distintas marcas de tiempo durante el entrenamiento 
     let obj:any = {};
     obj.min2 = this.min2;
     obj.min1 = this.min1;
@@ -226,7 +233,7 @@ export class EntrenamientoPage {
     obj.cen2 = this.cen1;
     obj.cen1 = this.cen1;
 
-    this.coleccion.push(obj);
+    this.coleccion.push(obj); // se imprime en pantalla la coleccion del objeto (variables de tiempo definidas)
 
   }
 
@@ -235,41 +242,42 @@ export class EntrenamientoPage {
   comienzoAcelerometro(){
     //this.playAudioi();
     try{
-      var option : DeviceMotionAccelerometerOptions ={
+      var option : DeviceMotionAccelerometerOptions ={ // se configura el acelerometro con una frecuencia de 100
         frequency : 100
       };
     
-      this.id = this.deviceMotion.watchAcceleration(option).subscribe((acc:DeviceMotionAccelerationData) =>{
-        
-        this.accX = acc.x;
-        this.accY = acc.y;
+      this.id = this.deviceMotion.watchAcceleration(option).subscribe((acc:DeviceMotionAccelerationData) =>{ // se inicia variable receptora de informacion de acelerometro "id" y se defome objeto acc al cual se le entregan los parametros de aceleracion
+        // se le entrega el valor segun su eje respectivo a cada variable
+        this.accX = acc.x;  
+        this.accY = acc.y; 
         this.accZ = acc.z;
+        // se muestra la marca de tiempo para tener seguridad de que acelerometro funciona con  normalidad
         this.timestamp = acc.timestamp;
         //Calculos____________________
-        this.acel_x_y_z= (this.accX + this.accY + this.accZ)/3;
+        this.acel_x_y_z= (this.accX + this.accY + this.accZ)/3; //aceleracion resultante
         
-        this.fuerza = 1/*masa_deportista*/* this.acel_x_y_z;
+        this.fuerza = 1/*masa_deportista*/* this.acel_x_y_z; // fuerza resultante
 
-        this.potencia = this.fuerza * this.acel_x_y_z;
+        this.potencia = this.fuerza * this.acel_x_y_z; //potencia resultante
 
-        this.webservices.acelerometro_datos(this.accX, this.accY, this.accZ, 0,0,0).then(
+        this.webservices.acelerometro_datos(this.accX, this.accY, this.accZ, 0,0,0).then( // se envian los datos al servidor web
           (resultado) =>{
             //alert('oka'+JSON.stringify(resultado));
           },
           (error) =>{
-            alert('error'+JSON.stringify(error));
+            alert('error'+JSON.stringify(error)); // muestra una alerta si ocurrió algun error durante el proceso
           }
         )   
       }
       );      
     }catch(err){
-    alert("Error" + err);
+    alert("Error" + err); // muestra una alerta si ocurrió algun error durante el proceso
     }
     
   
   }
   detenerAcelerometro(){
-    this.id.unsubscribe();
+    this.id.unsubscribe(); // se detiene el receptor de datos de acelerometro
   }
 
   load() {
