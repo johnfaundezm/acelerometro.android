@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController,Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController,Platform, AlertController } from 'ionic-angular';
 
 import { Gyroscope, GyroscopeOrientation, GyroscopeOptions } from '@ionic-native/gyroscope';
 import { DeviceMotion, DeviceMotionAccelerationData, DeviceMotionAccelerometerOptions } from '@ionic-native/device-motion';
@@ -76,7 +76,10 @@ export class EntrenamientoPage {
   actividades: string = 'ejercicio';
   tiempoMarca: any;  //marca del tiempo para pausas
   
-  constructor(public navCtrl: NavController, public navParams: NavParams,public platform: Platform, private gyroscope:Gyroscope, private deviceMotion: DeviceMotion, private webservices: WebservicesProvider, public loadingCtrl: LoadingController,private nativeAudio: NativeAudio) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public platform: Platform, 
+              private gyroscope:Gyroscope, private deviceMotion: DeviceMotion, private webservices: WebservicesProvider, 
+              public loadingCtrl: LoadingController,private nativeAudio: NativeAudio, public alertCtrl: AlertController) {
+                
     // se inicia la plataforma de reproducciones
     this.platform.ready().then(() => { 
       console.log("platform ready");
@@ -111,6 +114,28 @@ export class EntrenamientoPage {
       });
 
     });
+  }
+
+  alerta_confirmacion() {
+    const confirm = this.alertCtrl.create({
+      title: 'Confirmacion de solicitud',
+      message: 'Aceptas a ........ como entrenador?',
+      buttons: [
+        {
+          text: 'Aancelar',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: () => {
+            console.log('Agree clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
   ionViewDidLoad() {
