@@ -11,25 +11,27 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class WebservicesProvider {
 
-  constructor(public http: Http ) {
+  constructor(public http: Http ) {// aqui se declaran los plugins, este pluging se usa para enviar el post al servidor
     console.log('Hello WebservicesProvider Provider');
   }
 
-  registrar(correo,pass,nombre,apellido_p,apellido_m,genero,edad,peso,estatura,imc,pais,estado,fecha_r,id_tipo_usuario) {
+  //se crea el metodo para registrar un usuario
+  registrar(correo,pass,nombre,apellido_p,apellido_m,genero,edad,peso,estatura,imc,pais,estado,fecha_r,id_tipo_usuario) {//se reciben las variables para registrarse
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded" //este es la forma en que se envia el POST y se almacena en la variable headers
       });
       let options = new RequestOptions({
-        headers: headers
+        headers: headers // se pasa la variable header con la forma de post a la variable options
       });
       // TODO: Encode the values using encodeURIComponent().
+      //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
       let body = 'correo='+correo +'&pass='+pass +'&nombre='+nombre +'&apellido_p='+apellido_p +'&apellido_m='+apellido_m+'&genero='+genero+'&edad='+edad+'&peso='+peso+'&estatura='+estatura+'&imc='+imc+'&pais='+pais+'&estado='+estado+'&fecha_r='+fecha_r+'&id_tipo_usuario='+id_tipo_usuario;
-
+      //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/insert_usuario.php";
 
-      this.http.post(url, body, options)
+      this.http.post(url, body, options)// se envia la url el body y el options por medio de un post al servidor
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
         .subscribe(data => {
           //alert(JSON.stringify(data));
@@ -39,18 +41,20 @@ export class WebservicesProvider {
     });
   }
 
+  //se crea el metodo para actualizar un deportista
   actualizar_deportista(correo,pass,nombre,apellido_p,apellido_m,genero,edad,peso,estatura,imc,pais,estado) {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded" //este es la forma en que se envia el POST y se almacena en la variable headers
       });
       let options = new RequestOptions({
-        headers: headers
+        headers: headers // se pasa la variable header con la forma de post a la variable options
       });
       // TODO: Encode the values using encodeURIComponent().
+      //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
       let body = 'correo='+correo + '&pass='+pass +'&nombre='+nombre +'&apellido_p='+apellido_p +'&apellido_m='+apellido_m +'&genero='+genero +'&edad='+edad +'&peso='+peso +'&estatura='+estatura +'&imc='+imc +'&pais='+pais+'&estado='+estado;
-
+      //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/update_deportista.php";
 
       this.http.post(url, body, options)
@@ -62,18 +66,21 @@ export class WebservicesProvider {
         }, error => reject(error));
     });
   }
+
+  //se crea el metodo para actualizar un entrenador
   actualizar_entrenador(correo,pass,nombre,apellido_p,apellido_m,genero,edad,pais, estado) {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded" //este es la forma en que se envia el POST y se almacena en la variable headers
       });
       let options = new RequestOptions({
-        headers: headers
+        headers: headers // se pasa la variable header con la forma de post a la variable options
       });
       // TODO: Encode the values using encodeURIComponent().
+      //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
       let body = 'correo='+correo + '&pass='+pass +'&nombre='+nombre +'&apellido_p='+apellido_p +'&apellido_m='+apellido_m +'&genero='+genero +'&edad='+edad +'&pais='+pais+'&estado='+estado;
-
+      //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/update_entrenador.php";
 
       this.http.post(url, body, options)
@@ -86,18 +93,20 @@ export class WebservicesProvider {
     });
   }
 
+  //se crea el metodo para consultar si existe un correo
   consulta(correo) {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded" //este es la forma en que se envia el POST y se almacena en la variable headers
       });
       let options = new RequestOptions({
-        headers: headers
+        headers: headers // se pasa la variable header con la forma de post a la variable options
       });
       // TODO: Encode the values using encodeURIComponent().
+      //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
       let body = 'correo='+correo;
-
+      //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/select_usuario.php";
 
       this.http.post(url, body, options)
@@ -110,19 +119,21 @@ export class WebservicesProvider {
     });
   }
 
+  //se crea un metodo para consultar si el usuario existe y si cohincide su clave con el correo, la validacion se hace en el servidor, en el php
   consulta_login(correo, pass) {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
-        "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Type": "application/x-www-form-urlencoded" //este es la forma en que se envia el POST y se almacena en la variable headers
       });
       let options = new RequestOptions({
-        headers: headers
+        headers: headers // se pasa la variable header con la forma de post a la variable options
       });
       // TODO: Encode the values using encodeURIComponent().
+      //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
       let body = 'correo='+correo+'&pass='+pass;
-
-      let url = "http://192.81.216.141/webservices/select_login.php/";
+      //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
+      let url = "http://192.81.216.141/webservices/select_login.php";
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
@@ -141,18 +152,21 @@ export class WebservicesProvider {
     });
   }
 
+  // se crea un metodo para consultar todos los entrenadores que existen
   vista_entrenador() {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded" //este es la forma en que se envia el POST y se almacena en la variable headers
       });
       let options = new RequestOptions({
-        headers: headers
+        headers: headers // se pasa la variable header con la forma de post a la variable options
       });
       // TODO: Encode the values using encodeURIComponent().
+      //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
+      // en este caso no se envian variables, por q solo se reciben datos del php
       let body = '';
-
+      //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/vista_entrenador.php";
 
       this.http.post(url, body, options)
@@ -172,18 +186,21 @@ export class WebservicesProvider {
     });
   }
 
+  // se crea un metodo para consultar todos los deportistas que existen
   vista_deportista() {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded" //este es la forma en que se envia el POST y se almacena en la variable headers
       });
       let options = new RequestOptions({
-        headers: headers
+        headers: headers // se pasa la variable header con la forma de post a la variable options
       });
       // TODO: Encode the values using encodeURIComponent().
+      //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
+      // en este caso no se envian variables, por q solo se reciben datos del php
       let body = '';
-
+      //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/vista_deportista.php";
 
       this.http.post(url, body, options)
@@ -203,18 +220,20 @@ export class WebservicesProvider {
     });
   }
 
+  // se crea un metodo para consultar los datos de un deportista en especifico
   consulta_deportista(correo) {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded" //este es la forma en que se envia el POST y se almacena en la variable headers
       });
       let options = new RequestOptions({
-        headers: headers
+        headers: headers // se pasa la variable header con la forma de post a la variable options
       });
       // TODO: Encode the values using encodeURIComponent().
+      //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
       let body = 'correo='+correo;
-
+      //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/consulta_vista_deportista.php";
 
       this.http.post(url, body, options)
@@ -234,18 +253,20 @@ export class WebservicesProvider {
     });
   }
 
+  // se crea un metodo para consultar los datos de entrenador en especifico
   consulta_entrenador(correo) {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded" //este es la forma en que se envia el POST y se almacena en la variable headers
       });
       let options = new RequestOptions({
-        headers: headers
+        headers: headers // se pasa la variable header con la forma de post a la variable options
       });
       // TODO: Encode the values using encodeURIComponent().
-      let body = 'correo='+correo;//variables a enviar al php
-
+      //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
+      let body = 'correo='+correo;
+      //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/consulta_vista_entrenador.php";
 
       this.http.post(url, body, options)
@@ -265,18 +286,20 @@ export class WebservicesProvider {
     });
   }
 
+  // se crea un metodo para consultar que deportista está enlazado con cierto entrenador especifico
   consulta_enlace(correo) {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded" //este es la forma en que se envia el POST y se almacena en la variable headers
       });
       let options = new RequestOptions({
-        headers: headers
+        headers: headers // se pasa la variable header con la forma de post a la variable options
       });
       // TODO: Encode the values using encodeURIComponent().
-      let body = 'correo='+correo;//variables a enviar al php
-
+      //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
+      let body = 'correo='+correo;
+      //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/entrenador_enlace.php";
 
       this.http.post(url, body, options)
@@ -289,18 +312,20 @@ export class WebservicesProvider {
     });
   }
 
+  // se crea un metodo para consultar que entrenador está enlazado con cierto deportista especifico
   consulta_enlace_dep(correo) {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded" //este es la forma en que se envia el POST y se almacena en la variable headers
       });
       let options = new RequestOptions({
-        headers: headers
+        headers: headers // se pasa la variable header con la forma de post a la variable options
       });
       // TODO: Encode the values using encodeURIComponent().
-      let body = 'correo='+correo;//variables a enviar al php
-
+      //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
+      let body = 'correo='+correo;
+      //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/deportista_enlace.php";
 
       this.http.post(url, body, options)
@@ -313,18 +338,20 @@ export class WebservicesProvider {
     });
   }
 
+  // se crea un metodo insertar datos del acelerometro
   acelerometro_datos(aceleracionX, aceleracionY, aceleracionZ, aceleracion, trabajo, potencia) {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded" //este es la forma en que se envia el POST y se almacena en la variable headers
       });
       let options = new RequestOptions({
-        headers: headers
+        headers: headers // se pasa la variable header con la forma de post a la variable options
       });
       // TODO: Encode the values using encodeURIComponent().
+      //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
       let body = 'aceleracionX='+aceleracionX+'&aceleracionY='+aceleracionY+'&aceleracionZ='+aceleracionZ+'&aceleracion='+aceleracion+'&trabajo='+trabajo+'&potencia='+potencia;//variables a enviar al php
-
+      //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/insert_acc_datos.php";
 
       this.http.post(url, body, options)
@@ -337,18 +364,20 @@ export class WebservicesProvider {
     });
   }
   
+  // se crea un metodo insertar datos del giroscopio
   giroscopio_datos(orientacionX, orientacionY, orientacionZ) {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded" //este es la forma en que se envia el POST y se almacena en la variable headers
       });
       let options = new RequestOptions({
-        headers: headers
+        headers: headers // se pasa la variable header con la forma de post a la variable options
       });
       // TODO: Encode the values using encodeURIComponent().
+      //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
       let body = 'orientacionX='+orientacionX+'&orientacionY='+orientacionY+'&orientacionZ='+orientacionZ;//variables a enviar al php
-
+      //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/insert_gir_datos.php";
 
       this.http.post(url, body, options)
@@ -361,20 +390,21 @@ export class WebservicesProvider {
     });
   }
 
-
-
+  // se crea un metodo consultar los datos del acelerometro
   consulta_acelerometro_datos() {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded" //este es la forma en que se envia el POST y se almacena en la variable headers
       });
       let options = new RequestOptions({
-        headers: headers
+        headers: headers // se pasa la variable header con la forma de post a la variable options
       });
       // TODO: Encode the values using encodeURIComponent().
-      let body = '';//variables a enviar al php
-
+      //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
+      // en este caso no se envian variables, por q solo se reciben datos del php
+      let body = '';
+      //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/select_acc_datos.php";
 
       this.http.post(url, body, options)
@@ -387,18 +417,21 @@ export class WebservicesProvider {
     });
   }
 
+  // se crea un metodo borrar los datos del acelerometro
   delete_acelerometro_datos() {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded" //este es la forma en que se envia el POST y se almacena en la variable headers
       });
       let options = new RequestOptions({
-        headers: headers
+        headers: headers // se pasa la variable header con la forma de post a la variable options
       });
       // TODO: Encode the values using encodeURIComponent().
-      let body = '';//variables a enviar al php
-
+      //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
+      // en este caso no se envian variables, por q solo se reciben datos del php
+      let body = '';
+      //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/delete_acc_datos.php";
 
       this.http.post(url, body, options)
@@ -411,18 +444,21 @@ export class WebservicesProvider {
     });
   }
 
+  // se crea un metodo borrar los datos del giroscopio
   delete_giroscopio_datos() {//metodo que ejecuta la eliminacion de datos
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded" //este es la forma en que se envia el POST y se almacena en la variable headers
       });
       let options = new RequestOptions({
-        headers: headers
+        headers: headers // se pasa la variable header con la forma de post a la variable options
       });
       // TODO: Encode the values using encodeURIComponent().
-      let body = '';//variables a enviar al php
-
+      //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
+      // en este caso no se envian variables, por q solo se reciben datos del php
+      let body = '';
+      //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/delete_gir_datos.php"; //direccion del php en el hosting
 
       this.http.post(url, body, options)
@@ -435,18 +471,20 @@ export class WebservicesProvider {
     });
   }
 
+  // se crea un metodo para consultar todos los usuarios que se registraron en cierta fecha especifica
   semanas(fecha_r) {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded" //este es la forma en que se envia el POST y se almacena en la variable headers
       });
       let options = new RequestOptions({
-        headers: headers
+        headers: headers // se pasa la variable header con la forma de post a la variable options
       });
       // TODO: Encode the values using encodeURIComponent().
-      let body = 'fecha_r='+fecha_r;//variables a enviar al php
-
+      //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
+      let body = 'fecha_r='+fecha_r;
+      //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/semana.php";
 
       this.http.post(url, body, options)
