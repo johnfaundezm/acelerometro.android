@@ -21,10 +21,13 @@ export class DeportistasentPage {
   }
 
   ionViewCanEnter() {
+    while(this.items.length>0){
+      this.items.pop();
+    }
     while(this.enlaces.length>0){
       this.enlaces.pop();
     }
-
+    this.consulta_deportistas()
     this.consulta_enlace();
   }
 
