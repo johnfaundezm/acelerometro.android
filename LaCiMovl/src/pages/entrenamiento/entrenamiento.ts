@@ -77,32 +77,33 @@ export class EntrenamientoPage {
   tiempoMarca: any;  //marca del tiempo para pausas
   
   constructor(public navCtrl: NavController, public navParams: NavParams,public platform: Platform, private gyroscope:Gyroscope, private deviceMotion: DeviceMotion, private webservices: WebservicesProvider, public loadingCtrl: LoadingController,private nativeAudio: NativeAudio) {
+    // se inicia la plataforma de reproducciones
     this.platform.ready().then(() => { 
       console.log("platform ready");
 
-      // This is used to unload the track. It's useful if you're experimenting with track locations
-      this.nativeAudio.unload('trackID').then(function() {
-          console.log("unloaded audio!");
+      // formato de definicion de un audio
+      this.nativeAudio.unload('trackID').then(function() { 
+          console.log("unloaded audio!"); 
       }, function(err) {
           console.log("couldn't unload audio... " + err);
       });
 
-      // 'trackID' can be anything
-      this.nativeAudio.preloadComplex('inicio', 'assets/audio/inicio.mp3', 1, 1, 0).then(function() {
+      //                               nombre /         ubicacion         1=volumen; 1=voces multicanal ;0=retraso para empezar 
+      this.nativeAudio.preloadComplex('inicio', 'assets/audio/inicio.mp3', 1, 1, 0).then(function() {// se define el identificador del audio
           console.log("audio loaded!");
       }, function(err) {
-          console.log("audio failed: " + err);
-      });
-      this.nativeAudio.preloadComplex('finalizar', 'assets/audio/finalizacion.mp3', 1, 1, 0).then(function() {
+          console.log("audio failed: " + err);//muestra error si no se puede cargar el audio
+      });//                               nombre /         ubicacion         1=volumen; 1=voces multicanal ;0=retraso para empezar 
+      this.nativeAudio.preloadComplex('finalizar', 'assets/audio/finalizacion.mp3', 1, 1, 0).then(function() {// se define el identificador del audio
         console.log("audio loaded!");
       }, function(err) {
-        console.log("audio failed: " + err);
-      });
-      this.nativeAudio.preloadComplex('finentrenamiento', 'assets/audio/finentrenamiento.mp3', 1, 1, 0).then(function() {
+        console.log("audio failed: " + err);//muestra error si no se puede cargar el audio
+      });//                               nombre /         ubicacion         1=volumen; 1=voces multicanal ;0=retraso para empezar 
+      this.nativeAudio.preloadComplex('finentrenamiento', 'assets/audio/finentrenamiento.mp3', 1, 1, 0).then(function() {// se define el identificador del audio
         console.log("audio loaded!");
       }, function(err) {
-        console.log("audio failed: " + err);
-      });
+        console.log("audio failed: " + err);//muestra error si no se puede cargar el audio
+      });//                               nombre /         ubicacion         1=volumen; 1=voces multicanal ;0=retraso para empezar 
       this.nativeAudio.preloadComplex('comienzoentrenamiento', 'assets/audio/comienzoentrenamiento.mp3', 1, 1, 0).then(function() {
         console.log("audio loaded!");
       }, function(err) {
@@ -246,7 +247,7 @@ export class EntrenamientoPage {
         frequency : 100
       };
     
-      this.id = this.deviceMotion.watchAcceleration(option).subscribe((acc:DeviceMotionAccelerationData) =>{ // se inicia variable receptora de informacion de acelerometro "id" y se defome objeto acc al cual se le entregan los parametros de aceleracion
+      this.id = this.deviceMotion.watchAcceleration(option).subscribe((acc:DeviceMotionAccelerationData) =>{ // se inicia variable receptora de informacion de acelerometro "id" y se define objeto acc al cual se le entregan los parametros de aceleracion
         // se le entrega el valor segun su eje respectivo a cada variable
         this.accX = acc.x;  
         this.accY = acc.y; 
@@ -342,69 +343,70 @@ export class EntrenamientoPage {
 //Gyroscopio  
   comienzoGiroscopio(){
     try{
-      var options : GyroscopeOptions={
+      var options : GyroscopeOptions={ // se configura el giroscopio con una frecuencia de 100
         frequency : 100
-      };
-      this.idg = this.gyroscope.watch(options).subscribe((orientation: GyroscopeOrientation) => {
+      };// se inicia variable receptora de informacion de giroscopio "idg" y se define objeto orientation al cual se le entregan los parametros de aceleracion
+      this.idg = this.gyroscope.watch(options).subscribe((orientation: GyroscopeOrientation) => { 
         console.log(orientation.x, orientation.y, orientation.z, orientation.timestamp);
+        // se le entrega el valor segun su eje respectivo a cada variable
         this.xOrient=orientation.x;
         this.yOrient=orientation.y;
         this.zOrient=orientation.z;
         this.timestampd=orientation.timestamp;
         //Calculos____________________
-        this.giro_x_y_z = (this.xOrient+this.yOrient+this.zOrient)/3;
+        this.giro_x_y_z = (this.xOrient+this.yOrient+this.zOrient)/3; //vector resultante
 
-        this.webservices.giroscopio_datos(this.xOrient, this.yOrient, this.zOrient).then(
+        this.webservices.giroscopio_datos(this.xOrient, this.yOrient, this.zOrient).then(// se envian los datos al servidor web
           (resultado) =>{
             //alert('oka'+JSON.stringify(resultado));
           },
           (error) =>{
-            alert('error'+JSON.stringify(error));
+            alert('error'+JSON.stringify(error));// muestra una alerta si ocurrió algun error durante el proceso
           }
         )  
      });
     }catch(err){
-      alert("Error" + err);
+      alert("Error" + err);// muestra una alerta si ocurrió algun error durante el proceso
     } 
   }
   detenerGiroscopio(){
-    this.idg.unsubscribe();
+    this.idg.unsubscribe(); // se detiene el receptor de datos de giroscopio
   }
 //Sonidos  
   playAudioi() {
-    console.log("playing audio");
+    console.log("playing audio"); // se le indica a la consola reproducir el audio
 
-    this.nativeAudio.play('inicio').then(function() {
+    this.nativeAudio.play('inicio').then(function() { //se le indica a la consola que audio reproducir
         console.log("playing audio!");
     }, function(err) {
-        console.log("error playing audio: " + err);
+        console.log("error playing audio: " + err); // se le indica a la consola que muestre un error si existe algun tipo de problema.
     });
   }
   playAudiof() {
-    console.log("playing audio");
+    console.log("playing audio");// se le indica a la consola reproducir el audio
 
-    this.nativeAudio.play('finalizar').then(function() {
+    this.nativeAudio.play('finalizar').then(function() {//se le indica a la consola que audio reproducir
         console.log("playing audio!");
     }, function(err) {
-        console.log("error playing audio: " + err);
+        console.log("error playing audio: " + err);// se le indica a la consola que muestre un error si existe algun tipo de problema.
     });
   }
   playAudiofn() {
-    console.log("playing audio");
+    console.log("playing audio");// se le indica a la consola reproducir el audio
 
-    this.nativeAudio.play('finentrenamiento').then(function() {
+    this.nativeAudio.play('finentrenamiento').then(function() {//se le indica a la consola que audio reproducir
         console.log("playing audio!");
     }, function(err) {
-        console.log("error playing audio: " + err);
+        console.log("error playing audio: " + err);// se le indica a la consola que muestre un error si existe algun tipo de problema.
     });
   }
   playAudiocomienzo() {
-    console.log("playing audio");
+    console.log("playing audio");// se le indica a la consola reproducir el audio
 
-    this.nativeAudio.play('comienzoentrenamiento').then(function() {
+    this.nativeAudio.play('comienzoentrenamiento').then(function() {//se le indica a la consola que audio reproducir
         console.log("playing audio!");
     }, function(err) {
-        console.log("error playing audio: " + err);
+        console.log("error playing audio: " + err);// se le indica a la consola que muestre un error si existe algun tipo de problema.
     });
   }
 }
