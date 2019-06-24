@@ -122,7 +122,7 @@ export class EntrenamientoPage {
       message: 'Aceptas a ........ como entrenador?',
       buttons: [
         {
-          text: 'Aancelar',
+          text: 'Cancelar',
           handler: () => {
             console.log('Disagree clicked');
           }
