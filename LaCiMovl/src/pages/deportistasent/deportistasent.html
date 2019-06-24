@@ -34,6 +34,17 @@
   
     <div *ngSwitchCase="'solicitud'">
       
+      <ion-card class="border_card_solicitudes">
+        <ion-card-header class="title_card"> Enviar Solicitud</ion-card-header>
+        <ion-searchbar placeholder="Buscar"></ion-searchbar>
+        <ion-scroll scrollY="true">
+          <ion-list style="height: 300px">
+            <ion-item *ngFor="let item of items">
+              {{ item }}
+            </ion-item>
+          </ion-list>
+        </ion-scroll>
+      </ion-card>
     </div>
   </div>
 
