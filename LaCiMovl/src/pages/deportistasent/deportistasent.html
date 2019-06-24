@@ -38,9 +38,9 @@
         <ion-card-header class="title_card"> Enviar Solicitud</ion-card-header>
         <ion-searchbar placeholder="Buscar"></ion-searchbar>
         <ion-scroll scrollY="true">
-          <ion-list style="height: 300px">
-            <ion-item *ngFor="let item of items">
-              {{ item }}
+          <ion-list inset *ngFor="let item of items" style="height: 300px">
+            <ion-item >
+              <ion-label>{{ item.email_dep }}</ion-label>
             </ion-item>
           </ion-list>
         </ion-scroll>
