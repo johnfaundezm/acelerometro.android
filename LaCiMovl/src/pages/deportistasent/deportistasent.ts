@@ -12,7 +12,7 @@ export class DeportistasentPage {
   enlaces: Array<{email:string, entrenamiento_n:string, fecha:string}>=[{email:'', entrenamiento_n:'', fecha:''}];
   correo:any;
 
-  items: string[];
+  items: Array<{email_dep:string}>=[{email_dep:''}];
 
   actividades: string ='deportistas';
 
@@ -39,7 +39,7 @@ export class DeportistasentPage {
 
     if (val && val.trim() != '') {
       this.items = this.items.filter((item) => {
-        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (item.email_dep.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
   }
@@ -67,11 +67,9 @@ export class DeportistasentPage {
       (datos)=>{
         //alert(JSON.stringify(datos));
         let largo=Object.keys(datos).length;
-        var j:number=0;
         for(var i=0;i<largo;i++){
-          var email_dep:string= datos[i].CORREO;          
-          this.items[j]=email_dep;
-          j++;
+          var email_dep= datos[i].CORREO;          
+          this.items.push({"email_dep":email_dep});
         }
       },
       (err)=>{
