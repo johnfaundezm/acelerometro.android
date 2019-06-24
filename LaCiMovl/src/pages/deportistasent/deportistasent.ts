@@ -12,6 +12,7 @@ export class DeportistasentPage {
   enlaces: Array<{email:string, entrenamiento_n:string, fecha:string}>=[{email:'', entrenamiento_n:'', fecha:''}];
   correo:any;
 
+  searchQuery: string = '';
   items: Array<{email_dep:string}>=[{email_dep:''}];
 
   actividades: string ='deportistas';
@@ -30,6 +31,22 @@ export class DeportistasentPage {
     this.consulta_deportistas()
     this.consulta_enlace();
   }
+
+  getItems(ev: any) {
+    // Reset items back to all of the items
+    //this.initializeItems();
+
+    // set val to the value of the searchbar
+    const val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.items = this.items.filter((item) => {
+        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+  }
+
 
   consulta_enlace(){
     this.webservices.consulta_enlace(this.correo).then(
