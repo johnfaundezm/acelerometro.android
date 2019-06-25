@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 
 @IonicPage()
@@ -17,7 +17,8 @@ export class DeportistasentPage {
 
   actividades: string ='deportistas';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider,
+              public alertCtrl: AlertController) {
     this.correo = this.navParams.get('correo');
     this.initializeItems();
   }
@@ -48,6 +49,28 @@ export class DeportistasentPage {
         return (item.email_dep.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
+  }
+
+  alerta_enviar() {
+    const confirm = this.alertCtrl.create({
+      title: 'ENvio de solicitud',
+      message: 'Desea enviar la solicitud a .....?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: () => {
+            console.log('Agree clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
 
