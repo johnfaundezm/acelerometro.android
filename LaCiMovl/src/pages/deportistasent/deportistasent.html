@@ -39,7 +39,7 @@
         <ion-searchbar placeholder="Buscar" (ionInput)="getItems($event)"></ion-searchbar>
         <ion-scroll scrollY="true">
           <ion-list inset >
-            <ion-item *ngFor="let item of prueba" style="border-bottom: 1px solid; border-color: rgb(194, 191, 191); height: auto">
+            <ion-item *ngFor="let item of items" style="border-bottom: 1px solid; border-color: rgb(194, 191, 191); height: auto">
                 <ion-label>{{ item.email_dep }}</ion-label>
             </ion-item>
           </ion-list>
