@@ -81,7 +81,7 @@ export class DeportistasentPage {
         {
           text: 'Aceptar',
           handler: () => {
-            this.insercion_solicitud();
+            this.insercion_solicitud(); 
           }
         }
       ]
@@ -95,6 +95,7 @@ export class DeportistasentPage {
       (datos)=>{
         //alert(JSON.stringify(datos));
         var respuesta= datos[0].RESPUESTA;
+        this.consulta_enlace_pend();
         if(respuesta == 'ERROR'){
           alert('Ha ocurrido un error al enviar la solicitud');
         }
@@ -124,6 +125,10 @@ export class DeportistasentPage {
   }
 
   consulta_enlace_pend(){
+    let largo=this.enlaces_pend.length;
+    for(var i=0;i<largo;i++){
+      this.enlaces_pend.pop();
+    }
     this.webservices.consulta_enlace_pend(this.correo).then(
       (datos)=>{
         //alert(JSON.stringify(datos));
