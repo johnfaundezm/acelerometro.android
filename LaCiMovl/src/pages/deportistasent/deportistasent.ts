@@ -12,8 +12,8 @@ export class DeportistasentPage {
   enlaces: Array<{email:string, entrenamiento_n:string, fecha:string}>=[{email:'', entrenamiento_n:'', fecha:''}];
   correo:any;
 
-  items: Array<{email_dep:string}>=[{email_dep:''}];
-  prueba:any;
+  aux: Array<{email_dep:string}>=[{email_dep:''}];
+  items:any;
 
   actividades: string ='deportistas';
 
@@ -23,8 +23,8 @@ export class DeportistasentPage {
   }
 
   ionViewCanEnter() {
-    while(this.items.length>0){
-      this.items.pop();
+    while(this.aux.length>0){
+      this.aux.pop();
     }
     while(this.enlaces.length>0){
       this.enlaces.pop();
@@ -34,7 +34,7 @@ export class DeportistasentPage {
   }
 
   initializeItems() {
-    this.prueba = this.items;
+    this.items = this.aux;
   }
 
   getItems(ev: any) {
@@ -44,7 +44,7 @@ export class DeportistasentPage {
     const val = ev.target.value;
 
     if (val && val.trim() != '') {
-      this.prueba = this.prueba.filter((item) => {
+      this.items = this.items.filter((item) => {
         return (item.email_dep.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
@@ -75,7 +75,7 @@ export class DeportistasentPage {
         let largo=Object.keys(datos).length;
         for(var i=0;i<largo;i++){
           var email_dep= datos[i].CORREO;          
-          this.items.push({"email_dep":email_dep});
+          this.aux.push({"email_dep":email_dep});
         }
       },
       (err)=>{
