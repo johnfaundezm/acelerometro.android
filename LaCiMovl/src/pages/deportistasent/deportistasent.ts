@@ -9,7 +9,8 @@ import { WebservicesProvider } from '../../providers/webservices/webservices';
 })
 export class DeportistasentPage {
 
-  enlaces: Array<{email:string, entrenamiento_n:string, fecha:string}>=[{email:'', entrenamiento_n:'', fecha:''}];
+  enlaces: Array<{email:string, fecha:string}>=[{email:'', fecha:''}];
+  enlaces_pend: Array<{email:string, fecha:string}>=[{email:'', fecha:''}];
   correo:any;
   correo_deportista:any;
 
@@ -39,6 +40,10 @@ export class DeportistasentPage {
     this.consulta_deportistas();
     this.consulta_enlace();
   }
+
+  doRefresh(refresher) {
+    refresher.complete();
+  } 
 
   initializeItems() {
     this.items = this.aux;
@@ -114,6 +119,21 @@ export class DeportistasentPage {
     this.formattedDate = year+'-'+ this.mes +'-'+ date;
   }
 
+  consulta_enlace_pend(){
+    this.webservices.consulta_enlace_pend(this.correo).then(
+      (datos)=>{
+        //alert(JSON.stringify(datos));
+        let largo=Object.keys(datos).length;
+        for(var i=0;i<largo;i++){
+          var email= datos[i].DEPORTISTA;
+          var fecha= datos[i].FECHA;
+          this.enlaces_pend.push({"email":email, "fecha":fecha});
+        }
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
+  }
 
   consulta_enlace(){
     this.webservices.consulta_enlace(this.correo).then(
@@ -122,9 +142,8 @@ export class DeportistasentPage {
         let largo=Object.keys(datos).length;
         for(var i=0;i<largo;i++){
           var email= datos[i].DEPORTISTA;
-          var entrenamiento_n= datos[i].NOMBRE_T;
           var fecha= datos[i].FECHA;
-          this.enlaces.push({"email":email, "entrenamiento_n":entrenamiento_n, "fecha":fecha});
+          this.enlaces.push({"email":email, "fecha":fecha});
         }
       },
       (err)=>{
