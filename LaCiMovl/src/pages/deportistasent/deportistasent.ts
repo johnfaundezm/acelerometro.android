@@ -13,11 +13,13 @@ export class DeportistasentPage {
   correo:any;
 
   items: Array<{email_dep:string}>=[{email_dep:''}];
+  prueba:any;
 
   actividades: string ='deportistas';
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
     this.correo = this.navParams.get('correo');
+    this.initializeItems();
   }
 
   ionViewCanEnter() {
@@ -27,18 +29,22 @@ export class DeportistasentPage {
     while(this.enlaces.length>0){
       this.enlaces.pop();
     }
-    this.consulta_deportistas()
+    this.consulta_deportistas();
     this.consulta_enlace();
+  }
+
+  initializeItems() {
+    this.prueba = this.items;
   }
 
   getItems(ev: any) {
     
-    this.consulta_deportistas();
+    this.initializeItems();
 
     const val = ev.target.value;
 
     if (val && val.trim() != '') {
-      this.items = this.items.filter((item) => {
+      this.prueba = this.prueba.filter((item) => {
         return (item.email_dep.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
