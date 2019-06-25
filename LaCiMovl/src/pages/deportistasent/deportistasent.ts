@@ -17,6 +17,11 @@ export class DeportistasentPage {
 
   actividades: string ='deportistas';
 
+  mes: any;
+  //Fecha----------------------------------------
+  currentDate;
+  formattedDate;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider,
               public alertCtrl: AlertController) {
     this.correo = this.navParams.get('correo');
@@ -65,12 +70,37 @@ export class DeportistasentPage {
         {
           text: 'Aceptar',
           handler: () => {
-            console.log('Agree clicked');
+            this.getFormattedDate()
+            this.webservices.insertar_solicitud(nombre, this.correo,this.formattedDate).then(
+              (datos)=>{
+                //alert(JSON.stringify(datos));
+                let largo=Object.keys(datos).length;
+                for(var i=0;i<largo;i++){
+                  var email= datos[i].DEPORTISTA;
+                  var entrenamiento_n= datos[i].NOMBRE_T;
+                  var fecha= datos[i].FECHA;
+                  this.enlaces.push({"email":email, "entrenamiento_n":entrenamiento_n, "fecha":fecha});
+                }
+              },
+              (err)=>{
+                alert(JSON.stringify(err))
+              })
           }
         }
       ]
     });
     confirm.present();
+  }
+
+  getFormattedDate(){
+    var dateObj =new Date()
+
+    var year = dateObj.getFullYear().toString()
+    var month = dateObj.getMonth().toString()
+    this.mes = month;
+    this.mes ++;
+    var date = dateObj.getDate().toString()
+    this.formattedDate = year+'-'+ this.mes +'-'+ date;
   }
 
 
