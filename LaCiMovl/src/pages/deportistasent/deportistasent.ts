@@ -72,7 +72,7 @@ export class DeportistasentPage {
         {
           text: 'Aceptar',
           handler: () => {
-            
+            this.insercion_solicitud();
           }
         }
       ]
@@ -80,7 +80,7 @@ export class DeportistasentPage {
     confirm.present();
   }
 
-  insercion(){
+  insercion_solicitud(){
     this.getFormattedDate()
     this.webservices.insertar_solicitud(this.correo_deportista, this.correo,this.formattedDate).then(
       (datos)=>{
