@@ -20,12 +20,19 @@
           Entrenamiento
         </ion-card-header>
       </ion-card>
-
+      <!--Entrenamiento-->
+      <ion-item> 
+        <ion-label>Tipo de entrenamiento</ion-label>
+        <ion-input type="text" [(ngModel)]="tipo_entrenamiento"></ion-input>
+      </ion-item>
       <ion-item> 
         <ion-label>Tiempo de entrenamiento</ion-label>
-        <ion-input type="number" [(ngModel)]="tiempo_entrenamiento"></ion-input>
+        <ion-input type="number" [(ngModel)]="unidad_entrenamiento"></ion-input>
       </ion-item>
-      
+      <button ion-button (click)="minEntrenamiento()" full>minutos</button>
+      <button ion-button (click)="segEntrenamiento()" full>segundos</button>
+
+
       <ion-item> 
         <ion-label>X orientation</ion-label>
       <ion-input type="text" [(ngModel)]="xOrient"></ion-input>

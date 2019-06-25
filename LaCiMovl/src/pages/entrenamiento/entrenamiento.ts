@@ -23,6 +23,7 @@ export class EntrenamientoPage {
   public tipo_entrenamiento : String;
   public tiempo : number = 0; //tiempo transcurrido del entrenamiento
   public tiempo_entrenamiento: number; //duración del entrenamiento
+  public unidad_entrenamiento: number;
   public inicioseg : number=0; //cronometro de inicio de entrenamiento
   public contador_entrenamiento : any; // variable de intervalo de entrenamiento
   public potencia : any;  //potencia del usuario durante el entrenamiento
@@ -167,6 +168,14 @@ export class EntrenamientoPage {
   }
 // _____________________
 //Cronometro
+  segEntrenamiento(){
+    alert('Ha definido su tiempo de entrenamiento en segundos');
+    this.tiempo_entrenamiento=this.unidad_entrenamiento;
+  }
+  minEntrenamiento(){
+    this.tiempo_entrenamiento= this.unidad_entrenamiento*60;
+    alert('Ha definido su tiempo de entrenamiento en minutos');
+  }
   inicio(){
 
     if(this.contador ==undefined){ // se analiza si el contador fue definido o aun no
