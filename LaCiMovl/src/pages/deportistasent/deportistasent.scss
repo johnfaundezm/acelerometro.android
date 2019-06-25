@@ -15,12 +15,17 @@ page-deportistasent {
 
     ion-scroll {
         white-space: nowrap;
-        height: 100%;
+        height: 75%;
     }
 
     .border_card_solicitudes {
         border-radius: 10px;
         height: 500px;
+    }
+
+    .border_card_solicitudes_pen {
+        border-radius: 10px;
+        height: 250px;
     }
 
     .formato_item {

@@ -37,8 +37,12 @@ export class DeportistasentPage {
     while(this.enlaces.length>0){
       this.enlaces.pop();
     }
+    while(this.enlaces_pend.length>0){
+      this.enlaces_pend.pop();
+    }
     this.consulta_deportistas();
     this.consulta_enlace();
+    this.consulta_enlace_pend();
   }
 
   doRefresh(refresher) {
