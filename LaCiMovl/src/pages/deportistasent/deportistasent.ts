@@ -46,6 +46,7 @@ export class DeportistasentPage {
   }
 
   doRefresh(refresher) {
+    this.consulta_enlace();
     refresher.complete();
   } 
 
@@ -145,6 +146,10 @@ export class DeportistasentPage {
   }
 
   consulta_enlace(){
+    let largo=this.enlaces.length;
+    for(var i=0;i<largo;i++){
+      this.enlaces.pop();
+    }
     this.webservices.consulta_enlace(this.correo).then(
       (datos)=>{
         //alert(JSON.stringify(datos));

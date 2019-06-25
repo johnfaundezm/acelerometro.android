@@ -1,7 +1,5 @@
 <ion-content class="grad" padding>
 
-  
-
   <button ion-button color="light" menuToggle clear>
       <ion-icon name="menu"></ion-icon>
   </button>
@@ -17,6 +15,14 @@
 
   <div [ngSwitch]="actividades">
     <div *ngSwitchCase="'deportistas'">
+      <ion-refresher  (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          pullingText="Pull to refresh"
+          refreshingSpinner="circles"
+          refreshingText="Refrescando...">
+        </ion-refresher-content>
+      </ion-refresher>
       <ion-card style="height: 500px" class="border_card">
         <ion-card-header class="title_card">
           Deportistas
@@ -34,15 +40,6 @@
     </div>
   
     <div *ngSwitchCase="'solicitud'">
-
-        <ion-refresher  (ionRefresh)="doRefresh($event)">
-            <ion-refresher-content
-              pullingIcon="arrow-dropdown"
-              pullingText="Pull to refresh"
-              refreshingSpinner="circles"
-              refreshingText="Refrescando...">
-            </ion-refresher-content>
-          </ion-refresher>
       
       <ion-card class="border_card_solicitudes">
         <ion-card-header class="title_card"> Enviar Solicitud</ion-card-header>
