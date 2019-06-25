@@ -22,7 +22,7 @@
     
         <ion-scroll scrollY="true">
           <ion-list inset *ngFor="let e of enlaces" >
-            <ion-item style="border-bottom: 1px solid; border-color: rgb(194, 191, 191); height: auto">
+            <ion-item class="formato_item">
               <h2>{{e.email}}</h2>
               <p style="text-align: left">{{e.entrenamiento_n}}</p>
               <p style="text-align: right">{{e.fecha}}</p>
@@ -39,8 +39,8 @@
         <ion-searchbar placeholder="Buscar" (ionInput)="getItems($event)"></ion-searchbar>
         <ion-scroll scrollY="true">
           <ion-list inset >
-            <ion-item *ngFor="let item of items" style="border-bottom: 1px solid; border-color: rgb(194, 191, 191); height: auto" (click)="alerta_enviar()">
-                <ion-label>{{ item.email_dep }}</ion-label>
+            <ion-item *ngFor="let item of items" class="formato_item" >
+                <ion-label (click)="alerta_enviar(item.email_dep)">{{ item.email_dep }}</ion-label>
             </ion-item>
           </ion-list>
         </ion-scroll>

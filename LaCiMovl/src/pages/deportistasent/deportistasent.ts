@@ -51,10 +51,10 @@ export class DeportistasentPage {
     }
   }
 
-  alerta_enviar() {
+  alerta_enviar(nombre) {
     const confirm = this.alertCtrl.create({
       title: 'ENvio de solicitud',
-      message: 'Desea enviar la solicitud a .....?',
+      message: 'Desea enviar la solicitud a '+nombre+'?',
       buttons: [
         {
           text: 'Cancelar',
