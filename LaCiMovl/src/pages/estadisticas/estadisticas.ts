@@ -126,29 +126,29 @@ export class EstadisticasPage {
 
     // 2 semanas atrás
     dateObj.setDate(dateObj.getDate() - 7);
-    var year = dateObj.getFullYear().toString()
-    var month = dateObj.getMonth().toString()
-    var mes:any = month;
+    year = dateObj.getFullYear().toString()
+    month = dateObj.getMonth().toString()
+    mes = month;
     mes ++;
-    var date = dateObj.getDate().toString()
+    date = dateObj.getDate().toString()
     this.sem2 = year+'-'+ mes +'-'+ date;
 
     // 3 semanas atrás
     dateObj.setDate(dateObj.getDate() - 7);
-    var year = dateObj.getFullYear().toString()
-    var month = dateObj.getMonth().toString()
-    var mes:any = month;
+    year = dateObj.getFullYear().toString()
+    month = dateObj.getMonth().toString()
+    mes = month;
     mes ++;
-    var date = dateObj.getDate().toString()
+    date = dateObj.getDate().toString()
     this.sem3 = year+'-'+ mes +'-'+ date;
 
     // 4 semanas atrás
     dateObj.setDate(dateObj.getDate() - 7);
-    var year = dateObj.getFullYear().toString()
-    var month = dateObj.getMonth().toString()
-    var mes:any = month;
+    year = dateObj.getFullYear().toString()
+    month = dateObj.getMonth().toString()
+    mes = month;
     mes ++;
-    var date = dateObj.getDate().toString()
+    date = dateObj.getDate().toString()
     this.sem4 = year+'-'+ mes +'-'+ date;
 
     //consulta de ususarios por semanas
