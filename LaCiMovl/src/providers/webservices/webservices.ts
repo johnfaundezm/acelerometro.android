@@ -505,7 +505,7 @@ export class WebservicesProvider {
   }
 
   //se crea el metodo para insertar una solicitud
-  insertar_solicitud(correo_solicitado,correo_solicitante,fecha_solicitud) {//se reciben las variables para registrarse
+  insertar_solicitud(correo_solicitado,correo_solicitante,fecha_solicitud) {//se reciben las variables para insertar solicitud
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
