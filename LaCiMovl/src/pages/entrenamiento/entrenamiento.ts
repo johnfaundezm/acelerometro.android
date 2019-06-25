@@ -20,8 +20,9 @@ export class EntrenamientoPage {
   
   loading:any;
   //Funcion de entrenamiento
+  public tipo_entrenamiento : String;
   public tiempo : number = 0; //tiempo transcurrido del entrenamiento
-  public tiempo_entrenamiento: number = 60; //duración del entrenamiento
+  public tiempo_entrenamiento: number; //duración del entrenamiento
   public inicioseg : number=0; //cronometro de inicio de entrenamiento
   public contador_entrenamiento : any; // variable de intervalo de entrenamiento
   public potencia : any;  //potencia del usuario durante el entrenamiento
@@ -158,7 +159,7 @@ export class EntrenamientoPage {
           this.playAudiocomienzo(); // se reproduce audio de inicio con voz
           this.inicio(); // se comienza la funcion de entrenamiento 
         }
-        if(this.tiempo==this.tiempo_entrenamiento){ // se compara si el tiempo de entrenamiento es igual al tiempo asignado como tiempo de entrenamiento para finalizar el entrenamiento
+        if(this.tiempo>this.tiempo_entrenamiento){ // se compara si el tiempo de entrenamiento es igual al tiempo asignado como tiempo de entrenamiento para finalizar el entrenamiento
           this.finalizar(); // se finaliza el entrenamiento
         }
       },1000); // timer de control de entrenamiento en 1000 milisegundos= 1 segundo

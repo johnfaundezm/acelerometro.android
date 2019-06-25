@@ -20,7 +20,11 @@
           Entrenamiento
         </ion-card-header>
       </ion-card>
-      
+
+      <ion-item> 
+        <ion-label>Tiempo de entrenamiento</ion-label>
+        <ion-input type="number" [(ngModel)]="tiempo_entrenamiento"></ion-input>
+      </ion-item>
       
       <ion-item> 
         <ion-label>X orientation</ion-label>
@@ -34,10 +38,7 @@
           <ion-label>Z orientation</ion-label>
           <ion-input type="text" [(ngModel)]="zOrient"></ion-input>
       </ion-item>
-      <ion-item> 
-          <ion-label>Time Stamp</ion-label>
-          <ion-input type="text" [(ngModel)]="timestampd"></ion-input>
-      </ion-item>
+      
     
       <!--<button ion-button (click)="giroscopio()" full>click</button>-->
     
