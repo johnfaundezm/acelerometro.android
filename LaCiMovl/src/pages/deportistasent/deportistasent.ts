@@ -11,6 +11,7 @@ export class DeportistasentPage {
 
   enlaces: Array<{email:string, entrenamiento_n:string, fecha:string}>=[{email:'', entrenamiento_n:'', fecha:''}];
   correo:any;
+  correo_deportista:any;
 
   aux: Array<{email_dep:string}>=[{email_dep:''}];
   items:any;
@@ -57,6 +58,7 @@ export class DeportistasentPage {
   }
 
   alerta_enviar(nombre) {
+    this.correo_deportista=nombre;
     const confirm = this.alertCtrl.create({
       title: 'ENvio de solicitud',
       message: 'Desea enviar la solicitud a '+nombre+'?',
@@ -70,26 +72,35 @@ export class DeportistasentPage {
         {
           text: 'Aceptar',
           handler: () => {
-            this.getFormattedDate()
-            this.webservices.insertar_solicitud(nombre, this.correo,this.formattedDate).then(
-              (datos)=>{
-                //alert(JSON.stringify(datos));
-                let largo=Object.keys(datos).length;
-                for(var i=0;i<largo;i++){
-                  var email= datos[i].DEPORTISTA;
-                  var entrenamiento_n= datos[i].NOMBRE_T;
-                  var fecha= datos[i].FECHA;
-                  this.enlaces.push({"email":email, "entrenamiento_n":entrenamiento_n, "fecha":fecha});
-                }
-              },
-              (err)=>{
-                alert(JSON.stringify(err))
-              })
+            
           }
         }
       ]
     });
     confirm.present();
+  }
+
+  insercion(){
+    this.getFormattedDate()
+    this.webservices.insertar_solicitud(this.correo_deportista, this.correo,this.formattedDate).then(
+      (datos)=>{
+        //alert(JSON.stringify(datos));
+        var respuesta= datos[0].RESPUESTA;
+        if(respuesta == 'ERROR'){
+          alert('Ha ocurrido un error al enviar la solicitud');
+        }
+        else{
+          if(respuesta == 'OK'){
+            alert('La solicitud se ha enviado correctamente');
+          }
+          else{
+            alert('Ha ocurrido un error al enviar la solicitud');
+          }
+        }
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
   }
 
   getFormattedDate(){
