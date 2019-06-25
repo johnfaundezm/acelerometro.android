@@ -160,7 +160,7 @@ export class EntrenamientoPage {
           this.playAudiocomienzo(); // se reproduce audio de inicio con voz
           this.inicio(); // se comienza la funcion de entrenamiento 
         }
-        if(this.tiempo>this.tiempo_entrenamiento){ // se compara si el tiempo de entrenamiento es igual al tiempo asignado como tiempo de entrenamiento para finalizar el entrenamiento
+        if(this.tiempo>this.tiempo_entrenamiento-1){ // se compara si el tiempo de entrenamiento es igual al tiempo asignado como tiempo de entrenamiento para finalizar el entrenamiento
           this.finalizar(); // se finaliza el entrenamiento
         }
       },1000); // timer de control de entrenamiento en 1000 milisegundos= 1 segundo
