@@ -91,7 +91,7 @@ export class DeportistasentPage {
 
   insercion_solicitud(){
     this.getFormattedDate()
-    this.webservices.insertar_solicitud(this.correo_deportista, this.correo,1,this.formattedDate).then(
+    this.webservices.insertar_solicitud(this.correo_deportista, this.correo, 1,this.formattedDate).then(
       (datos)=>{
         //alert(JSON.stringify(datos));
         var respuesta= datos[0].RESPUESTA;
