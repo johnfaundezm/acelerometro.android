@@ -328,6 +328,10 @@ export class EntrenamientoPage {
 
   consultar_acc(){
     this.load();
+    let largo=this.datos_acc.length;
+    for(var i=0;i<largo;i++){
+      this.datos_acc.pop();
+    }
     this.webservices.consulta_acelerometro_datos().then(
       (datos) =>{
         let largo=Object.keys(datos).length;
@@ -355,7 +359,7 @@ export class EntrenamientoPage {
             var respuesta= datos[0].RESPUESTA;
             this.loading.dismiss();
             if(respuesta=='OK'){
-              this.navCtrl.push(EntrenamientoPage);
+              this.consultar_acc();
               alert('Los datos se han borrado satisfactoriamente');
             }else{
               alert('Ha ocurrido un error en el borrado');
