@@ -44,7 +44,7 @@ export class AdminDeportistaPage {
   doRefresh(refresher) {
     this.detalle();
     refresher.complete();
-  } 
+  }
 
   detalle(){
     this.webservices.consulta_deportista(this.correo).then(
