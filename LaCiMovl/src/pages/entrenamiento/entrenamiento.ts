@@ -85,6 +85,7 @@ export class EntrenamientoPage {
               public loadingCtrl: LoadingController,private nativeAudio: NativeAudio, public alertCtrl: AlertController) {
     
     this.correo = this.navParams.get('correo'); //Se recibe el correo del deportista
+    this.consulta_peso(); //Se inicializa la consulta del peso
 
     // se inicia la plataforma de reproducciones
     this.platform.ready().then(() => { 
@@ -277,7 +278,7 @@ export class EntrenamientoPage {
 
   }
 
-  consulta_masa(){
+  consulta_peso(){
     this.webservices.consulta_deportista(this.correo).then(
       (datos)=>{
         //alert(JSON.stringify(datos));
