@@ -18,6 +18,8 @@ export class EntrenamientoPage {
 
   datos_acc: Array<{varx:string, vary:string, varz:string}>=[{varx:'', vary:'', varz:''}];
   
+  correo:any;
+  peso:any;
   loading:any;
   //Funcion de entrenamiento
   public tipo_entrenamiento : String;
@@ -81,7 +83,9 @@ export class EntrenamientoPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,public platform: Platform, 
               private gyroscope:Gyroscope, private deviceMotion: DeviceMotion, private webservices: WebservicesProvider, 
               public loadingCtrl: LoadingController,private nativeAudio: NativeAudio, public alertCtrl: AlertController) {
-                
+    
+    this.correo = this.navParams.get('correo'); //Se recibe el correo del deportista
+
     // se inicia la plataforma de reproducciones
     this.platform.ready().then(() => { 
       console.log("platform ready");
@@ -271,6 +275,17 @@ export class EntrenamientoPage {
 
     this.coleccion.push(obj); // se imprime en pantalla la coleccion del objeto (variables de tiempo definidas)
 
+  }
+
+  consulta_masa(){
+    this.webservices.consulta_deportista(this.correo).then(
+      (datos)=>{
+        //alert(JSON.stringify(datos));
+        this.peso= datos[0].PESO;
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
   }
 
 //Perifericos (Gyroscopio,acelerometro,Sonidos)
