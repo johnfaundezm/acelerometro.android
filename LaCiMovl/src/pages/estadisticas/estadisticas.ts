@@ -188,14 +188,15 @@ export class EstadisticasPage {
       })
     
   }
-  
+   
 
   porsemana(){
+    var array=[this.cant_sem4, this.cant_sem3, this.cant_sem2, this.cant_sem1]
     this.semanachartvar = new Chart(this.usuariosporsemanachart.nativeElement, {
       type: 'horizontalBar',
       data: {
         datasets: [{
-          data: [this.cant_sem4, this.cant_sem3, this.cant_sem2, this.cant_sem1],
+          data: array,
           backgroundColor: [
             'rgba(14, 10, 132, 0.3)',
             'rgba(1, 176, 4, 0.3)',
