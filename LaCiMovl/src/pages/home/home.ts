@@ -34,7 +34,20 @@ export class HomePage {
     this.menuCtrl.enable(false, 'Menu');
   }
 
+  ionViewDidEnter(){
+    this.cantidad_pila_nav()
+  }
+
   ionViewWillLeave(){
+  }
+
+  cantidad_pila_nav(){
+    for ( let i=0; i < this.navCtrl.length(); i++ ){
+      let v = this.navCtrl.getViews()[i];
+      console.log(v.component.name); 
+      alert(v.component.name) 
+      
+    }
   }
 
   loadconsulta_login() {
