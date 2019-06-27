@@ -306,7 +306,7 @@ export class EntrenamientoPage {
         // se muestra la marca de tiempo para tener seguridad de que acelerometro funciona con  normalidad
         this.timestamp = acc.timestamp;
         //Calculos____________________
-        this.acel_x_y_z= ((this.accX**2) + (this.accY**2) + (this.accZ**2))**0.5; //aceleracion resultante
+        this.acel_x_y_z= (this.accX + this.accY + this.accZ)/3; //aceleracion resultante
         
         this.fuerza = 1/*masa_deportista*/* this.acel_x_y_z; // fuerza resultante
 
