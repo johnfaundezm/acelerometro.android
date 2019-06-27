@@ -56,7 +56,7 @@ export class MyApp {
   }
 
   metodosalir(){
-    this.nav.popToRoot()
+    this.nav.popToRoot();
   }
 
   openPage(page) {
