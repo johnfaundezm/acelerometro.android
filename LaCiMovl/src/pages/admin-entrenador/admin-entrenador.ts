@@ -11,6 +11,7 @@ import { PoadminentComponent } from '../../components/poadminent/poadminent';
 export class AdminEntrenadorPage {
 
   correo:any;
+  email:any;
   pass:any;
   nombre:any;
   apellido_p:any;
@@ -45,17 +46,16 @@ export class AdminEntrenadorPage {
     this.webservices.consulta_entrenador(this.correo).then(
       (datos)=>{
         //alert(JSON.stringify(datos));
-          this.pass= datos[0].PASS;
-          this.nombre= datos[0].NOMBRE;
-          this.apellido_p= datos[0].APELLIDO_P;
-          this.apellido_m= datos[0].APELLIDO_M;
-          this.genero= datos[0].GENERO;
-          this.edad= datos[0].EDAD;
-          this.pais= datos[0].PAIS;
-          this.estado= datos[0].ESTADO;
-          this.fecha_r= datos[0].FECHA_R;
-          
-          
+        this.email= datos[0].CORREO;
+        this.pass= datos[0].PASS;
+        this.nombre= datos[0].NOMBRE;
+        this.apellido_p= datos[0].APELLIDO_P;
+        this.apellido_m= datos[0].APELLIDO_M;
+        this.genero= datos[0].GENERO;
+        this.edad= datos[0].EDAD;
+        this.pais= datos[0].PAIS;
+        this.estado= datos[0].ESTADO;
+        this.fecha_r= datos[0].FECHA_R;   
       },
       (err)=>{
         alert(JSON.stringify(err))

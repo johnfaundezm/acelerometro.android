@@ -12,6 +12,7 @@ import { PoadmindepComponent } from '../../components/poadmindep/poadmindep';
 export class AdminDeportistaPage {
 
   correo:any;
+  email:any;
   pass:any;
   nombre:any;
   apellido_p:any;
@@ -49,18 +50,19 @@ export class AdminDeportistaPage {
     this.webservices.consulta_deportista(this.correo).then(
       (datos)=>{
         //alert(JSON.stringify(datos));
-          this.pass= datos[0].PASS;
-          this.nombre= datos[0].NOMBRE;
-          this.apellido_p= datos[0].APELLIDO_P;
-          this.apellido_m= datos[0].APELLIDO_M;
-          this.genero= datos[0].GENERO;
-          this.edad= datos[0].EDAD;
-          this.peso= datos[0].PESO;
-          this.estatura= datos[0].ESTATURA;
-          this.imc= datos[0].IMC;
-          this.pais= datos[0].PAIS;
-          this.estado= datos[0].ESTADO;
-          this.fecha_r= datos[0].FECHA_R;
+        this.email= datos[0].CORREO;
+        this.pass= datos[0].PASS;
+        this.nombre= datos[0].NOMBRE;
+        this.apellido_p= datos[0].APELLIDO_P;
+        this.apellido_m= datos[0].APELLIDO_M;
+        this.genero= datos[0].GENERO;
+        this.edad= datos[0].EDAD;
+        this.peso= datos[0].PESO;
+        this.estatura= datos[0].ESTATURA;
+        this.imc= datos[0].IMC;
+        this.pais= datos[0].PAIS;
+        this.estado= datos[0].ESTADO;
+        this.fecha_r= datos[0].FECHA_R;
       },
       (err)=>{
         alert(JSON.stringify(err))

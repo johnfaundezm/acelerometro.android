@@ -31,7 +31,8 @@
         <ion-scroll scrollY="true">
           <ion-list inset >
             <ion-item *ngFor="let e of enlaces"  class="formato_item">
-              <h2>{{e.email}}</h2>
+              <p style="text-align: center">{{e.ide}}</p>
+              <h2 (click)="metodo(e.ide)">{{e.email}}</h2>
               <p style="text-align: right">{{e.fecha}}</p>
             </ion-item>
           </ion-list>

@@ -9,7 +9,7 @@ import { WebservicesProvider } from '../../providers/webservices/webservices';
 })
 export class DeportistasentPage {
 
-  enlaces: Array<{email:string, fecha:string}>=[{email:'', fecha:''}];
+  enlaces: Array<{ide:string, email:string, fecha:string}>=[{ide:'', email:'', fecha:''}];
   enlaces_pend: Array<{email:string, fecha:string}>=[{email:'', fecha:''}];
   correo:any;
   correo_deportista:any;
@@ -155,9 +155,10 @@ export class DeportistasentPage {
         //alert(JSON.stringify(datos));
         let largo=Object.keys(datos).length;
         for(var i=0;i<largo;i++){
+          var ide= datos[i].ID;
           var email= datos[i].DEPORTISTA;
           var fecha= datos[i].FECHA;
-          this.enlaces.push({"email":email, "fecha":fecha});
+          this.enlaces.push({"ide":ide,"email":email, "fecha":fecha});
         }
       },
       (err)=>{
@@ -178,6 +179,9 @@ export class DeportistasentPage {
       (err)=>{
         alert(JSON.stringify(err))
       })
+  }
+  metodo(id){
+    alert(id);
   }
 
 }
