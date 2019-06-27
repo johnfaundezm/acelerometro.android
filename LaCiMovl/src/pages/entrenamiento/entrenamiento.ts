@@ -85,7 +85,7 @@ export class EntrenamientoPage {
               public loadingCtrl: LoadingController,private nativeAudio: NativeAudio, public alertCtrl: AlertController) {
     
     this.correo = this.navParams.get('correo'); //Se recibe el correo del deportista
-    this.consulta_peso(); //Se inicializa la consulta del peso
+    this.consulta_peso(); //Se inicializa la consulta del peso            
 
     // se inicia la plataforma de reproducciones
     this.platform.ready().then(() => { 
@@ -288,7 +288,6 @@ export class EntrenamientoPage {
         alert(JSON.stringify(err))
       })
   }
-
 //Perifericos (Gyroscopio,acelerometro,Sonidos)
 //Acelerometro
   comienzoAcelerometro(){
@@ -306,9 +305,9 @@ export class EntrenamientoPage {
         // se muestra la marca de tiempo para tener seguridad de que acelerometro funciona con  normalidad
         this.timestamp = acc.timestamp;
         //Calculos____________________
-        this.acel_x_y_z= (this.accX + this.accY + this.accZ)/3; //aceleracion resultante
+        this.acel_x_y_z= ((this.accX**2) + (this.accY**2) + (this.accZ**2))**0.5; //aceleracion resultante
         
-        this.fuerza = 1/*masa_deportista*/* this.acel_x_y_z; // fuerza resultante
+        this.fuerza = 1*this.peso* this.acel_x_y_z; // fuerza resultante
 
         this.potencia = this.fuerza * this.acel_x_y_z; //potencia resultante
 
@@ -409,7 +408,7 @@ export class EntrenamientoPage {
         this.zOrient=orientation.z;
         this.timestampd=orientation.timestamp;
         //Calculos____________________
-        this.giro_x_y_z = (this.xOrient+this.yOrient+this.zOrient)/3; //vector resultante
+        this.giro_x_y_z = ((this.xOrient**2)+(this.yOrient**2)+(this.zOrient**2))**0.5; //vector resultante
 
         this.webservices.giroscopio_datos(this.xOrient, this.yOrient, this.zOrient).then(// se envian los datos al servidor web
           (resultado) =>{
