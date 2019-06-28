@@ -22,6 +22,12 @@ export class EstadisticasdepPage {
     setTimeout(() => {
       this.acelerachart();
     }, 150)
+
+    while(this.datos_acelerometro.length>0){
+      this.datos_acelerometro.pop();
+    }
+
+    this.consultar_acc();
   }
 
   consultar_acc(){
