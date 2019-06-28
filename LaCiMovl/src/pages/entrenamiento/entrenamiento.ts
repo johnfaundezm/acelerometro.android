@@ -127,10 +127,10 @@ export class EntrenamientoPage {
     });
   }
 
-  alerta_confirmacion() {
+  alerta_confirmacion(correo) {
     const confirm = this.alertCtrl.create({
       title: 'Confirmacion de solicitud',
-      message: 'Aceptas a ........ como entrenador?',
+      message: 'Aceptas a '+correo+' como entrenador?',
       buttons: [
         {
           text: 'Cancelar',
