@@ -122,12 +122,15 @@
   
     <div *ngSwitchCase="'solicitud'">
       
-      <ion-card class="border_card_solicutudes">
-        <ion-list>
-          <ion-item>
-            <ion-label (click)="alerta_confirmacion()">prueba</ion-label>
-          </ion-item>
-        </ion-list>
+      <ion-card class="border_card_solicitudes_pen">
+        <ion-card-header class="title_card">Solicitudes Pendiente</ion-card-header>
+        <ion-scroll scrollY="true">
+          <ion-list inset >
+            <ion-item *ngFor="let item_s of enlaces_pend" class="formato_item" >
+                <ion-label (click)="alerta_confirmacion()">{{ item_s.email }}</ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-scroll>
       </ion-card>
     </div>
   </div>

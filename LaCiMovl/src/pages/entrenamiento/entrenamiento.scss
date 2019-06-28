@@ -36,8 +36,19 @@ page-entrenamiento {
         height: 100%;
     }
 
-    .border_card_solicutudes {
+    .border_card_solicitudes {
         border-radius: 10px;
         height: 500px;
+    }
+
+    .border_card_solicitudes_pen {
+        border-radius: 10px;
+        height: 250px;
+    }
+
+    .formato_item {
+        border-bottom: 1px solid; 
+        border-color: rgb(194, 191, 191); 
+        height: auto;
     }
 }
