@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';
+import { WebservicesProvider } from '../../providers/webservices/webservices';
 
 @IonicPage()
 @Component({
@@ -12,8 +13,9 @@ export class EstadisticasdepPage {
   @ViewChild('aceleracionchart') aceleracionchart;
 
   aceleracionchartvar: any;
+  datos_acelerometro: Array<{x:any, y:any}>=[{x:'', y:''}];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
   }
 
   ionViewDidEnter() {
@@ -22,24 +24,36 @@ export class EstadisticasdepPage {
     }, 150)
   }
 
+  consultar_acc(){
+    let largo=this.datos_acelerometro.length;
+    for(var i=0;i<largo;i++){
+      this.datos_acelerometro.pop();
+    }
+    this.webservices.consulta_acelerometro_datos().then(
+      (datos) =>{
+        let largo=Object.keys(datos).length;
+        var x=0;
+        for(var i=0;i<largo;i++){
+          x+=0,1;
+          var y= datos[i].ACELERACION;
+          this.datos_acelerometro.push({"x":x, "y":y});         
+        }
+        //alert('oka'+JSON.stringify(resultado));
+      },
+      (error) =>{
+        alert('error'+JSON.stringify(error));
+      }
+    )
+  }
+
   acelerachart(){
     this.aceleracionchartvar = new Chart(this.aceleracionchart.nativeElement, {
       type: 'scatter',
       data: {
         datasets: [{
           label: 'Acc x',
-          data: [
-            {x: 0, y: 0}, 
-            {x: 1, y: 2}, 
-            {x: 2, y: 4}, 
-            {x: 3, y: 8}, 
-            {x: 4, y: 16}, 
-            {x: 5, y: 32}, 
-            {x: 6, y: 64}, 
-            {x: 7, y: 3}, 
-            {x: 8, y: 9},
-            {x: 9, y: 1}
-          ],
+          data: this.datos_acelerometro,
+
           showLine: true,
           borderWidth: 2,
           borderColor: 'rgba(214, 225, 9, 1)',

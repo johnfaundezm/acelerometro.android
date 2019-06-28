@@ -356,7 +356,7 @@ export class EntrenamientoPage {
 
         this.potencia = this.fuerza * this.acel_x_y_z; //potencia resultante
 
-        this.webservices.acelerometro_datos(this.accX, this.accY, this.accZ, 0,0,0).then( // se envian los datos al servidor web
+        this.webservices.acelerometro_datos(this.accX, this.accY, this.accZ, this.acel_x_y_z,0,0).then( // se envian los datos al servidor web
           (resultado) =>{
             //alert('oka'+JSON.stringify(resultado));
           },
