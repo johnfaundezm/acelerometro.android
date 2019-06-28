@@ -27,7 +27,7 @@ export class EstadisticasdepPage {
       type: 'scatter',
       data: {
         datasets: [{
-          label: 'Acc x',
+          label: 'Ac x',
           data: [
             {x: 0, y: 0}, 
             {x: 1, y: 2}, 
@@ -51,7 +51,7 @@ export class EstadisticasdepPage {
                         pointHitRadius: 10,
         },
         {
-          label: 'Acc Y',
+          label: 'Ac Y',
           data: [
             {x: 0, y: 0}, 
             {x: 1, y: 10}, 
@@ -75,7 +75,7 @@ export class EstadisticasdepPage {
                         pointHitRadius: 10,
         },
         {
-          label: 'Acc Z',
+          label: 'Ac Z',
           data: [
             {x: 0, y: 0}, 
             {x: 1, y: 8}, 
@@ -183,6 +183,10 @@ export class EstadisticasdepPage {
 
       options: {
         legend: {
+          position: 'left',
+          labels:{
+            boxWidth: 15
+          },
           display: true
         },
         tooltips: {
