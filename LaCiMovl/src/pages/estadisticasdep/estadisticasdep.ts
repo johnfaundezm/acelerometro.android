@@ -42,6 +42,7 @@ export class EstadisticasdepPage {
         for(var i=0;i<largo;i++){
           x+=0,1;
           var y= datos[i].ACELERACION;
+          var aux= '{x: '+x+', y: '+y+'},';
           this.datos_acelerometro.push({"x":x, "y":y});         
         }
         //alert('oka'+JSON.stringify(resultado));
