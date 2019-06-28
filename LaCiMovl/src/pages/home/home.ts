@@ -34,10 +34,11 @@ export class HomePage {
     this.menuCtrl.enable(false, 'Menu');
   }
 
+  /*
   ionViewDidEnter(){
     this.cantidad_pila_nav()
   }
-
+*/
   ionViewWillLeave(){
   }
 
