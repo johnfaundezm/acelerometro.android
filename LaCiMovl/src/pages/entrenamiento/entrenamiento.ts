@@ -17,6 +17,8 @@ import { WebservicesProvider } from '../../providers/webservices/webservices';
 export class EntrenamientoPage {
 
   datos_acc: Array<{varx:string, vary:string, varz:string}>=[{varx:'', vary:'', varz:''}];
+  enlaces: Array<{ide:string, email:string, fecha:string}>=[{ide:'', email:'', fecha:''}];
+  enlaces_pend: Array<{email:string}>=[{email:''}];
   
   correo:any;
   peso:any;
@@ -85,7 +87,9 @@ export class EntrenamientoPage {
               public loadingCtrl: LoadingController,private nativeAudio: NativeAudio, public alertCtrl: AlertController) {
     
     this.correo = this.navParams.get('correo'); //Se recibe el correo del deportista
-    this.consulta_peso(); //Se inicializa la consulta del peso            
+    this.consulta_peso(); //Se inicializa la consulta del peso     
+    this.consulta_solicitud_pend(); //Se inicializa la consulta de las solicitudes pendientes
+    this.consulta_enlace(); //Se inicializa la consulta de los enlaces
 
     // se inicia la plataforma de reproducciones
     this.platform.ready().then(() => { 
@@ -123,10 +127,10 @@ export class EntrenamientoPage {
     });
   }
 
-  alerta_confirmacion() {
+  alerta_confirmacion(correo) {
     const confirm = this.alertCtrl.create({
       title: 'Confirmacion de solicitud',
-      message: 'Aceptas a ........ como entrenador?',
+      message: 'Aceptas a '+correo+' como entrenador?',
       buttons: [
         {
           text: 'Cancelar',
@@ -278,16 +282,57 @@ export class EntrenamientoPage {
 
   }
 
-  consulta_peso(){
-    this.webservices.consulta_deportista(this.correo).then(
+  consulta_peso(){// se consulta el peso del deportista
+    this.webservices.consulta_deportista(this.correo).then(// se envia la variable correo como consulta al php
       (datos)=>{
         //alert(JSON.stringify(datos));
-        this.peso= datos[0].PESO;
+        this.peso= datos[0].PESO; //se recibe del peso del correo solicitado
       },
       (err)=>{
         alert(JSON.stringify(err))
       })
   }
+
+  consulta_solicitud_pend(){// se consulta por las solicitudes pendientes
+    let largo=this.enlaces_pend.length;
+    for(var i=0;i<largo;i++){
+      this.enlaces_pend.pop();
+    }
+    this.webservices.consulta_enlace_pend_deportista(this.correo).then(// se envia la variable correo como consulta al php
+      (datos)=>{
+        //alert(JSON.stringify(datos));
+        let largo=Object.keys(datos).length;
+        for(var i=0;i<largo;i++){
+          var email= datos[i].ENTRENADOR;// se recibe el correo de la solicitud pendiente
+          this.enlaces_pend.push({"email":email});
+        }
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
+  }
+
+  consulta_enlace(){
+    let largo=this.enlaces.length;
+    for(var i=0;i<largo;i++){
+      this.enlaces.pop();
+    }
+    this.webservices.consulta_enlace_deportista(this.correo).then(
+      (datos)=>{
+        //alert(JSON.stringify(datos));
+        let largo=Object.keys(datos).length;
+        for(var i=0;i<largo;i++){ // se reciben la id, el correo del entrenador y la fecha de la solicitud
+          var ide= datos[i].ID;
+          var email= datos[i].ENTRENADOR;
+          var fecha= datos[i].FECHA;
+          this.enlaces.push({"ide":ide,"email":email, "fecha":fecha});
+        }
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
+  }
+
 //Perifericos (Gyroscopio,acelerometro,Sonidos)
 //Acelerometro
   comienzoAcelerometro(){
