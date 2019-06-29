@@ -33,4 +33,10 @@ page-deportistasent {
         border-color: rgb(194, 191, 191); 
         height: auto;
     }
+
+    .item ion-thumbnail ion-img,
+    .item ion-thumbnail img {
+        width: 75px !important;
+        height: 75px !important;
+    }
 }
