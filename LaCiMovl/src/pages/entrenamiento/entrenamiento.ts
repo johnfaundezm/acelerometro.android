@@ -36,7 +36,10 @@ export class EntrenamientoPage {
   //Funciones de estadisticas
   public pi : number =3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066063155881748815209209628292540917153643678925903600113305305488204665213841469519415116094330572703657595919530921861173819326117931051185480744623799627495673518857527248912279381830119491298336733624406566430860213949463952247371907021798609437027705392171762931767523846748184676694051320005681271452635608277857713427577896091736371787214684409012249534301465495853710507922796892589235420199561121290219608640344181598136297747713099605187072113499999983729780499510597317328160963185950244594553469083026425223082533446850352619311881710100031378387528865875332083814206171776691473035982534904287554687311595628638823537875937519577818577805321712268066130019278766111959092164201989;
   public  e : number =2.718281828459045235360287471352 ;
-
+  public cantidad_datos_ac : number;
+  public cantidad_datos_gi : number;
+  public forward : any;
+  public inverse : any;
 
   //Cronometro
   public min1: number =0;   //minuto unidad
@@ -514,6 +517,77 @@ export class EntrenamientoPage {
     });
   }
 
-  fourier(){
+  fourier_acelerometro(){
+    var n_ac;
+    var levels;
+    var cosTable;
+    var sinTable;
+
+    n_ac= this.cantidad_datos_ac;
+    levels = -1;
+    for (var i= 0;i <32;i++){
+      if(1 << i == n_ac){
+        levels = i;
+      }
+    }
+    if (levels == -1){
+      throw "La longitud no es potencia de 2";
+    }
+    cosTable = new Array(n_ac / 2);
+    sinTable = new Array(n_ac / 2);
+    for (var i= 0; i < n_ac/ 2;i++){
+      cosTable[i] = Math.cos(2 * Math.PI * i / n_ac);
+      sinTable[i] = Math.sin(2 * Math.PI * i / n_ac);
+    }     
+  // Calcula la transformada de Fourier discreta (DFT) del vector complejo dado, almacenando el resultado nuevamente en el vector.
+  //La longitud del vector debe ser igual al tamaño n que se pasó al constructor del objeto, y esto debe ser una potencia de 2. 
+  //Utiliza el algoritmo de radix-2 de diezmado en el tiempo de Cooley-Tukey.
+    this.forward = function(real,imag){
+      var n = this.n_ac;
+      // Permutación de direccionamiento en bit invertido
+      
+      for (var i = 0; i < n; i++){
+        var j = reverseBits( i,levels);
+        if( j>1){
+          var temp= real[i];
+          real[i]=real[j];
+          real[j]=temp;
+          temp= imag[i];
+          imag[j] = temp;
+        }
+      }
+      // FFF de radix-2 de diezmado en el tiempo de Cooley-Tukey
+      for (var size =2;size <=n; size *= 2){
+        var halfsize = size / 2;
+        var tablestep =n / size;
+        for(var i = 0; i < n; i += size){
+          for(var j = i, k = 0; j < i + halfsize; j++,k += tablestep ){
+            var tpre = real[j+halfsize] * cosTable[k] +
+                       imag[j+halfsize] * sinTable[k];
+            var tpim = -real[j+halfsize] * sinTable[k] +
+                        imag[j+halfsize] * cosTable[k];
+            real[j + halfsize] = real[j] -tpre;
+            imag[j + halfsize] = imag[j] - tpim;
+                    real[j] += tpre;
+                    imag[j] += tpim;                
+          }
+        }
+      }
+      // Devuelve el entero cuyo valor es el inverso de los bits de 'bits' más bajos del entero 'x'.
+      function reverseBits(x, bits) {
+        var y = 0;
+        for (var i = 0; i < bits; i++) {
+            y = (y << 1) | (x & 1);
+            x >>>= 1;
+        }
+        return y;
+      }
+    }
+  //Calcula la transformada de Fourier discreta inversa (IDFT) del vector complejo dado, almacenando el resultado nuevamente en el vector.
+  //La longitud del vector debe ser igual al tamaño n que se pasó al constructor del objeto, y esto debe ser una potencia de 2. 
+  //Esta es una función de envoltura. Esta transformación no realiza escalado, por lo que lo inverso no es un inverso verdadero.
+    this.inverse = function(real, imag){
+      this.forward(imag,real);
+    }
   }
 }
