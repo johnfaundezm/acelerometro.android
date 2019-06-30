@@ -13,7 +13,7 @@ export class EstadisticasdepPage {
   @ViewChild('aceleracionchart') aceleracionchart;
 
   aceleracionchartvar: any;
-  datos_acelerometro: Array<{x:any, y:any}>=[{x:'', y:''}];
+  datos_acelerometro = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
   }
@@ -40,10 +40,10 @@ export class EstadisticasdepPage {
         let largo=Object.keys(datos).length;
         var x=0;
         for(var i=0;i<largo;i++){
-          x+=0,1;
-          var y= datos[i].ACELERACION;
-          var aux= '{x: '+x+', y: '+y+'},';
-          this.datos_acelerometro.push({"x":x, "y":y});         
+          x+=0.1;
+          var y = datos[i].ACELERACION;
+          var aux = {x: x, y: y};
+          this.datos_acelerometro.push(aux);         
         }
         //alert('oka'+JSON.stringify(resultado));
       },
