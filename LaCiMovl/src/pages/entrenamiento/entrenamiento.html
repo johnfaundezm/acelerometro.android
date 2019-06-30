@@ -48,11 +48,27 @@
       
     
       <!--<button ion-button (click)="giroscopio()" full>click</button>-->
-    
-      <ion-item> 
-        <ion-label>Acceleration X</ion-label>
-        <ion-input type="text" [(ngModel)]="accX"></ion-input>
-      </ion-item>
+      <ion-card>
+        <ion-item> 
+          <ion-label>aceleración </ion-label>
+          <ion-input type="text" [(ngModel)]="acel_x_y_z"></ion-input>
+        </ion-item>
+      </ion-card>
+      
+      <ion-card>
+        <ion-item> 
+          <ion-label>Fuerza </ion-label>
+          <ion-input type="text" [(ngModel)]="fuerza"></ion-input>
+        </ion-item>
+      </ion-card>
+      <ion-card>
+        <ion-item> 
+          <ion-label>Potencia </ion-label>
+          <ion-input type="text" [(ngModel)]="potencia"></ion-input>
+        </ion-item>
+      </ion-card>
+      
+      <!--
       <ion-item> 
         <ion-label>Acceleration Y</ion-label>
         <ion-input type="text" [(ngModel)]="accY"></ion-input>
@@ -61,7 +77,7 @@
         <ion-label>Acceleration Z</ion-label>
         <ion-input type="text" [(ngModel)]="accZ"></ion-input>
       </ion-item>
-      
+      -->
       <!--<button ion-button (click)="nuevoEntrenamiento()" full>inicio</button>
       <button ion-button (click)="detenerAcelerometro()" full>detener</button>-->
 
