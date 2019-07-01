@@ -132,7 +132,7 @@ export class EstadisticasdepPage {
                         pointBorderColor: 'rgba(75,192,192,1)',
                         pointBorderWidth: 1,     
                         pointRadius: 0,
-                        pointHitRadius: 10,
+                        pointHitRadius: 20,
         }
         ]
       },
@@ -194,7 +194,12 @@ export class EstadisticasdepPage {
           display: false
         },
         tooltips: {
-          enabled: true
+          enabled: true,
+          callbacks: {
+            label: function(tooltipItem, data) {
+                return tooltipItem.yLabel;
+            }
+          }
         },
         scales: {
           xAxes: [{
