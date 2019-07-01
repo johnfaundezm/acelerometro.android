@@ -53,7 +53,7 @@ export class EntrenamientoPage {
   alerta_confirmacion(correo) {
     const confirm = this.alertCtrl.create({
       title: 'Confirmacion de solicitud',
-      message: 'Aceptas a '+correo+' como entrenador?',
+      message: 'El entrenador "'+correo+'" te ha enviado una solicitud de entrenamiento',
       buttons: [
         {
           text: 'Cancelar',

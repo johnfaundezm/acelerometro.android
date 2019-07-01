@@ -86,7 +86,7 @@ export class DeportistasentPage {
   alerta_enviar(nombre) {
     this.correo_deportista=nombre;
     const confirm = this.alertCtrl.create({
-      title: 'ENvio de solicitud',
+      title: 'Envio de solicitud',
       message: 'Desea enviar la solicitud a '+nombre+'?',
       buttons: [
         {
