@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
+
+import { InfoentrenamientoPage } from '../infoentrenamiento/infoentrenamiento';
 
 @IonicPage()
 @Component({
@@ -13,6 +15,10 @@ export class DeportistasentPage {
   enlaces_pend: Array<{email:string}>=[{email:''}];
   correo:any;
   correo_deportista:any;
+  respuesta:any;
+  loading:any;
+
+  nombre_entrenamiento:any;
 
   aux: Array<{email_dep:string}>=[{email_dep:''}];
   items:any;
@@ -25,7 +31,7 @@ export class DeportistasentPage {
   formattedDate;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider,
-              public alertCtrl: AlertController) {
+              public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     this.correo = this.navParams.get('correo');
     this.initializeItems();
   }
@@ -49,6 +55,16 @@ export class DeportistasentPage {
     this.consulta_enlace();
     refresher.complete();
   } 
+
+  loadregistrar() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Cargando...',
+      dismissOnPageChange: true
+    });
+  
+    this.loading.present();
+  }
 
   initializeItems() {
     this.items = this.aux;
@@ -179,8 +195,9 @@ export class DeportistasentPage {
         alert(JSON.stringify(err))
       })
   }
+
   metodo(id){
-    alert(id);
+    this.navCtrl.push(InfoentrenamientoPage, {ide:id});
   }
 
 }
