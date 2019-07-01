@@ -153,6 +153,12 @@ export class EstadisticasdepPage {
             display: false,
             type: 'linear',
             position: 'bottom'
+          }],
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString:"m/s^2"
+            }
           }]
         }
       }
@@ -164,14 +170,13 @@ export class EstadisticasdepPage {
       type: 'scatter',
       data: {
         datasets: [{
-          label: 'Acc x',
+          label: 'Modulo',
           data: this.datos_acelerometro,
-
           showLine: true,
           borderWidth: 2,
-          borderColor: 'rgba(24, 24, 185, 1)',
+          borderColor: 'rgba(3, 103, 3, 1)',
           fill: false,
-                        backgroundColor: 'rgba(24, 24, 185, 1)',
+                        backgroundColor: 'rgba(3, 103, 3, 1)',
                         pointBorderColor: 'rgba(75,192,192,1)',
                         pointBorderWidth: 1,     
                         pointRadius: 0,
@@ -186,7 +191,7 @@ export class EstadisticasdepPage {
           labels:{
             boxWidth: 15
           },
-          display: true
+          display: false
         },
         tooltips: {
           enabled: true
@@ -196,6 +201,12 @@ export class EstadisticasdepPage {
             display: false,
             type: 'linear',
             position: 'bottom'
+          }],
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString:"m/s^2"
+            }
           }]
         }
       }
