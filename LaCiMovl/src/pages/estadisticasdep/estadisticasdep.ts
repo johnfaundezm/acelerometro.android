@@ -147,7 +147,12 @@ export class EstadisticasdepPage {
           display: true
         },
         tooltips: {
-          enabled: true
+          enabled: true,
+          callbacks: {
+            label: function(tooltipItem, data) {
+                return tooltipItem.yLabel;
+            }
+          }
         },
         scales: {
           xAxes: [{
@@ -171,13 +176,39 @@ export class EstadisticasdepPage {
       type: 'scatter',
       data: {
         datasets: [{
-          label: 'Modulo',
+          label: 'Acel',
           data: this.datos_acelerometro,
           showLine: true,
           borderWidth: 2,
           borderColor: 'rgba(3, 103, 3, 1)',
           fill: false,
                         backgroundColor: 'rgba(3, 103, 3, 1)',
+                        pointBorderColor: 'rgba(75,192,192,1)',
+                        pointBorderWidth: 1,     
+                        pointRadius: 0,
+                        pointHitRadius: 10,
+        },
+        {
+          label: 'Fuerza',
+          data: this.datos_acelerometro,
+          showLine: true,
+          borderWidth: 2,
+          borderColor: 'rgba(4, 106, 118, 1)',
+          fill: false,
+                        backgroundColor: 'rgba(4, 106, 118, 1)',
+                        pointBorderColor: 'rgba(75,192,192,1)',
+                        pointBorderWidth: 1,     
+                        pointRadius: 0,
+                        pointHitRadius: 10,
+        },
+        {
+          label: 'Potencia',
+          data: this.datos_acelerometro,
+          showLine: true,
+          borderWidth: 2,
+          borderColor: 'rgba(109, 2, 86, 1)',
+          fill: false,
+                        backgroundColor: 'rgba(109, 2, 86, 1)',
                         pointBorderColor: 'rgba(75,192,192,1)',
                         pointBorderWidth: 1,     
                         pointRadius: 0,
