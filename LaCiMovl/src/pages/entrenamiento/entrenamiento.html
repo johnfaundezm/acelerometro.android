@@ -20,10 +20,16 @@
         <ion-card-header class="title_card">Entrenadores enlazados</ion-card-header>
         <ion-scroll scrollY="true">
           <ion-list inset >
-            <ion-item *ngFor="let item_s of enlaces_pend" class="formato_item" >
-              <h2>{{item_s.email}}</h2>
-              <p style="text-align: center">{{item_s.ide}} {{item_s.fecha}}</p>
-            </ion-item>
+            <ion-item-sliding *ngFor="let e of enlaces">
+                <ion-item   class="formato_item">
+                  <h2>{{e.email}}</h2>
+                  <p style="text-align: center">{{e.ide}}  {{e.fecha}}</p>
+                </ion-item>
+                <ion-item-options side="right">
+                    <button ion-button (click)="metodo(e.ide)"><ion-icon  name="clipboard" style="width: 30px; height: 30px"></ion-icon></button>
+                    <button ion-button color="secondary"><ion-icon name="stats" style="width: 30px; height: 30px"></ion-icon></button>
+                </ion-item-options>
+            </ion-item-sliding>
           </ion-list>
         </ion-scroll>
       </ion-card>
