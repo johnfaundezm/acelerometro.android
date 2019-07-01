@@ -622,7 +622,7 @@ export class WebservicesProvider {
       //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
       let body = 'id_solicitud_entrenamiento='+id_solicitud_entrenamiento +'&tiempo_ent='+tiempo_ent+'&tiempo_rec='+tiempo_rec +'&fecha='+fecha+'&tipo_entrenamiento='+tipo_entrenamiento;
       //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
-      let url = "http://192.81.216.141/webservices/insert_solicitud.php";
+      let url = "http://192.81.216.141/webservices/insert_entrenamiento.php";
 
       this.http.post(url, body, options)// se envia la url el body y el options por medio de un post al servidor
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
