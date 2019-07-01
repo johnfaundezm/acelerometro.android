@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the CronometroPage page.
+ * Generated class for the InfoentrenamientoPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,10 +10,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-cronometro',
-  templateUrl: 'cronometro.html',
+  selector: 'page-infoentrenamiento',
+  templateUrl: 'infoentrenamiento.html',
 })
-export class CronometroPage {
+export class InfoentrenamientoPage {
 
   public tipo_entrenamiento: String;
   public tiempo_entrenamiento: number;
@@ -22,18 +22,15 @@ export class CronometroPage {
   public tiempo_recuperacion :number;
   public unidad_recuperacion : number;
 
-  public aceleracion : number;
-  public potencia: number;
-  public fuerza: number;
-
-
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CronometroPage');
+    console.log('ionViewDidLoad InfoentrenamientoPage');
   }
 
+
+  //__Metodos_____
   segEntrenamiento(){
     alert('Ha definido su tiempo de entrenamiento en segundos');
     this.tiempo_entrenamiento=this.unidad_entrenamiento;
@@ -68,6 +65,4 @@ export class CronometroPage {
     
     alert('Se envió mensaje de finalización de entrenamiento');
   }
-
 }
-  

@@ -17,6 +17,22 @@
   <button ion-button (click)="minEntrenamiento()" full>minutos</button>
   <button ion-button (click)="segEntrenamiento()" full>segundos</button>
 
+  <ion-item> 
+    <ion-label>Tiempo de recuperación</ion-label>
+    <ion-input type="number" [(ngModel)]="unidad_recuperacion"></ion-input>
+  </ion-item>
+  <button ion-button (click)="minRecuperacion()" full>minutos</button>
+  <button ion-button (click)="segRecuperacion()" full>segundos</button>
+
+  <ion-card class="border_card">
+    <ion-card-header class="title_card">
+      Datos de Entrenamiento
+    </ion-card-header>
+      <h2 type="text">  Tipo de entrenamiento: {{tipo_entrenamiento}}</h2>
+      <h2 type="number">  Tiempo de entrenamiento(segundos): {{tiempo_entrenamiento}}</h2>
+      <h2 type="number">  Tiempo de recuperación: {{tiempo_recuperacion}}</h2>
+      <br>
+  </ion-card>
   <!--
     <ion-label class="crono">
         <ion-icon name="alarm" class="icon_crono"></ion-icon>
