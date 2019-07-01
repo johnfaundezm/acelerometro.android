@@ -32,6 +32,10 @@ export class EntrenamientoPage {
   public tiempo : number = 0; //tiempo transcurrido del entrenamiento
   public tiempo_entrenamiento: number; //duración del entrenamiento
   public unidad_entrenamiento: number;
+  public tiempo_recuperacion :number;
+  public unidad_recuperacion : number;
+
+
   public inicioseg : number=0; //cronometro de inicio de entrenamiento
   public contador_entrenamiento : any; // variable de intervalo de entrenamiento
   public potencia : any;  //potencia del usuario durante el entrenamiento
@@ -63,6 +67,7 @@ export class EntrenamientoPage {
 //---Contador
   public coleccion : Array<any> = [];
   public contador : any; //variable de intervalo para cronometro
+  public contador_recuperacion : any; // variable recuperacion
 //-----------------------------------
   
   //Gyroscopio y Acelerometro
@@ -210,6 +215,7 @@ export class EntrenamientoPage {
         }
         if(this.tiempo>this.tiempo_entrenamiento-1){ // se compara si el tiempo de entrenamiento es igual al tiempo asignado como tiempo de entrenamiento para finalizar el entrenamiento
           this.finalizar(); // se finaliza el entrenamiento
+          this.recuperacion();
         }
       },1000); // timer de control de entrenamiento en 1000 milisegundos= 1 segundo
     }
@@ -224,6 +230,15 @@ export class EntrenamientoPage {
     this.tiempo_entrenamiento= this.unidad_entrenamiento*60;
     alert('Ha definido su tiempo de entrenamiento en minutos');
   }
+  segRecuperacion(){
+    alert('Ha definido su tiempo de recuperación en segundos');
+    this.tiempo_recuperacion=this.unidad_recuperacion;
+  }
+  minRecuperacion(){
+    this.tiempo_recuperacion= this.unidad_recuperacion*60;
+    alert('Ha definido su tiempo de recuperación en minutos');
+  }
+
   inicio(){
 
     if(this.contador ==undefined){ // se analiza si el contador fue definido o aun no
@@ -306,7 +321,48 @@ export class EntrenamientoPage {
     // se redefine el timepo de entrenamiento como 0
     this.tiempo=0;
   }
-
+  recuperacion(){
+     // se analiza si el contador fue definido o aun no
+      alert("Comienza el tiempo de recuperación")
+      this.contador_recuperacion = setInterval (()=>{ // se inicia el cronometro junto con el entrenamiento
+        this.cen1+=1;
+        if (this.cen1 == 10){
+          this.cen1 = 0;
+          this.cen2 += 1;
+          if  (this.cen2 == 10){
+            this.cen2 = 0;
+            this.seg1 +=1;
+            this.tiempo+=1; // se sincroniza el cronometro de segundos transcurridos de entrenamiento con el cronometro visual  de centesimas de segundo
+            if(this.tiempo ==this.tiempo_recuperacion-1){
+                this.finalizar_recuperacion();
+            }
+            if (this.seg1 ==10) {
+                this.seg1 = 0;
+                this.seg2 += 1;
+                if  (this.seg2 == 6){
+                  this.seg2 = 0;
+                  this.min1 +=1;
+                }
+            }
+          }
+        }
+      },10); // se define el cronometro visual en intervalo de centesimas de segundo
+      
+  }
+  finalizar_recuperacion(){
+     // se restaura el cronometro como 0
+    this.min2 = 0; 
+    this.min1 = 0; 
+    this.seg2 = 0;
+    this.seg1 = 0;
+    this.cen2 = 0;
+    this.cen1 = 0;
+    // se limpian los intervalos de los contadores y se dejan como nulos
+    clearInterval(this.contador_recuperacion);
+    this.contador_recuperacion = null;
+    // se redefine el timepo de entrenamiento como 0
+    this.tiempo=0;
+  }
   lapso(){
     //se define un objeto para almacenar distintas marcas de tiempo durante el entrenamiento 
     let obj:any = {};
