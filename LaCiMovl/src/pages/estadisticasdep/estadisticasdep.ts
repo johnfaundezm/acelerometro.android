@@ -261,8 +261,7 @@ export class EstadisticasdepPage {
           }],
           yAxes: [{
             scaleLabel: {
-              display: true,
-              labelString:"m/s^2"
+              display: true
             }
           }]
         }
