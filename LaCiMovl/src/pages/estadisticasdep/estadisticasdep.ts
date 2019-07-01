@@ -58,6 +58,9 @@ export class EstadisticasdepPage {
     for(var i=0;i<this.datos_acelerometroZ.length;i++){
       this.datos_acelerometroZ.pop();
     }
+    for(var i=0;i<this.datos_acelerometro.length;i++){
+      this.datos_acelerometro.pop();
+    }
     this.webservices.consulta_acelerometro_datos().then(
       (datos) =>{
         let largo=Object.keys(datos).length;
@@ -78,6 +81,7 @@ export class EstadisticasdepPage {
           this.datos_acelerometro.push(aux);
         }
         this.acelerachart();
+        this.aceleraxyzchart();
         //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
