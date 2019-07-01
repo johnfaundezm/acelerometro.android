@@ -19,6 +19,8 @@ export class EntrenamientoPage {
   datos_acc: Array<{varx:string, vary:string, varz:string}>=[{varx:'', vary:'', varz:''}];
   enlaces: Array<{ide:string, email:string, fecha:string}>=[{ide:'', email:'', fecha:''}];
   enlaces_pend: Array<{email:string}>=[{email:''}];
+
+  aux: Array<{email_ent:string}>=[{email_ent:''}];
   
   correo:any;
   peso:any;
@@ -95,7 +97,8 @@ export class EntrenamientoPage {
               public loadingCtrl: LoadingController,private nativeAudio: NativeAudio, public alertCtrl: AlertController) {
     
     this.correo = this.navParams.get('correo'); //Se recibe el correo del deportista
-    this.consulta_peso(); //Se inicializa la consulta del peso     
+    this.consulta_peso(); //Se inicializa la consulta del peso  
+    this.consulta_deportistas();//Se inicializa la consulta del los deportistas  
     this.consulta_solicitud_pend(); //Se inicializa la consulta de las solicitudes pendientes
     this.consulta_enlace(); //Se inicializa la consulta de los enlaces
 
@@ -164,6 +167,15 @@ export class EntrenamientoPage {
   ionViewCanEnter() {
     while(this.datos_acc.length>0){
       this.datos_acc.pop();
+    }
+    while(this.enlaces.length>0){
+      this.enlaces.pop();
+    }
+    while(this.enlaces_pend.length>0){
+      this.enlaces_pend.pop();
+    }
+    while(this.aux.length>0){
+      this.aux.pop();
     }
   }
 // Funcion Entrenamiento
@@ -295,6 +307,21 @@ export class EntrenamientoPage {
       (datos)=>{
         //alert(JSON.stringify(datos));
         this.peso= datos[0].PESO; //se recibe del peso del correo solicitado
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
+  }
+
+  consulta_deportistas(){
+    this.webservices.vista_entrenador().then(
+      (datos)=>{
+        //alert(JSON.stringify(datos));
+        let largo=Object.keys(datos).length;
+        for(var i=0;i<largo;i++){
+          var email_ent= datos[i].CORREO;          
+          this.aux.push({"email_ent":email_ent});
+        }
       },
       (err)=>{
         alert(JSON.stringify(err))
