@@ -347,7 +347,7 @@ export class EntrenamientoPage {
     //this.playAudioi();
     try{
       var option : DeviceMotionAccelerometerOptions ={ // se configura el acelerometro con una frecuencia de 100
-        frequency : 100
+        frequency : 1000
       };
     
       this.id = this.deviceMotion.watchAcceleration(option).subscribe((acc:DeviceMotionAccelerationData) =>{ // se inicia variable receptora de informacion de acelerometro "id" y se define objeto acc al cual se le entregan los parametros de aceleracion
