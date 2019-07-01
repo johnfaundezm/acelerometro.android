@@ -20,6 +20,8 @@ export class EstadisticasdepPage {
   datos_acelerometroY = [];
   datos_acelerometroZ = [];
   datos_acelerometro = [];
+  datos_acelerometroF = [];
+  datos_acelerometroP = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
   }
@@ -42,6 +44,12 @@ export class EstadisticasdepPage {
     while(this.datos_acelerometro.length>0){
       this.datos_acelerometro.pop();
     }
+    while(this.datos_acelerometroF.length>0){
+      this.datos_acelerometroF.pop();
+    }
+    while(this.datos_acelerometroP.length>0){
+      this.datos_acelerometroP.pop();
+    }
   }
 
   ionViewCanEnter(){
@@ -61,6 +69,12 @@ export class EstadisticasdepPage {
     for(var i=0;i<this.datos_acelerometro.length;i++){
       this.datos_acelerometro.pop();
     }
+    for(var i=0;i<this.datos_acelerometroF.length;i++){
+      this.datos_acelerometroF.pop();
+    }
+    for(var i=0;i<this.datos_acelerometroP.length;i++){
+      this.datos_acelerometroP.pop();
+    }
     this.webservices.consulta_acelerometro_datos().then(
       (datos) =>{
         let largo=Object.keys(datos).length;
@@ -72,14 +86,20 @@ export class EstadisticasdepPage {
           var yY = datos[i].ACELERACIONY;
           var yZ = datos[i].ACELERACIONZ;
           var y = datos[i].ACELERACION;
+          var yF =datos[i].FUERZA;
+          var yP =datos[i].POTENCIA;
           var auxX = {x: x, y: yX};
           var auxY = {x: x, y: yY};
           var auxZ = {x: x, y: yZ};
           var aux = {x: x, y: y};
+          var auxF = {x: x, y: yF};
+          var auxP = {x: x, y: yP};
           this.datos_acelerometroX.push(auxX);
           this.datos_acelerometroY.push(auxY);
           this.datos_acelerometroZ.push(auxZ);
           this.datos_acelerometro.push(aux);
+          this.datos_acelerometroF.push(auxF);
+          this.datos_acelerometroP.push(auxP);
         }
         this.acelerachart();
         this.aceleraxyzchart();
