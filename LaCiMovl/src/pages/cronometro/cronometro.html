@@ -1,5 +1,23 @@
 <ion-content class ="grad" padding>
+  
+  <ion-card class="border_card">
+    <ion-card-header class="title_card">
+      Entrenamiento
+    </ion-card-header>
+  </ion-card>
+  <!--Entrenamiento-->
+  <ion-item> 
+    <ion-label>Tipo de entrenamiento</ion-label>
+    <ion-input type="text" [(ngModel)]="tipo_entrenamiento"></ion-input>
+  </ion-item>
+  <ion-item> 
+    <ion-label>Tiempo de entrenamiento</ion-label>
+    <ion-input type="number" [(ngModel)]="unidad_entrenamiento"></ion-input>
+  </ion-item>
+  <button ion-button (click)="minEntrenamiento()" full>minutos</button>
+  <button ion-button (click)="segEntrenamiento()" full>segundos</button>
 
+  <!--
     <ion-label class="crono">
         <ion-icon name="alarm" class="icon_crono"></ion-icon>
         {{min2}}{{min1}} : {{seg2}}{{seg1}} : {{cen2}}{{cen1}}
@@ -17,42 +35,10 @@
     <button ion-button class="btn_entre" outline color="light" (click)="finalizar()">
       <ion-icon name="close"></ion-icon>
     </button>
-
-    <ion-item> 
-      <ion-label>X orientation</ion-label>
-      <ion-input type="text" [(ngModel)]="xOrient"></ion-input>
-    </ion-item>
-    <ion-item> 
-      <ion-label>Y orientation</ion-label>
-      <ion-input type="text" [(ngModel)]="yOrient"></ion-input>
-    </ion-item>
-    <ion-item> 
-        <ion-label>Z orientation</ion-label>
-        <ion-input type="text" [(ngModel)]="zOrient"></ion-input>
-    </ion-item>
-    <ion-item> 
-        <ion-label>Time Stamp</ion-label>
-        <ion-input type="text" [(ngModel)]="timestampd"></ion-input>
-    </ion-item>
-    
-    <button ion-button (click)="giroscopio()" full>click</button>
-    
-    <ion-item> 
-      <ion-label>Acceleration X</ion-label>
-      <ion-input type="text" [(ngModel)]="accX"></ion-input>
-    </ion-item>
-    <ion-item> 
-      <ion-label>Acceleration Y</ion-label>
-      <ion-input type="text" [(ngModel)]="accY"></ion-input>
-    </ion-item>
-    <ion-item> 
-      <ion-label>Acceleration Z</ion-label>
-      <ion-input type="text" [(ngModel)]="accZ"></ion-input>
-    </ion-item>
-      
-    <button ion-button (click)="nuevoEntrenamiento()" full>inicio</button>
-    <button ion-button (click)="detenerAcelerometro()" full>detener</button>
-
+  -->
+      <br>
+    <button ion-button (click)="enviar_entrenamiento()" full>Enviar Entrenamiento</button>
+  <!--  
     <ion-card style="height: 300px">
       <ion-scroll scrollY="true">
         <ion-list inset *ngFor="let a of datos_acc" >
@@ -81,5 +67,5 @@
         </ion-item>
       </ion-list>
     </ion-card>
-
+  -->
 </ion-content>

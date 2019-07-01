@@ -15,6 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CronometroPage {
 
+  public tipo_entrenamiento: String;
+  public tiempo_entrenamiento: number;
+  public unidad_entrenamiento: number;
+
+  public aceleracion : number;
+  public potencia: number;
+  public fuerza: number;
+
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -22,4 +31,32 @@ export class CronometroPage {
     console.log('ionViewDidLoad CronometroPage');
   }
 
+  segEntrenamiento(){
+    alert('Ha definido su tiempo de entrenamiento en segundos');
+    this.tiempo_entrenamiento=this.unidad_entrenamiento;
+  }
+  minEntrenamiento(){
+    this.tiempo_entrenamiento= this.unidad_entrenamiento*60;
+    alert('Ha definido su tiempo de entrenamiento en minutos');
+  }
+  enviar_entrenamiento(){
+    
+    alert('Se envió un nuevo entrenamiento');
+  }
+  
+  pausa_entrenamiento(){
+    
+    alert('Se envió mensaje de pausa de entremiento');
+  }
+
+  continuar_entrenamiento(){
+    
+    alert('Se envió mensaje para continuar entrenamiento');
+  }
+  finalizar_entrenamiento(){
+    
+    alert('Se envió mensaje de finalización de entrenamiento');
+  }
+
 }
+  
