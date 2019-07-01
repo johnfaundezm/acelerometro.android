@@ -153,6 +153,12 @@ export class EstadisticasdepPage {
             display: false,
             type: 'linear',
             position: 'bottom'
+          }],
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString:"m/s^2"
+            }
           }]
         }
       }
@@ -195,6 +201,12 @@ export class EstadisticasdepPage {
             display: false,
             type: 'linear',
             position: 'bottom'
+          }],
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString:"m/s^2"
+            }
           }]
         }
       }
