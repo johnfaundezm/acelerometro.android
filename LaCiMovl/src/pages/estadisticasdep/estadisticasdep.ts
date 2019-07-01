@@ -135,8 +135,9 @@ export class EstadisticasdepPage {
         },
         scales: {
           xAxes: [{
-              type: 'linear',
-              position: 'bottom'
+            display: false,
+            type: 'linear',
+            position: 'bottom'
           }]
         }
       }
