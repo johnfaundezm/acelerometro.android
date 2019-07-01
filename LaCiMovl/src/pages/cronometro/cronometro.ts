@@ -9,13 +9,6 @@ import { NativeAudio } from '@ionic-native/native-audio';
 import  'rxjs/add/observable/interval' 
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 
-/**
- * Generated class for the CronometroPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-cronometro',
@@ -33,6 +26,8 @@ export class CronometroPage {
   peso:any;// variable que almacena el peso del usuario deportista
   loading:any;// variable que almacena el estado de el loading
   items:any;// variable para usarlo en el filtro
+
+  cambio: boolean =true;
 
   //Funcion de entrenamiento
   public tipo_entrenamiento : String;
@@ -304,6 +299,8 @@ export class CronometroPage {
     this.contador_entrenamiento = null;
     // se redefine el timepo de entrenamiento como 0
     this.tiempo=0;
+    
+    this.cambio= true;
   }
 
   lapso(){
@@ -560,6 +557,14 @@ export class CronometroPage {
     }, function(err) {
         console.log("error playing audio: " + err);// se le indica a la consola que muestre un error si existe algun tipo de problema.
     });
+  }
+
+  cambiaricon(){
+    if(this.cambio == true){
+      this.cambio = false;
+    }else{
+      this.cambio = true;
+    }
   }
 }
   
