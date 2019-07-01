@@ -31,13 +31,20 @@
     
         <ion-scroll scrollY="true">
           <ion-list inset >
-            <ion-item *ngFor="let e of enlaces"  class="formato_item">
-              <ion-thumbnail item-start>
-                <img  src="assets/imgs/logofinal.png">
-              </ion-thumbnail>
-              <h2 (click)="metodo(e.ide)">{{e.email}}</h2>
-              <p style="text-align: center">id:{{e.ide}} • {{e.fecha}}</p>
-            </ion-item>
+            <ion-item-sliding *ngFor="let e of enlaces">
+                <ion-item   class="formato_item">
+                  <ion-thumbnail item-start>
+                    <img  src="assets/imgs/logofinal.png">
+                  </ion-thumbnail>
+                  <h2 (click)="metodo(e.ide)">{{e.email}}</h2>
+                  <p style="text-align: center">id:{{e.ide}} • {{e.fecha}}</p>
+                </ion-item>
+                <ion-item-options side="right">
+                    <button ion-button ><ion-icon name="create" style="width: 30px; height: 30px"></ion-icon></button>
+                    <button ion-button color="secondary"><ion-icon name="stats" style="width: 30px; height: 30px"></ion-icon></button>
+                </ion-item-options>
+            </ion-item-sliding>
+            
           </ion-list>
         </ion-scroll>
       </ion-card>
