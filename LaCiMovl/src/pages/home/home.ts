@@ -29,11 +29,11 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, private sqlite: SQLite, private webservices: WebservicesProvider, public menuCtrl: MenuController, public loadingCtrl: LoadingController,public toastCtrl: ToastController) {
   }
-
+/*
   ionViewCanEnter() {
     this.menuCtrl.enable(false, 'Menu');
   }
-
+*/
   /*
   ionViewDidEnter(){
     this.cantidad_pila_nav()

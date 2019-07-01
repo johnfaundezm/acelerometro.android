@@ -1,18 +1,21 @@
 <ion-content class ="grad" padding>
   
-    <ion-label class="crono">
-        <ion-icon name="alarm" class="icon_crono"></ion-icon>
-        {{min2}}{{min1}} : {{seg2}}{{seg1}} : {{cen2}}{{cen1}}
-    </ion-label>
+  <div style="margin-top: 25%">
+    <ion-label icon-only class="crono">
+      <ion-icon name="alarm" class="icon_crono"></ion-icon>
+      {{min2}}{{min1}} : {{seg2}}{{seg1}} : {{cen2}}{{cen1}}
+    </ion-label>  
+  </div>
     
-    <div style="text-align: center">
+    
+    <div style="text-align: center; margin-top: 10%">
       <button ion-button icon-only class="btn_entre" outline color="light" (click)="nuevoEntrenamiento(); cambiaricon()" *ngIf="cambio">
         <ion-icon name="play"></ion-icon>
       </button>
       <button ion-button class="btn_entre" outline color="light" (click)="pausa(); cambiaricon()" *ngIf="!cambio">
         <ion-icon name="pause"></ion-icon>
       </button>
-      <button ion-button class="btn_entre" outline color="light" (click)="finalizar()">
+      <button ion-button class="btn_fin" outline color="light" (click)="finalizar()">
         <ion-icon name="close"></ion-icon>
       </button>
     </div>
