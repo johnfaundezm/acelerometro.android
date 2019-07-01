@@ -16,6 +16,7 @@ export class EstadisticasdepPage {
   datos_acelerometroX = [];
   datos_acelerometroY = [];
   datos_acelerometroZ = [];
+  datos_acelerometro = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
   }
@@ -33,6 +34,9 @@ export class EstadisticasdepPage {
     }
     while(this.datos_acelerometroZ.length>0){
       this.datos_acelerometroZ.pop();
+    }
+    while(this.datos_acelerometro.length>0){
+      this.datos_acelerometro.pop();
     }
   }
 
@@ -59,12 +63,15 @@ export class EstadisticasdepPage {
           var yX = datos[i].ACELERACIONX;
           var yY = datos[i].ACELERACIONY;
           var yZ = datos[i].ACELERACIONZ;
+          var y = datos[i].ACELERACION;
           var auxX = {x: x, y: yX};
           var auxY = {x: x, y: yY};
           var auxZ = {x: x, y: yZ};
+          var aux = {x: x, y: y};
           this.datos_acelerometroX.push(auxX);
           this.datos_acelerometroY.push(auxY);
-          this.datos_acelerometroZ.push(auxZ);        
+          this.datos_acelerometroZ.push(auxZ);
+          this.datos_acelerometro.push(aux);
         }
         this.acelerachart();
         //alert('oka'+JSON.stringify(resultado));
