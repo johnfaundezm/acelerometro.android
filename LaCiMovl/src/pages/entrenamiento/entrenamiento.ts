@@ -16,15 +16,17 @@ import { WebservicesProvider } from '../../providers/webservices/webservices';
 })
 export class EntrenamientoPage {
 
-  datos_acc: Array<{varx:string, vary:string, varz:string}>=[{varx:'', vary:'', varz:''}];
-  enlaces: Array<{ide:string, email:string, fecha:string}>=[{ide:'', email:'', fecha:''}];
-  enlaces_pend: Array<{email:string}>=[{email:''}];
+  datos_acc: Array<{varx:string, vary:string, varz:string}>=[{varx:'', vary:'', varz:''}]; // datos del acelerometro
+  enlaces: Array<{ide:string, email:string, fecha:string}>=[{ide:'', email:'', fecha:''}]; //arreglo que almacena los enlaces entre deportista y entrenador
+  enlaces_pend: Array<{email:string}>=[{email:''}]; //arreglo que almacena las solicitudes pendientes
 
-  aux: Array<{email_ent:string}>=[{email_ent:''}];
+  aux: Array<{email_ent:string}>=[{email_ent:''}]; //arreglo que almacena todos los deportistas
   
-  correo:any;
-  peso:any;
-  loading:any;
+  correo:any; // correo del desportista
+  peso:any;// variable que almacena el peso del usuario deportista
+  loading:any;// variable que almacena el estado de el loading
+  items:any;// variable para usarlo en el filtro
+
   //Funcion de entrenamiento
   public tipo_entrenamiento : String;
   public tiempo : number = 0; //tiempo transcurrido del entrenamiento
@@ -166,16 +168,33 @@ export class EntrenamientoPage {
 
   ionViewCanEnter() {
     while(this.datos_acc.length>0){
-      this.datos_acc.pop();
+      this.datos_acc.pop();// borra el ultimo dato que siempre esta vacio del arreglo
     }
     while(this.enlaces.length>0){
-      this.enlaces.pop();
+      this.enlaces.pop();// borra el ultimo dato que siempre esta vacio del arreglo
     }
     while(this.enlaces_pend.length>0){
-      this.enlaces_pend.pop();
+      this.enlaces_pend.pop();// borra el ultimo dato que siempre esta vacio del arreglo
     }
     while(this.aux.length>0){
-      this.aux.pop();
+      this.aux.pop();// borra el ultimo dato que siempre esta vacio del arreglo
+    }
+  }
+
+  initializeItems() {
+    this.items = this.aux; // se inicializa el arreglo(traspasando los datos de un arreglo que tiene los datos necesarios)
+  }
+
+  getItems(ev: any) {// ese es el metodo que realiza el filtro por palabra
+    
+    this.initializeItems();// se llama al metodo q inicializa el vector
+
+    const val = ev.target.value;
+
+    if (val && val.trim() != '') {
+      this.items = this.items.filter((item) => {
+        return (item.email_dep.toLowerCase().indexOf(val.toLowerCase()) > -1);// retorna la palabra filtrada
+      })
     }
   }
 // Funcion Entrenamiento
@@ -313,13 +332,13 @@ export class EntrenamientoPage {
       })
   }
 
-  consulta_deportistas(){
+  consulta_deportistas(){// se consultan todos los deportistas disponibles para enviar solicitud
     this.webservices.vista_entrenador().then(
       (datos)=>{
         //alert(JSON.stringify(datos));
         let largo=Object.keys(datos).length;
         for(var i=0;i<largo;i++){
-          var email_ent= datos[i].CORREO;          
+          var email_ent= datos[i].CORREO; // se recibe el correo de los deportistas      
           this.aux.push({"email_ent":email_ent});
         }
       },
