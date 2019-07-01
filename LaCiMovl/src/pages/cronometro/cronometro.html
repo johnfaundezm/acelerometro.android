@@ -8,7 +8,7 @@
   </div>
     
     
-    <div style="text-align: center; margin-top: 10%">
+    <div style="text-align: center; margin-top: 15%">
       <button ion-button icon-only class="btn_entre" outline color="light" (click)="nuevoEntrenamiento(); cambiaricon()" *ngIf="cambio">
         <ion-icon name="play"></ion-icon>
       </button>
@@ -18,6 +18,22 @@
       <button ion-button class="btn_fin" outline color="light" (click)="finalizar()">
         <ion-icon name="close"></ion-icon>
       </button>
+    </div>
+
+    <div style="margin-top: 25%">
+      <ion-item no-lines style="background-color: transparent">
+        <ion-label class="AFP_max">0</ion-label>
+        <ion-label class="AFP_max">0</ion-label>
+        <ion-label class="AFP_max">0</ion-label>
+      </ion-item>
+    </div>
+
+    <div>
+      <ion-item no-lines style="background-color: transparent">
+        <ion-label class="label_acel">acel. max.</ion-label>
+        <ion-label class="label_acel">Fuerza max.</ion-label>
+        <ion-label class="label_potencia">Potencia max.</ion-label>
+      </ion-item>
     </div>
 
 </ion-content>

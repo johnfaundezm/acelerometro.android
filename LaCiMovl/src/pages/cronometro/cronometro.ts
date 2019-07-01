@@ -27,7 +27,7 @@ export class CronometroPage {
   loading:any;// variable que almacena el estado de el loading
   items:any;// variable para usarlo en el filtro
 
-  cambio: boolean =true;
+  cambio: boolean =true; //variable para el cambio de pausar y continuar
 
   //Funcion de entrenamiento
   public tipo_entrenamiento : String;
