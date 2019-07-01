@@ -347,7 +347,7 @@ export class EntrenamientoPage {
     //this.playAudioi();
     try{
       var option : DeviceMotionAccelerometerOptions ={ // se configura el acelerometro con una frecuencia de 100
-        frequency : 1000
+        frequency : 100
       };
     
       this.id = this.deviceMotion.watchAcceleration(option).subscribe((acc:DeviceMotionAccelerationData) =>{ // se inicia variable receptora de informacion de acelerometro "id" y se define objeto acc al cual se le entregan los parametros de aceleracion
@@ -364,7 +364,7 @@ export class EntrenamientoPage {
 
         this.potencia = this.fuerza * this.acel_x_y_z; //potencia resultante
 
-        this.webservices.acelerometro_datos(this.accX, this.accY, this.accZ, this.acel_x_y_z,0,this.potencia).then( // se envian los datos al servidor web
+        this.webservices.acelerometro_datos(this.accX, this.accY, this.accZ, this.acel_x_y_z,this.fuerza,this.potencia).then( // se envian los datos al servidor web
           (resultado) =>{
             //alert('oka'+JSON.stringify(resultado));
           },
