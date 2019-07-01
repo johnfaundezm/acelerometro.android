@@ -15,8 +15,19 @@
 
   <div [ngSwitch]="actividades">
     <div *ngSwitchCase="'ejercicio'">
-      
-      
+
+      <ion-card class="border_card_solicitudes_pen">
+        <ion-card-header class="title_card">Entrenadores enlazados</ion-card-header>
+        <ion-scroll scrollY="true">
+          <ion-list inset >
+            <ion-item *ngFor="let item_s of enlaces_pend" class="formato_item" >
+              <h2>{{item_s.email}}</h2>
+              <p style="text-align: center">{{item_s.ide}} {{item_s.fecha}}</p>
+            </ion-item>
+          </ion-list>
+        </ion-scroll>
+      </ion-card>
+
     </div>
   
     <div *ngSwitchCase="'solicitud'">

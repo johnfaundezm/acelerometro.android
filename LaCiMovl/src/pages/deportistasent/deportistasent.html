@@ -33,11 +33,8 @@
           <ion-list inset >
             <ion-item-sliding *ngFor="let e of enlaces">
                 <ion-item   class="formato_item">
-                  <ion-thumbnail item-start>
-                    <img  src="assets/imgs/logofinal.png">
-                  </ion-thumbnail>
                   <h2>{{e.email}}</h2>
-                  <p style="text-align: center">id:{{e.ide}} • {{e.fecha}}</p>
+                  <p style="text-align: center">{{e.ide}}  {{e.fecha}}</p>
                 </ion-item>
                 <ion-item-options side="right">
                     <button ion-button (click)="metodo(e.ide)"><ion-icon  name="clipboard" style="width: 30px; height: 30px"></ion-icon></button>
