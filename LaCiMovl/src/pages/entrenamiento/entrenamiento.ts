@@ -8,6 +8,7 @@ import { NativeAudio } from '@ionic-native/native-audio';
 //import { Observable } from 'rxjs/Observable'
 import  'rxjs/add/observable/interval' 
 import { WebservicesProvider } from '../../providers/webservices/webservices';
+import { ThrowStmt } from '@angular/compiler';
 
 @IonicPage()
 @Component({
@@ -213,9 +214,9 @@ export class EntrenamientoPage {
           this.playAudiocomienzo(); // se reproduce audio de inicio con voz
           this.inicio(); // se comienza la funcion de entrenamiento 
         }
-        if(this.tiempo>this.tiempo_entrenamiento-1){ // se compara si el tiempo de entrenamiento es igual al tiempo asignado como tiempo de entrenamiento para finalizar el entrenamiento
-          this.finalizar(); // se finaliza el entrenamiento
-          this.recuperacion();
+        if(this.tiempo>this.tiempo_entrenamiento-1  ){ // se compara si el tiempo de entrenamiento es igual al tiempo asignado como tiempo de entrenamiento para finalizar el entrenamiento
+            this.finalizar(); // se finaliza el entrenamiento
+            this.recuperacion();
         }
       },1000); // timer de control de entrenamiento en 1000 milisegundos= 1 segundo
     }
@@ -324,6 +325,7 @@ export class EntrenamientoPage {
   recuperacion(){
      // se analiza si el contador fue definido o aun no
       alert("Comienza el tiempo de recuperación")
+      this.playAudiof();
       this.contador_recuperacion = setInterval (()=>{ // se inicia el cronometro junto con el entrenamiento
         this.cen1+=1;
         if (this.cen1 == 10){
@@ -333,7 +335,7 @@ export class EntrenamientoPage {
             this.cen2 = 0;
             this.seg1 +=1;
             this.tiempo+=1; // se sincroniza el cronometro de segundos transcurridos de entrenamiento con el cronometro visual  de centesimas de segundo
-            if(this.tiempo ==this.tiempo_recuperacion-1){
+            if(this.tiempo ==this.tiempo_recuperacion){
                 this.finalizar_recuperacion();
             }
             if (this.seg1 ==10) {
@@ -350,6 +352,7 @@ export class EntrenamientoPage {
       
   }
   finalizar_recuperacion(){
+    this.playAudiof();
      // se restaura el cronometro como 0
     this.min2 = 0; 
     this.min1 = 0; 
