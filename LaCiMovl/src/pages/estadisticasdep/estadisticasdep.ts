@@ -64,6 +64,7 @@ export class EstadisticasdepPage {
     this.webservices.consulta_acelerometro_datos().then(
       (datos) =>{
         let largo=Object.keys(datos).length;
+        var division=largo/1;
         var x=0;
         for(var i=0;i<largo;i++){
           x+=0.1;
