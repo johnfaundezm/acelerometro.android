@@ -42,6 +42,7 @@ import { AdmininsertentPage } from '../pages/admininsertent/admininsertent';
 import { ChartsModule } from 'ng2-charts-x';
 
 import { CronometroPage } from '../pages/cronometro/cronometro';
+import { InfoentrenamientoPage } from '../pages/infoentrenamiento/infoentrenamiento';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { CronometroPage } from '../pages/cronometro/cronometro';
     AdmintabsPage,
     AdmininsertPage,
     AdmininsertentPage,
-    CronometroPage
+    CronometroPage,
+    InfoentrenamientoPage
   ],
   imports: [
     BrowserAnimationsModule,
@@ -86,7 +88,8 @@ import { CronometroPage } from '../pages/cronometro/cronometro';
     AdmintabsPage,
     AdmininsertPage,
     AdmininsertentPage,
-    CronometroPage
+    CronometroPage,
+    InfoentrenamientoPage
   ],
   providers: [
     StatusBar,
