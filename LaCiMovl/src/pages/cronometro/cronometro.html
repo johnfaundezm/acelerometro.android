@@ -1,10 +1,29 @@
 <ion-content class ="grad" padding>
   
-  <ion-card class="border_card">
-    <ion-card-header class="title_card">
-      Entrenamiento
-    </ion-card-header>
-  </ion-card>
+    <ion-label class="crono">
+        <ion-icon name="alarm" class="icon_crono"></ion-icon>
+        {{min2}}{{min1}} : {{seg2}}{{seg1}} : {{cen2}}{{cen1}}
+    </ion-label>
+    
+    <div style="text-align: center">
+      <button ion-button class="btn_entre" outline color="light" (click)="nuevoEntrenamiento()">
+        <ion-icon name="play"></ion-icon>
+      </button>
+      <button ion-button class="btn_entre" outline color="light" (click)="pausa()">
+        <ion-icon name="pause"></ion-icon>
+      </button>
+      <!--<button ion-button class="btn_entre" outline color="light" (click)="lapso()">
+        <ion-icon name="bookmark"></ion-icon>
+      </button>-->
+      <button ion-button class="btn_entre" outline color="light" (click)="finalizar()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </div>
+  
+      
+  
+  
+    <br>
   <!--Entrenamiento-->
   <ion-item> 
     <ion-label>Tipo de entrenamiento</ion-label>
@@ -65,30 +84,7 @@
   -->
   <!--<button ion-button (click)="nuevoEntrenamiento()" full>inicio</button>
   <button ion-button (click)="detenerAcelerometro()" full>detener</button>-->
-
-  <ion-label>Cronometro</ion-label>
-
-  <ion-label class="crono">
-      <ion-icon name="alarm" class="icon_crono"></ion-icon>
-      {{min2}}{{min1}} : {{seg2}}{{seg1}} : {{cen2}}{{cen1}}
-  </ion-label>
   
-
-    <button ion-button class="btn_entre" outline color="light" (click)="nuevoEntrenamiento()">
-      <ion-icon name="play"></ion-icon>
-    </button>
-    <button ion-button class="btn_entre" outline color="light" (click)="pausa()">
-      <ion-icon name="pause"></ion-icon>
-    </button>
-    <button ion-button class="btn_entre" outline color="light" (click)="lapso()">
-      <ion-icon name="bookmark"></ion-icon>
-    </button> 
-    <button ion-button class="btn_entre" outline color="light" (click)="finalizar()">
-      <ion-icon name="close"></ion-icon>
-    </button>
-
-
-  <br>
 
   <ion-card style="height: 300px">
     <ion-scroll scrollY="true">
@@ -105,7 +101,8 @@
   <button ion-button (click)="consultar_acc()" full>consultar aceleraciones</button>
   <button ion-button (click)="borrar_acc()" full>Borrar aceleraciones</button>
 
-  <ion-item>
+  <!--
+    <ion-item>
     <ion-label>Marca</ion-label>
     <ion-label>{{min2Marca}}{{min1Marca}} : {{seg2Marca}}{{seg1Marca}} : {{cen2Marca}}{{cen1Marca}}</ion-label>
   </ion-item>
@@ -118,6 +115,6 @@
       </ion-item>
     </ion-list>
   </ion-card>
-  
+  -->
 
 </ion-content>
