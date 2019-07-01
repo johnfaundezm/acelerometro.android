@@ -116,7 +116,7 @@ export class EstadisticasdepPage {
       type: 'scatter',
       data: {
         datasets: [{
-          label: 'Acc x',
+          label: 'Acel x',
           data: this.datos_acelerometroX,
 
           showLine: true,
@@ -130,7 +130,7 @@ export class EstadisticasdepPage {
                         pointHitRadius: 10,
         },
         {
-          label: 'Ac Y',
+          label: 'Acel Y',
           data: this.datos_acelerometroY,
           showLine: true,
           borderWidth: 2,
@@ -143,7 +143,7 @@ export class EstadisticasdepPage {
                         pointHitRadius: 10,
         },
         {
-          label: 'Ac Z',
+          label: 'Acel Z',
           data: this.datos_acelerometroZ,
           showLine: true,
           borderWidth: 2,
@@ -196,7 +196,7 @@ export class EstadisticasdepPage {
       type: 'scatter',
       data: {
         datasets: [{
-          label: 'Acel',
+          label: 'Aceleración',
           data: this.datos_acelerometro,
           showLine: true,
           borderWidth: 2,
@@ -210,7 +210,7 @@ export class EstadisticasdepPage {
         },
         {
           label: 'Fuerza',
-          data: this.datos_acelerometro,
+          data: this.datos_acelerometroF,
           showLine: true,
           borderWidth: 2,
           borderColor: 'rgba(4, 106, 118, 1)',
@@ -223,7 +223,7 @@ export class EstadisticasdepPage {
         },
         {
           label: 'Potencia',
-          data: this.datos_acelerometro,
+          data: this.datos_acelerometroP,
           showLine: true,
           borderWidth: 2,
           borderColor: 'rgba(109, 2, 86, 1)',
@@ -243,7 +243,7 @@ export class EstadisticasdepPage {
           labels:{
             boxWidth: 15
           },
-          display: false
+          display: true
         },
         tooltips: {
           enabled: true,
