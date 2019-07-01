@@ -11,8 +11,11 @@ import { WebservicesProvider } from '../../providers/webservices/webservices';
 export class EstadisticasdepPage {
 
   @ViewChild('aceleracionchart') aceleracionchart;
+  @ViewChild('aceleracionxyzchart') aceleracionxyzchart;
 
   aceleracionchartvar: any;
+  aceleracionxyzchartvar: any;
+
   datos_acelerometroX = [];
   datos_acelerometroY = [];
   datos_acelerometroZ = [];
@@ -24,6 +27,7 @@ export class EstadisticasdepPage {
   ionViewDidEnter() {
     setTimeout(() => {
       this.acelerachart();
+      this.aceleraxyzchart();
     }, 150)
 
     while(this.datos_acelerometroX.length>0){
@@ -121,6 +125,49 @@ export class EstadisticasdepPage {
           borderColor: 'rgba(185, 24, 24, 1)',
           fill: false,
                         backgroundColor: 'rgba(185, 24, 24, 1)',
+                        pointBorderColor: 'rgba(75,192,192,1)',
+                        pointBorderWidth: 1,     
+                        pointRadius: 0,
+                        pointHitRadius: 10,
+        }
+        ]
+      },
+
+      options: {
+        legend: {
+          position: 'left',
+          labels:{
+            boxWidth: 15
+          },
+          display: true
+        },
+        tooltips: {
+          enabled: true
+        },
+        scales: {
+          xAxes: [{
+            display: false,
+            type: 'linear',
+            position: 'bottom'
+          }]
+        }
+      }
+    })
+  }
+
+  aceleraxyzchart(){
+    this.aceleracionxyzchartvar = new Chart(this.aceleracionxyzchart.nativeElement, {
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label: 'Acc x',
+          data: this.datos_acelerometro,
+
+          showLine: true,
+          borderWidth: 2,
+          borderColor: 'rgba(24, 24, 185, 1)',
+          fill: false,
+                        backgroundColor: 'rgba(24, 24, 185, 1)',
                         pointBorderColor: 'rgba(75,192,192,1)',
                         pointBorderWidth: 1,     
                         pointRadius: 0,
