@@ -5,19 +5,45 @@
       <ion-card-header class="title_card">
         Tiempo entrenamiento
       </ion-card-header>
-      <ion-item style="background-color: transparent;">
-        <ion-range min="0" max="59" color="light">
-        <ion-label range-left style="color: whitesmoke">0</ion-label>
-        <ion-label range-right style="color: whitesmoke">59(min)</ion-label>
-        </ion-range>
-      </ion-item>
-      <ion-item style="background-color: transparent">
-        <ion-range min="0" max="59"  color="light">
-        <ion-label range-left style="color: whitesmoke">0</ion-label>
-        <ion-label range-right style="color: whitesmoke">59(seg)</ion-label>
-        </ion-range>
-      </ion-item>
+      <ion-card-content>
+        <ion-item style="background-color: transparent;">
+          <ion-range min="0" max="59" color="light">
+            <ion-label range-left style="color: whitesmoke">0</ion-label>
+            <ion-label range-right style="color: whitesmoke">59(min)</ion-label>
+          </ion-range>
+        </ion-item>
+        <ion-item style="background-color: transparent">
+          <ion-range min="0" max="59"  color="light">
+            <ion-label range-left style="color: whitesmoke">0</ion-label>
+            <ion-label range-right style="color: whitesmoke">59(seg)</ion-label>
+          </ion-range>
+        </ion-item>
+      </ion-card-content>
     </ion-card>
+  </div>
+
+  <div>
+    <ion-card class="card_rango">
+      <ion-card-header class="title_card">
+        Tipo entrenamiento
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item style="background-color: transparent;">
+          <ion-select style="color:rgb(51, 50, 50); background-color: whitesmoke; margin: auto; border-radius: 5px" placeholder="Elegir tipo">
+            <ion-option ></ion-option>
+            <ion-option value="algo">algo</ion-option>
+            <ion-option value="algo2">algo2</ion-option>
+            <ion-option value="algo3">algo3</ion-option>
+            <ion-option value="algo4">algo4</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div style="text-align: right">
+    <button ion-button clear color="light">Volver</button>
+    <button ion-button outline style="color: rgb(253, 172, 21)">Enviar</button>
   </div>
   
   <ion-card class="border_card">
