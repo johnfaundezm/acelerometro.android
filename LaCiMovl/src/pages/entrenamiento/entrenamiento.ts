@@ -25,6 +25,7 @@ export class EntrenamientoPage {
   correo:any;
   peso:any;
   loading:any;
+  items:any;
   //Funcion de entrenamiento
   public tipo_entrenamiento : String;
   public tiempo : number = 0; //tiempo transcurrido del entrenamiento
@@ -178,6 +179,23 @@ export class EntrenamientoPage {
       this.aux.pop();
     }
   }
+
+  initializeItems() {
+    this.items = this.aux;
+  }
+
+  getItems(ev: any) {
+    
+    this.initializeItems();
+
+    const val = ev.target.value;
+
+    if (val && val.trim() != '') {
+      this.items = this.items.filter((item) => {
+        return (item.email_dep.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+  }
 // Funcion Entrenamiento
   nuevoEntrenamiento(){
     this.inicioseg=0; // se inicializa el tiempo en 0
@@ -313,13 +331,13 @@ export class EntrenamientoPage {
       })
   }
 
-  consulta_deportistas(){
+  consulta_deportistas(){// se consultan todos los deportistas disponibles para enviar solicitud
     this.webservices.vista_entrenador().then(
       (datos)=>{
         //alert(JSON.stringify(datos));
         let largo=Object.keys(datos).length;
         for(var i=0;i<largo;i++){
-          var email_ent= datos[i].CORREO;          
+          var email_ent= datos[i].CORREO; // se recibe el correo de los deportistas      
           this.aux.push({"email_ent":email_ent});
         }
       },
