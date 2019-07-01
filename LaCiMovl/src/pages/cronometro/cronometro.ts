@@ -29,6 +29,10 @@ export class CronometroPage {
 
   cambio: boolean =true; //variable para el cambio de pausar y continuar
 
+  A_max: any = 0;
+  F_max: any = 0;
+  P_max: any = 0;
+
   //Funcion de entrenamiento
   public tipo_entrenamiento : String;
   public tiempo : number = 0; //tiempo transcurrido del entrenamiento
