@@ -109,49 +109,6 @@ export class RegistroPage {
       })
   }
 
-  //sqlite
-  /*crearusuario(){
-
-    if(this.rol==0){
-      this.database.Create_administrador(this.correo,this.pass).then((data) =>{
-        alert('registra en la bd'+JSON.stringify(data));
-      }, (error) =>{
-        alert('no registra en la bd'+JSON.stringify(error));
-      })
-    }
-
-    if(this.rol==1){
-      this.database.Create_deportista(this.correo,this.pass).then((data) =>{
-        alert('registra en la bd'+JSON.stringify(data));
-      }, (error) =>{
-        alert('no registra en la bd'+JSON.stringify(error));
-      })
-    }
-
-    if(this.rol==2){
-      this.database.Create_entrenador(this.correo,this.pass).then((data) =>{
-        alert('registra en la bd'+JSON.stringify(data));
-      }, (error) =>{
-        alert('no registra en la bd'+JSON.stringify(error));
-      })
-    } 
-  }
-
-  GetAllUsers(){
-    this.database.GetAllUsers().then((data: any) =>{
-      console.log(data);
-     // this.ListUser = data;
-    }, (error) =>{
-      console.log(error);
-    })
-  }
-
-  DeleteUser(correo){
-    console.log(correo);
-
-  }*/
-
-  
   cancelar(){
     this.navCtrl.pop();
   }
