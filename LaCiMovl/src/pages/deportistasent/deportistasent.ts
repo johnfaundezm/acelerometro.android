@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, LoadingController
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 
 import { InfoentrenamientoPage } from '../infoentrenamiento/infoentrenamiento';
+import { DatosentrenamientoPage } from '../datosentrenamiento/datosentrenamiento';
 
 @IonicPage()
 @Component({
@@ -196,6 +197,10 @@ export class DeportistasentPage {
 
   metodo(id, email){
     this.navCtrl.push(InfoentrenamientoPage, {ide:id, email:email, correo:this.correo});
+  }
+
+  goestadisticas(){
+    this.navCtrl.push(DatosentrenamientoPage);
   }
 
 }
