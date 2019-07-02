@@ -1,14 +1,17 @@
-page-admininsert {
+page-admininsert {//estilos (class) para la vista admininsert
+    //estilo del color de fondo de la vista
     .grad {
         background-image: linear-gradient(#1575E1, #33D7FF);
     }
 
+    //estilo borde de los inputs
     .border_r {
-        border-top-right-radius: 20px;
-        border-bottom-right-radius: 20px;
+        border-top-right-radius: 20px;//esquina derecha superior redondeada
+        border-bottom-right-radius: 20px;//esquina derecha inferior redondeada
     }
 
+    //estilo boton de envio de informacion
     .btn_ok{
-		background-color:#FF780F;
+		background-color:#FF780F;//color del botón
 	}
 }

@@ -5,13 +5,6 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { CronometroPage } from '../cronometro/cronometro';
 
 
-/**
- * Generated class for the InfoentrenamientoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-infoentrenamiento',
