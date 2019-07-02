@@ -121,6 +121,7 @@ export class EntrenamientoPage {
         let largo=Object.keys(datos).length;
         for(var i=0;i<largo;i++){
           var email= datos[i].ENTRENADOR;// se recibe el correo de la solicitud pendiente
+          alert(email)
           this.enlaces_pend.push({"email":email});
         }
       },
