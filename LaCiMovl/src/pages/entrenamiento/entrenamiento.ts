@@ -101,7 +101,7 @@ export class EntrenamientoPage {
         //alert(JSON.stringify(datos));
         let largo=Object.keys(datos).length;
         for(var i=0;i<largo;i++){
-          var email_ent= datos[i].CORREO; // se recibe el correo de los deportistas      
+          var email_ent= datos[i].CORREO; // se recibe el correo de los entrenadores      
           this.aux.push({"email_ent":email_ent});
         }
       },

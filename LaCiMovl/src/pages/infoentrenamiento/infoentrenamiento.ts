@@ -81,7 +81,7 @@ export class InfoentrenamientoPage {
     });
 
     this.loading.onDidDismiss(() => {
-      this.navCtrl.push(CronometroPage, {id:this.id_ent});
+      this.navCtrl.push(CronometroPage, {id_entrenamiento:this.id_ent});
     });
   
     this.loading.present();

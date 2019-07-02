@@ -417,7 +417,7 @@ export class WebservicesProvider {
   }
 
   // se crea un metodo insertar datos del acelerometro
-  acelerometro_datos(aceleracionX, aceleracionY, aceleracionZ, aceleracion, fuerza, potencia) {
+  acelerometro_datos(id_ent,aceleracionX, aceleracionY, aceleracionZ, aceleracion, fuerza, potencia) {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
@@ -428,7 +428,7 @@ export class WebservicesProvider {
       });
       // TODO: Encode the values using encodeURIComponent().
       //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
-      let body = 'aceleracionX='+aceleracionX+'&aceleracionY='+aceleracionY+'&aceleracionZ='+aceleracionZ+'&aceleracion='+aceleracion+'&fuerza='+fuerza+'&potencia='+potencia;//variables a enviar al php
+      let body = 'id_ent='+id_ent+'&aceleracionX='+aceleracionX+'&aceleracionY='+aceleracionY+'&aceleracionZ='+aceleracionZ+'&aceleracion='+aceleracion+'&fuerza='+fuerza+'&potencia='+potencia;//variables a enviar al php
       //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/insert_acc_datos.php";
 
@@ -443,7 +443,7 @@ export class WebservicesProvider {
   }
   
   // se crea un metodo insertar datos del giroscopio
-  giroscopio_datos(orientacionX, orientacionY, orientacionZ, orientacion) {
+  giroscopio_datos(id_ent,orientacionX, orientacionY, orientacionZ, orientacion) {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
@@ -454,7 +454,7 @@ export class WebservicesProvider {
       });
       // TODO: Encode the values using encodeURIComponent().
       //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
-      let body = 'orientacionX='+orientacionX+'&orientacionY='+orientacionY+'&orientacionZ='+orientacionZ+'&orientacion='+orientacion;//variables a enviar al php
+      let body = 'id_ent='+id_ent+'&orientacionX='+orientacionX+'&orientacionY='+orientacionY+'&orientacionZ='+orientacionZ+'&orientacion='+orientacion;//variables a enviar al php
       //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/insert_gir_datos.php";
 
