@@ -30,6 +30,10 @@ export class InfoentrenamientoPage {
   respuesta:any;
   loading:any;
 
+  //valores iniciales para el tiempo de entrenamiento
+  tiempoM: any= 0;
+  tiempoS: any= 0;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider,
     public loadingCtrl: LoadingController) {
     this.ide = this.navParams.get('ide');
