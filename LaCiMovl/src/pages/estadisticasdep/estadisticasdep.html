@@ -5,10 +5,24 @@
         <ion-icon name="menu"></ion-icon>
     </button>
 
+    <!--tarjeta contenedora del grafico de aceleracion y giroscopio resultante-->
+    <ion-card style="height: 300px;" class="border_card">
+        <ion-card-header class="title_card"><!--titulo de la tarjeta-->
+            Aceleracion - Giroscopio
+        </ion-card-header>  
+        <ion-card-content style="padding-top: 10px">
+            <div style="width: 100%; overflow-x: auto;overflow-y:hidden"><!--contenedor: tamaño y caracteristicas anti desbordamiento-->
+                <div style="width: 3000px; height: 225px">
+                    <canvas #aceleragiroschart width="0" height="300"></canvas><!--llamado al grafico-->
+                </div>
+            </div>
+        </ion-card-content>
+    </ion-card>
+
     <!--tarjeta contenedora del grafico de aceleracion, fuerza y portencia resultante-->
     <ion-card style="height: 300px;" class="border_card">
         <ion-card-header class="title_card"><!--titulo de la tarjeta-->
-           Aceleracion - Fuerza - Potencia
+            Fuerza - Potencia
         </ion-card-header>  
         <ion-card-content style="padding-top: 10px">
             <div style="width: 100%; overflow-x: auto;overflow-y:hidden"><!--contenedor: tamaño y caracteristicas anti desbordamiento-->
