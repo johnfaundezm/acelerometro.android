@@ -43,6 +43,7 @@ import { ChartsModule } from 'ng2-charts-x';
 
 import { CronometroPage } from '../pages/cronometro/cronometro';
 import { InfoentrenamientoPage } from '../pages/infoentrenamiento/infoentrenamiento';
+import { PodepComponent } from '../components/podep/podep';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { InfoentrenamientoPage } from '../pages/infoentrenamiento/infoentrenamie
     AdminEntrenadorPage,
     PoadmindepComponent,
     PoadminentComponent,
+    PodepComponent,
     DeportistatabsPage,
     EntrenadortabsPage,
     AdmintabsPage,
@@ -83,6 +85,7 @@ import { InfoentrenamientoPage } from '../pages/infoentrenamiento/infoentrenamie
     AdminEntrenadorPage,
     PoadmindepComponent,
     PoadminentComponent,
+    PodepComponent,
     DeportistatabsPage,
     EntrenadortabsPage,
     AdmintabsPage,
