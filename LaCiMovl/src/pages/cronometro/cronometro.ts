@@ -556,7 +556,7 @@ export class CronometroPage {
         //Calculos____________________
         this.giro_x_y_z = ((this.xOrient**2)+(this.yOrient**2)+(this.zOrient**2))**0.5; //vector resultante
 
-        this.webservices.giroscopio_datos(this.xOrient, this.yOrient, this.zOrient).then(// se envian los datos al servidor web
+        this.webservices.giroscopio_datos(this.xOrient, this.yOrient, this.zOrient, this.giro_x_y_z).then(// se envian los datos al servidor web
           (resultado) =>{
             //alert('oka'+JSON.stringify(resultado));
           },

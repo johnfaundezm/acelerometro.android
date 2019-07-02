@@ -30,18 +30,12 @@ export class EntrenamientoPage {
               public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
     
     this.correo = this.navParams.get('correo'); //Se recibe el correo del deportista
-    this.consulta_entrenadores();//Se inicializa la consulta del los deportistas  
-    this.consulta_solicitud_pend(); //Se inicializa la consulta de las solicitudes pendientes
   }
 
   ionViewDidLoad() {
   }
 
-  ionViewWillEnter(){
-    this.consulta_enlace(); //Se inicializa la consulta de los enlaces
-  }
-
-  ionViewCanEnter() {
+  ionViewWillEnter() {
     while(this.enlaces.length>0){
       this.enlaces.pop();// borra el ultimo dato que siempre esta vacio del arreglo
     }
@@ -51,6 +45,10 @@ export class EntrenamientoPage {
     while(this.aux.length>0){
       this.aux.pop();// borra el ultimo dato que siempre esta vacio del arreglo
     }
+    this.initializeItems();
+    this.consulta_entrenadores();//Se inicializa la consulta del los deportistas  
+    this.consulta_solicitud_pend(); //Se inicializa la consulta de las solicitudes pendientes
+    this.consulta_enlace(); //Se inicializa la consulta de los enlaces
   }
 
   doRefresh(refresher) {
@@ -154,6 +152,6 @@ export class EntrenamientoPage {
 
 
   info_entrenamiento(id,email){
-    this.navCtrl.push(ListPage, {ide:id, email:email});
+    this.navCtrl.push(ListPage, {ide:id, email:email, correo:this.correo});
   }
 }

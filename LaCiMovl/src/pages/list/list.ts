@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { CronometroPage } from '../cronometro/cronometro';
+import { DeportistatabsPage } from '../deportistatabs/deportistatabs';
+import { EntrenamientoPage } from '../entrenamiento/entrenamiento';
 
 @Component({
   selector: 'page-list',
@@ -12,6 +14,7 @@ export class ListPage {
   //declaracion de variable
   id_ent:any;
   email:any;
+  correo:any;
   estado:any;
   respuesta:any;
   loading:any;
@@ -23,6 +26,7 @@ export class ListPage {
     //se reciben las variables de la vista anterior y se almacenan en una variable dentro de la vista
     this.id_ent = navParams.get('ide');
     this.email = navParams.get('email');
+    this.correo = navParams.get('correo');
   }
 
   ionViewWillEnter(){// esta función se realiza antes de entrar a la vista actual
@@ -76,7 +80,7 @@ export class ListPage {
           handler: () => {
             console.log('Disagree clicked');
             this.loading.dismiss();// detiene el loading
-            this.navCtrl.pop();// Se vuelve a la vista anterior
+            this.navCtrl.setRoot(EntrenamientoPage, {correo:this.correo});// Se devuelve a la vista anterior
           }
         },
         {
