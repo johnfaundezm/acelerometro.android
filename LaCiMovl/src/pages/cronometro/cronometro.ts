@@ -155,13 +155,13 @@ export class CronometroPage {
 
   ionViewCanEnter() {
     while(this.enlaces.length>0){
-      this.enlaces.pop();// borra el ultimo dato que siempre esta vacio del arreglo
+      this.enlaces.pop();// borra el ultimo dato vacio del arreglo
     }
     while(this.enlaces_pend.length>0){
-      this.enlaces_pend.pop();// borra el ultimo dato que siempre esta vacio del arreglo
+      this.enlaces_pend.pop();// borra el ultimo dato vacio del arreglo
     }
     while(this.aux.length>0){
-      this.aux.pop();// borra el ultimo dato que siempre esta vacio del arreglo
+      this.aux.pop();// borra el ultimo dato vacio del arreglo
     }
   }
 
