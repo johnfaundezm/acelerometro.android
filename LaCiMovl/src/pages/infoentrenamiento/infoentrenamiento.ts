@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 /**
@@ -35,7 +36,6 @@ export class InfoentrenamientoPage {
   tiempoS: any= 0;
   tiempoRM: any= 0;
   tiempoRS: any= 0;
-
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider,
     public loadingCtrl: LoadingController) {
     this.ide = this.navParams.get('ide');
@@ -87,6 +87,7 @@ export class InfoentrenamientoPage {
 
   enviar_entrenamiento(){
     this.getFormattedDate();
+    this.detalletiempo();
     this.webservices.insertar_entrenamiento(this.ide,this.tiempo_entrenamiento,this.tiempo_recuperacion,this.formattedDate,this.tipo_entrenamiento).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
@@ -123,4 +124,12 @@ export class InfoentrenamientoPage {
     
     alert('Se envió mensaje de finalización de entrenamiento');
   }
+
+
+  detalletiempo(){
+    this.tiempo_recuperacion= (this.tiempoRM*60) + this.tiempoRS;
+    this.tiempo_entrenamiento=(this.tiempoM*60) + this.tiempoS;
+  }
+
+
 }
