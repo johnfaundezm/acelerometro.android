@@ -75,6 +75,7 @@ export class EstadisticasdepPage {
 
   ionViewWillEnter(){
     this.consultar_acc();
+    this.consultar_gir();
   }
 
   consultar_acc(){
@@ -167,6 +168,7 @@ export class EstadisticasdepPage {
           this.datos_giroscopioZ.push(auxZ);
           this.datos_giroscopio.push(aux);          
         }
+        this.giroschart();
         //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
@@ -338,8 +340,8 @@ export class EstadisticasdepPage {
       type: 'scatter',
       data: {
         datasets: [{
-          label: 'Acel x',
-          data: this.datos_acelerometroX,
+          label: 'Eje x',
+          data: this.datos_giroscopioX,
 
           showLine: true,
           borderWidth: 2,
@@ -352,8 +354,8 @@ export class EstadisticasdepPage {
                         pointHitRadius: 10,
         },
         {
-          label: 'Acel Y',
-          data: this.datos_acelerometroY,
+          label: 'Eje Y',
+          data: this.datos_giroscopioY,
           showLine: true,
           borderWidth: 2,
           borderColor: 'rgba(24, 24, 185, 1)',
@@ -365,8 +367,8 @@ export class EstadisticasdepPage {
                         pointHitRadius: 10,
         },
         {
-          label: 'Acel Z',
-          data: this.datos_acelerometroZ,
+          label: 'Eje Z',
+          data: this.datos_giroscopioZ,
           showLine: true,
           borderWidth: 2,
           borderColor: 'rgba(185, 24, 24, 1)',
