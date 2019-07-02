@@ -66,42 +66,7 @@
 
   <div style="text-align: right">
     <button ion-button clear color="light">Volver</button>
-    <button ion-button class="btn_enviar">Enviar</button>
+    <button ion-button class="btn_enviar" (click)="enviar_entrenamiento()">Enviar</button>
   </div>
   
-  <ion-card class="border_card">
-    <ion-card-header class="title_card">
-      Entrenamiento
-    </ion-card-header>
-  </ion-card>
-  <!--Entrenamiento-->
-  <ion-item> 
-    <ion-label>Tipo de entrenamiento</ion-label>
-    <ion-input type="text" [(ngModel)]="tipo_entrenamiento"></ion-input>
-  </ion-item>
-  <ion-item> 
-    <ion-label>Tiempo de entrenamiento</ion-label>
-    <ion-input type="number" [(ngModel)]="unidad_entrenamiento"></ion-input>
-  </ion-item>
-  <button ion-button (click)="minEntrenamiento()" full>minutos</button>
-  <button ion-button (click)="segEntrenamiento()" full>segundos</button>
-
-  <ion-item> 
-    <ion-label>Tiempo de recuperación</ion-label>
-    <ion-input type="number" [(ngModel)]="unidad_recuperacion"></ion-input>
-  </ion-item>
-  <button ion-button (click)="minRecuperacion()" full>minutos</button>
-  <button ion-button (click)="segRecuperacion()" full>segundos</button>
-
-  <ion-card class="border_card">
-    <ion-card-header class="title_card">
-      Datos de Entrenamiento
-    </ion-card-header>
-      <h2 type="text">  Tipo de entrenamiento: {{tipo_entrenamiento}}</h2>
-      <h2 type="number">  Tiempo de entrenamiento(segundos): {{tiempo_entrenamiento}}</h2>
-      <h2 type="number">  Tiempo de recuperación: {{tiempo_recuperacion}}</h2>
-      <br>
-  </ion-card>
-      <br>
-  <button ion-button (click)="enviar_entrenamiento()" full>Enviar Entrenamiento</button>
 </ion-content>
