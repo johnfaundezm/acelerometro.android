@@ -26,6 +26,8 @@ export class CronometroPage {
   loading:any;// variable que almacena el estado de el loading
   items:any;// variable para usarlo en el filtro
 
+  id_ent:any;
+
   cambio: boolean =true; //variable para el cambio de pausar y continuar
 
   //variables iniciadas para sacar la aceleracion, fuerza y potencia maxima
@@ -86,10 +88,9 @@ export class CronometroPage {
     public loadingCtrl: LoadingController,private nativeAudio: NativeAudio, public alertCtrl: AlertController) {
 
     this.correo = this.navParams.get('correo'); //Se recibe el correo del deportista
+    this.id_ent = this.navParams.get('id_entrenamiento');
+
     this.consulta_peso(); //Se inicializa la consulta del peso  
-    this.consulta_deportistas();//Se inicializa la consulta del los deportistas  
-    this.consulta_solicitud_pend(); //Se inicializa la consulta de las solicitudes pendientes
-    this.consulta_enlace(); //Se inicializa la consulta de los enlaces
 
     // se inicia la plataforma de reproducciones
     this.platform.ready().then(() => { 
@@ -131,28 +132,6 @@ export class CronometroPage {
     console.log('ionViewDidLoad CronometroPage');
   }
 
-  alerta_confirmacion(correo) {
-    const confirm = this.alertCtrl.create({
-      title: 'Confirmacion de solicitud',
-      message: 'Aceptas a '+correo+' como entrenador?',
-      buttons: [
-        {
-          text: 'Cancelar',
-          handler: () => {
-            console.log('Disagree clicked');
-          }
-        },
-        {
-          text: 'Aceptar',
-          handler: () => {
-            console.log('Agree clicked');
-          }
-        }
-      ]
-    });
-    confirm.present();
-  }
-
   ionViewCanEnter() {
     while(this.enlaces.length>0){
       this.enlaces.pop();// borra el ultimo dato vacio del arreglo
@@ -162,23 +141,6 @@ export class CronometroPage {
     }
     while(this.aux.length>0){
       this.aux.pop();// borra el ultimo dato vacio del arreglo
-    }
-  }
-
-  initializeItems() {
-    this.items = this.aux; // se inicializa el arreglo(traspasando los datos de un arreglo que tiene los datos necesarios)
-  }
-
-  getItems(ev: any) {// ese es el metodo que realiza el filtro por palabra
-    
-    this.initializeItems();// se llama al metodo q inicializa el vector
-
-    const val = ev.target.value;
-
-    if (val && val.trim() != '') {
-      this.items = this.items.filter((item) => {
-        return (item.email_dep.toLowerCase().indexOf(val.toLowerCase()) > -1);// retorna la palabra filtrada
-      })
     }
   }
 
@@ -218,6 +180,8 @@ export class CronometroPage {
     this.tiempo_recuperacion= this.unidad_recuperacion*60;
     alert('Ha definido su tiempo de recuperación en minutos');
   }
+
+
 
 
   inicio(){
@@ -373,60 +337,6 @@ export class CronometroPage {
       })
   }
 
-  consulta_deportistas(){// se consultan todos los deportistas disponibles para enviar solicitud
-    this.webservices.vista_entrenador().then(
-      (datos)=>{
-        //alert(JSON.stringify(datos));
-        let largo=Object.keys(datos).length;
-        for(var i=0;i<largo;i++){
-          var email_ent= datos[i].CORREO; // se recibe el correo de los deportistas      
-          this.aux.push({"email_ent":email_ent});
-        }
-      },
-      (err)=>{
-        alert(JSON.stringify(err))
-      })
-  }
-
-  consulta_solicitud_pend(){// se consulta por las solicitudes pendientes
-    let largo=this.enlaces_pend.length;
-    for(var i=0;i<largo;i++){
-      this.enlaces_pend.pop();
-    }
-    this.webservices.consulta_enlace_pend_deportista(this.correo).then(// se envia la variable correo como consulta al php
-      (datos)=>{
-        //alert(JSON.stringify(datos));
-        let largo=Object.keys(datos).length;
-        for(var i=0;i<largo;i++){
-          var email= datos[i].ENTRENADOR;// se recibe el correo de la solicitud pendiente
-          this.enlaces_pend.push({"email":email});
-        }
-      },
-      (err)=>{
-        alert(JSON.stringify(err))
-      })
-  }
-
-  consulta_enlace(){
-    let largo=this.enlaces.length;
-    for(var i=0;i<largo;i++){
-      this.enlaces.pop();
-    }
-    this.webservices.consulta_enlace_deportista(this.correo).then(
-      (datos)=>{
-        //alert(JSON.stringify(datos));
-        let largo=Object.keys(datos).length;
-        for(var i=0;i<largo;i++){ // se reciben la id, el correo del entrenador y la fecha de la solicitud
-          var ide= datos[i].ID;
-          var email= datos[i].ENTRENADOR;
-          var fecha= datos[i].FECHA;
-          this.enlaces.push({"ide":ide,"email":email, "fecha":fecha});
-        }
-      },
-      (err)=>{
-        alert(JSON.stringify(err))
-      })
-  }
 
 //Perifericos (Gyroscopio,acelerometro,Sonidos)
 //Acelerometro
@@ -453,7 +363,7 @@ export class CronometroPage {
 
         this.punto_max();//para sacar los valores maximos de aceleracion, fuerza y potencia
 
-        this.webservices.acelerometro_datos(this.accX, this.accY, this.accZ, this.acel_x_y_z,this.fuerza,this.potencia).then( // se envian los datos al servidor web
+        this.webservices.acelerometro_datos(this.id_ent,this.accX, this.accY, this.accZ, this.acel_x_y_z,this.fuerza,this.potencia).then( // se envian los datos al servidor web
           (resultado) =>{
             //alert('oka'+JSON.stringify(resultado));
           },
@@ -466,9 +376,8 @@ export class CronometroPage {
     }catch(err){
     alert("Error" + err); // muestra una alerta si ocurrió algun error durante el proceso
     }
-    
-  
   }
+
   detenerAcelerometro(){
     this.id.unsubscribe(); // se detiene el receptor de datos de acelerometro
   }
@@ -483,35 +392,6 @@ export class CronometroPage {
     this.loading.present();
   }
 
-
-  borrar_acc(){
-    this.load();
-    this.webservices.delete_acelerometro_datos().then(
-      (datos) =>{
-        this.webservices.delete_giroscopio_datos().then(
-          (datos) =>{
-            var respuesta= datos[0].RESPUESTA;
-            this.loading.dismiss();
-            if(respuesta=='OK'){
-              alert('Los datos se han borrado satisfactoriamente');
-            }else{
-              alert('Ha ocurrido un error en el borrado');
-            }
-            //alert('oka'+JSON.stringify(resultado));
-          },
-          (error) =>{
-            alert('error'+JSON.stringify(error));
-          }
-        )
-        //alert('oka'+JSON.stringify(resultado));
-      },
-      (error) =>{
-        alert('error'+JSON.stringify(error));
-      }
-    )
-
-
-  }
 //Gyroscopio  
   comienzoGiroscopio(){
     try{
@@ -528,7 +408,7 @@ export class CronometroPage {
         //Calculos____________________
         this.giro_x_y_z = ((this.xOrient**2)+(this.yOrient**2)+(this.zOrient**2))**0.5; //vector resultante
 
-        this.webservices.giroscopio_datos(this.xOrient, this.yOrient, this.zOrient, this.giro_x_y_z).then(// se envian los datos al servidor web
+        this.webservices.giroscopio_datos(this.id_ent,this.xOrient, this.yOrient, this.zOrient, this.giro_x_y_z).then(// se envian los datos al servidor web
           (resultado) =>{
             //alert('oka'+JSON.stringify(resultado));
           },
@@ -597,10 +477,10 @@ export class CronometroPage {
       this.A_max= this.acel_x_y_z.toFixed(2);
     }
     if(this.fuerza > this.F_max){
-      this.F_max= this.fuerza;
+      this.F_max= this.fuerza.toFixed(2);
     }
     if(this.potencia > this.P_max){
-      this.P_max= this.potencia;
+      this.P_max= this.potencia.toFixed(2);
     }
   }
 

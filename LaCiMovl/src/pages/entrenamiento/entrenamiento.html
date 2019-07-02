@@ -71,8 +71,8 @@
         <ion-card-content>
           <ion-scroll scrollY="true">
             <ion-list inset >
-              <ion-item *ngFor="let item_s of enlaces_pend" class="formato_item" >
-                <ion-label (click)="alerta_confirmacion(item_s.email)">{{ item_s.email }}</ion-label>
+              <ion-item *ngFor="let p of enlaces_pend" class="formato_item" >
+                <ion-label (click)="alerta_confirmacion(p.email)">{{ p.email }}</ion-label>
               </ion-item>
             </ion-list>
           </ion-scroll>

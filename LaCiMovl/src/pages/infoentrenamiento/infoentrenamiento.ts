@@ -4,6 +4,7 @@ import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { CronometroPage } from '../cronometro/cronometro';
 import { DeportistasentPage } from '../deportistasent/deportistasent';
+import { CronometroentPage } from '../cronometroent/cronometroent';
 
 
 @IonicPage()
@@ -81,7 +82,7 @@ export class InfoentrenamientoPage {
     });
 
     this.loading.onDidDismiss(() => {
-      this.navCtrl.push(CronometroPage, {id:this.id_ent});
+      this.navCtrl.push(CronometroentPage, {id_entrenamiento:this.id_ent});
     });
   
     this.loading.present();
