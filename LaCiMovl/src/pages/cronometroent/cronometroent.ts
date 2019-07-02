@@ -18,9 +18,13 @@ export class CronometroentPage {
   aux: Array<{email_ent:string}>=[{email_ent:''}]; //arreglo que almacena todos los deportistas
   
   correo:any; // correo del desportista
+  id_ent:any;
   peso:any;// variable que almacena el peso del usuario deportista
   loading:any;// variable que almacena el estado de el loading
   items:any;// variable para usarlo en el filtro
+  a:any;
+  estado:any;
+  respuesta:any;
 
   cambio: boolean =true; //variable para el cambio de pausar y continuar
 
@@ -82,6 +86,7 @@ export class CronometroentPage {
     public loadingCtrl: LoadingController,private nativeAudio: NativeAudio, public alertCtrl: AlertController) {
 
     this.correo = this.navParams.get('correo'); //Se recibe el correo del deportista
+    this.id_ent = this.navParams.get('id_entrenamiento');
     this.consulta_peso(); //Se inicializa la consulta del peso  
 
     // se inicia la plataforma de reproducciones
@@ -124,7 +129,50 @@ export class CronometroentPage {
     console.log('ionViewDidLoad CronometroentPage');
   }
 
-  ionViewCanEnter() {
+  ionViewWillEnter() {
+    this.a=1; // variable que activa la recursividad de buscar entrenamientos
+  }
+
+  ionViewWillLeave() {
+    this.a=0; // variable que activa la recursividad de buscar entrenamientos
+  }
+
+  verificacion(){// consulta quer verifica el estado del entrenamiento
+    this.webservices.estado_entrenamiento(this.id_ent).then(//llama a la funcion del webservices.ts y le envia la id del entrenamiento
+      (datos)=>{// recibe los datos de la consulta
+        //alert(JSON.stringify(datos));
+        this.estado= datos[0].ESTADO;// recibe el estado y se almacena en una variable
+        if(this.estado==3){ // si el estado es 3 se inicia el cronometro
+          this.actualizar_estado()
+        }else{
+          if(this.estado==2){// si el estado es 2 se pausa el cronometro
+            this.actualizar_estado()
+          }else{
+            if(this.estado==1){// si el estado es 1 finaliza el cronometro
+              this.actualizar_estado()
+            }
+          }
+          this.a=0; // variable que desactiva la recursividad de buscar entrenamientos
+        }
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
+  }
+
+  actualizar_estado(){
+    this.webservices.actualizar_estado_entrenamiento(this.id_ent,this.estado).then(
+      (datos) =>{
+        this.respuesta= datos[0].RESPUESTA;
+        if(this.respuesta=='OK'){
+          alert('Los cambios se han realizado satisfactoriamente')
+        }
+      //alert('oka'+JSON.stringify(resultado));
+      },
+      (error) =>{
+        this.loading.dismiss();
+        alert('error'+JSON.stringify(error));
+      })
   }
 
   // Funcion Entrenamiento

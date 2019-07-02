@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { CronometroPage } from '../cronometro/cronometro';
-import { DeportistatabsPage } from '../deportistatabs/deportistatabs';
 import { EntrenamientoPage } from '../entrenamiento/entrenamiento';
 
 @Component({
@@ -30,6 +29,7 @@ export class ListPage {
   }
 
   ionViewWillEnter(){// esta función se realiza antes de entrar a la vista actual
+    alert(this.id_ent);
     this.load_buscar()
     this.a=1;// variable que activa la recursividad de buscar entrenamientos
     this.time();// se llama a la funcion que realiza la recursividad
