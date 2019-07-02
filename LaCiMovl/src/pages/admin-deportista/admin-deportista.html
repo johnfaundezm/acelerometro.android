@@ -1,99 +1,107 @@
-<ion-content class="grad" padding>
+<ion-content class="grad" padding><!--vista para ver los datos del deportista seleccionado-->
 
-  <ion-refresher  (ionRefresh)="doRefresh($event)">
+  <!--espacio para refrescar la vista-->
+  <ion-refresher  (ionRefresh)="doRefresh($event)"><!--se le pasa el evento de deslizar hacia abajo a la funcon que refresca-->
+    <!--contiene caracteristicas como el texto e icono de carga-->
     <ion-refresher-content
-      pullingIcon="arrow-dropdown"
+      pullingIcon="arrow-dropdown" 
       pullingText="Pull to refresh"
       refreshingSpinner="circles"
       refreshingText="Refrescando...">
     </ion-refresher-content>
   </ion-refresher>
 
+  <!--botón del menu de navegación-->
   <button ion-button color="light" menuToggle clear>
-    <ion-icon name="menu"></ion-icon>
+    <ion-icon name="menu"></ion-icon><!--icono del menu-->
   </button>
 
+  <!--tarjeta donde se presenta la informacion personal-->
   <ion-card class="border_card">
-    <ion-card-header class="title_card">
+    <ion-card-header class="title_card"><!--espacio para el titulo de la tarjeta-->
       Informacion Personal
     </ion-card-header>
 
+    <!--lista donde iran los atributos-->
     <ion-list>
-      <ion-item>
+      <ion-item><!--item que contiene el nombre del usuario-->
         <ion-label >Nombre</ion-label>
         <ion-input [(ngModel)]="nombre" class="textarea" disabled></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--item que contiene el apellido paterno del usuario-->
         <ion-label >Apellido paterno</ion-label>
         <ion-input [(ngModel)]="apellido_p" class="textarea" disabled></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--item que contiene el apellido materno del usuario-->
         <ion-label >Apellido materno</ion-label>
         <ion-input [(ngModel)]="apellido_m" class="textarea" disabled></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--item que contiene el contraseña del usuario-->
         <ion-label>Contraseña</ion-label>
         <ion-input [(ngModel)]="pass" class="textarea" disabled type="password"></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--item que contiene el genero del usuario-->
         <ion-label>Genero</ion-label>
         <ion-input [(ngModel)]="genero" class="textarea" disabled></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--item que contiene la edad del usuario-->
         <ion-label>Edad</ion-label>
         <ion-input [(ngModel)]="edad" class="textarea" disabled></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--item que contiene el peso del usuario-->
         <ion-label>Peso</ion-label>
         <ion-input [(ngModel)]="peso" class="textarea" disabled></ion-input>
       </ion-item>
     
-      <ion-item>
+      <ion-item><!--item que contiene la estatura del usuario-->
         <ion-label>Estatura</ion-label>
         <ion-input [(ngModel)]="estatura" class="textarea" disabled></ion-input>
       </ion-item>
     
-      <ion-item>
+      <ion-item><!--item que contiene el imc del usuario-->
         <ion-label>I.M.C</ion-label>
         <ion-input [(ngModel)]="imc" class="textarea" disabled></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--item que contiene el pais del usuario-->
         <ion-label>Pais</ion-label>
         <ion-input [(ngModel)]="pais" class="textarea" disabled></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--item que contiene el estado de cuenta del usuario-->
         <ion-label>Estado Cuenta</ion-label>
         <ion-input [(ngModel)]="estado" class="textarea" disabled></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--item que contiene la fecha de registro del usuario-->
           <ion-label>Fecha Registro</ion-label>
           <ion-input [(ngModel)]="fecha_r" class="textarea" disabled></ion-input>
         </ion-item>
     </ion-list>
 
     <ion-item >
-      <button ion-button color="secondary" block (click)="poadmindep($event)">
-        <ion-icon  name="create" style="margin-right: 5px" ></ion-icon>
+      <button ion-button color="secondary" block (click)="poadmindep($event)"><!--botón para ingresar al popover de edicion de datos-->
+        <ion-icon  name="create" style="margin-right: 5px" ></ion-icon><!--icono del botón-->
         Editar
       </button>
     </ion-item>
   
   </ion-card>
 
+  <!--tarjeta para mostrar las estadisticas del usuario-->
   <ion-card class="border_card">
     <ion-card-header class="title_card">
       Estadisticas
     </ion-card-header>
-  </ion-card>
+    <ion-card-content>
 
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

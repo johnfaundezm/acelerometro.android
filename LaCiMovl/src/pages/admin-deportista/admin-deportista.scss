@@ -1,18 +1,22 @@
-page-admin-deportista {
+page-admin-deportista {//estilos para la vista admin-deportista
+    //color de fondo de la vista
     .grad {
         background-image: linear-gradient(#1575E1, #33D7FF);
     }
     
+    //estilo para el borde de las tarjetas
     .border_card {
-        border-radius: 10px;
+        border-radius: 10px;//esquinas redondeadas
     }
     
+    //estilo para el titulo de la tarjeta
     .title_card {
-        font-size: 90%;
-        color: darkcyan;
+        font-size: 90%;//tamaño de la fuente
+        color: darkcyan;//colro de la fuente
     }
     
+    //estilo para los inputs que muentran la información 
     .textarea {
-        text-align-last: right;
+        text-align-last: right;//alineado a la derecha
     }
 }
