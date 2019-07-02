@@ -1,26 +1,31 @@
-page-deportistas {
+page-deportistas {//estilos (class) de la vista deportistas
+    //estilo color de fondo 
     .grad {
         background-image: linear-gradient(#1575E1, #33D7FF);
     }
     
+    //estilo de borde de tarjeta
     .border_card {
-        border-radius: 10px;
-        height: 85%;
+        border-radius: 10px;//esquinas redondeadas
+        height: 85%;//alto de la tarjeta
     }
     
+    //estilo del titulo
     .title_card {
-        font-size: 90%;
-        color: darkcyan;
+        font-size: 90%;//tamaño de fuente
+        color: darkcyan;//color de la fuente
     }
 
+    //necesario para la utilización del scroll en la vista
     ion-scroll {
       white-space: nowrap;
-      height: 83%;
+      height: 83%;//alto del scroll
     }
 
+    //estilo del item contenedor
     .estilo_item{
-        border-bottom: 1px solid !important;
-        border-color: rgb(194, 191, 191) !important; 
-        height: auto;
+        border-bottom: 1px solid !important;//borde inferior del item
+        border-color: rgb(194, 191, 191) !important; //color del borde
+        height: auto;//altura automatica
     }
 }
