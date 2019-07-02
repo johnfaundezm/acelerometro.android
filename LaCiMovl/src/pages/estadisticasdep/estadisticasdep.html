@@ -1,30 +1,47 @@
-<ion-content class="grad" padding>
+<ion-content class="grad" padding><!--vista de destadisticas del deportista-->
 
+    <!--botón de men de navegación-->
     <button ion-button color="light" menuToggle clear>
         <ion-icon name="menu"></ion-icon>
     </button>
 
+    <!--tarjeta contenedora del grafico de aceleracion, fuerza y portencia resultante-->
     <ion-card style="height: 300px;" class="border_card">
-        <ion-card-header class="title_card">
+        <ion-card-header class="title_card"><!--titulo de la tarjeta-->
            Aceleracion - Fuerza - Potencia
         </ion-card-header>  
         <ion-card-content style="padding-top: 10px">
-            <div style="width: 100%; overflow-x: auto;overflow-y:hidden">
+            <div style="width: 100%; overflow-x: auto;overflow-y:hidden"><!--contenedor: tamaño y caracteristicas anti desbordamiento-->
                 <div style="width: 3000px; height: 225px">
-                    <canvas #aceleracionxyzchart width="0" height="300"></canvas>
+                    <canvas #aceleracionxyzchart width="0" height="300"></canvas><!--llamado al grafico-->
                 </div>
             </div>
         </ion-card-content>
     </ion-card>
 
+    <!--tarjeta contenedora del grafico de aceleraciones por cada eje-->
     <ion-card style="height: 300px;" class="border_card">
-        <ion-card-header class="title_card">
+        <ion-card-header class="title_card"><!--titulo de la tarjeta-->
             Aceleraciones por eje
         </ion-card-header>  
         <ion-card-content style="padding-top: 10px">
-            <div style="width: 100%; overflow-x: auto;overflow-y:hidden">
+            <div style="width: 100%; overflow-x: auto;overflow-y:hidden"><!--contenedor: tamaño y caracteristicas anti desbordamiento-->
                 <div style="width: 3000px; height: 225px">
-                    <canvas #aceleracionchart width="0" height="300"></canvas>
+                    <canvas #aceleracionchart width="0" height="300"></canvas><!--llamado al grafico-->
+                </div>
+            </div>
+        </ion-card-content>
+    </ion-card>
+
+    <!--tarjeta contenedora del grafico del giroscopio-->
+    <ion-card style="height: 300px;" class="border_card">
+        <ion-card-header class="title_card"><!--titulo de la tarjeta-->
+            Giroscopio por eje
+        </ion-card-header>  
+        <ion-card-content style="padding-top: 10px">
+            <div style="width: 100%; overflow-x: auto;overflow-y:hidden"><!--contenedor: tamaño y caracteristicas anti desbordamiento-->
+                <div style="width: 3000px; height: 225px">
+                    <canvas #giroschart width="0" height="300"></canvas><!--llamado al grafico-->
                 </div>
             </div>
         </ion-card-content>

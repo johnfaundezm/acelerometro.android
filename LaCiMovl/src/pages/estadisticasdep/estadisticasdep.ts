@@ -12,9 +12,11 @@ export class EstadisticasdepPage {
 
   @ViewChild('aceleracionchart') aceleracionchart;
   @ViewChild('aceleracionxyzchart') aceleracionxyzchart;
+  @ViewChild('giroscopiochart') giroscopiochart;
 
   aceleracionchartvar: any;
   aceleracionxyzchartvar: any;
+  giroscopiochartvar: any;
 
   datos_acelerometroX = [];
   datos_acelerometroY = [];
@@ -35,6 +37,7 @@ export class EstadisticasdepPage {
     setTimeout(() => {
       this.acelerachart();
       this.aceleraxyzchart();
+      this.giroschart();
     }, 150)
 
     while(this.datos_acelerometroX.length>0){
@@ -323,6 +326,86 @@ export class EstadisticasdepPage {
           yAxes: [{
             scaleLabel: {
               display: true
+            }
+          }]
+        }
+      }
+    })
+  }
+
+  giroschart(){
+    this.giroscopiochartvar = new Chart(this.giroscopiochart.nativeElement, {
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label: 'Acel x',
+          data: this.datos_acelerometroX,
+
+          showLine: true,
+          borderWidth: 2,
+          borderColor: 'rgba(214, 225, 9, 1)',
+          fill: false,
+                        backgroundColor: 'rgba(214, 225, 9, 1)',
+                        pointBorderColor: 'rgba(75,192,192,1)',
+                        pointBorderWidth: 1,     
+                        pointRadius: 0,
+                        pointHitRadius: 10,
+        },
+        {
+          label: 'Acel Y',
+          data: this.datos_acelerometroY,
+          showLine: true,
+          borderWidth: 2,
+          borderColor: 'rgba(24, 24, 185, 1)',
+          fill: false,
+                        backgroundColor: 'rgba(24, 24, 185, 1)',
+                        pointBorderColor: 'rgba(75,192,192,1)',
+                        pointBorderWidth: 1,     
+                        pointRadius: 0,
+                        pointHitRadius: 10,
+        },
+        {
+          label: 'Acel Z',
+          data: this.datos_acelerometroZ,
+          showLine: true,
+          borderWidth: 2,
+          borderColor: 'rgba(185, 24, 24, 1)',
+          fill: false,
+                        backgroundColor: 'rgba(185, 24, 24, 1)',
+                        pointBorderColor: 'rgba(75,192,192,1)',
+                        pointBorderWidth: 1,     
+                        pointRadius: 0,
+                        pointHitRadius: 20,
+        }
+        ]
+      },
+
+      options: {
+        legend: {
+          position: 'left',
+          labels:{
+            boxWidth: 15
+          },
+          display: true
+        },
+        tooltips: {
+          enabled: true,
+          callbacks: {
+            label: function(tooltipItem, data) {
+                return tooltipItem.yLabel;
+            }
+          }
+        },
+        scales: {
+          xAxes: [{
+            display: false,
+            type: 'linear',
+            position: 'bottom'
+          }],
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString:"m/s^2"
             }
           }]
         }

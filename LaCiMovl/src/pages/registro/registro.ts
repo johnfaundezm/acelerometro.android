@@ -4,9 +4,6 @@ import { DatabaseProvider } from '../../providers/database/database';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { LoadingController } from 'ionic-angular';
-import { elementAttribute } from '@angular/core/src/render3/instructions';
-
-
 
 @IonicPage()
 @Component({
