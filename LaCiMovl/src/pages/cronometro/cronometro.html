@@ -1,38 +1,40 @@
 <ion-content class ="grad" padding>
-  
-  <div style="margin-top: 25%">
+  <!-- se imprime el cronometro -->
+  <div style="margin-top: 25%"> <!-- posición 25% del borde superior-->
     <ion-label icon-only class="crono">
-      <ion-icon name="alarm" class="icon_crono"></ion-icon>
-      {{min2}}{{min1}} : {{seg2}}{{seg1}} : {{cen2}}{{cen1}}
+      <ion-icon name="alarm" class="icon_crono"></ion-icon> <!-- icono del cronometro-->
+      {{min2}}{{min1}} : {{seg2}}{{seg1}} : {{cen2}}{{cen1}} <!-- minutos, segundos y centecimas del cronometro-->
     </ion-label>  
   </div>
     
-    
+    <!--botones de inicio, detencion y terminar para el cronometro-->
     <div style="text-align: center; margin-top: 15%">
-      <button ion-button icon-only class="btn_entre" outline color="light" (click)="nuevoEntrenamiento(); cambiaricon()" *ngIf="cambio">
+      <button ion-button icon-only class="btn_entre" outline color="light" (click)="nuevoEntrenamiento(); cambiaricon()" *ngIf="cambio"> <!--botón e icono para inicio-->
         <ion-icon name="play"></ion-icon>
       </button>
-      <button ion-button class="btn_entre" outline color="light" (click)="pausa(); cambiaricon()" *ngIf="!cambio">
+      <button ion-button class="btn_entre" outline color="light" (click)="pausa(); cambiaricon()" *ngIf="!cambio"><!--botón e icono para detener-->
         <ion-icon name="pause"></ion-icon>
       </button>
-      <button ion-button class="btn_fin" outline color="light" (click)="finalizar()">
+      <button ion-button class="btn_fin" outline color="light" (click)="finalizar()"><!--botón e icono para finalizar-->
         <ion-icon name="close"></ion-icon>
       </button>
     </div>
-
+    
+    <!--linea con inputs que muestran los valores maximos para algunos atributos-->
     <div style="margin-top: 25%">
       <ion-item no-lines style="background-color: transparent">
-        <ion-input class="AFP_max" [(ngModel)]="A_max" disabled ></ion-input>
-        <ion-input class="AFP_max" [(ngModel)]="F_max" disabled ></ion-input>
-        <ion-input class="AFP_max" [(ngModel)]="P_max" disabled ></ion-input>
+        <ion-input class="AFP_max" [(ngModel)]="A_max" disabled ></ion-input><!--se muestra el valor maximo alcanzado por la aceleracion-->
+        <ion-input class="AFP_max" [(ngModel)]="F_max" disabled ></ion-input><!--se muentra el valor maximo alcanzado por la fuerza-->
+        <ion-input class="AFP_max" [(ngModel)]="P_max" disabled ></ion-input><!--se muestra el valor maximo alcanzado por la potencia-->
       </ion-item>
     </div>
 
+    <!--linea con las etiquetas de cada valor maximo alcanzado respectivo-->
     <div>
       <ion-item no-lines style="background-color: transparent">
-        <ion-label class="label_acel">acel. max.</ion-label>
-        <ion-label class="label_acel">Fuerza max.</ion-label>
-        <ion-label class="label_potencia">Potencia max.</ion-label>
+        <ion-label class="label_acel">acel. max.</ion-label><!--etiqueta para la aceleracion maxima-->
+        <ion-label class="label_acel">Fuerza max.</ion-label><!--etiqueta para la fuerza maxima-->
+        <ion-label class="label_potencia">Potencia max.</ion-label><!--etiqueta para la potencia maxima-->
       </ion-item>
     </div>
 
