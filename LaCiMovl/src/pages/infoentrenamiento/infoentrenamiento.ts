@@ -27,7 +27,7 @@ export class InfoentrenamientoPage {
   correo:any;
   estado:any;
   a:any;
-  cont:any;
+  cont:number=0;
 
   formattedDate;
 
@@ -88,7 +88,7 @@ export class InfoentrenamientoPage {
 
     setTimeout(() => {
       this.loading.dismiss();
-    }, 10000);
+    }, 2000);
   }
 
   load_espera_respuesta() {
@@ -163,6 +163,7 @@ export class InfoentrenamientoPage {
       if(this.a==1){// si a es igual a 1  se ingresa al if para poder llamar a la recursividad
         this.verificacion();// se llama la función que verifica el estado
         this.time();// se llama a la funcion que realiza la recursividad
+        alert('pasa')
       }
     }, 2000)// tiempo en milisegundos que se demora en realizarse lo que hay dentro del setTimeout
   }
@@ -181,19 +182,21 @@ export class InfoentrenamientoPage {
         if(this.respuesta=='OK'){
           alert('El entrenamiento se ha creado satisfactoriamente');
           this.loading.dismiss();
+          this.a=1;
           this.load_espera_respuesta();
+          this.time();
 
+        }else{
+          if(this.respuesta=='EXISTE'){
+            this.loading.dismiss();
+            alert('El entrenamiento ya existe, intente con otro nombre')
+          }else{
+            if(this.respuesta=='ERROR'){
+              this.loading.dismiss();
+              alert('Ha ocurrido un error inesperado')
+            }
+          }  
         }
-        if(this.respuesta=='EXISTE'){
-          this.loading.dismiss();
-          alert('El usuario ya existe, intente con otro correo')
-        }
-        if(this.respuesta=='ERROR'){
-          this.loading.dismiss();
-          alert('Ha ocurrido un error inesperado')
-        }
-        this.a=1;
-        this.time();
         //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{

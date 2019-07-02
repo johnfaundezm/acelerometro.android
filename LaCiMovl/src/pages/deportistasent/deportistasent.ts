@@ -31,10 +31,9 @@ export class DeportistasentPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider,
               public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     this.correo = this.navParams.get('correo');
-    this.initializeItems();
   }
 
-  ionViewCanEnter() {
+  ionViewWillEnter() {
     while(this.aux.length>0){
       this.aux.pop();
     }
@@ -44,6 +43,7 @@ export class DeportistasentPage {
     while(this.enlaces_pend.length>0){
       this.enlaces_pend.pop();
     }
+    this.initializeItems();
     this.consulta_deportistas();
     this.consulta_enlace();
     this.consulta_enlace_pend();
@@ -195,7 +195,7 @@ export class DeportistasentPage {
   }
 
   metodo(id, email){
-    this.navCtrl.push(InfoentrenamientoPage, {ide:id, email:email});
+    this.navCtrl.push(InfoentrenamientoPage, {ide:id, email:email, correo:this.correo});
   }
 
 }
