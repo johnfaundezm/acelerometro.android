@@ -83,9 +83,6 @@ export class CronometroentPage {
 
     this.correo = this.navParams.get('correo'); //Se recibe el correo del deportista
     this.consulta_peso(); //Se inicializa la consulta del peso  
-    this.consulta_deportistas();//Se inicializa la consulta del los deportistas  
-    this.consulta_solicitud_pend(); //Se inicializa la consulta de las solicitudes pendientes
-    this.consulta_enlace(); //Se inicializa la consulta de los enlaces
 
     // se inicia la plataforma de reproducciones
     this.platform.ready().then(() => { 
@@ -127,55 +124,7 @@ export class CronometroentPage {
     console.log('ionViewDidLoad CronometroentPage');
   }
 
-  alerta_confirmacion(correo) {
-    const confirm = this.alertCtrl.create({
-      title: 'Confirmacion de solicitud',
-      message: 'Aceptas a '+correo+' como entrenador?',
-      buttons: [
-        {
-          text: 'Cancelar',
-          handler: () => {
-            console.log('Disagree clicked');
-          }
-        },
-        {
-          text: 'Aceptar',
-          handler: () => {
-            console.log('Agree clicked');
-          }
-        }
-      ]
-    });
-    confirm.present();
-  }
-
   ionViewCanEnter() {
-    while(this.enlaces.length>0){
-      this.enlaces.pop();// borra el ultimo dato vacio del arreglo
-    }
-    while(this.enlaces_pend.length>0){
-      this.enlaces_pend.pop();// borra el ultimo dato vacio del arreglo
-    }
-    while(this.aux.length>0){
-      this.aux.pop();// borra el ultimo dato vacio del arreglo
-    }
-  }
-
-  initializeItems() {
-    this.items = this.aux; // se inicializa el arreglo(traspasando los datos de un arreglo que tiene los datos necesarios)
-  }
-
-  getItems(ev: any) {// ese es el metodo que realiza el filtro por palabra
-    
-    this.initializeItems();// se llama al metodo q inicializa el vector
-
-    const val = ev.target.value;
-
-    if (val && val.trim() != '') {
-      this.items = this.items.filter((item) => {
-        return (item.email_dep.toLowerCase().indexOf(val.toLowerCase()) > -1);// retorna la palabra filtrada
-      })
-    }
   }
 
   // Funcion Entrenamiento
@@ -369,60 +318,6 @@ export class CronometroentPage {
       })
   }
 
-  consulta_deportistas(){// se consultan todos los deportistas disponibles para enviar solicitud
-    this.webservices.vista_entrenador().then(
-      (datos)=>{
-        //alert(JSON.stringify(datos));
-        let largo=Object.keys(datos).length;
-        for(var i=0;i<largo;i++){
-          var email_ent= datos[i].CORREO; // se recibe el correo de los deportistas      
-          this.aux.push({"email_ent":email_ent});
-        }
-      },
-      (err)=>{
-        alert(JSON.stringify(err))
-      })
-  }
-
-  consulta_solicitud_pend(){// se consulta por las solicitudes pendientes
-    let largo=this.enlaces_pend.length;
-    for(var i=0;i<largo;i++){
-      this.enlaces_pend.pop();
-    }
-    this.webservices.consulta_enlace_pend_deportista(this.correo).then(// se envia la variable correo como consulta al php
-      (datos)=>{
-        //alert(JSON.stringify(datos));
-        let largo=Object.keys(datos).length;
-        for(var i=0;i<largo;i++){
-          var email= datos[i].ENTRENADOR;// se recibe el correo de la solicitud pendiente
-          this.enlaces_pend.push({"email":email});
-        }
-      },
-      (err)=>{
-        alert(JSON.stringify(err))
-      })
-  }
-
-  consulta_enlace(){
-    let largo=this.enlaces.length;
-    for(var i=0;i<largo;i++){
-      this.enlaces.pop();
-    }
-    this.webservices.consulta_enlace_deportista(this.correo).then(
-      (datos)=>{
-        //alert(JSON.stringify(datos));
-        let largo=Object.keys(datos).length;
-        for(var i=0;i<largo;i++){ // se reciben la id, el correo del entrenador y la fecha de la solicitud
-          var ide= datos[i].ID;
-          var email= datos[i].ENTRENADOR;
-          var fecha= datos[i].FECHA;
-          this.enlaces.push({"ide":ide,"email":email, "fecha":fecha});
-        }
-      },
-      (err)=>{
-        alert(JSON.stringify(err))
-      })
-  }
 
 //Perifericos (Gyroscopio,acelerometro,Sonidos)
 //Acelerometro
@@ -471,35 +366,6 @@ export class CronometroentPage {
     this.loading.present();
   }
 
-
-  borrar_acc(){
-    this.load();
-    this.webservices.delete_acelerometro_datos().then(
-      (datos) =>{
-        this.webservices.delete_giroscopio_datos().then(
-          (datos) =>{
-            var respuesta= datos[0].RESPUESTA;
-            this.loading.dismiss();
-            if(respuesta=='OK'){
-              alert('Los datos se han borrado satisfactoriamente');
-            }else{
-              alert('Ha ocurrido un error en el borrado');
-            }
-            //alert('oka'+JSON.stringify(resultado));
-          },
-          (error) =>{
-            alert('error'+JSON.stringify(error));
-          }
-        )
-        //alert('oka'+JSON.stringify(resultado));
-      },
-      (error) =>{
-        alert('error'+JSON.stringify(error));
-      }
-    )
-
-
-  }
 //Gyroscopio  
   comienzoGiroscopio(){
     try{
