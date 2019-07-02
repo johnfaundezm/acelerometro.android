@@ -45,16 +45,51 @@
     </div>
   
     <div *ngSwitchCase="'solicitud'">
+
+      <ion-card class="border_card_solicitudes">
+        <ion-card-header class="title_card">
+          Enviar Solicitud
+        </ion-card-header>
+        <ion-card-content>
+          <ion-searchbar placeholder="Buscar" (ionInput)="getItems($event)"></ion-searchbar>
+          <ion-scroll scrollY="true">
+            <ion-list inset >
+              <ion-item *ngFor="let item of items" class="formato_item" >
+                <ion-label (click)="alerta_enviar(item.email_dep)">{{ item.email_dep }}</ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-scroll>
+        </ion-card-content>    
+      </ion-card>
       
       <ion-card class="border_card_solicitudes_pen">
-        <ion-card-header class="title_card">Solicitudes Pendiente</ion-card-header>
-        <ion-scroll scrollY="true">
-          <ion-list inset >
-            <ion-item *ngFor="let item_s of enlaces_pend" class="formato_item" >
+        <ion-card-header class="title_card">
+          Solicitudes Recibidas Pendiente
+        </ion-card-header>
+        <ion-card-content>
+          <ion-scroll scrollY="true">
+            <ion-list inset >
+              <ion-item *ngFor="let item_s of enlaces_pend" class="formato_item" >
                 <ion-label (click)="alerta_confirmacion(item_s.email)">{{ item_s.email }}</ion-label>
-            </ion-item>
-          </ion-list>
-        </ion-scroll>
+              </ion-item>
+            </ion-list>
+          </ion-scroll>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="border_card_solicitudes_pen">
+        <ion-card-header class="title_card">
+          Solicitudes Enviadas Pendiente
+        </ion-card-header>
+        <ion-card-content>
+          <ion-scroll scrollY="true">
+            <ion-list inset >
+              <ion-item *ngFor="let item_s of enlaces_pend" class="formato_item" >
+                <ion-label (click)="alerta_confirmacion(item_s.email)">{{ item_s.email }}</ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-scroll>
+        </ion-card-content>
       </ion-card>
     </div>
   </div>

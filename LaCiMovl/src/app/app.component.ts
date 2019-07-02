@@ -15,7 +15,7 @@ import { DatabaseProvider } from '../providers/database/database';
 import { Gyroscope, GyroscopeOrientation, GyroscopeOptions } from '@ionic-native/gyroscope';
 import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
 import { CronometroPage } from '../pages/cronometro/cronometro';
-import { InfoentrenamientoPage } from '../pages/infoentrenamiento/infoentrenamiento';
+//import { InfoentrenamientoPage } from '../pages/infoentrenamiento/infoentrenamiento';
 
 
 
@@ -38,7 +38,7 @@ export class MyApp {
     this.pages = [
       { title: 'Salir', component: HomePage },
       { title: 'Cronometro', component: CronometroPage },
-      { title: 'infoentrenamiento', component: InfoentrenamientoPage },
+      //{ title: 'infoentrenamiento', component: InfoentrenamientoPage },
       //{ title: 'Administrador', component: AdministradorPage },
       //{ title: 'Deportistatabs', component: DeportistatabsPage},
       //{ title: 'Entrenadortabs', component: EntrenadortabsPage},
