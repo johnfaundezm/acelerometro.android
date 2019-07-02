@@ -5,7 +5,7 @@ import { IonicPage, NavController, NavParams, LoadingController,Platform, AlertC
 //import { Observable } from 'rxjs/Observable'
 import  'rxjs/add/observable/interval' 
 import { WebservicesProvider } from '../../providers/webservices/webservices';
-import { CronometroPage } from '../cronometro/cronometro';
+import { ListPage } from '../list/list';
 
 @IonicPage()
 @Component({
@@ -22,9 +22,7 @@ export class EntrenamientoPage {
   correo:any; // correo del desportista
   loading:any;// variable que almacena el estado de el loading
   items:any;// variable para usarlo en el filtro
-
-  estado:any;
-  a:any;
+  
   actividades: string = 'ejercicio';
   tiempoMarca: any;  //marca del tiempo para pausas
   
@@ -40,14 +38,6 @@ export class EntrenamientoPage {
   ionViewDidLoad() {
   }
 
-  ionViewWillLeave(){
-    this.a=0;
-  }
-  ionViewWillEnter(){
-  this.a=1;
-  this.time();
-  }
-
   ionViewCanEnter() {
     while(this.enlaces.length>0){
       this.enlaces.pop();// borra el ultimo dato que siempre esta vacio del arreglo
@@ -58,17 +48,6 @@ export class EntrenamientoPage {
     while(this.aux.length>0){
       this.aux.pop();// borra el ultimo dato que siempre esta vacio del arreglo
     }
-  }
-
-  time(){
-    setTimeout(() => {
-      this.verificacion();
-      if(this.a==1){
-      this.time();
-      }else{
-        alert('termina');
-      }
-    }, 2000)
   }
 
   doRefresh(refresher) {
@@ -170,36 +149,8 @@ export class EntrenamientoPage {
       })
   }
 
-  verificacion(){
-    this.webservices.estado_entrenamiento().then(
-      (datos)=>{
-        //alert(JSON.stringify(datos));
-        this.estado= datos[0].ESTADO;
-        if(this.estado==4){
-          alert('aceptada');
-        }else{
-          if(this.estado==3){
-            alert('continuar');
-          }else{
-            if(this.estado==3){
-              alert('pausar');
-            }else{
-              if(this.estado==3){
-                alert('finalizar');
-              }else{
-                alert('Ha ocurrido un problema');
-              }
-            }
-          }
-        }
-      },
-      (err)=>{
-        alert(JSON.stringify(err))
-      })
-  }
 
-
-  info_entrenamiento(id){
-    this.navCtrl.push(CronometroPage, {ide:id});
+  info_entrenamiento(id,email){
+    this.navCtrl.push(ListPage, {ide:id, email:email});
   }
 }

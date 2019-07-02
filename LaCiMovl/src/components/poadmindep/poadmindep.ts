@@ -24,7 +24,8 @@ export class PoadmindepComponent {
   respuesta:any;
   loading:any;
 
-  constructor(private webservices: WebservicesProvider, public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
+  constructor(private webservices: WebservicesProvider, public navCtrl: NavController, public navParams: NavParams, 
+    public loadingCtrl: LoadingController) {
     this.correo = this.navParams.get('correo');
   }
 
