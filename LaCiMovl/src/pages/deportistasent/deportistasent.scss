@@ -1,42 +1,42 @@
-page-deportistasent {
+page-deportistasent {//estilo (class) de la vista deportistasent
+    //estilo para el fondo de pagina
     .grad {
         background-image: linear-gradient(#1575E1, #33D7FF);
     }
     
+    //estilo para el borde de las tarjetas
     .border_card {
-        border-radius: 10px;
-        height: 85%;
+        border-radius: 10px;//esquinas redondeadas
+        height: 85%;//alto de la tarjeta
     }
     
+    //estilo para el titulo de la tarjeta
     .title_card {
-        font-size: 90%;
-        color: darkcyan;
+        font-size: 90%;//tamaño de fuente
+        color: darkcyan;//color de la fuente
     }
-
+    //estilo del scroll para que funcione
     ion-scroll {
         white-space: nowrap;
-        height: 75%;
+        height: 75%;//tamaño del scroll
     }
 
+    //estilo de borde de tarjeta
     .border_card_solicitudes {
-        border-radius: 10px;
-        height: 500px;
+        border-radius: 10px;//esquinas redondeadas
+        height: 500px;//alto de la tarjeta
     }
 
+    //estilo de borde de tarjeta
     .border_card_solicitudes_pen {
-        border-radius: 10px;
-        height: 250px;
+        border-radius: 10px;//esquinas redondeadas
+        height: 250px;//alto de la tarjeta
     }
 
+    //estilo del item
     .formato_item {
-        border-bottom: 1px solid; 
-        border-color: rgb(194, 191, 191); 
-        height: auto;
-    }
-
-    .item ion-thumbnail ion-img,
-    .item ion-thumbnail img {
-        width: 75px !important;
-        height: 75px !important;
+        border-bottom: 1px solid;//borde inferior del item 
+        border-color: rgb(194, 191, 191); //color del borde
+        height: auto;//altura automatica
     }
 }

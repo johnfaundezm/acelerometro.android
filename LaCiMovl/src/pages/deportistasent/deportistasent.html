@@ -1,21 +1,24 @@
-<ion-content class="grad" padding>
+<ion-content class="grad" padding><!--vista de los deportistas desde el usuario entrenador-->
 
+  <!--botón de menu de navegación-->
   <button ion-button color="light" menuToggle clear>
-      <ion-icon name="menu"></ion-icon>
+      <ion-icon name="menu"></ion-icon><!--icono del menu-->
   </button>
 
-  <ion-segment [(ngModel)]="actividades">
-    <ion-segment-button style="color: whitesmoke; border-color: white;" value="deportistas">
+  <!--divición de vistas atraves de segmentos-->
+  <ion-segment [(ngModel)]="actividades"><!--el segmento resive un valor-->
+    <ion-segment-button style="color: whitesmoke; border-color: white;" value="deportistas"><!--botón para seleccionar el segmento deportistas-->
       Deportistas
     </ion-segment-button>
-    <ion-segment-button style="color: whitesmoke; border-color: white;" value="solicitud">
+    <ion-segment-button style="color: whitesmoke; border-color: white;" value="solicitud"><!--boton para seleccionar el segmento solicitudes-->
       Solicitudes
     </ion-segment-button>
   </ion-segment>
 
-  <div [ngSwitch]="actividades">
+  <div [ngSwitch]="actividades"><!--el valor entra al ngswitch que hace el cambio de segmento seun el caso-->
 
-    <div *ngSwitchCase="'deportistas'">
+    <div *ngSwitchCase="'deportistas'"><!--segmento deportistas-->
+      <!--espacio para realizar refresco de pagina en el segmento deportistas-->
       <ion-refresher  (ionRefresh)="doRefresh($event)">
         <ion-refresher-content
           pullingIcon="arrow-dropdown"
@@ -24,48 +27,60 @@
           refreshingText="Refrescando...">
         </ion-refresher-content>
       </ion-refresher>
+      <!--tarjeta donde se muestran los deportistas ya enlazados-->
       <ion-card style="height: 500px" class="border_card">
-        <ion-card-header class="title_card">
+        <ion-card-header class="title_card"><!--titulo de la tarjeta-->
           Deportistas
         </ion-card-header>
-    
+        
+        <!--scroll para mover la lista-->
         <ion-scroll scrollY="true">
-          <ion-list inset >
-            <ion-item-sliding *ngFor="let d of enlaces">
-                <ion-item   class="formato_item">
-                  <h2>{{d.email}}</h2>
-                  <p style="text-align: center">{{d.ide}}  {{d.fecha}}</p>
+          <ion-list inset ><!-- lista donde se mostraran los deportistas enlazados-->
+            <ion-item-sliding *ngFor="let d of enlaces"><!--permite mover el el nombre para ver botones con actividades-->
+                <ion-item class="formato_item"><!--item contenedor de los datos mostrados de los deportistas enlazados-->
+                  <h2>{{d.email}}</h2><!--correo del deportista en la lista-->
+                  <p style="text-align: center">{{d.ide}}  {{d.fecha}}</p><!--id del entrenamiento y fecha de enlace-->
                 </ion-item>
-                <ion-item-options side="right">
-                    <button ion-button (click)="metodo(d.ide,d.email)"><ion-icon  name="clipboard" style="width: 30px; height: 30px"></ion-icon></button>
-                    <button ion-button color="secondary"><ion-icon name="stats" style="width: 30px; height: 30px"></ion-icon></button>
+                <ion-item-options side="right"><!--botones del sliding-->
+                    <button ion-button (click)="metodo(d.ide,d.email)"><!--botón e icono para enviar entrenamiento-->
+                      <ion-icon  name="clipboard" style="width: 30px; height: 30px"></ion-icon>
+                    </button>
+                    <button ion-button color="secondary"><!--botón e icono para entrar a las estadisticas del deportista-->
+                      <ion-icon name="stats" style="width: 30px; height: 30px"></ion-icon>
+                    </button>
                 </ion-item-options>
             </ion-item-sliding>
-            
           </ion-list>
         </ion-scroll>
       </ion-card>
     </div>
   
-    <div *ngSwitchCase="'solicitud'">
-      
+    <div *ngSwitchCase="'solicitud'"><!--segmento de solicitudes-->
+      <!--tarjeta de envio de solicitudes-->
       <ion-card class="border_card_solicitudes">
-        <ion-card-header class="title_card"> Enviar Solicitud</ion-card-header>
+        <ion-card-header class="title_card"><!--titulo de tarjeta de envio de solicitud--> 
+          Enviar Solicitud
+        </ion-card-header>
+        <!--barra filtradoras de los deportistas-->
         <ion-searchbar placeholder="Buscar" (ionInput)="getItems($event)"></ion-searchbar>
+        <!--scroll para navegar en la lista generada-->
         <ion-scroll scrollY="true">
           <ion-list inset >
-            <ion-item *ngFor="let item of items" class="formato_item" >
-              <ion-label (click)="alerta_enviar(item.email_dep)">{{ item.email_dep }}</ion-label>
+            <ion-item *ngFor="let item of items" class="formato_item" ><!--item que contiene a los deortistas generados en la lista-->
+              <ion-label (click)="alerta_enviar(item.email_dep)">{{ item.email_dep }}</ion-label><!--correo de los deportistas-->
             </ion-item>
           </ion-list>
         </ion-scroll>
       </ion-card>
-
+      <!--tarjeta de solicitudes pendientes-->
       <ion-card class="border_card_solicitudes_pen">
-        <ion-card-header class="title_card">Solicitudes Pendiente</ion-card-header>
+        <ion-card-header class="title_card"><!--titulo de tarjeta-->
+          Solicitudes Pendiente
+        </ion-card-header>
+        <!-- scroll para navegar en la lista-->
         <ion-scroll scrollY="true">
           <ion-list inset >
-            <ion-item *ngFor="let item_s of enlaces_pend" class="formato_item" >
+            <ion-item *ngFor="let item_s of enlaces_pend" class="formato_item" ><!--item contenedor del correo de la solicitud pendiente-->
               <ion-label>{{ item_s.email }}</ion-label>
             </ion-item>
           </ion-list>
@@ -73,26 +88,5 @@
       </ion-card>
     </div>
   </div>
-
-
-
-  <!--
-  <ion-card class="border_card">
-    <ion-card-header class="title_card">
-      Deportistas
-    </ion-card-header>
-
-    <ion-scroll scrollY="true">
-      <ion-list inset *ngFor="let e of enlaces" >
-        <ion-item style="border-bottom: 1px solid; border-color: rgb(194, 191, 191); height: auto">
-          <h2>{{e.email}}</h2>
-          <p style="text-align: left">{{e.entrenamiento_n}}</p>
-          <p style="text-align: right">{{e.fecha}}</p>
-        </ion-item>
-      </ion-list>
-    </ion-scroll>
-  </ion-card>
-  -->
-  
 
 </ion-content>
