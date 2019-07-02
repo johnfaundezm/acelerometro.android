@@ -90,7 +90,7 @@ export class EntrenamientoPage {
 
     if (val && val.trim() != '') {
       this.items = this.items.filter((item) => {
-        return (item.email_dep.toLowerCase().indexOf(val.toLowerCase()) > -1);// retorna la palabra filtrada
+        return (item.email_ent.toLowerCase().indexOf(val.toLowerCase()) > -1);// retorna la palabra filtrada
       })
     }
   }

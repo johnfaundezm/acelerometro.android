@@ -13,10 +13,12 @@ export class EstadisticasdepPage {
   @ViewChild('aceleracionchart') aceleracionchart;
   @ViewChild('aceleracionxyzchart') aceleracionxyzchart;
   @ViewChild('giroscopiochart') giroscopiochart;
+  @ViewChild('aceleragiroschart') aceleragiroschart;
 
   aceleracionchartvar: any;
   aceleracionxyzchartvar: any;
   giroscopiochartvar: any;
+  aceleragiroschartvar: any;
 
   datos_acelerometroX = [];
   datos_acelerometroY = [];
@@ -38,6 +40,7 @@ export class EstadisticasdepPage {
       this.acelerachart();
       this.aceleraxyzchart();
       this.giroschart();
+      this.acelgiroschart();
     }, 150)
 
     while(this.datos_acelerometroX.length>0){
@@ -169,6 +172,7 @@ export class EstadisticasdepPage {
           this.datos_giroscopio.push(aux);          
         }
         this.giroschart();
+        this.acelgiroschart();
         //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
@@ -262,19 +266,6 @@ export class EstadisticasdepPage {
       type: 'scatter',
       data: {
         datasets: [{
-          label: 'Aceleración',
-          data: this.datos_acelerometro,
-          showLine: true,
-          borderWidth: 2,
-          borderColor: 'rgba(3, 103, 3, 1)',
-          fill: false,
-                        backgroundColor: 'rgba(3, 103, 3, 1)',
-                        pointBorderColor: 'rgba(75,192,192,1)',
-                        pointBorderWidth: 1,     
-                        pointRadius: 0,
-                        pointHitRadius: 10,
-        },
-        {
           label: 'Fuerza',
           data: this.datos_acelerometroF,
           showLine: true,
@@ -345,9 +336,9 @@ export class EstadisticasdepPage {
 
           showLine: true,
           borderWidth: 2,
-          borderColor: 'rgba(214, 225, 9, 1)',
+          borderColor: 'rgba(28, 210, 8, 1)',
           fill: false,
-                        backgroundColor: 'rgba(214, 225, 9, 1)',
+                        backgroundColor: 'rgba(28, 210, 8, 1)',
                         pointBorderColor: 'rgba(75,192,192,1)',
                         pointBorderWidth: 1,     
                         pointRadius: 0,
@@ -358,9 +349,9 @@ export class EstadisticasdepPage {
           data: this.datos_giroscopioY,
           showLine: true,
           borderWidth: 2,
-          borderColor: 'rgba(24, 24, 185, 1)',
+          borderColor: 'rgba(28, 78, 241, 1)',
           fill: false,
-                        backgroundColor: 'rgba(24, 24, 185, 1)',
+                        backgroundColor: 'rgba(28, 78, 241, 1)',
                         pointBorderColor: 'rgba(75,192,192,1)',
                         pointBorderWidth: 1,     
                         pointRadius: 0,
@@ -371,9 +362,9 @@ export class EstadisticasdepPage {
           data: this.datos_giroscopioZ,
           showLine: true,
           borderWidth: 2,
-          borderColor: 'rgba(185, 24, 24, 1)',
+          borderColor: 'rgba(151, 36, 148, 1)',
           fill: false,
-                        backgroundColor: 'rgba(185, 24, 24, 1)',
+                        backgroundColor: 'rgba(151, 36, 148, 1)',
                         pointBorderColor: 'rgba(75,192,192,1)',
                         pointBorderWidth: 1,     
                         pointRadius: 0,
@@ -406,8 +397,75 @@ export class EstadisticasdepPage {
           }],
           yAxes: [{
             scaleLabel: {
-              display: true,
-              labelString:"m/s^2"
+              display: false,
+              labelString:""
+            }
+          }]
+        }
+      }
+    })
+  }
+
+  acelgiroschart(){
+    this.aceleragiroschartvar = new Chart(this.aceleragiroschart.nativeElement, {
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label: 'Aceleración',
+          data: this.datos_acelerometro,
+
+          showLine: true,
+          borderWidth: 2,
+          borderColor: 'rgba(28, 210, 8, 1)',
+          fill: false,
+                        backgroundColor: 'rgba(28, 210, 8, 1)',
+                        pointBorderColor: 'rgba(75,192,192,1)',
+                        pointBorderWidth: 1,     
+                        pointRadius: 0,
+                        pointHitRadius: 10,
+        },
+        {
+          label: 'Giroscopio',
+          data: this.datos_giroscopio,
+          showLine: true,
+          borderWidth: 2,
+          borderColor: 'rgba(28, 78, 241, 1)',
+          fill: false,
+                        backgroundColor: 'rgba(28, 78, 241, 1)',
+                        pointBorderColor: 'rgba(75,192,192,1)',
+                        pointBorderWidth: 1,     
+                        pointRadius: 0,
+                        pointHitRadius: 10,
+        }
+        ]
+      },
+
+      options: {
+        legend: {
+          position: 'left',
+          labels:{
+            boxWidth: 15
+          },
+          display: true
+        },
+        tooltips: {
+          enabled: true,
+          callbacks: {
+            label: function(tooltipItem, data) {
+                return tooltipItem.yLabel;
+            }
+          }
+        },
+        scales: {
+          xAxes: [{
+            display: false,
+            type: 'linear',
+            position: 'bottom'
+          }],
+          yAxes: [{
+            scaleLabel: {
+              display: false,
+              labelString:""
             }
           }]
         }
