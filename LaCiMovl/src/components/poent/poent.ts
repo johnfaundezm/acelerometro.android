@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { PerfilentPage } from '../../pages/perfilent/perfilent';
 
 @Component({
   selector: 'poent',
@@ -60,7 +61,7 @@ export class PoentComponent {
           this.respuesta= datos[0].RESPUESTA;
           if(this.respuesta=='OK'){
             this.loading.dismiss();
-            this.navCtrl.pop();
+            this.navCtrl.setRoot(PerfilentPage,{correo:this.correo});
             alert('Los cambios se han realizado satisfactoriamente')
           }else{
             if(this.respuesta=='ERROR'){
