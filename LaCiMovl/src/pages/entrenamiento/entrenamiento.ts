@@ -30,14 +30,14 @@ export class EntrenamientoPage {
               public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
     
     this.correo = this.navParams.get('correo'); //Se recibe el correo del deportista
+    this.consulta_entrenadores();//Se inicializa la consulta del los deportistas  
+    this.consulta_solicitud_pend(); //Se inicializa la consulta de las solicitudes pendientes
   }
 
   ionViewDidLoad() {
   }
 
   ionViewWillEnter(){
-    this.consulta_entrenadores();//Se inicializa la consulta del los deportistas  
-    this.consulta_solicitud_pend(); //Se inicializa la consulta de las solicitudes pendientes
     this.consulta_enlace(); //Se inicializa la consulta de los enlaces
   }
 
