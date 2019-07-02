@@ -111,7 +111,7 @@ export class HomePage {
             }
           }
           else{
-            if(this.estado==2){//si estado es 0, entonces la cuenta esta desactivada
+            if(this.estado==0){//si estado es 0, entonces la cuenta esta desactivada
               if(this.pass2==1){
                 alert('Su cuenta esta desactivada')
               }else{
