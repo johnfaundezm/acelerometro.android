@@ -10,6 +10,8 @@ import { PoadminentComponent } from '../../components/poadminent/poadminent';
 })
 export class AdminEntrenadorPage {
 
+  tabBarElement: any; //variable que almacena el elemento tabbar
+  
   correo:any;
   email:any;
   pass:any;
@@ -24,6 +26,15 @@ export class AdminEntrenadorPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider, public popoverCtrl: PopoverController) {
     this.correo = this.navParams.get('correo');
+    this.tabBarElement = document.querySelector('.tabbar.show-tabbar'); //se pasa el elemento tabbar a la variable antes declarada
+  }
+  //antes de entrar a la vista se oculta el tabbar
+  ionViewWillEnter() {
+    this.tabBarElement.style.display = 'none';
+  }
+  //cuando va a salir de la vista se le agrega el tabbar nuevamente
+  ionViewWillLeave() {
+    this.tabBarElement.style.display = 'flex';
   }
 
   poadminent(myEvent) {

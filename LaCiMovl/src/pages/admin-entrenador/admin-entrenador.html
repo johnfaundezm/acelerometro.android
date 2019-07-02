@@ -1,6 +1,8 @@
-<ion-content class="grad" padding>
+<ion-content class="grad" padding><!--vista del administrador para ver a un entrenador-->
 
-  <ion-refresher (ionRefresh)="doRefresh($event)">
+  <!--espacio para refrescar la vista-->
+  <ion-refresher (ionRefresh)="doRefresh($event)"><!--funcion donde se le pasa el valor del evento al deslizar-->
+    <!--caracteristicas del refresco como el icono y el texto-->
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
       pullingText="Pull to refresh"
@@ -9,58 +11,61 @@
     </ion-refresher-content>
   </ion-refresher>
 
+  <!--botón del menu de navegación-->
   <button ion-button color="light" menuToggle clear>
-      <ion-icon name="menu"></ion-icon>
+      <ion-icon name="menu"></ion-icon><!--icono del botón del menu-->
   </button>
 
+  <!--tarjeta que muestra la información personal del usuario-->
   <ion-card class="border_card">
     <ion-card-header class="title_card">
       Informacion Personal
     </ion-card-header>
 
+    <!--lista de los atributos del usuario-->
     <ion-list>
 
-      <ion-item>
+      <ion-item><!--input con el nombre del usuario-->
         <ion-label>Nombre</ion-label>
         <ion-input [(ngModel)]="nombre" disabled class="textarea"></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--input con el apellido paterno del usuario-->
         <ion-label>Apellido paterno</ion-label>
         <ion-input [(ngModel)]="apellido_p" class="textarea" disabled></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--input con el apellido materno del usuario-->
         <ion-label>Apellido materno</ion-label>
         <ion-input [(ngModel)]="apellido_m" class="textarea" disabled></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--input con la contraseña del usuario-->
         <ion-label>Contraseña</ion-label>
         <ion-input [(ngModel)]="pass" class="textarea" disabled></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--input con el genero del usuario-->
         <ion-label>Genero</ion-label>
         <ion-input [(ngModel)]="genero" disabled class="textarea"></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--input con la edad del usuario-->
         <ion-label>Edad</ion-label>
         <ion-input [(ngModel)]="edad" disabled class="textarea"></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--input con el pais del usuario-->
         <ion-label>Pais</ion-label>
         <ion-input [(ngModel)]="pais" disabled class="textarea"></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--input con el estado de cuenta del usuario-->
         <ion-label>Estado Cuenta</ion-label>
         <ion-input [(ngModel)]="estado" disabled class="textarea"></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--input con la fecha de registro del usuario-->
         <ion-label>Fecha Registro</ion-label>
         <ion-input [(ngModel)]="fecha_r" disabled class="textarea"></ion-input>
       </ion-item>
@@ -68,8 +73,9 @@
     </ion-list>
 
     <ion-item >
+      <!--botón para ingresar al popover para modificar información del usuario-->
       <button ion-button color="secondary" block (click)="poadminent($event)">
-        <ion-icon name="create" style="margin-right: 5px" ></ion-icon>
+        <ion-icon name="create" style="margin-right: 5px" ></ion-icon><!--icono del botón-->
         Editar
       </button>
     </ion-item>
