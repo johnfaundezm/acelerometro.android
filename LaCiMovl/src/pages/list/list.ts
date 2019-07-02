@@ -43,35 +43,13 @@ export class ListPage {
     }, 2000)
   }
 
-  alerta_confirmacion() {
-    const confirm = this.alertCtrl.create({
-      title: 'Confirmacion de solicitud',
-      message: 'El entrenador "'+this.email+'" te ha enviado una solicitud de entrenamiento',
-      buttons: [
-        {
-          text: 'Cancelar',
-          handler: () => {
-            console.log('Disagree clicked');
-          }
-        },
-        {
-          text: 'Aceptar',
-          handler: () => {
-            this.loading.dismiss();
-            this.actualizar_estado();
-          }
-        }
-      ]
-    });
-    confirm.present();
-  }
-
   verificacion(){
     this.webservices.estado_entrenamiento(this.id_ent).then(
       (datos)=>{
         //alert(JSON.stringify(datos));
         this.estado= datos[0].ESTADO;
         if(this.estado==5){
+          this.a=0;
           this.alerta_confirmacion();
         }else{
           if(this.estado==3){
@@ -94,13 +72,27 @@ export class ListPage {
       })
   }
 
-  loadactualizacion() {
-    this.loading = this.loadingCtrl.create({
-      spinner: 'ios',
-      content: 'Cargando...',
+  alerta_confirmacion() {
+    const confirm = this.alertCtrl.create({
+      title: 'Confirmacion de solicitud',
+      message: 'El entrenador "'+this.email+'" te ha enviado una solicitud de entrenamiento',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: () => {
+            this.loading.dismiss();
+            this.actualizar_estado();
+          }
+        }
+      ]
     });
-  
-    this.loading.present();
+    confirm.present();
   }
 
   actualizar_estado(){
@@ -128,5 +120,14 @@ export class ListPage {
         this.loading.dismiss();
         alert('error'+JSON.stringify(error));
       })
+  }
+
+  loadactualizacion() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Cargando...',
+    });
+  
+    this.loading.present();
   }
 }
