@@ -13,7 +13,7 @@ export class ListPage {
   estado:any;
   respuesta:any;
   loading:any;
-
+  cont:number=0;
   a:any;
   
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider,
@@ -23,7 +23,7 @@ export class ListPage {
   }
 
   ionViewWillEnter(){
-    this.loadactualizacion();
+    this.load_buscar()
     this.a=1;
     this.time();
   }
@@ -34,11 +34,9 @@ export class ListPage {
 
   time(){
     setTimeout(() => {
-      this.verificacion();
       if(this.a==1){
-      this.time();
-      }else{
-        alert('termina');
+        this.verificacion();
+        this.time();
       }
     }, 2000)
   }
@@ -52,24 +50,45 @@ export class ListPage {
           this.a=0;
           this.alerta_confirmacion();
         }else{
-          if(this.estado==3){
-            alert('continuar');
-          }else{
-            if(this.estado==3){
-              alert('pausar');
-            }else{
-              if(this.estado==3){
-                alert('finalizar');
-              }else{
-                alert('Ha ocurrido un problema');
-              }
-            }
+          this.cont+=1;
+          if(this.cont==5){
+            this.loading.dismiss();
+            this.a=0;
+            this.alerta_confirmacion_tiempo_expirado();
           }
         }
       },
       (err)=>{
         alert(JSON.stringify(err))
       })
+  }
+
+  alerta_confirmacion_tiempo_expirado() {
+    const confirm = this.alertCtrl.create({
+      title: 'Notificación',
+      message: 'No se ha encontrado ninguna notificación en curso, ¿Desea reintentar?',
+      buttons: [
+        {
+          text: 'Salir',
+          handler: () => {
+            console.log('Disagree clicked');
+            this.loading.dismiss();
+            this.navCtrl.pop();
+          }
+        },
+        {
+          text: 'Si',
+          handler: () => {
+            this.loading.dismiss();
+            this.a=1;
+            this.load_buscar()
+            this.time();
+            this.cont=0;
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
   alerta_confirmacion() {
@@ -81,6 +100,7 @@ export class ListPage {
           text: 'Cancelar',
           handler: () => {
             console.log('Disagree clicked');
+            this.loading.dismiss();
           }
         },
         {
@@ -96,14 +116,14 @@ export class ListPage {
   }
 
   actualizar_estado(){
-    this.loadactualizacion();
+    this.load();
     this.estado=4;
     this.webservices.actualizar_estado_entrenamiento(this.id_ent,this.estado).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
         if(this.respuesta=='OK'){
           this.loading.dismiss();
-          this.navCtrl.push(CronometroPage, {id:this.id_ent})
+          this.navCtrl.push(CronometroPage, {id:this.id_ent, email:this.email});
           alert('Los cambios se han realizado satisfactoriamente')
         }else{
           if(this.respuesta=='ERROR'){
@@ -122,7 +142,16 @@ export class ListPage {
       })
   }
 
-  loadactualizacion() {
+  load_buscar() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Buscando Entrenamiento...',
+    });
+  
+    this.loading.present();
+  }
+
+  load() {
     this.loading = this.loadingCtrl.create({
       spinner: 'ios',
       content: 'Cargando...',

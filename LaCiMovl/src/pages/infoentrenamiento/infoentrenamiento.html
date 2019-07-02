@@ -22,7 +22,7 @@
       </ion-card-content>
     </ion-card>
   </div>
-
+  
   <div>
     <ion-card class="card_rango">
       <ion-card-header class="title_card">
@@ -30,8 +30,8 @@
       </ion-card-header>
       <ion-card-content>
         <ion-item style="background-color: transparent;">
-          <ion-select style="color:rgb(51, 50, 50); background-color: whitesmoke; margin: auto; border-radius: 5px" placeholder="Elegir tipo">
-            <ion-option value="caminar">correr</ion-option>
+          <ion-select [(ngModel)]="tipo_entrenamiento" style="color:rgb(51, 50, 50); background-color: whitesmoke; margin: auto; border-radius: 5px" placeholder="Elegir tipo">
+            <ion-option value="caminar">Caminar</ion-option>
             <ion-option value="correr">Correr</ion-option>
             <ion-option value="saltar">Saltar</ion-option>
             <ion-option value="golpear">Golpear</ion-option>
