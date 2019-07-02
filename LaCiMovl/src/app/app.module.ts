@@ -8,7 +8,6 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { RegistroPage } from '../pages/registro/registro';
 import { ListPage } from '../pages/list/list';
-import { AdministradorPage } from '../pages/administrador/administrador';
 import { AdminDeportistaPage } from '../pages/admin-deportista/admin-deportista';
 
 
@@ -52,7 +51,6 @@ import { PoentComponent } from '../components/poent/poent';
     HomePage,
     RegistroPage,
     ListPage,
-    AdministradorPage,
     AdminDeportistaPage,
     AdminEntrenadorPage,
     PoadmindepComponent,
@@ -82,7 +80,6 @@ import { PoentComponent } from '../components/poent/poent';
     HomePage,
     RegistroPage,
     ListPage,
-    AdministradorPage,
     AdminDeportistaPage,
     AdminEntrenadorPage,
     PoadmindepComponent,
