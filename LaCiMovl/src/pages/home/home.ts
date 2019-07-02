@@ -24,7 +24,7 @@ export class HomePage {
   rol:any;
   respuesta:any;
   estado:any;
-
+  a:any;
   loading:any;
 
   constructor(public navCtrl: NavController, private sqlite: SQLite, private webservices: WebservicesProvider, public menuCtrl: MenuController, public loadingCtrl: LoadingController,public toastCtrl: ToastController) {
