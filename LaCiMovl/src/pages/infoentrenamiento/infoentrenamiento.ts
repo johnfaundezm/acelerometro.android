@@ -163,7 +163,6 @@ export class InfoentrenamientoPage {
       if(this.a==1){// si a es igual a 1  se ingresa al if para poder llamar a la recursividad
         this.verificacion();// se llama la función que verifica el estado
         this.time();// se llama a la funcion que realiza la recursividad
-        alert('pasa')
       }
     }, 2000)// tiempo en milisegundos que se demora en realizarse lo que hay dentro del setTimeout
   }
