@@ -195,8 +195,8 @@ export class DeportistasentPage {
       })
   }
 
-  metodo(id){
-    this.navCtrl.push(InfoentrenamientoPage, {ide:id});
+  metodo(id, email){
+    this.navCtrl.push(InfoentrenamientoPage, {ide:id, email:email});
   }
 
 }

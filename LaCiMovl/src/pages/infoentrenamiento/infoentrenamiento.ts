@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { CronometroPage } from '../cronometro/cronometro';
 
 
 /**
@@ -27,7 +28,10 @@ export class InfoentrenamientoPage {
   public tiempo_recuperacion :number;
   public unidad_recuperacion : number;
 
-  ide:any;
+  id_ent:any;
+  email_dep:any;
+  estado:any;
+  a:any;
   formattedDate;
 
   respuesta:any;
@@ -38,9 +42,15 @@ export class InfoentrenamientoPage {
   tiempoS: any= 0;
   tiempoRM: any= 0;
   tiempoRS: any= 0;
+
+  //formato de tiempo
+  tiempo_ent:any;
+  tiempo_rec:any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider,
     public loadingCtrl: LoadingController) {
-    this.ide = this.navParams.get('ide');
+    this.id_ent = this.navParams.get('ide');
+    this.email_dep = this.navParams.get('email');
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar'); //se pasa el elemento tabbar a la variable antes declarada
   }
 
@@ -64,6 +74,23 @@ export class InfoentrenamientoPage {
     });
   
     this.loading.present();
+  }
+
+  load_espera_respuesta() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Esperando respuesta del Deportista...',
+    });
+    
+    this.loading.onDidDismiss(() => {
+      alert('Se ha excedido el tiempo de espera')
+    });
+
+    this.loading.present();
+
+    setTimeout(() => {
+      this.loading.dismiss();
+    }, 10000);
   }
 
 
@@ -96,15 +123,33 @@ export class InfoentrenamientoPage {
     this.formattedDate = year+'-'+ mes +'-'+ date;
   }
 
+  time(){
+    setTimeout(() => {
+      this.verificacion();
+      if(this.a==1){
+      this.time();
+      }else{
+        this.loading.dismiss();
+      }
+    }, 2000)
+  }
+
   enviar_entrenamiento(){
+    this.loadregistrar();
     this.getFormattedDate();
     this.detalletiempo();
-    this.webservices.insertar_entrenamiento(this.ide,this.tiempo_entrenamiento,this.tiempo_recuperacion,this.formattedDate,this.tipo_entrenamiento).then(
+
+    this.tiempo_ent='00:'+this.tiempoM+':'+this.tiempoS;
+    this.tiempo_rec='00:'+this.tiempoRM+':'+this.tiempoRS;
+    this.estado=5;
+    this.webservices.insertar_entrenamiento(this.id_ent,this.tiempo_ent,this.tiempo_rec,this.formattedDate,this.tipo_entrenamiento,this.estado).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
         if(this.respuesta=='OK'){
           alert('El entrenamiento se ha creado satisfactoriamente');
           this.loading.dismiss();
+          this.load_espera_respuesta();
+
         }
         if(this.respuesta=='EXISTE'){
           this.loading.dismiss();
@@ -114,6 +159,8 @@ export class InfoentrenamientoPage {
           this.loading.dismiss();
           alert('Ha ocurrido un error inesperado')
         }
+        this.a=1;
+        this.time();
         //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
@@ -123,23 +170,89 @@ export class InfoentrenamientoPage {
   }
   
   pausa_entrenamiento(){
-    
-    alert('Se envió mensaje de pausa de entremiento');
+    this.estado=2;
+    this.webservices.actualizar_estado_entrenamiento(this.id_ent,this.estado).then(
+      (datos) =>{
+        this.respuesta= datos[0].RESPUESTA;
+        if(this.respuesta=='OK'){
+          alert('Los cambios se han realizado satisfactoriamente')
+        }else{
+          if(this.respuesta=='ERROR'){
+            alert('Ha ocurrido un error en la actualizacion')
+          }else{
+            alert('Ha ocurrido un error en la actualizacion')
+          }
+        }
+      //alert('oka'+JSON.stringify(resultado));
+      },
+      (error) =>{
+        alert('error'+JSON.stringify(error));
+      })
   }
 
   continuar_entrenamiento(){
-    
-    alert('Se envió mensaje para continuar entrenamiento');
+    this.estado=3;
+    this.webservices.actualizar_estado_entrenamiento(this.id_ent,this.estado).then(
+      (datos) =>{
+        this.respuesta= datos[0].RESPUESTA;
+        if(this.respuesta=='OK'){
+          alert('Los cambios se han realizado satisfactoriamente')
+        }else{
+          if(this.respuesta=='ERROR'){
+            alert('Ha ocurrido un error en la actualizacion')
+          }else{
+            alert('Ha ocurrido un error en la actualizacion')
+          }
+        }
+      //alert('oka'+JSON.stringify(resultado));
+      },
+      (error) =>{
+        alert('error'+JSON.stringify(error));
+      })
   }
+
   finalizar_entrenamiento(){
-    
-    alert('Se envió mensaje de finalización de entrenamiento');
+    this.estado=1;
+    this.webservices.actualizar_estado_entrenamiento(this.id_ent,this.estado).then(
+      (datos) =>{
+        this.respuesta= datos[0].RESPUESTA;
+        if(this.respuesta=='OK'){
+          alert('Los cambios se han realizado satisfactoriamente')
+        }else{
+          if(this.respuesta=='ERROR'){
+            alert('Ha ocurrido un error en la actualizacion')
+          }else{
+            alert('Ha ocurrido un error en la actualizacion')
+          }
+        }
+      //alert('oka'+JSON.stringify(resultado));
+      },
+      (error) =>{
+        alert('error'+JSON.stringify(error));
+      })
   }
 
 
   detalletiempo(){
     this.tiempo_recuperacion= (this.tiempoRM*60) + this.tiempoRS;
     this.tiempo_entrenamiento=(this.tiempoM*60) + this.tiempoS;
+  }
+
+  verificacion(){
+    this.webservices.estado_entrenamiento(this.id_ent).then(
+      (datos)=>{
+        //alert(JSON.stringify(datos));
+        this.estado= datos[0].ESTADO;
+        if(this.estado==4){
+          this.loading.dismiss();
+          this.navCtrl.push(CronometroPage, {id:this.id_ent});
+        }else{
+          alert('Ha ocurrido un problema');
+        } 
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
   }
 
   volver(){
