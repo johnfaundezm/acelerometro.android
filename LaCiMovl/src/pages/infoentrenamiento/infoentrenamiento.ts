@@ -89,6 +89,7 @@ export class InfoentrenamientoPage {
     this.loading.present();
 
     setTimeout(() => {
+      this.a=0;
       this.loading.dismiss();
     }, 10000);
   }
@@ -243,11 +244,10 @@ export class InfoentrenamientoPage {
       (datos)=>{
         //alert(JSON.stringify(datos));
         this.estado= datos[0].ESTADO;
-        if(this.estado==4){
+        if(this.estado==4){// si es 4 es por que está aceptado el entrenamiento
           this.loading.dismiss();
           this.navCtrl.push(CronometroPage, {id:this.id_ent});
-        }else{
-          alert('Ha ocurrido un problema');
+          this.a=0;
         } 
       },
       (err)=>{
