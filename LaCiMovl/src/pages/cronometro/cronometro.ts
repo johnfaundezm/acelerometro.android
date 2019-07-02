@@ -29,6 +29,7 @@ export class CronometroPage {
 
   cambio: boolean =true; //variable para el cambio de pausar y continuar
 
+  //variables iniciadas para sacar la aceleracion, fuerza y potencia maxima
   A_max: any = 0;
   F_max: any = 0;
   P_max: any = 0;
@@ -454,6 +455,8 @@ export class CronometroPage {
 
         this.potencia = this.fuerza * this.acel_x_y_z; //potencia resultante
 
+        this.punto_max();//para sacar los valores maximos de aceleracion, fuerza y potencia
+
         this.webservices.acelerometro_datos(this.accX, this.accY, this.accZ, this.acel_x_y_z,this.fuerza,this.potencia).then( // se envian los datos al servidor web
           (resultado) =>{
             //alert('oka'+JSON.stringify(resultado));
@@ -607,12 +610,26 @@ export class CronometroPage {
     });
   }
 
+  //funcion para cambiar icono pausa y reproducir
   cambiaricon(){
-    if(this.cambio == true){
-      this.cambio = false;
+    if(this.cambio == true){//si al presionar el boton este es true(play)
+      this.cambio = false;//se cambia por false(stop)
     }else{
-      this.cambio = true;
+      this.cambio = true;//sino al apretar el boton este es false(stop), se cambia por true(play)
     }
   }
+  //funcion que compara los valores de aceleracion, fuerza y potencia y rescata el valor max de cada una de estas.
+  punto_max(){
+    if(this.acel_x_y_z > this.A_max){
+      this.A_max= this.acel_x_y_z.toFixed(2);
+    }
+    if(this.fuerza > this.F_max){
+      this.F_max= this.fuerza;
+    }
+    if(this.potencia > this.P_max){
+      this.P_max= this.potencia;
+    }
+  }
+
 }
   

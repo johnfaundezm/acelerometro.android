@@ -1,58 +1,60 @@
-page-cronometro {
-
+page-cronometro { //estilos (class) para la pagina cronometro
+    //color de fondo de la vista
     .grad {
         background-color: #252121;
     }
 
+    //estilo para los caracteres del cronometro
     .crono {
-        text-align: center;
-        font-size: 45px;
-        color: whitesmoke;
+        text-align: center;//alinear al centro
+        font-size: 45px;//tamaño de la fuente
+        color: whitesmoke;//colore de la fuente
     }
     
+    //estilo del icono del cronometro
     .icon_crono {
-        margin-right: 0px;
-        color: whitesmoke;
-        font-size: 35px;
+        margin-right: 0px;//margen a la derecha del icono con respecto al cronometro
+        color: whitesmoke;//color del icono
+        font-size: 35px;//tamaño del icono
     }
 
+    //estilo para el boton de iniciar y detener
     .btn_entre {
-        border-radius: 50px;
-        border-width: 1px;
-        background-color: rgb(240, 58, 13);
-        width: 75px;
-        height: 75px;
+        border-radius: 50px;//se le da un borde redondeado al boton para que tenga apariencia redonda
+        border-width: 1px;//tamaño del borde del boton
+        background-color: rgb(240, 58, 13);//color del boton
+        width: 75px;//ancho del botón
+        height: 75px;//alto del botón
     }
 
+    //estilo para el botón finalizar
     .btn_fin {
-        border-radius: 40px;
-        border-width: 1px;
-        width: 40px;
-        height: 40px;
+        border-radius: 40px;//para darle forma redonda al botón
+        border-width: 1px;//borde del botón
+        width: 40px;//ancho del botón
+        height: 40px;//alto del botón
     }
 
-    ion-scroll {
-        white-space: nowrap;
-        height: 100%;
-    }
-
+    //estilo para los input de valores maximos
     .AFP_max {
-        text-align-last: center;
-        font-size: 40px;
-        color: whitesmoke;
-        border: none;
+        text-align-last: center;//centrar el texto
+        font-size: 35px;//tamaño de la fuente
+        color: whitesmoke;//color de la fuente
+        border: none;//sin bordes de input
     }
 
+    //estilo para la etiqueta de aceleracion
     .label_acel{
-        text-align: center;
-        font-size: 15px;
-        color: whitesmoke;
+        text-align: center;//texto centrado
+        font-size: 15px;//tamaño de la fuente
+        color: whitesmoke;//color de la fuente
     }
 
+    //estilo para la etiqueta de potencia
     .label_potencia{
-        text-align: center;
-        font-size: 13px;
-        color: whitesmoke;
+        text-align: center;//texto centro
+        font-size: 13px;//tamaño fuente
+        color: whitesmoke;//color de fuente
     }
 
 }
