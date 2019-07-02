@@ -33,6 +33,8 @@ export class InfoentrenamientoPage {
   //valores iniciales para el tiempo de entrenamiento
   tiempoM: any= 0;
   tiempoS: any= 0;
+  tiempoRM: any= 0;
+  tiempoRS: any= 0;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider,
     public loadingCtrl: LoadingController) {
