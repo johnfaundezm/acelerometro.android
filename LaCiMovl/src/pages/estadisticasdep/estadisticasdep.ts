@@ -52,7 +52,7 @@ export class EstadisticasdepPage {
     }
   }
 
-  ionViewCanEnter(){
+  ionViewWillEnter(){
     this.consultar_acc();
   }
 
@@ -60,19 +60,19 @@ export class EstadisticasdepPage {
     for(var i=0;i<this.datos_acelerometroX.length;i++){
       this.datos_acelerometroX.pop();
     }
-    for(var i=0;i<this.datos_acelerometroY.length;i++){
+    for(i=0;i<this.datos_acelerometroY.length;i++){
       this.datos_acelerometroY.pop();
     }
-    for(var i=0;i<this.datos_acelerometroZ.length;i++){
+    for(i=0;i<this.datos_acelerometroZ.length;i++){
       this.datos_acelerometroZ.pop();
     }
-    for(var i=0;i<this.datos_acelerometro.length;i++){
+    for(i=0;i<this.datos_acelerometro.length;i++){
       this.datos_acelerometro.pop();
     }
-    for(var i=0;i<this.datos_acelerometroF.length;i++){
+    for(i=0;i<this.datos_acelerometroF.length;i++){
       this.datos_acelerometroF.pop();
     }
-    for(var i=0;i<this.datos_acelerometroP.length;i++){
+    for(i=0;i<this.datos_acelerometroP.length;i++){
       this.datos_acelerometroP.pop();
     }
     this.webservices.consulta_acelerometro_datos().then(

@@ -18,8 +18,6 @@ export class DeportistasentPage {
   respuesta:any;
   loading:any;
 
-  nombre_entrenamiento:any;
-
   aux: Array<{email_dep:string}>=[{email_dep:''}];
   items:any;
 
@@ -173,6 +171,7 @@ export class DeportistasentPage {
           var ide= datos[i].ID;
           var email= datos[i].DEPORTISTA;
           var fecha= datos[i].FECHA;
+          alert(email)
           this.enlaces.push({"ide":ide,"email":email, "fecha":fecha});
         }
       },

@@ -5,6 +5,7 @@ import { IonicPage, NavController, NavParams, LoadingController,Platform, AlertC
 //import { Observable } from 'rxjs/Observable'
 import  'rxjs/add/observable/interval' 
 import { WebservicesProvider } from '../../providers/webservices/webservices';
+import { CronometroPage } from '../cronometro/cronometro';
 
 @IonicPage()
 @Component({
@@ -22,6 +23,8 @@ export class EntrenamientoPage {
   loading:any;// variable que almacena el estado de el loading
   items:any;// variable para usarlo en el filtro
 
+  estado:any;
+  a:any;
   actividades: string = 'ejercicio';
   tiempoMarca: any;  //marca del tiempo para pausas
   
@@ -35,7 +38,14 @@ export class EntrenamientoPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad EntrenamientoPage');
+  }
+
+  ionViewWillLeave(){
+    this.a=0;
+  }
+  ionViewWillEnter(){
+  this.a=1;
+  this.time();
   }
 
   ionViewCanEnter() {
@@ -49,6 +59,22 @@ export class EntrenamientoPage {
       this.aux.pop();// borra el ultimo dato que siempre esta vacio del arreglo
     }
   }
+
+  time(){
+    setTimeout(() => {
+      this.verificacion();
+      if(this.a==1){
+      this.time();
+      }else{
+        alert('termina');
+      }
+    }, 2000)
+  }
+
+  doRefresh(refresher) {
+    this.consulta_enlace();
+    refresher.complete();
+  } 
 
   alerta_confirmacion(correo) {
     const confirm = this.alertCtrl.create({
@@ -142,5 +168,38 @@ export class EntrenamientoPage {
       (err)=>{
         alert(JSON.stringify(err))
       })
+  }
+
+  verificacion(){
+    this.webservices.estado_entrenamiento().then(
+      (datos)=>{
+        //alert(JSON.stringify(datos));
+        this.estado= datos[0].ESTADO;
+        if(this.estado==4){
+          alert('aceptada');
+        }else{
+          if(this.estado==3){
+            alert('continuar');
+          }else{
+            if(this.estado==3){
+              alert('pausar');
+            }else{
+              if(this.estado==3){
+                alert('finalizar');
+              }else{
+                alert('Ha ocurrido un problema');
+              }
+            }
+          }
+        }
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
+  }
+
+
+  info_entrenamiento(id){
+    this.navCtrl.push(CronometroPage, {ide:id});
   }
 }

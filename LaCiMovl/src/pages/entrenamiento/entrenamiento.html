@@ -15,6 +15,14 @@
 
   <div [ngSwitch]="actividades">
     <div *ngSwitchCase="'ejercicio'">
+      <ion-refresher  (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          pullingText="Pull to refresh"
+          refreshingSpinner="circles"
+          refreshingText="Refrescando...">
+        </ion-refresher-content>
+      </ion-refresher>
 
       <ion-card class="border_card_solicitudes_pen">
         <ion-card-header class="title_card">Entrenadores enlazados</ion-card-header>
@@ -26,7 +34,7 @@
                   <p style="text-align: center">{{e.ide}}  {{e.fecha}}</p>
                 </ion-item>
                 <ion-item-options side="right">
-                    <button ion-button (click)="metodo(e.ide)"><ion-icon  name="clipboard" style="width: 30px; height: 30px"></ion-icon></button>
+                    <button ion-button (click)="info_entrenamiento(e.ide)"><ion-icon  name="clipboard" style="width: 30px; height: 30px"></ion-icon></button>
                     <button ion-button color="secondary"><ion-icon name="stats" style="width: 30px; height: 30px"></ion-icon></button>
                 </ion-item-options>
             </ion-item-sliding>
