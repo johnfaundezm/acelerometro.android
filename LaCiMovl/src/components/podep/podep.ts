@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { PerfildepPage } from '../../pages/perfildep/perfildep';
 
 @Component({
   selector: 'podep',
@@ -92,7 +93,7 @@ export class PodepComponent {
           this.respuesta= datos[0].RESPUESTA;
           if(this.respuesta=='OK'){
             this.loading.dismiss();
-            this.navCtrl.pop();
+            this.navCtrl.setRoot(PerfildepPage,{correo:this.correo});
             alert('Los cambios se han realizado satisfactoriamente')
           }else{
             if(this.respuesta=='ERROR'){
