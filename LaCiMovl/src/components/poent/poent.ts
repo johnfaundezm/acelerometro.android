@@ -3,10 +3,10 @@ import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
 @Component({
-  selector: 'poadminent',
-  templateUrl: 'poadminent.html'
+  selector: 'poent',
+  templateUrl: 'poent.html'
 })
-export class PoadminentComponent {
+export class PoentComponent {
 
   correo:any;
   pass:any;
@@ -20,10 +20,11 @@ export class PoadminentComponent {
   estado2:any;
   valor_estado:boolean;
   respuesta:any;
-  loading:any;
+  loading:any;  
 
-  constructor(private webservices: WebservicesProvider, public navCtrl: NavController, public navParams: NavParams, 
+  constructor(private webservices: WebservicesProvider, public navCtrl: NavController, public navParams: NavParams,
     public loadingCtrl: LoadingController) {
+    
     this.correo = this.navParams.get('correo');
   }
 
