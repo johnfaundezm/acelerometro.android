@@ -448,15 +448,7 @@ export class CronometroentPage {
         this.potencia = this.fuerza * this.acel_x_y_z; //potencia resultante
 
         this.punto_max();//para sacar los valores maximos de aceleracion, fuerza y potencia
-
-        this.webservices.acelerometro_datos(this.accX, this.accY, this.accZ, this.acel_x_y_z,this.fuerza,this.potencia).then( // se envian los datos al servidor web
-          (resultado) =>{
-            //alert('oka'+JSON.stringify(resultado));
-          },
-          (error) =>{
-            alert('error'+JSON.stringify(error)); // muestra una alerta si ocurrió algun error durante el proceso
-          }
-        )   
+   
       }
       );      
     }catch(err){
@@ -523,15 +515,7 @@ export class CronometroentPage {
         this.timestampd=orientation.timestamp;
         //Calculos____________________
         this.giro_x_y_z = ((this.xOrient**2)+(this.yOrient**2)+(this.zOrient**2))**0.5; //vector resultante
-
-        this.webservices.giroscopio_datos(this.xOrient, this.yOrient, this.zOrient, this.giro_x_y_z).then(// se envian los datos al servidor web
-          (resultado) =>{
-            //alert('oka'+JSON.stringify(resultado));
-          },
-          (error) =>{
-            alert('error'+JSON.stringify(error));// muestra una alerta si ocurrió algun error durante el proceso
-          }
-        )  
+ 
      });
     }catch(err){
       alert("Error" + err);// muestra una alerta si ocurrió algun error durante el proceso
