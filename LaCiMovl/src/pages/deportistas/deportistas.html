@@ -1,5 +1,5 @@
-<ion-content class="grad" padding>
-
+<ion-content class="grad" padding><!--vista que permite al administrador ver los deportistas en registrados-->
+<!--espacio para realizar el refrescado de pagina-->
   <ion-refresher  (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
@@ -9,25 +9,30 @@
     </ion-refresher-content>
   </ion-refresher>
 
+  <!--botón del menu de navegación-->
   <button ion-button color="light" menuToggle clear>
       <ion-icon name="menu"></ion-icon>
   </button>
 
+  <!--boton para ir a la vista para agregar usuarios-->
   <button ion-button block (click)="crear_usuario()">
     <ion-icon name="add" style="margin-right: 5px"></ion-icon>
     Agregar Deportistas
   </button>
+
   <br>
+
+  <!--tarjeta donde se muestran los deportistas inscritos-->
   <ion-card class="border_card">
-    <ion-card-header class="title_card">
+    <ion-card-header class="title_card"><!--titulo de tarjeta-->
       Deportistas
     </ion-card-header>
-    <ion-scroll scrollY="true">
-      <ion-list inset *ngFor="let d of deportista" >
-        <ion-item class="estilo_item" (click)="detalle(d.email)">
-          <h2>{{d.email}}</h2>
-          <p style="text-align: left">{{d.estado}}</p>
-          <p style="text-align: right">{{d.fecha_r}}</p>
+    <ion-scroll scrollY="true"><!--scroll donde se moveran los datos generados-->
+      <ion-list inset *ngFor="let d of deportista" ><!--listado de los usuarios-->
+        <ion-item class="estilo_item" (click)="detalle(d.email)"><!--item contenedor de datos de cada usuario-->
+          <h2>{{d.email}}</h2><!-- correo de usuario-->
+          <p style="text-align: left">{{d.estado}}</p><!--estado del usuraio-->
+          <p style="text-align: right">{{d.fecha_r}}</p><!--fecha de registro del usuario-->
         </ion-item>
       </ion-list>
     </ion-scroll>
