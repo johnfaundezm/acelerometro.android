@@ -621,7 +621,7 @@ export class CronometroPage {
   //funcion que compara los valores de aceleracion, fuerza y potencia y rescata el valor max de cada una de estas.
   punto_max(){
     if(this.acel_x_y_z > this.A_max){
-      this.A_max= this.acel_x_y_z;
+      this.A_max= this.acel_x_y_z.toFixed(2);
     }
     if(this.fuerza > this.F_max){
       this.F_max= this.fuerza;
