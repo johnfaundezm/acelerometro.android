@@ -1,14 +1,16 @@
-page-admininsertent {
-
+page-admininsertent{//estilos (class) de la vista admininsertent
+    //estilo fondo de pantalla
     .grad {
         background-image: linear-gradient(#1575E1, #33D7FF);
     }
 
+    //estilo borde de los input
     .border_r {
-        border-top-right-radius: 20px;
-        border-bottom-right-radius: 20px;
+        border-top-right-radius: 20px;// redondeo de esquina superior derecha
+        border-bottom-right-radius: 20px;//redondeo de esquina inferior derecha
     }
 
+    //estilo botón registrar
     .btn_ok{
 		background-color:#FF780F;
 	}

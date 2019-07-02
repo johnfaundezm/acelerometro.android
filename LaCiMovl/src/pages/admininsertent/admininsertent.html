@@ -1,38 +1,44 @@
-<ion-content class="grad" padding>
+<ion-content class="grad" padding><!--vista del adminsitrador para realizar registro de entrenadores-->
 
+  <!--titulo de la vista-->
   <div style="text-align:center;margin-top:20% ;color:white">
     <h3>Crear Nuevo Entrenador</h3>
   </div>
   <br>
 
-  <form [formGroup]="formulario" (ngSubmit)="registrar()">
+  <!--formulario para el ingreso del correo y contraseña del usuario-->
+  <form [formGroup]="formulario" (ngSubmit)="registrar()"><!--paso de valores del formulario-->
     <ion-item style="margin-top:15%" class="border_r">
-      <!--<ion-inp   ut [(ngModel)]="correo" type="text" placeholder="Correo" ></ion-input>-->
-      <ion-input type="text" formControlName="correo" placeholder="Correo"></ion-input>
+      <ion-input type="text" formControlName="correo" placeholder="Correo"></ion-input><!--input para la insercion del correo-->
     </ion-item>
-    <ion-item *ngIf="formulario.get('correo').errors && formulario.get('correo').dirty">
-      <p color="danger" ion-text *ngIf="formulario.get('correo').hasError('required')">*El campo es requerido</p>
-      <p color="danger" ion-text *ngIf="formulario.get('correo').hasError('maxlength')">Cantidad maxima de caracteres es (50)</p>
-      <p color="danger" ion-text *ngIf="formulario.get('correo').hasError('pattern')">Ingrese un correo valido</p>
+    <!--condiciones requeridas para la inserción-->
+    <ion-item *ngIf="formulario.get('correo').errors && formulario.get('correo').dirty"><!--sino se cumplen las condiciones muestra error-->
+      <p color="danger" ion-text *ngIf="formulario.get('correo').hasError('required')">*El campo es requerido</p><!--error de campo requerido-->
+      <p color="danger" ion-text *ngIf="formulario.get('correo').hasError('maxlength')">Cantidad maxima de caracteres es (50)</p><!--error de maximo de caracteres-->
+      <p color="danger" ion-text *ngIf="formulario.get('correo').hasError('pattern')">Ingrese un correo valido</p><!--error de correo invalido-->
     </ion-item>
     <br>
+
 
     <ion-item class="border_r">
-      <ion-input type="password" formControlName="pass" placeholder="Contraseña" ></ion-input>
+      <ion-input type="password" formControlName="pass" placeholder="Contraseña" ></ion-input><!--input para ingresar la contraseña-->
     </ion-item>
-    <ion-item *ngIf="formulario.get('pass').errors && formulario.get('pass').dirty">
-      <p color="danger" ion-text *ngIf="formulario.get('pass').hasError('required')">*El campo es requerido</p>
-      <p color="danger" ion-text *ngIf="formulario.get('pass').hasError('minlength')">Cantidad minima de caracteres es (4)</p>
-      <p color="danger" ion-text *ngIf="formulario.get('pass').hasError('maxlength')">Cantidad maxima de caracteres es (16)</p>
+    <!--condiciones requeridas para la inserción-->
+    <ion-item *ngIf="formulario.get('pass').errors && formulario.get('pass').dirty"><!--sino se cumplen las condiciones muestra error-->
+      <p color="danger" ion-text *ngIf="formulario.get('pass').hasError('required')">*El campo es requerido</p><!--error campo requerido-->
+      <p color="danger" ion-text *ngIf="formulario.get('pass').hasError('minlength')">Cantidad minima de caracteres es (4)</p><!--error minimo no cumple-->
+      <p color="danger" ion-text *ngIf="formulario.get('pass').hasError('maxlength')">Cantidad maxima de caracteres es (16)</p><!--error maximo excedido-->
     </ion-item>
     <br>
 
+    <!--botón de registro, si no cumple las condiciones no es oprimible-->
     <div style="text-align:center;margin-top:5%">
       <button ion-button secondary type="submit" [disabled]="!formulario.valid" class="btn_ok">Registrarse</button>  
     </div>
 
   </form> 
   
+  <!--botón para regresar a la vista anterior-->
   <div style="text-align:center">
     <button ion-button style="text-align: center" color="light" clear secondary (click)="salir()">Salir</button>
   </div>
