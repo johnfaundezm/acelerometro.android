@@ -16,8 +16,6 @@ import { WebservicesProvider } from '../../providers/webservices/webservices';
 })
 export class CronometroPage {
 
-  datos_acc: Array<{varx:string, vary:string, varz:string}>=[{varx:'', vary:'', varz:''}]; // datos del acelerometro
-  datos_gir: Array<{varx:string, vary:string, varz:string}>=[{varx:'', vary:'', varz:''}]; // datos del acelerometro
   enlaces: Array<{ide:string, email:string, fecha:string}>=[{ide:'', email:'', fecha:''}]; //arreglo que almacena los enlaces entre deportista y entrenador
   enlaces_pend: Array<{email:string}>=[{email:''}]; //arreglo que almacena las solicitudes pendientes
 
@@ -156,17 +154,14 @@ export class CronometroPage {
   }
 
   ionViewCanEnter() {
-    while(this.datos_acc.length>0){
-      this.datos_acc.pop();// borra el ultimo dato que siempre esta vacio del arreglo
-    }
     while(this.enlaces.length>0){
-      this.enlaces.pop();// borra el ultimo dato que siempre esta vacio del arreglo
+      this.enlaces.pop();// borra el ultimo dato vacio del arreglo
     }
     while(this.enlaces_pend.length>0){
-      this.enlaces_pend.pop();// borra el ultimo dato que siempre esta vacio del arreglo
+      this.enlaces_pend.pop();// borra el ultimo dato vacio del arreglo
     }
     while(this.aux.length>0){
-      this.aux.pop();// borra el ultimo dato que siempre esta vacio del arreglo
+      this.aux.pop();// borra el ultimo dato vacio del arreglo
     }
   }
 
@@ -488,29 +483,6 @@ export class CronometroPage {
     this.loading.present();
   }
 
-  consultar_acc(){
-    this.load();
-    let largo=this.datos_acc.length;
-    for(var i=0;i<largo;i++){
-      this.datos_acc.pop();
-    }
-    this.webservices.consulta_acelerometro_datos().then(
-      (datos) =>{
-        let largo=Object.keys(datos).length;
-        for(var i=0;i<largo;i++){
-          var varx= datos[i].ACELERACIONX;
-          var vary= datos[i].ACELERACIONY;
-          var varz= datos[i].ACELERACIONZ;
-          this.loading.dismiss();
-          this.datos_acc.push({"varx":varx, "vary":vary, "varz":varz});           
-        }
-        //alert('oka'+JSON.stringify(resultado));
-      },
-      (error) =>{
-        alert('error'+JSON.stringify(error));
-      }
-    )
-  }
 
   borrar_acc(){
     this.load();
@@ -521,7 +493,6 @@ export class CronometroPage {
             var respuesta= datos[0].RESPUESTA;
             this.loading.dismiss();
             if(respuesta=='OK'){
-              this.consultar_acc();
               alert('Los datos se han borrado satisfactoriamente');
             }else{
               alert('Ha ocurrido un error en el borrado');
@@ -572,30 +543,6 @@ export class CronometroPage {
   }
   detenerGiroscopio(){
     this.idg.unsubscribe(); // se detiene el receptor de datos de giroscopio
-  }
-
-  consultar_gir(){
-    this.load();
-    let largo=this.datos_acc.length;
-    for(var i=0;i<largo;i++){
-      this.datos_acc.pop();
-    }
-    this.webservices.consulta_giroscopio_datos().then(
-      (datos) =>{
-        let largo=Object.keys(datos).length;
-        for(var i=0;i<largo;i++){
-          var varx= datos[i].ORIENTACIONX;
-          var vary= datos[i].ORIENTACIONY;
-          var varz= datos[i].ORIENTACIONZ;
-          this.loading.dismiss();
-          this.datos_gir.push({"varx":varx, "vary":vary, "varz":varz});           
-        }
-        //alert('oka'+JSON.stringify(resultado));
-      },
-      (error) =>{
-        alert('error'+JSON.stringify(error));
-      }
-    )
   }
 
 //Sonidos  

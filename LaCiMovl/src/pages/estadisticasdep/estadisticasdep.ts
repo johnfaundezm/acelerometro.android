@@ -23,6 +23,11 @@ export class EstadisticasdepPage {
   datos_acelerometroF = [];
   datos_acelerometroP = [];
 
+  datos_giroscopioX = [];
+  datos_giroscopioY = [];
+  datos_giroscopioZ = [];
+  datos_giroscopio = [];
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
   }
 
@@ -49,6 +54,19 @@ export class EstadisticasdepPage {
     }
     while(this.datos_acelerometroP.length>0){
       this.datos_acelerometroP.pop();
+    }
+
+    while(this.datos_giroscopioX.length>0){
+      this.datos_giroscopioX.pop();
+    }
+    while(this.datos_giroscopioY.length>0){
+      this.datos_giroscopioY.pop();
+    }
+    while(this.datos_giroscopioZ.length>0){
+      this.datos_giroscopioZ.pop();
+    }
+    while(this.datos_giroscopio.length>0){
+      this.datos_giroscopio.pop();
     }
   }
 
@@ -103,6 +121,49 @@ export class EstadisticasdepPage {
         }
         this.acelerachart();
         this.aceleraxyzchart();
+        //alert('oka'+JSON.stringify(resultado));
+      },
+      (error) =>{
+        alert('error'+JSON.stringify(error));
+      }
+    )
+  }
+
+  //transladar consulta a vista correspondiente
+  consultar_gir(){
+
+    for(var i=0;i<this.datos_giroscopioX.length;i++){
+      this.datos_giroscopioX.pop();
+    }
+    for(i=0;i<this.datos_giroscopioY.length;i++){
+      this.datos_giroscopioY.pop();
+    }
+    for(i=0;i<this.datos_giroscopioZ.length;i++){
+      this.datos_giroscopioZ.pop();
+    }
+    for(i=0;i<this.datos_giroscopio.length;i++){
+      this.datos_giroscopio.pop();
+    }
+    this.webservices.consulta_giroscopio_datos().then(
+      (datos) =>{
+        let largo=Object.keys(datos).length;
+        var x=0;
+        for(var i=0;i<largo;i++){
+          x+=0.1;
+          var varX = datos[i].ORIENTACIONX;
+          var varY = datos[i].ORIENTACIONY;
+          var varZ = datos[i].ORIENTACIONZ;
+          var gir = datos[i].ORIENTACION;
+
+          var auxX = {x: x, y: varX};
+          var auxY = {x: x, y: varY};
+          var auxZ = {x: x, y: varZ};
+          var aux = {x: x, y: gir};
+          this.datos_giroscopioX.push(auxX);
+          this.datos_giroscopioY.push(auxY);
+          this.datos_giroscopioZ.push(auxZ);
+          this.datos_giroscopio.push(aux);          
+        }
         //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
