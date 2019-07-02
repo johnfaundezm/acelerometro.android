@@ -24,8 +24,8 @@
     </ion-card-header>
     <ion-scroll scrollY="true">
       <ion-list inset *ngFor="let d of deportista" >
-        <ion-item style="border-bottom: 1px solid; border-color: rgb(194, 191, 191); height: auto">
-          <h2 (click)="detalle(d.email)">{{d.email}}</h2>
+        <ion-item class="estilo_item" (click)="detalle(d.email)">
+          <h2>{{d.email}}</h2>
           <p style="text-align: left">{{d.estado}}</p>
           <p style="text-align: right">{{d.fecha_r}}</p>
         </ion-item>
