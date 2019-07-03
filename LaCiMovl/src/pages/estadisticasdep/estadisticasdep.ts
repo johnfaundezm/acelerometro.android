@@ -88,7 +88,7 @@ export class EstadisticasdepPage {
     while(this.entrenamiento.length>0){
       this.entrenamiento.pop();
     }
-    
+
     this.consultar_acc();
     this.consultar_gir();
     this.consulta_enlace();
@@ -106,6 +106,8 @@ export class EstadisticasdepPage {
         for(var i=0;i<largo;i++){ // se reciben la id, el correo del entrenador y la fecha de la solicitud
           var ide= datos[i].ID;
           var email= datos[i].ENTRENADOR;
+          alert(ide)
+          alert(email)
           this.entrenador.push({"ide":ide,"email":email});
         }
       },
