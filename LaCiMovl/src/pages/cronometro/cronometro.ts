@@ -142,7 +142,6 @@ export class CronometroPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CronometroPage');
-    alert('Su entrenamiento Trata de: '+this.tipo_entrenamiento);
   }
 
   //antes de entrar a la vista se oculta el tabbar
