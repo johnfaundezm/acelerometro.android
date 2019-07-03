@@ -49,7 +49,7 @@ export class DeportistasentPage {
     this.consulta_enlace();
     this.consulta_enlace_pend();
   }
-  //actualiza la pagina
+
   doRefresh(refresher) {
     this.consulta_enlace();
     refresher.complete();
@@ -81,7 +81,7 @@ export class DeportistasentPage {
       })
     }
   }
-  // envio de solicitud
+
   alerta_enviar(nombre) {
     this.correo_deportista=nombre;
     const confirm = this.alertCtrl.create({
