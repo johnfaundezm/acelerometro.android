@@ -25,8 +25,8 @@
   
       <ion-scroll scrollY="true">
         <ion-list inset *ngFor="let en of entrenador" >
-          <ion-item style="border-bottom: 1px solid; border-color: rgb(194, 191, 191); height: auto">
-            <h2 (click)="detalle(en.email)">{{en.email}}</h2>
+          <ion-item class="formato_item" (click)="detalle(en.email)">
+            <h2 >{{en.email}}</h2>
             <p style="text-align: left">{{en.estado}}</p>
             <p style="text-align: right">{{en.fecha_r}}</p>
           </ion-item>
