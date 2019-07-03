@@ -8,9 +8,9 @@
     <div>
         <ion-item style="background-color: transparent">
             <ion-select style="background-color:whitesmoke" placeholder="Entrenador" >
-                <ion-option *ngFor="let ide of entrenador" value="{{ide.email}}">{{ide.email}}</ion-option>
+                <ion-option *ngFor="let ide_ent of entrenador" value="{{ide_ent.email}}">{{ide_ent.email}}</ion-option>
             </ion-select>
-            <button ion-button item-end (click)="escoger_solicitud(ide.ide)">enviar</button>
+            <button ion-button item-end (click)="escoger_solicitud(ide_ent.ide,ide_ent.email)">enviar</button>
         </ion-item>
     </div>
 
