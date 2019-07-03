@@ -82,6 +82,13 @@ export class EstadisticasdepPage {
   }
 
   ionViewWillEnter(){
+    while(this.entrenador.length>0){
+      this.entrenador.pop();
+    }
+    while(this.entrenamiento.length>0){
+      this.entrenamiento.pop();
+    }
+    
     this.consultar_acc();
     this.consultar_gir();
     this.consulta_enlace();
