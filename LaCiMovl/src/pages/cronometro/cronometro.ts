@@ -483,7 +483,6 @@ export class CronometroPage {
       (datos)=>{
         //alert(JSON.stringify(datos));
         this.peso= datos[0].PESO; //se recibe del peso del correo solicitado
-        alert(this.peso)
       },
       (err)=>{
         alert(JSON.stringify(err))
