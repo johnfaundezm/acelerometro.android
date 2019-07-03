@@ -6,13 +6,14 @@
         Tiempo entrenamiento
       </ion-card-header>
       <ion-card-content>
-        
+       <!--Define los minutos de tiempo de entrenamiento-->
       <ion-item style="background-color: transparent;">
           <ion-range min="0" max="59" color="primary" [(ngModel)]="tiempoM">
           <ion-label range-left style="color: whitesmoke">(min) 0</ion-label>
           <ion-label range-right style="color: whitesmoke">{{tiempoM}}</ion-label>
         </ion-range>
       </ion-item>
+      <!--Define los segundos de tiempo de entrenamiento-->
       <ion-item style="background-color: transparent">
         <ion-range min="0" max="59"  color="light" [(ngModel)]="tiempoS">
           <ion-label range-left style="color: whitesmoke">(seg) 0</ion-label>
@@ -31,6 +32,7 @@
       <ion-card-content>
         <ion-item style="background-color: transparent;">
           <ion-select [(ngModel)]="tipo_entrenamiento" style="color:rgb(51, 50, 50); background-color: whitesmoke; margin: auto; border-radius: 5px" placeholder="Elegir tipo">
+            <!--Define los tipos de entrenamiento-->
             <ion-option value="caminar">Caminar</ion-option>
             <ion-option value="correr">Correr</ion-option>
             <ion-option value="saltar">Saltar</ion-option>
@@ -46,7 +48,7 @@
       <ion-card-header class="title_card">
         Tiempo recuperación
       </ion-card-header>
-
+        <!--Define los minutos de tiempo de recuperación-->
       <ion-card-content>  
         <ion-item style="background-color: transparent;">
           <ion-range min="0" max="59" color="primary" [(ngModel)]="tiempoRM">
@@ -54,6 +56,7 @@
             <ion-label range-right style="color: whitesmoke">{{tiempoRM}}</ion-label>
           </ion-range>
         </ion-item>
+        <!--Define los segundos de tiempo de recuperación-->
         <ion-item style="background-color: transparent">
           <ion-range min="0" max="59"  color="light" [(ngModel)]="tiempoRS">
             <ion-label range-left style="color: whitesmoke">(seg) 0</ion-label>
@@ -63,7 +66,7 @@
       </ion-card-content>
     </ion-card>
   </div>
-
+  <!--Enviar la información del entrenamiento-->
   <div style="text-align: right">
     <button ion-button clear color="light" (click)="volver()">Volver</button>
     <button ion-button class="btn_enviar" (click)="enviar_entrenamiento()">Enviar</button>
