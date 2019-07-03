@@ -703,7 +703,7 @@ export class WebservicesProvider {
       // en este caso no se envian variables, por q solo se reciben datos del php
       let body = 'id_solicitud='+id_solicitud;
       //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
-      let url = "http://192.81.216.141/webservices/nombre_entrenamiento.php";
+      let url = "http://192.81.216.141/webservices/datos_entrenamiento.php";
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
