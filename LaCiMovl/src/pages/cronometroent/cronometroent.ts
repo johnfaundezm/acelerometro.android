@@ -166,11 +166,9 @@ export class CronometroentPage {
         }else{
           if(this.estado==2){// si el estado es 2 se pausa el cronometro
             this.pausa();
-            alert('pausa')
           }else{
             if(this.estado==1){// si el estado es 1 finaliza el cronometro
               this.finalizar();
-              alert('finaliza')
             }
           }
         }
@@ -219,7 +217,6 @@ export class CronometroentPage {
 
   // Funcion Entrenamiento
   nuevoEntrenamiento(){
-    alert('comienza')
     this.inicioseg=0; // se inicializa el tiempo en 0
     if(this.contador_entrenamiento == undefined){ // se analiza si el contador fue definido o aun no
       this.playAudioi(); // se reproduce audio de inicio con timer
