@@ -40,7 +40,7 @@ export class AdmininsertPage {
     console.log('ionViewCanEnter AdmininsertPage');
   }
 
-  registrar(){
+  registrar(){  // Se llenan los datos de registro asignando primariamente valores en blanco como nulos.
     this.webservices.registrar(this.formulario.value.correo,this.formulario.value.pass,' ',' ',' ',' ',0,0,0,0,'ESPECIFICAR','activada','2019-06-05',3).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;

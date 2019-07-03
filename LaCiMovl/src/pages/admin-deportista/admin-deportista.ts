@@ -57,7 +57,7 @@ export class AdminDeportistaPage {
     this.detalle();
     refresher.complete();
   }
-
+  //información de perfil de deportista
   detalle(){
     this.webservices.consulta_deportista(this.correo).then(
       (datos)=>{
@@ -80,7 +80,7 @@ export class AdminDeportistaPage {
         alert(JSON.stringify(err))
       })
   }
-
+  //Calcula el IMC según la masa corporal del deportista.
   imc_perfil(){
     var i_m_c :any;
     var condición : String;
