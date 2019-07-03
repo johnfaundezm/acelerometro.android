@@ -52,7 +52,7 @@ export class AdminEntrenadorPage {
     this.detalle();
     refresher.complete();
   } 
-
+  // información de perfil de Entrenador
   detalle(){
     this.webservices.consulta_entrenador(this.correo).then(
       (datos)=>{
