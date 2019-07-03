@@ -24,6 +24,8 @@ export class EstadisticasdepPage {
   giroscopiochartvar: any;
   aceleragiroschartvar: any;
 
+  val_ent: any;
+
   datos_acelerometroX = [];
   datos_acelerometroY = [];
   datos_acelerometroZ = [];
@@ -506,11 +508,11 @@ export class EstadisticasdepPage {
     })
   }
 
-  nombre_entrenamiento(id_solicitud){
+  nombre_entrenamiento(){
     for(var i=0;i<this.entrenamiento.length;i++){
       this.entrenamiento.pop();
     }
-    this.webservices.nombre_entrenamiento(id_solicitud).then(
+    this.webservices.nombre_entrenamiento(this.val_ent).then(
       (datos)=>{
         //alert(JSON.stringify(datos));
         let largo=Object.keys(datos).length;
@@ -526,10 +528,8 @@ export class EstadisticasdepPage {
   }
   
 
-  escoger_solicitud(id, email) {
-    alert(id);
-    alert(email);
-    this.nombre_entrenamiento(id);
+  escoger_solicitud() {
+    this.nombre_entrenamiento();
   }
 
 }
