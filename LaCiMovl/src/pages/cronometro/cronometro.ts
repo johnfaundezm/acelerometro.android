@@ -29,6 +29,10 @@ export class CronometroPage {
   items:any;// variable para usarlo en el filtro
 
   id_ent:any;
+  respuesta:any;
+  a:any;
+  estado:any;
+  estadouser:any;
 
   cambio: boolean =true; //variable para el cambio de pausar y continuar
 
@@ -139,22 +143,59 @@ export class CronometroPage {
   //antes de entrar a la vista se oculta el tabbar
   ionViewWillEnter() {
     this.tabBarElement.style.display = 'none';
+    this.a=1; // variable que activa la recursividad de buscar entrenamientos
+    this.time();
   }
   //cuando va a salir de la vista se le agrega el tabbar nuevamente
   ionViewWillLeave() {
     this.tabBarElement.style.display = 'flex';
+    this.a=0; // variable que activa la recursividad de buscar entrenamientos
   }
 
   ionViewCanEnter() {
-    while(this.enlaces.length>0){
-      this.enlaces.pop();// borra el ultimo dato vacio del arreglo
-    }
-    while(this.enlaces_pend.length>0){
-      this.enlaces_pend.pop();// borra el ultimo dato vacio del arreglo
-    }
-    while(this.aux.length>0){
-      this.aux.pop();// borra el ultimo dato vacio del arreglo
-    }
+  }
+
+  time(){// función recursiva que se activa cada 2 segundos
+    setTimeout(() => {
+      if(this.a==1){// si a es igual a 1  se ingresa al if para poder llamar a la recursividad
+        this.verificacion();// se llama la función que verifica el estado
+        this.time();// se llama a la funcion que realiza la recursividad
+      }
+    }, 2000)// tiempo en milisegundos que se demora en realizarse lo que hay dentro del setTimeout
+  }
+
+  verificacion(){// consulta quer verifica el estado del entrenamiento
+    this.webservices.estado_entrenamiento(this.id_ent).then(//llama a la funcion del webservices.ts y le envia la id del entrenamiento
+      (datos)=>{// recibe los datos de la consulta
+        //alert(JSON.stringify(datos));
+        this.estado= datos[0].ESTADO;// recibe el estado y se almacena en una variable
+        if(this.estado==3){ // si el estado es 3 se inicia el cronometro
+          this.nuevoEntrenamiento();
+        }else{
+          if(this.estado==2){// si el estado es 2 se pausa el cronometro
+            this.pausa();
+          }else{
+            if(this.estado==1){// si el estado es 1 finaliza el cronometro
+              this.finalizar();
+            }
+          }
+        }
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
+  }
+
+  actualizar_estado(){
+    this.webservices.actualizar_estado_entrenamiento(this.id_ent,this.estadouser).then(
+      (datos) =>{
+        this.respuesta= datos[0].RESPUESTA;
+      //alert('oka'+JSON.stringify(resultado));
+      },
+      (error) =>{
+        this.loading.dismiss();
+        alert('error'+JSON.stringify(error));
+      })
   }
 
   // Funcion Entrenamiento
@@ -174,6 +215,26 @@ export class CronometroPage {
       },1000); // timer de control de entrenamiento en 1000 milisegundos= 1 segundo
     }
   }
+
+  nuevoEntrenamiento2(){
+    this.estadouser=3;
+    this.actualizar_estado();
+    this.inicioseg=0; // se inicializa el tiempo en 0
+    if(this.contador_entrenamiento == undefined){ // se analiza si el contador fue definido o aun no
+      this.playAudioi(); // se reproduce audio de inicio con timer
+      this.contador_entrenamiento = setInterval(()=>{
+        this.inicioseg+=1; //inicia el timer de inicio  de entrenamiento
+        if(this.inicioseg==3){ // si el timer es igual a 3 se comienza el entrenamiento
+          this.playAudiocomienzo(); // se reproduce audio de inicio con voz
+          this.inicio(); // se comienza la funcion de entrenamiento 
+        }
+        if(this.tiempo>this.tiempo_entrenamiento-1){ // se compara si el tiempo de entrenamiento es igual al tiempo asignado como tiempo de entrenamiento para finalizar el entrenamiento
+          this.finalizar(); // se finaliza el entrenamiento
+        }
+      },1000); // timer de control de entrenamiento en 1000 milisegundos= 1 segundo
+    }
+  }
+
 // _____________________
 //Cronometro
 
@@ -259,6 +320,41 @@ export class CronometroPage {
 
   }
 
+  pausa2(){
+    this.estadouser=2;
+    this.actualizar_estado();
+    this.detenerAcelerometro(); // se detiene el acelerometro
+    this.detenerGiroscopio(); // se detiene el giroscopio
+    this.playAudiof(); // se reproduce audio de finalización para pausa
+    this.min2Marca = this.min2; // se almacena la marca de tiempo de  min2
+    this.min1Marca = this.min1; // se almacena la marca de tiempo de  min1
+    this.seg2Marca = this.seg2; // se almacena la marca de tiempo de  seg2
+    this.seg1Marca = this.seg1; // se almacena la marca de tiempo de  seg1
+    this.cen2Marca = this.cen2; // se almacena la marca de tiempo de  cen2
+    this.cen1Marca = this.cen1; // se almacena la marca de tiempo de  cen1
+    this.tiempoMarca = this.tiempo;  // se almacena la marca de tiempo de "tiempo"
+    
+    this.min2 = 0;  //se limpia el valor de la variable min2
+    this.min1 = 0;  //se limpia el valor de la variable min1
+    this.seg2 = 0;  //se limpia el valor de la variable seg2
+    this.seg1 = 0;  //se limpia el valor de la variable seg1
+    this.cen2 = 0;  //se limpia el valor de la variable cen2
+    this.cen1 = 0;  //se limpia el valor de la variable cen1
+
+    clearInterval(this.contador); // se detiene intervalo de contador
+    clearInterval(this.contador_entrenamiento); // se detiene intervalo de contador_entrenamiento
+    this.contador = null; // se limpia el valor del contador
+    this.contador_entrenamiento = null; // se limpia el valor de contador_entrenamiento
+    this.min2 = this.min2Marca; // se le entrega el valor de pausa almacenado a min2
+    this.min1 = this.min1Marca; // se le entrega el valor de pausa almacenado a min1 
+    this.seg2 = this.seg2Marca; // se le entrega el valor de pausa almacenado a seg2
+    this.seg1 = this.seg1Marca; // se le entrega el valor de pausa almacenado a seg1
+    this.cen2 = this.cen2Marca; // se le entrega el valor de pausa almacenado a cen2
+    this.cen1 = this.cen1Marca; // se le entrega el valor de pausa almacenado a cen1
+    this.tiempo = this.tiempoMarca; // se le entrega el valor de pausa almacenado a tiempo
+
+  }
+
   finalizar(){
     this.detenerAcelerometro(); // se detiene acelerometro
     this.detenerGiroscopio(); // se detiene giroscopio
@@ -281,6 +377,32 @@ export class CronometroPage {
     
     this.cambio= true;
   }
+
+  finalizar2(){
+    this.estadouser=1;
+    this.actualizar_estado();
+    this.detenerAcelerometro(); // se detiene acelerometro
+    this.detenerGiroscopio(); // se detiene giroscopio
+    this.playAudiof(); // se reproduce audio de finalizacion
+    this.playAudiofn(); // se reproduce audio de finalizacion por voz
+    // se restaura el cronometro como 0
+    this.min2 = 0; 
+    this.min1 = 0; 
+    this.seg2 = 0;
+    this.seg1 = 0;
+    this.cen2 = 0;
+    this.cen1 = 0;
+    // se limpian los intervalos de los contadores y se dejan como nulos
+    clearInterval(this.contador);
+    clearInterval(this.contador_entrenamiento);
+    this.contador = null;
+    this.contador_entrenamiento = null;
+    // se redefine el timepo de entrenamiento como 0
+    this.tiempo=0;
+    
+    this.cambio= true;
+  }
+  
   recuperacion(){
     // se analiza si el contador fue definido o aun no
      alert("Comienza el tiempo de recuperación")
