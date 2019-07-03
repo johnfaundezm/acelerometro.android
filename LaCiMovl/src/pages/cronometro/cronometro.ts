@@ -25,7 +25,7 @@ export class CronometroPage {
 
   aux: Array<{email_ent:string}>=[{email_ent:''}]; //arreglo que almacena todos los deportistas
   
-  correo:any; // correo del desportista
+  correo:any; // correo del deportista
   peso:any;// variable que almacena el peso del usuario deportista
   loading:any;// variable que almacena el estado de el loading
   items:any;// variable para usarlo en el filtro
@@ -102,8 +102,6 @@ export class CronometroPage {
     this.id_ent = this.navParams.get('id_entrenamiento');
     this.id_solicitud = navParams.get('id_solicitud');
 
-    this.consulta_peso(); //Se inicializa la consulta del peso  
-
     // se inicia la plataforma de reproducciones
     this.platform.ready().then(() => { 
     console.log("platform ready");
@@ -142,6 +140,7 @@ export class CronometroPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CronometroPage');
+    this.consulta_peso(); //Se inicializa la consulta del peso  
   }
 
   //antes de entrar a la vista se oculta el tabbar
