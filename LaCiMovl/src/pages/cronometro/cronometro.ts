@@ -519,7 +519,7 @@ export class CronometroPage {
 
         this.punto_max();//para sacar los valores maximos de aceleracion, fuerza y potencia
 
-        this.webservices.acelerometro_datos(this.id_ent,this.accX, this.accY, this.accZ, this.acel_x_y_z,1,this.potencia).then( // se envian los datos al servidor web
+        this.webservices.acelerometro_datos(this.id_ent,this.accX, this.accY, this.accZ, this.acel_x_y_z,this.fuerza,this.potencia).then( // se envian los datos al servidor web
           (datos) =>{
             var respuesta= datos[0].RESPUESTA;
             //alert('oka'+JSON.stringify(resultado));
