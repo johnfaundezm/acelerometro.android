@@ -5,6 +5,15 @@
         <ion-icon name="menu"></ion-icon>
     </button>
 
+    <div>
+        <ion-select style="background-color:whitesmoke" placeholder="Entrenador" [(ngModel)]="elegido">
+                <ion-option *ngFor="let ide of entrenador" value="{{ide}}">{{ide}}</ion-option>
+        </ion-select>
+        <ion-select style="background-color:whitesmoke" placeholder="entrenamiento" [(ngModel)]="elegido2">
+                <ion-option *ngFor="let ide_entre of entrenamiento" value="{{ide_entre}}">{{ide_entre}}</ion-option>
+        </ion-select>
+    </div>
+
     <!--tarjeta contenedora del grafico de aceleracion y giroscopio resultante-->
     <ion-card style="height: 300px;" class="border_card">
         <ion-card-header class="title_card"><!--titulo de la tarjeta-->
