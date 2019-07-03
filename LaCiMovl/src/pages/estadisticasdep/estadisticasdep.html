@@ -6,20 +6,20 @@
     </button>
 
     <div>
-        <ion-item>
+        <ion-item style="background-color: transparent">
             <ion-select style="background-color:whitesmoke" placeholder="Entrenador" >
-                <ion-option *ngFor="let ide of entrenador" value="{{ ide.email }}">{{ ide.email }}</ion-option>
+                <ion-option *ngFor="let ide of entrenador" value="{{ide.email}}">{{ide.email}}</ion-option>
             </ion-select>
+            <button ion-button item-end (click)="escoger_solicitud(ide.ide)">enviar</button>
         </ion-item>
-        <button ion-button (click)="escoger_solicitud(ide.ide)">enviar</button>
     </div>
 
     <div>
-        <ion-item>
+        <ion-item style="background-color: transparent">
             <ion-select style="background-color:whitesmoke" placeholder="entrenamiento" >
-                <ion-option *ngFor="let ide_entre of entrenamiento" value="{{ide_entre}}">{{ide_entre}}</ion-option>
+                <ion-option *ngFor="let ide_entre of entrenamiento" value="{{ide_entre.nombre_ent}}">{{ide_entre.nombre_ent}}</ion-option>
             </ion-select>
-            <button ion-button>enviar</button>
+            <button item-end ion-button>enviar</button>
         </ion-item>
     </div>
 
