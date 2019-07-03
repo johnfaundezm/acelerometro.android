@@ -511,15 +511,17 @@ export class CronometroPage {
         //Calculos____________________
         this.acel_x_y_z= ((this.accX**2) + (this.accY**2) + (this.accZ**2))**0.5; //aceleracion resultante
         
-        this.fuerza = 1*this.peso* this.acel_x_y_z; // fuerza resultante
+        this.fuerza = 1*(this.peso/9.8)* this.acel_x_y_z; // fuerza resultante
 
         this.potencia = this.fuerza * this.acel_x_y_z; //potencia resultante
 
         this.punto_max();//para sacar los valores maximos de aceleracion, fuerza y potencia
 
         this.webservices.acelerometro_datos(this.id_ent,this.accX, this.accY, this.accZ, this.acel_x_y_z,this.fuerza,this.potencia).then( // se envian los datos al servidor web
-          (resultado) =>{
+          (datos) =>{
+            var respuesta= datos[0].RESPUESTA;
             //alert('oka'+JSON.stringify(resultado));
+            alert(respuesta)
           },
           (error) =>{
             alert('error'+JSON.stringify(error)); // muestra una alerta si ocurrió algun error durante el proceso
