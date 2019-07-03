@@ -188,7 +188,7 @@ export class InfoentrenamientoPage {
     this.tiempo_ent='00:'+this.tiempoM+':'+this.tiempoS;
     this.tiempo_rec='00:'+this.tiempoRM+':'+this.tiempoRS;
     this.estado=5;
-    this.webservices.insertar_entrenamiento(this.id_solicitud,this.tiempo_ent,this.tiempo_rec,this.formattedDate,this.tipo_entrenamiento,this.estado).then(
+    this.webservices.insertar_entrenamiento(this.id_solicitud,this.tiempo_ent,this.tiempo_entrenamiento,this.tiempo_rec,this.tiempo_recuperacion,this.formattedDate,this.tipo_entrenamiento,this.estado).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
         if(this.respuesta=='OK'){

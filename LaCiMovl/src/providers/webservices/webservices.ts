@@ -636,7 +636,7 @@ export class WebservicesProvider {
   }
 
   //se crea el metodo para insertar un entrenamiento
-  insertar_entrenamiento(id_solicitud_entrenamiento,tiempo_ent,tiempo_rec,fecha,tipo_entrenamiento,estado) {//se reciben las variables para insertar solicitud
+  insertar_entrenamiento(id_solicitud_entrenamiento,tiempo_ent,tiempo_entrenamiento,tiempo_rec,tiempo_recuperacion,fecha,tipo_entrenamiento,estado) {//se reciben las variables para insertar solicitud
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
@@ -647,7 +647,7 @@ export class WebservicesProvider {
       });
       // TODO: Encode the values using encodeURIComponent().
       //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
-      let body = 'id_solicitud_entrenamiento='+id_solicitud_entrenamiento +'&tiempo_ent='+tiempo_ent+'&tiempo_rec='+tiempo_rec +'&fecha='+fecha+'&tipo_entrenamiento='+tipo_entrenamiento+'&estado='+estado;
+      let body = 'id_solicitud_entrenamiento='+id_solicitud_entrenamiento +'&tiempo_ent='+tiempo_ent+'&tiempo_entrenamiento='+tiempo_entrenamiento+'&tiempo_rec='+tiempo_rec +'&tiempo_recuperacion='+tiempo_recuperacion +'&fecha='+fecha+'&tipo_entrenamiento='+tipo_entrenamiento+'&estado='+estado;
       //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/insert_entrenamiento.php";
 
