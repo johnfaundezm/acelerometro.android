@@ -84,6 +84,7 @@ export class EstadisticasdepPage {
   ionViewWillEnter(){
     this.consultar_acc();
     this.consultar_gir();
+    this.consulta_enlace();
   }
 
   consulta_enlace(){
