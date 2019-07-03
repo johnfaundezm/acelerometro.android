@@ -54,7 +54,7 @@
         </ion-card-header>
           <ion-scroll scrollY="true">
             <ion-list inset>
-              <ion-item *ngFor="let p of enlaces_pend" class="formato_item" (click)="alerta_confirmacion(p.ide,p.email)">
+              <ion-item *ngFor="let p of enlaces_pend" class="formato_item" (click)="alerta_confirmacion(p.email, p.ide)">
                 <ion-label >{{ p.email }}</ion-label>
               </ion-item>
             </ion-list>
