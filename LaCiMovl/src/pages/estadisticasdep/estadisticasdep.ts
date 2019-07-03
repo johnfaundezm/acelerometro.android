@@ -16,6 +16,8 @@ export class EstadisticasdepPage {
   @ViewChild('aceleragiroschart') aceleragiroschart;
 
   correo:any;
+  entrenador: Array<{ide:string, email:string}>=[{ide:'', email:''}]; //arreglo que almacena los enlaces entre deportista y entrenador
+  entrenamiento: Array<{ide:string, nombre_ent:string}>=[{ide:'', nombre_ent:''}];
 
   aceleracionchartvar: any;
   aceleracionxyzchartvar: any;
@@ -82,6 +84,26 @@ export class EstadisticasdepPage {
   ionViewWillEnter(){
     this.consultar_acc();
     this.consultar_gir();
+  }
+
+  consulta_enlace(){
+    let largo=this.entrenador.length;
+    for(var i=0;i<largo;i++){
+      this.entrenador.pop();
+    }
+    this.webservices.consulta_enlace_deportista(this.correo).then(
+      (datos)=>{
+        //alert(JSON.stringify(datos));
+        let largo=Object.keys(datos).length;
+        for(var i=0;i<largo;i++){ // se reciben la id, el correo del entrenador y la fecha de la solicitud
+          var ide= datos[i].ID;
+          var email= datos[i].ENTRENADOR;
+          this.entrenador.push({"ide":ide,"email":email});
+        }
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
   }
 
   consultar_acc(){
@@ -475,10 +497,29 @@ export class EstadisticasdepPage {
       }
     })
   }
+
+  nombre_entrenamiento(id_solicitud){
+    for(var i=0;i<this.entrenamiento.length;i++){
+      this.entrenamiento.pop();
+    }
+    this.webservices.nombre_entrenamiento(id_solicitud).then(
+      (datos)=>{
+        //alert(JSON.stringify(datos));
+        let largo=Object.keys(datos).length;
+        for(var i=0;i<largo;i++){ // se reciben la id, el correo del entrenador y la fecha de la solicitud
+          var ide= datos[i].ID;
+          var nombre_ent= datos[i].NOMBRE;
+          this.entrenamiento.push({"ide":ide,"nombre_ent":nombre_ent});
+        }
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
+  }
   
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EstadisticasdepPage');
+  escoger_solicitud(id) {
+    this.nombre_entrenamiento(id);
   }
 
 }
