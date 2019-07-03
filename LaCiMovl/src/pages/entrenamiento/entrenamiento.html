@@ -52,18 +52,15 @@
         <ion-card-header class="title_card">
           Solicitudes Recibidas Pendiente
         </ion-card-header>
-        <ion-card-content>
           <ion-scroll scrollY="true">
-            <ion-list inset >
-              <ion-item *ngFor="let p of enlaces_pend" class="formato_item" >
-                <ion-label (click)="alerta_confirmacion(p.email)">{{ p.email }}</ion-label>
+            <ion-list inset>
+              <ion-item *ngFor="let p of enlaces_pend" class="formato_item">
+                <ion-label>{{ p.email }}</ion-label>
               </ion-item>
             </ion-list>
           </ion-scroll>
-        </ion-card-content>
       </ion-card>
     </div>
   </div>
-
 
 </ion-content>
