@@ -106,4 +106,8 @@ export class AdminDeportistaPage {
     }
   }
 
+  volver() {
+    this.navCtrl.pop();
+  }
+
 }
