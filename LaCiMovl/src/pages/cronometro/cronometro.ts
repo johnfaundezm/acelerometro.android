@@ -141,6 +141,9 @@ export class CronometroPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CronometroPage');
     this.consulta_peso(); //Se inicializa la consulta del peso  
+    setTimeout(() => {
+      alert(this.peso);
+    }, 2000)
   }
 
   //antes de entrar a la vista se oculta el tabbar
@@ -517,11 +520,10 @@ export class CronometroPage {
 
         this.punto_max();//para sacar los valores maximos de aceleracion, fuerza y potencia
 
-        this.webservices.acelerometro_datos(this.id_ent,this.accX, this.accY, this.accZ, this.acel_x_y_z,this.fuerza,this.potencia).then( // se envian los datos al servidor web
+        this.webservices.acelerometro_datos(this.id_ent,this.accX, this.accY, this.accZ, this.acel_x_y_z,1,this.potencia).then( // se envian los datos al servidor web
           (datos) =>{
             var respuesta= datos[0].RESPUESTA;
             //alert('oka'+JSON.stringify(resultado));
-            alert(respuesta)
           },
           (error) =>{
             alert('error'+JSON.stringify(error)); // muestra una alerta si ocurrió algun error durante el proceso

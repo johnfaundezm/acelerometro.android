@@ -157,14 +157,12 @@ export class CronometroentPage {
   }
 
   verificacion(){// consulta quer verifica el estado del entrenamiento
-    alert('entre a la verificacion')
     this.webservices.estado_entrenamiento(this.id_ent).then(//llama a la funcion del webservices.ts y le envia la id del entrenamiento
       (datos)=>{// recibe los datos de la consulta
         //alert(JSON.stringify(datos));
         this.estado= datos[0].ESTADO;// recibe el estado y se almacena en una variable
         if(this.estado==3){ // si el estado es 3 se inicia el cronometro
           this.nuevoEntrenamiento();
-          alert('comienza')
         }else{
           if(this.estado==2){// si el estado es 2 se pausa el cronometro
             this.pausa();
@@ -221,6 +219,7 @@ export class CronometroentPage {
 
   // Funcion Entrenamiento
   nuevoEntrenamiento(){
+    alert('comienza')
     this.inicioseg=0; // se inicializa el tiempo en 0
     if(this.contador_entrenamiento == undefined){ // se analiza si el contador fue definido o aun no
       this.playAudioi(); // se reproduce audio de inicio con timer
