@@ -4,6 +4,8 @@ import { Gyroscope, GyroscopeOptions, GyroscopeOrientation } from '@ionic-native
 import { DeviceMotion, DeviceMotionAccelerationData, DeviceMotionAccelerometerOptions } from '@ionic-native/device-motion';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { NativeAudio } from '@ionic-native/native-audio';
+import { DeportistasentPage } from '../deportistasent/deportistasent';
+import { DatosentrenamientoPage } from '../datosentrenamiento/datosentrenamiento';
 
 @IonicPage()
 @Component({
@@ -186,6 +188,31 @@ export class CronometroentPage {
         this.loading.dismiss();
         alert('error'+JSON.stringify(error));
       })
+  }
+
+  alerta_confirmacion() {//Alerta que se activa cuando se encuentra un entrenamiento activo
+    const confirm = this.alertCtrl.create({
+      title: 'Entrenamiento terminado',// titulo de la alerta
+      message: '¿Desea pasar a ver las estadisticas?',// mensaje de la alerta
+      buttons: [
+        {
+          text: 'Cancelar',//nombre del boton 1
+          handler: () => {
+            console.log('Disagree clicked');
+            this.loading.dismiss();// detiene el loading
+            this.navCtrl.setRoot(DeportistasentPage, {correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
+          }
+        },
+        {
+          text: 'Aceptar',//nombre del boton 2
+          handler: () => {
+            this.loading.dismiss();// detiene el loading
+            this.navCtrl.push(DatosentrenamientoPage, {id_entrenamiento:this.id_ent, correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
+          }
+        }
+      ]
+    });
+    confirm.present();// se confirma la opcion apretada(Cancelar o Aceptar)
   }
 
   // Funcion Entrenamiento
@@ -432,6 +459,7 @@ export class CronometroentPage {
    this.contador_recuperacion = null;
    // se redefine el timepo de entrenamiento como 0
    this.tiempo=0;
+  this.alerta_confirmacion();
  }
   lapso(){
     //se define un objeto para almacenar distintas marcas de tiempo durante el entrenamiento 

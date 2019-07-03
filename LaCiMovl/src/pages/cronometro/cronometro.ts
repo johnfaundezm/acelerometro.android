@@ -8,6 +8,8 @@ import { NativeAudio } from '@ionic-native/native-audio';
 //import { Observable } from 'rxjs/Observable'
 import  'rxjs/add/observable/interval' 
 import { WebservicesProvider } from '../../providers/webservices/webservices';
+import { EntrenamientoPage } from '../entrenamiento/entrenamiento';
+import { DatosentrenamientoPage } from '../datosentrenamiento/datosentrenamiento';
 
 @IonicPage()
 @Component({
@@ -402,7 +404,7 @@ export class CronometroPage {
     
     this.cambio= true;
   }
-  
+
   recuperacion(){
     // se analiza si el contador fue definido o aun no
      alert("Comienza el tiempo de recuperación")
@@ -446,6 +448,7 @@ export class CronometroPage {
    this.contador_recuperacion = null;
    // se redefine el timepo de entrenamiento como 0
    this.tiempo=0;
+   this.navCtrl.push(DatosentrenamientoPage, {id_entrenamiento:this.id_ent, correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
  }
   lapso(){
     //se define un objeto para almacenar distintas marcas de tiempo durante el entrenamiento 
