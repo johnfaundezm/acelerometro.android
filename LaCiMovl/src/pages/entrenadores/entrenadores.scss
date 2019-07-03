@@ -17,4 +17,10 @@ page-entrenadores {
       white-space: nowrap;
       height: 100%;
     }
+
+    .formato_item {
+        border-bottom: 1px solid !important; 
+        border-color: rgb(194, 191, 191) !important; 
+        height: auto !important;
+    }
 }
