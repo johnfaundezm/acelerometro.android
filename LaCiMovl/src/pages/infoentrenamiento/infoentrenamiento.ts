@@ -23,6 +23,7 @@ export class InfoentrenamientoPage {
   public tiempo_recuperacion :number;
   public unidad_recuperacion : number;
 
+  id_solicitud:any;
   id_ent:any;
   email_dep:any;
   correo:any;
@@ -47,7 +48,7 @@ export class InfoentrenamientoPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider,
     public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
-    this.id_ent = this.navParams.get('ide');
+    this.id_solicitud = this.navParams.get('ide');
     this.email_dep = this.navParams.get('email');
     this.correo = this.navParams.get('correo');
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar'); //se pasa el elemento tabbar a la variable antes declarada
@@ -58,11 +59,23 @@ export class InfoentrenamientoPage {
   }
   //antes de entrar a la vista se oculta el tabbar
   ionViewWillEnter() {
+    this.traer_id_entrenamiento();
     this.tabBarElement.style.display = 'none';
   }
   //cuando va a salir de la vista se le agrega el tabbar nuevamente
   ionViewWillLeave() {
     this.tabBarElement.style.display = 'flex';
+  }
+
+  traer_id_entrenamiento(){// consulta quer verifica el estado del entrenamiento
+    this.webservices.estado_entrenamiento(this.id_solicitud).then(//llama a la funcion del webservices.ts y le envia la id del entrenamiento
+      (datos)=>{// recibe los datos de la consulta
+        //alert(JSON.stringify(datos));
+        this.id_ent= datos[0].ID;// recibe la id del entrenamiento y se almacena en una variable
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
   }
 
   loadregistrar() {
