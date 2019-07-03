@@ -142,6 +142,7 @@ export class CronometroPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CronometroPage');
+    alert('Su entrenamiento Trata de: '+this.tipo_entrenamiento);
   }
 
   //antes de entrar a la vista se oculta el tabbar
@@ -150,6 +151,7 @@ export class CronometroPage {
     this.tabBarElement.style.display = 'none';
     this.a=1; // variable que activa la recursividad de buscar entrenamientos
     this.time();
+    
   }
   //cuando va a salir de la vista se le agrega el tabbar nuevamente
   ionViewWillLeave() {
