@@ -42,7 +42,7 @@ export class PerfildepPage {
     this.consulta();
     refresher.complete();
   } 
-
+  //muestra los datos del deportista desde el servidor web
   consulta(){
     this.webservices.consulta(this.correo).then(
       (datos)=>{
