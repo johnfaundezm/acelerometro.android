@@ -153,7 +153,7 @@ export class CronometroentPage {
         this.verificacion();// se llama la función que verifica el estado
         this.time();// se llama a la funcion que realiza la recursividad
       }
-    }, 2000)// tiempo en milisegundos que se demora en realizarse lo que hay dentro del setTimeout
+    }, 1000)// tiempo en milisegundos que se demora en realizarse lo que hay dentro del setTimeout
   }
 
   verificacion(){// consulta quer verifica el estado del entrenamiento
