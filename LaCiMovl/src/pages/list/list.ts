@@ -12,6 +12,7 @@ export class ListPage {
 
   //declaracion de variable
   id_ent:any;
+  id_solicitud:any;
   email:any;
   correo:any;
   estado:any;
@@ -23,12 +24,13 @@ export class ListPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider,
     public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     //se reciben las variables de la vista anterior y se almacenan en una variable dentro de la vista
-    this.id_ent = navParams.get('ide');
+    this.id_solicitud = navParams.get('ide');
     this.email = navParams.get('email');
     this.correo = navParams.get('correo');
   }
 
   ionViewWillEnter(){// esta función se realiza antes de entrar a la vista actual
+    this.traer_id_entrenamiento()
     alert(this.id_ent);
     this.load_buscar()
     this.a=1;// variable que activa la recursividad de buscar entrenamientos
@@ -48,8 +50,19 @@ export class ListPage {
     }, 2000)// tiempo en milisegundos que se demora en realizarse lo que hay dentro del setTimeout
   }
 
+  traer_id_entrenamiento(){// consulta quer verifica el estado del entrenamiento
+    this.webservices.estado_entrenamiento(this.id_solicitud).then(//llama a la funcion del webservices.ts y le envia la id del entrenamiento
+      (datos)=>{// recibe los datos de la consulta
+        //alert(JSON.stringify(datos));
+        this.id_ent= datos[0].ID;// recibe la id del entrenamiento y se almacena en una variable
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
+  }
+
   verificacion(){// consulta quer verifica el estado del entrenamiento
-    this.webservices.estado_entrenamiento(this.id_ent).then(//llama a la funcion del webservices.ts y le envia la id del entrenamiento
+    this.webservices.estado_entrenamiento(this.id_solicitud).then(//llama a la funcion del webservices.ts y le envia la id del entrenamiento
       (datos)=>{// recibe los datos de la consulta
         //alert(JSON.stringify(datos));
         this.estado= datos[0].ESTADO;// recibe el estado y se almacena en una variable
