@@ -30,8 +30,6 @@ export class ListPage {
   }
 
   ionViewWillEnter(){// esta función se realiza antes de entrar a la vista actual
-    this.traer_id_entrenamiento()
-    alert(this.id_ent);
     this.load_buscar()
     this.a=1;// variable que activa la recursividad de buscar entrenamientos
     this.time();// se llama a la funcion que realiza la recursividad
@@ -50,21 +48,11 @@ export class ListPage {
     }, 2000)// tiempo en milisegundos que se demora en realizarse lo que hay dentro del setTimeout
   }
 
-  traer_id_entrenamiento(){// consulta quer verifica el estado del entrenamiento
-    this.webservices.estado_entrenamiento(this.id_solicitud).then(//llama a la funcion del webservices.ts y le envia la id del entrenamiento
-      (datos)=>{// recibe los datos de la consulta
-        //alert(JSON.stringify(datos));
-        this.id_ent= datos[0].ID;// recibe la id del entrenamiento y se almacena en una variable
-      },
-      (err)=>{
-        alert(JSON.stringify(err))
-      })
-  }
-
   verificacion(){// consulta quer verifica el estado del entrenamiento
     this.webservices.estado_entrenamiento(this.id_solicitud).then(//llama a la funcion del webservices.ts y le envia la id del entrenamiento
       (datos)=>{// recibe los datos de la consulta
         //alert(JSON.stringify(datos));
+        this.id_ent=datos[0].ID;// recibe la id del entrenamiento y se almacena en una variable
         this.estado= datos[0].ESTADO;// recibe el estado y se almacena en una variable
         if(this.estado==5){ // si el estado es 5 es por que se generó un entrenamiento
           this.a=0; // variable que desactiva la recursividad de buscar entrenamientos

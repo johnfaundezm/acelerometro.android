@@ -59,7 +59,6 @@ export class InfoentrenamientoPage {
   }
   //antes de entrar a la vista se oculta el tabbar
   ionViewWillEnter() {
-    this.traer_id_entrenamiento();
     this.tabBarElement.style.display = 'none';
   }
   //cuando va a salir de la vista se le agrega el tabbar nuevamente
@@ -67,7 +66,7 @@ export class InfoentrenamientoPage {
     this.tabBarElement.style.display = 'flex';
   }
 
-  traer_id_entrenamiento(){// consulta quer verifica el estado del entrenamiento
+  traer_id_entrenamiento(){// consulta la id del entrenamiento
     this.webservices.estado_entrenamiento(this.id_solicitud).then(//llama a la funcion del webservices.ts y le envia la id del entrenamiento
       (datos)=>{// recibe los datos de la consulta
         //alert(JSON.stringify(datos));
@@ -189,10 +188,11 @@ export class InfoentrenamientoPage {
     this.tiempo_ent='00:'+this.tiempoM+':'+this.tiempoS;
     this.tiempo_rec='00:'+this.tiempoRM+':'+this.tiempoRS;
     this.estado=5;
-    this.webservices.insertar_entrenamiento(this.id_ent,this.tiempo_ent,this.tiempo_rec,this.formattedDate,this.tipo_entrenamiento,this.estado).then(
+    this.webservices.insertar_entrenamiento(this.id_solicitud,this.tiempo_ent,this.tiempo_rec,this.formattedDate,this.tipo_entrenamiento,this.estado).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
         if(this.respuesta=='OK'){
+          this.traer_id_entrenamiento()
           alert('El entrenamiento se ha creado satisfactoriamente');
           this.loading.dismiss();
           this.a=1;

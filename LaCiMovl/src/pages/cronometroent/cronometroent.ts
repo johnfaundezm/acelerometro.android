@@ -190,10 +190,10 @@ export class CronometroentPage {
       })
   }
 
-  alerta_confirmacion() {//Alerta que se activa cuando se encuentra un entrenamiento activo
+  alerta_confirmacion() {//Alerta que se activa cuando termina el entrenamiento
     const confirm = this.alertCtrl.create({
       title: 'Entrenamiento terminado',// titulo de la alerta
-      message: '¿Desea pasar a ver las estadisticas?',// mensaje de la alerta
+      message: '¿Desea ver las estadisticas?',// mensaje de la alerta
       buttons: [
         {
           text: 'Cancelar',//nombre del boton 1
