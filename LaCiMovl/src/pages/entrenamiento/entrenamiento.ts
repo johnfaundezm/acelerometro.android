@@ -104,6 +104,7 @@ export class EntrenamientoPage {
     this.webservices.actualizar_solicitud(this.id_ent,this.estado).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
+        alert(this.respuesta);
       //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
