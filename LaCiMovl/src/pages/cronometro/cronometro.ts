@@ -209,6 +209,7 @@ export class CronometroPage {
     this.webservices.actualizar_estado_entrenamiento(this.id_ent,this.estadouser).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
+        alert(this.respuesta)
       //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
@@ -418,7 +419,7 @@ export class CronometroPage {
     this.contador_entrenamiento = null;
     // se redefine el timepo de entrenamiento como 0
     this.tiempo=0;
-    
+    this.recuperacion();
     this.cambio= true;
   }
 
