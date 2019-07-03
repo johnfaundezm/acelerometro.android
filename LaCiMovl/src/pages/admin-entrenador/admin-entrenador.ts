@@ -73,4 +73,8 @@ export class AdminEntrenadorPage {
       })
   }
 
+  volver(){
+    this.navCtrl.pop();
+  }
+
 }
