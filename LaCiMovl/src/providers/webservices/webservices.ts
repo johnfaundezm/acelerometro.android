@@ -773,7 +773,7 @@ export class WebservicesProvider {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
-        "Content-Type": "application/x-www-form-urlencoded" //este es la forma en que se envia el POST y se almacena en la variable headers
+        "Content-Type": "application/x-www-form-urlencoded" //esta es la forma en que se envia el POST y se almacena en la variable headers
       });
       let options = new RequestOptions({
         headers: headers // se pasa la variable header con la forma de post a la variable options

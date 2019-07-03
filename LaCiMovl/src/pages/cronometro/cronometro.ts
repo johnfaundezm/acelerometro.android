@@ -146,6 +146,7 @@ export class CronometroPage {
 
   //antes de entrar a la vista se oculta el tabbar
   ionViewWillEnter() {
+    this.datos_entrenamiento();
     this.tabBarElement.style.display = 'none';
     this.a=1; // variable que activa la recursividad de buscar entrenamientos
     this.time();
@@ -184,6 +185,19 @@ export class CronometroPage {
             }
           }
         }
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
+  }
+
+  datos_entrenamiento(){
+    this.webservices.consultar_entrenamiento_por_id(this.id_ent).then(//llama a la funcion del webservices.ts y le envia la id del entrenamiento
+      (datos)=>{// recibe los datos de la consulta
+        //alert(JSON.stringify(datos));
+        this.tipo_entrenamiento = datos[0].NOMBRE;
+        this.tiempo_entrenamiento = datos[0].TIEMPO_ENT;
+        this.tiempo_recuperacion = datos[0].TIEMPO_REC;
       },
       (err)=>{
         alert(JSON.stringify(err))
