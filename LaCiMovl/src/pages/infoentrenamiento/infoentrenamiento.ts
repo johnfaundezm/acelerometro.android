@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { CronometroPage } from '../cronometro/cronometro';
 import { DeportistasentPage } from '../deportistasent/deportistasent';
 import { CronometroentPage } from '../cronometroent/cronometroent';
 
@@ -23,8 +21,8 @@ export class InfoentrenamientoPage {
   public tiempo_recuperacion :number;
   public unidad_recuperacion : number;
 
+  id_entrenamiento:any;
   id_solicitud:any;
-  id_ent:any;
   email_dep:any;
   correo:any;
   estado:any;
@@ -70,7 +68,7 @@ export class InfoentrenamientoPage {
     this.webservices.estado_entrenamiento(this.id_solicitud).then(//llama a la funcion del webservices.ts y le envia la id del entrenamiento
       (datos)=>{// recibe los datos de la consulta
         //alert(JSON.stringify(datos));
-        this.id_ent= datos[0].ID;// recibe la id del entrenamiento y se almacena en una variable
+        var id_ent= datos[0].ID;// recibe la id del entrenamiento y se almacena en una variable
       },
       (err)=>{
         alert(JSON.stringify(err))
@@ -94,7 +92,7 @@ export class InfoentrenamientoPage {
     });
 
     this.loading.onDidDismiss(() => {
-      this.navCtrl.push(CronometroentPage, {id_entrenamiento:this.id_ent});
+      this.navCtrl.push(CronometroentPage, {id_entrenamiento:this.id_entrenamiento,correo:this.correo});
     });
   
     this.loading.present();
@@ -220,7 +218,7 @@ export class InfoentrenamientoPage {
   
   pausa_entrenamiento(){
     this.estado=2;
-    this.webservices.actualizar_estado_entrenamiento(this.id_ent,this.estado).then(
+    this.webservices.actualizar_estado_entrenamiento(this.id_entrenamiento,this.estado).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
         if(this.respuesta=='OK'){
@@ -241,7 +239,7 @@ export class InfoentrenamientoPage {
 
   continuar_entrenamiento(){
     this.estado=3;
-    this.webservices.actualizar_estado_entrenamiento(this.id_ent,this.estado).then(
+    this.webservices.actualizar_estado_entrenamiento(this.id_entrenamiento,this.estado).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
         if(this.respuesta=='OK'){
@@ -262,7 +260,7 @@ export class InfoentrenamientoPage {
 
   finalizar_entrenamiento(){
     this.estado=1;
-    this.webservices.actualizar_estado_entrenamiento(this.id_ent,this.estado).then(
+    this.webservices.actualizar_estado_entrenamiento(this.id_entrenamiento,this.estado).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
         if(this.respuesta=='OK'){
@@ -291,6 +289,7 @@ export class InfoentrenamientoPage {
     this.webservices.estado_entrenamiento(this.id_solicitud).then(//llama a la funcion del webservices.ts y le envia la id del entrenamiento
       (datos)=>{// recibe los datos de la consulta
         //alert(JSON.stringify(datos));
+        this.id_entrenamiento= datos[0].ID;
         this.estado= datos[0].ESTADO;// recibe el estado y se almacena en una variable
         if(this.estado==4){ // si el estado es 4 es por que el deportista aceptó
           this.loading.dismiss();// detiene el loading

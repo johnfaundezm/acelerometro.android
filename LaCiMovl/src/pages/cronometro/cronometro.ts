@@ -9,6 +9,7 @@ import { NativeAudio } from '@ionic-native/native-audio';
 import  'rxjs/add/observable/interval' 
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { DatosentrenamientoPage } from '../datosentrenamiento/datosentrenamiento';
+import { EstadisticasdepPage } from '../estadisticasdep/estadisticasdep';
 
 @IonicPage()
 @Component({
@@ -462,7 +463,7 @@ export class CronometroPage {
    this.contador_recuperacion = null;
    // se redefine el timepo de entrenamiento como 0
    this.tiempo=0;
-   this.navCtrl.push(DatosentrenamientoPage, {id_entrenamiento:this.id_ent, correo:this.correo,id_solicitud:this.id_solicitud})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
+   this.navCtrl.push(EstadisticasdepPage, {correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
  }
   lapso(){
     //se define un objeto para almacenar distintas marcas de tiempo durante el entrenamiento 

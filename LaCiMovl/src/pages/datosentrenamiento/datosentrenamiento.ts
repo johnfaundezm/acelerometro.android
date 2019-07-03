@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { Chart } from 'chart.js';
+import { DeportistasentPage } from '../deportistasent/deportistasent';
 
 
 @IonicPage()
@@ -18,6 +19,7 @@ export class DatosentrenamientoPage {
 
   id_solicitud:any;
   id_entrenamiento:any;
+  correo:any;
 
   tabBarElement: any; //variable que almacena el elemento tabbar
 
@@ -42,6 +44,7 @@ export class DatosentrenamientoPage {
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar'); //se pasa el elemento tabbar a la variable antes declarada
     this.id_solicitud = navParams.get('id_solicitud');
     this.id_entrenamiento = navParams.get('id_entrenamiento');
+    this.correo = navParams.get('correo');
   }
 
   ionViewDidLoad() {
@@ -493,7 +496,7 @@ export class DatosentrenamientoPage {
   }
 
   volver(){
-    this.navCtrl.pop();
+    this.navCtrl.setRoot(DeportistasentPage,{correo:this.correo});
   }
 
 }
