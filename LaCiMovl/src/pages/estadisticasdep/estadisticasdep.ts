@@ -526,8 +526,9 @@ export class EstadisticasdepPage {
   }
   
 
-  escoger_solicitud(id) {
-    alert(id)
+  escoger_solicitud(id, email) {
+    alert(id);
+    alert(email);
     this.nombre_entrenamiento(id);
   }
 
