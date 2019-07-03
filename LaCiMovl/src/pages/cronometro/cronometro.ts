@@ -8,7 +8,6 @@ import { NativeAudio } from '@ionic-native/native-audio';
 //import { Observable } from 'rxjs/Observable'
 import  'rxjs/add/observable/interval' 
 import { WebservicesProvider } from '../../providers/webservices/webservices';
-import { EntrenamientoPage } from '../entrenamiento/entrenamiento';
 import { DatosentrenamientoPage } from '../datosentrenamiento/datosentrenamiento';
 
 @IonicPage()
@@ -141,9 +140,6 @@ export class CronometroPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CronometroPage');
     this.consulta_peso(); //Se inicializa la consulta del peso  
-    setTimeout(() => {
-      alert(this.peso);
-    }, 2000)
   }
 
   //antes de entrar a la vista se oculta el tabbar
@@ -487,6 +483,7 @@ export class CronometroPage {
       (datos)=>{
         //alert(JSON.stringify(datos));
         this.peso= datos[0].PESO; //se recibe del peso del correo solicitado
+        alert(this.peso)
       },
       (err)=>{
         alert(JSON.stringify(err))

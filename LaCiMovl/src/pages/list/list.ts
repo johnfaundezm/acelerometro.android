@@ -137,7 +137,7 @@ export class ListPage {
         if(this.respuesta=='OK'){
           this.loading.dismiss();
           alert('Los cambios se han realizado satisfactoriamente')
-          this.navCtrl.push(CronometroPage, {id_entrenamiento:this.id_ent, email:this.email,id_solicitud:this.id_solicitud});
+          this.navCtrl.push(CronometroPage, {id_entrenamiento:this.id_ent, email:this.email,id_solicitud:this.id_solicitud,correo:this.correo});
         }else{
           if(this.respuesta=='ERROR'){
             this.loading.dismiss();
