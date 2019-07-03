@@ -25,6 +25,7 @@ export class EstadisticasdepPage {
   aceleragiroschartvar: any;
 
   val_ent: any;
+  val_entre: any;
 
   datos_acelerometroX = [];
   datos_acelerometroY = [];
@@ -135,7 +136,7 @@ export class EstadisticasdepPage {
     for(i=0;i<this.datos_acelerometroP.length;i++){
       this.datos_acelerometroP.pop();
     }
-    this.webservices.consulta_acelerometro_datos(1).then(
+    this.webservices.consulta_acelerometro_datos(this.val_entre).then(
       (datos) =>{
         let largo=Object.keys(datos).length;
         //var division=largo/1;
@@ -186,7 +187,7 @@ export class EstadisticasdepPage {
     for(i=0;i<this.datos_giroscopio.length;i++){
       this.datos_giroscopio.pop();
     }
-    this.webservices.consulta_giroscopio_datos(1).then(
+    this.webservices.consulta_giroscopio_datos(this.val_entre).then(
       (datos) =>{
         let largo=Object.keys(datos).length;
         var x=0;
@@ -526,10 +527,21 @@ export class EstadisticasdepPage {
         alert(JSON.stringify(err))
       })
   }
-  
 
   escoger_solicitud() {
     this.nombre_entrenamiento();
+  }
+
+  escoger_entrenamiento(){
+    this.consultar_acc();
+    this.consultar_gir();
+    
+    setTimeout(() => {
+      this.acelerachart();
+      this.aceleraxyzchart();
+      this.giroschart();
+      this.acelgiroschart();
+    }, 1000)
   }
 
 }
