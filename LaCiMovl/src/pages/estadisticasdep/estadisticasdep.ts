@@ -91,8 +91,6 @@ export class EstadisticasdepPage {
       this.entrenamiento.pop();
     }
 
-    this.consultar_acc();
-    this.consultar_gir();
     this.consulta_enlace();
   }
 
