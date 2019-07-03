@@ -163,12 +163,15 @@ export class CronometroentPage {
         this.estado= datos[0].ESTADO;// recibe el estado y se almacena en una variable
         if(this.estado==3){ // si el estado es 3 se inicia el cronometro
           this.nuevoEntrenamiento();
+          alert('comienza')
         }else{
           if(this.estado==2){// si el estado es 2 se pausa el cronometro
             this.pausa();
+            alert('pausa')
           }else{
             if(this.estado==1){// si el estado es 1 finaliza el cronometro
               this.finalizar();
+              alert('finaliza')
             }
           }
         }
@@ -182,7 +185,6 @@ export class CronometroentPage {
     this.webservices.actualizar_estado_entrenamiento(this.id_ent,this.estadouser).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
-        alert(this.respuesta)
       //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
