@@ -288,7 +288,7 @@ export class InfoentrenamientoPage {
   }
 
   verificacion(){// consulta quer verifica el estado del entrenamiento
-    this.webservices.estado_entrenamiento(this.id_ent).then(//llama a la funcion del webservices.ts y le envia la id del entrenamiento
+    this.webservices.estado_entrenamiento(this.id_solicitud).then(//llama a la funcion del webservices.ts y le envia la id del entrenamiento
       (datos)=>{// recibe los datos de la consulta
         //alert(JSON.stringify(datos));
         this.estado= datos[0].ESTADO;// recibe el estado y se almacena en una variable
