@@ -54,7 +54,7 @@ export class RegistroPage {
       loading.dismiss();
     });
   }
-
+  
   loadregistrar() {
     this.loading = this.loadingCtrl.create({
       spinner: 'ios',
@@ -64,7 +64,7 @@ export class RegistroPage {
   
     this.loading.present();
   }
-
+  //notifica que los camios se guardaron correctamente
   mensaje() {
     let toast = this.toastCtrl.create({
       message: 'Cambios guardados correctamente',
@@ -82,7 +82,7 @@ export class RegistroPage {
   
 
   
-
+  // SE envian los datos de registro al metodo registrar definido en webservices
   registrar(){
     this.loadregistrar()
     this.getFormattedDate();
@@ -112,7 +112,7 @@ export class RegistroPage {
   cancelar(){
     this.navCtrl.pop();
   }
-
+  //Aaigna y recibe la fecha con formato
   getFormattedDate(){
     var dateObj =new Date()
 

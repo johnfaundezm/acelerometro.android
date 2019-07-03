@@ -40,7 +40,7 @@ export class PerfilentPage {
     this.consulta();
     refresher.complete();
   } 
-
+  //Muestra los datos del entrenador desde el servidor web.
   consulta(){
     this.webservices.consulta(this.correo).then(
       (datos)=>{
