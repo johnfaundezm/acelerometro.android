@@ -12,6 +12,8 @@ import { NativeAudio } from '@ionic-native/native-audio';
 })
 export class CronometroentPage {
 
+  tabBarElement: any; //variable que almacena el elemento tabbar
+
   enlaces: Array<{ide:string, email:string, fecha:string}>=[{ide:'', email:'', fecha:''}]; //arreglo que almacena los enlaces entre deportista y entrenador
   enlaces_pend: Array<{email:string}>=[{email:''}]; //arreglo que almacena las solicitudes pendientes
 
@@ -85,6 +87,8 @@ export class CronometroentPage {
     private gyroscope:Gyroscope, private deviceMotion: DeviceMotion, private webservices: WebservicesProvider, 
     public loadingCtrl: LoadingController,private nativeAudio: NativeAudio, public alertCtrl: AlertController) {
 
+    this.tabBarElement = document.querySelector('.tabbar.show-tabbar'); //se pasa el elemento tabbar a la variable antes declarada
+
     this.correo = this.navParams.get('correo'); //Se recibe el correo del deportista
     this.id_ent = this.navParams.get('id_entrenamiento');
     this.consulta_peso(); //Se inicializa la consulta del peso  
@@ -130,10 +134,12 @@ export class CronometroentPage {
   }
 
   ionViewWillEnter() {
+    this.tabBarElement.style.display = 'none';//antes de entrar a la vista se oculta el tabbar
     this.a=1; // variable que activa la recursividad de buscar entrenamientos
   }
 
   ionViewWillLeave() {
+    this.tabBarElement.style.display = 'flex';//cuando va a salir de la vista se le agrega el tabbar nuevamente
     this.a=0; // variable que activa la recursividad de buscar entrenamientos
   }
 
