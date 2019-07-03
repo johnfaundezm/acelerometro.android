@@ -6,12 +6,21 @@
     </button>
 
     <div>
-        <ion-select style="background-color:whitesmoke" placeholder="Entrenador" [(ngModel)]="elegido">
-                <ion-option *ngFor="let ide of entrenador" value="{{ide}}">{{ide}}</ion-option>
-        </ion-select>
-        <ion-select style="background-color:whitesmoke" placeholder="entrenamiento" [(ngModel)]="elegido2">
+        <ion-item>
+            <ion-select style="background-color:whitesmoke" placeholder="Entrenador" >
+                <ion-option *ngFor="let ide of entrenador" value="{{ ide.email }}">{{ ide.email }}</ion-option>
+            </ion-select>
+        </ion-item>
+        <button ion-button (click)="escoger_solicitud(ide.ide)">enviar</button>
+    </div>
+
+    <div>
+        <ion-item>
+            <ion-select style="background-color:whitesmoke" placeholder="entrenamiento" >
                 <ion-option *ngFor="let ide_entre of entrenamiento" value="{{ide_entre}}">{{ide_entre}}</ion-option>
-        </ion-select>
+            </ion-select>
+            <button ion-button>enviar</button>
+        </ion-item>
     </div>
 
     <!--tarjeta contenedora del grafico de aceleracion y giroscopio resultante-->
