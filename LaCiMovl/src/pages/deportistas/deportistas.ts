@@ -12,7 +12,7 @@ import { HomePage } from '../home/home';
   templateUrl: 'deportistas.html',
 })
 export class DeportistasPage {
-
+  //define los atributos de la pagina para deportista
   deportista: Array<{email:string, estado:string, fecha_r:string}>=[{email:'', estado:'', fecha_r:''}];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
@@ -25,12 +25,12 @@ export class DeportistasPage {
     }
     this.vista_deportista();
   }
-
+  //permite actualizar  la pagina
   doRefresh(refresher) {
     this.vista_deportista();
     refresher.complete();
   } 
-
+  // llama los atributos del deportista desde la base de datos para el administrador
   vista_deportista(){
     this.webservices.vista_deportista().then(
       (datos) =>{
