@@ -795,4 +795,30 @@ export class WebservicesProvider {
     });
   }
 
+  //se crea el metodo para actualizar el estado del entrenamiento
+  actualizar_solicitud(id_ent,estado) {
+    return new Promise( (resolve, reject) => {
+      
+      let headers = new Headers({
+        "Content-Type": "application/x-www-form-urlencoded" //este es la forma en que se envia el POST y se almacena en la variable headers
+      });
+      let options = new RequestOptions({
+        headers: headers // se pasa la variable header con la forma de post a la variable options
+      });
+      // TODO: Encode the values using encodeURIComponent().
+      //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
+      let body = 'id_ent='+id_ent+ '&estado='+estado;
+      //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
+      let url = "http://192.81.216.141/webservices/actualizar_estado_entrenamiento.php";
+
+      this.http.post(url, body, options)
+        .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
+        .subscribe(data => {
+          //alert(JSON.stringify(data));
+          if (data != 'null') resolve( data );  
+          else resolve (false);
+        }, error => reject(error));
+    });
+  }
+
 }

@@ -15,13 +15,16 @@ import { ListPage } from '../list/list';
 export class EntrenamientoPage {
 
   enlaces: Array<{ide:string, email:string, fecha:string}>=[{ide:'', email:'', fecha:''}]; //arreglo que almacena los enlaces entre deportista y entrenador
-  enlaces_pend: Array<{email:string}>=[{email:''}]; //arreglo que almacena las solicitudes pendientes
+  enlaces_pend: Array<{email:string,ide:string}>=[{email:'',ide:''}]; //arreglo que almacena las solicitudes pendientes
 
   aux: Array<{email_ent:string}>=[{email_ent:''}]; //arreglo que almacena todos los deportistas
   
   correo:any; // correo del desportista
   loading:any;// variable que almacena el estado de el loading
   items:any;// variable para usarlo en el filtro
+  id_ent:any;
+  estado:any;
+  respuesta:any;
   
   actividades: string = 'ejercicio';
   tiempoMarca: any;  //marca del tiempo para pausas
@@ -56,7 +59,8 @@ export class EntrenamientoPage {
     refresher.complete();
   } 
 
-  alerta_confirmacion(correo) {
+  alerta_confirmacion(correo,id) {
+    this.id_ent=id;
     const confirm = this.alertCtrl.create({
       title: 'Confirmacion de solicitud',
       message: 'El entrenador "'+correo+'" te ha enviado una solicitud de entrenamiento',
@@ -70,7 +74,7 @@ export class EntrenamientoPage {
         {
           text: 'Aceptar',
           handler: () => {
-            console.log('Agree clicked');
+            this.actualizar_estado();
           }
         }
       ]
@@ -93,6 +97,19 @@ export class EntrenamientoPage {
         return (item.email_ent.toLowerCase().indexOf(val.toLowerCase()) > -1);// retorna la palabra filtrada
       })
     }
+  }
+
+  actualizar_estado(){
+    this.estado=3
+    this.webservices.actualizar_solicitud(this.id_ent,this.estado).then(
+      (datos) =>{
+        this.respuesta= datos[0].RESPUESTA;
+      //alert('oka'+JSON.stringify(resultado));
+      },
+      (error) =>{
+        this.loading.dismiss();
+        alert('error'+JSON.stringify(error));
+      })
   }
 
   consulta_entrenadores(){// se consultan todos los entrenadores disponibles para enviar solicitud
@@ -120,8 +137,9 @@ export class EntrenamientoPage {
         //alert(JSON.stringify(datos));
         let largo=Object.keys(datos).length;
         for(var i=0;i<largo;i++){
+          var ide= datos[i].ID;
           var email= datos[i].ENTRENADOR;// se recibe el correo de la solicitud pendiente
-          this.enlaces_pend.push({"email":email});
+          this.enlaces_pend.push({"email":email,"ide":ide});
         }
       },
       (err)=>{
