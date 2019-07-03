@@ -469,7 +469,7 @@ export class WebservicesProvider {
   }
 
   // se crea un metodo consultar los datos del acelerometro
-  consulta_acelerometro_datos() {
+  consulta_acelerometro_datos(id_ent) {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
@@ -481,7 +481,7 @@ export class WebservicesProvider {
       // TODO: Encode the values using encodeURIComponent().
       //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
       // en este caso no se envian variables, por q solo se reciben datos del php
-      let body = '';
+      let body = 'id_ent='+id_ent;
       //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/select_acc_datos.php";
 
@@ -523,7 +523,7 @@ export class WebservicesProvider {
   }
 
   // se crea un metodo consultar los datos del acelerometro
-  consulta_giroscopio_datos() {
+  consulta_giroscopio_datos(id_ent) {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
@@ -535,7 +535,7 @@ export class WebservicesProvider {
       // TODO: Encode the values using encodeURIComponent().
       //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
       // en este caso no se envian variables, por q solo se reciben datos del php
-      let body = '';
+      let body = 'id_ent='+id_ent;
       //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/select_gir_datos.php";
 

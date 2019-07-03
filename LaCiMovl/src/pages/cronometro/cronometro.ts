@@ -31,6 +31,7 @@ export class CronometroPage {
   items:any;// variable para usarlo en el filtro
 
   id_ent:any;
+  id_solicitud:any;
   respuesta:any;
   a:any;
   estado:any;
@@ -99,6 +100,7 @@ export class CronometroPage {
 
     this.correo = this.navParams.get('correo'); //Se recibe el correo del deportista
     this.id_ent = this.navParams.get('id_entrenamiento');
+    this.id_solicitud = navParams.get('id_solicitud');
 
     this.consulta_peso(); //Se inicializa la consulta del peso  
 
@@ -448,7 +450,7 @@ export class CronometroPage {
    this.contador_recuperacion = null;
    // se redefine el timepo de entrenamiento como 0
    this.tiempo=0;
-   this.navCtrl.push(DatosentrenamientoPage, {id_entrenamiento:this.id_ent, correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
+   this.navCtrl.push(DatosentrenamientoPage, {id_entrenamiento:this.id_ent, correo:this.correo,id_solicitud:this.id_solicitud})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
  }
   lapso(){
     //se define un objeto para almacenar distintas marcas de tiempo durante el entrenamiento 

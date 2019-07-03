@@ -15,6 +15,8 @@ export class EstadisticasdepPage {
   @ViewChild('giroscopiochart') giroscopiochart;
   @ViewChild('aceleragiroschart') aceleragiroschart;
 
+  correo:any;
+
   aceleracionchartvar: any;
   aceleracionxyzchartvar: any;
   giroscopiochartvar: any;
@@ -33,6 +35,7 @@ export class EstadisticasdepPage {
   datos_giroscopio = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
+    this.correo = navParams.get('correo');
   }
 
   ionViewDidEnter() {
@@ -100,7 +103,7 @@ export class EstadisticasdepPage {
     for(i=0;i<this.datos_acelerometroP.length;i++){
       this.datos_acelerometroP.pop();
     }
-    this.webservices.consulta_acelerometro_datos().then(
+    this.webservices.consulta_acelerometro_datos(1).then(
       (datos) =>{
         let largo=Object.keys(datos).length;
         //var division=largo/1;
@@ -151,7 +154,7 @@ export class EstadisticasdepPage {
     for(i=0;i<this.datos_giroscopio.length;i++){
       this.datos_giroscopio.pop();
     }
-    this.webservices.consulta_giroscopio_datos().then(
+    this.webservices.consulta_giroscopio_datos(1).then(
       (datos) =>{
         let largo=Object.keys(datos).length;
         var x=0;
