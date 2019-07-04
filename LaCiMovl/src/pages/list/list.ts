@@ -17,6 +17,7 @@ export class ListPage {
   id_solicitud:any;
   email:any;
   correo:any;
+  v:any;
   estado:any;
   respuesta:any;
   loading:any;
@@ -29,12 +30,18 @@ export class ListPage {
     this.id_solicitud = navParams.get('ide');
     this.email = navParams.get('email');
     this.correo = navParams.get('correo');
+    this.v = navParams.get('v');
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar'); //se pasa el elemento tabbar a la variable antes declarada
+  }
+
+  ionViewDidLoad(){
+    if(this.v==1){
+      this.load_buscar();
+    }
   }
 
   ionViewWillEnter(){// esta función se realiza antes de entrar a la vista actual
     this.tabBarElement.style.display = 'none';
-    this.load_buscar();
     this.a=1;// variable que activa la recursividad de buscar entrenamientos
     this.time();// se llama a la funcion que realiza la recursividad
   }
@@ -42,6 +49,7 @@ export class ListPage {
   ionViewWillLeave(){// esta función se realiza despues de salir de la vista actual
     this.tabBarElement.style.display = 'flex';
     this.a=0;// variable que desactiva la recursividad de buscar entrenamientos
+    this.v=0;// variable que desactiva el load_buscar()
   }
 
   time(){// función recursiva que se activa cada 2 segundos

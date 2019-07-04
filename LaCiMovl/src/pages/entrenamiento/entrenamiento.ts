@@ -171,6 +171,7 @@ export class EntrenamientoPage {
 
 
   info_entrenamiento(id,email){
-    this.navCtrl.push(ListPage, {ide:id, email:email, correo:this.correo});
+    var v=1;
+    this.navCtrl.push(ListPage, {ide:id, email:email, correo:this.correo,v:v});
   }
 }
