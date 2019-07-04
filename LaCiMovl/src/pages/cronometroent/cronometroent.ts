@@ -204,7 +204,7 @@ export class CronometroentPage {
       })
   }
 
-  alerta_confirmacion() {//Alerta que se activa cuando termina el entrenamiento
+  alerta_confirmacion(){//Alerta que se activa cuando termina el entrenamiento
     const confirm = this.alertCtrl.create({
       title: 'Entrenamiento Terminado',// titulo de la alerta
       message: '¿Desea ver las estadisticas?',// mensaje de la alerta
@@ -212,31 +212,18 @@ export class CronometroentPage {
         {
           text: 'Cancelar',//nombre del boton 1
           handler: () => {
-            console.log('Disagree clicked');
-            this.loading.dismiss();// detiene el loading
-            this.pasar_tabs_deportistas();
-            alert('se va al tabs')
+            this.navCtrl.setRoot(DeportistasentPage, {correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
           }
         },
         {
           text: 'Aceptar',//nombre del boton 2
           handler: () => {
-            this.loading.dismiss();// detiene el loading
-            this.pasar_vista_datosent();
-            alert('se va a la vista')
+            this.navCtrl.setRoot(DeportistasentPage, {correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
           }
         }
       ]
     });
-    confirm.present();// se confirma la opcion apretada(Cancelar o Aceptar)
-  }
-
-  pasar_tabs_deportistas(){
-    this.navCtrl.setRoot(DeportistasentPage, {correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
-  }
-
-  pasar_vista_datosent(){
-    this.navCtrl.push(DatosentrenamientoPage, {id_entrenamiento:this.id_ent, correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
+    confirm.present();
   }
 
   // Funcion Entrenamiento
