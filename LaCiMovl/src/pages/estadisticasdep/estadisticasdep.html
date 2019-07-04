@@ -17,7 +17,7 @@
     <div>
         <ion-item style="background-color: transparent">
             <ion-select [(ngModel)]="val_entre" style="background-color:whitesmoke" placeholder="entrenamiento" >
-                <ion-option *ngFor="let ide_entre of entrenamiento" value="{{ide_entre.ide}}">{{ide_entre.nombre_ent}}</ion-option>
+                <ion-option *ngFor="let ide_entre of entrenamiento" value="{{ide_entre.ide}}">{{ide_entre.nombre_ent}} - {{ide_entre.ide}}</ion-option>
             </ion-select>
             <button item-end ion-button (click)="escoger_entrenamiento()">enviar</button>
         </ion-item>
