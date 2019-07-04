@@ -435,6 +435,7 @@ export class CronometroPage {
            this.tiempo+=1; // se sincroniza el cronometro de segundos transcurridos de entrenamiento con el cronometro visual  de centesimas de segundo
            if(this.tiempo ==this.tiempo_recuperacion){
                this.finalizar_recuperacion();
+               this.navCtrl.setRoot(EstadisticasdepPage, {correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
            }
            if (this.seg1 ==10) {
                this.seg1 = 0;
@@ -463,7 +464,6 @@ export class CronometroPage {
    this.contador_recuperacion = null;
    // se redefine el timepo de entrenamiento como 0
    this.tiempo=0;
-   this.navCtrl.setRoot(EstadisticasdepPage, {correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
   }
 
   lapso(){
