@@ -296,6 +296,10 @@ export class CronometroPage {
                 if  (this.seg2 == 6){
                   this.seg2 = 0;
                   this.min1 +=1;
+                  if (this.min1 ==9){
+                    this.min1=0;
+                    this.min2 +=1;
+                  }
                 }
             }
           }
@@ -423,7 +427,10 @@ export class CronometroPage {
 
   recuperacion(){
     // se analiza si el contador fue definido o aun no
-     alert("Comienza el tiempo de recuperación")
+    if (this.tiempo_recuperacion==0){
+      this.finalizar_recuperacion;
+    }else{
+      alert("Comienza el tiempo de recuperación")
      this.playAudiof();
      this.contador_recuperacion = setInterval (()=>{ // se inicia el cronometro junto con el entrenamiento
        this.cen1+=1;
@@ -449,7 +456,7 @@ export class CronometroPage {
          }
        }
      },10); // se define el cronometro visual en intervalo de centesimas de segundo
-     
+    }
  }
  finalizar_recuperacion(){
    this.playAudiof();
