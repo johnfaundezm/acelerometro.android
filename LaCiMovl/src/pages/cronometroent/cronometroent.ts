@@ -134,7 +134,6 @@ export class CronometroentPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CronometroentPage');
-    alert(this.correo)
   }
 
   ionViewWillEnter() {
@@ -216,6 +215,7 @@ export class CronometroentPage {
             console.log('Disagree clicked');
             this.loading.dismiss();// detiene el loading
             this.pasar_tabs_deportistas();
+            alert('se va al tabs')
           }
         },
         {
@@ -223,6 +223,7 @@ export class CronometroentPage {
           handler: () => {
             this.loading.dismiss();// detiene el loading
             this.pasar_vista_datosent();
+            alert('se va a la vista')
           }
         }
       ]
@@ -231,12 +232,10 @@ export class CronometroentPage {
   }
 
   pasar_tabs_deportistas(){
-    alert('se va al tabs')
     this.navCtrl.setRoot(DeportistasentPage, {correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
   }
 
   pasar_vista_datosent(){
-    alert('se va a la vista')
     this.navCtrl.push(DatosentrenamientoPage, {id_entrenamiento:this.id_ent, correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
   }
 
