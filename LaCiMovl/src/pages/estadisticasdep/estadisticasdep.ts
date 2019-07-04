@@ -134,6 +134,7 @@ export class EstadisticasdepPage {
     for(i=0;i<this.datos_acelerometroP.length;i++){
       this.datos_acelerometroP.pop();
     }
+    
     this.webservices.consulta_acelerometro_datos(this.val_entre).then(
       (datos) =>{
         let largo=Object.keys(datos).length;
@@ -529,6 +530,7 @@ export class EstadisticasdepPage {
   }
 
   escoger_entrenamiento(){
+    //this.datos_acelerometro= [];
     this.removeData(this.aceleragiroschartvar);
 
     setTimeout(() => {
