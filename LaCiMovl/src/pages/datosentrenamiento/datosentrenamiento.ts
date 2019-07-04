@@ -62,13 +62,6 @@ export class DatosentrenamientoPage {
   }
 
   ionViewDidEnter() {
-    setTimeout(() => {
-      this.acelerachart();
-      this.aceleraxyzchart();
-      this.giroschart();
-      this.acelgiroschart();
-    }, 150)
-
     while(this.datos_acelerometroX.length>0){
       this.datos_acelerometroX.pop();
     }

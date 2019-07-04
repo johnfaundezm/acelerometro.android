@@ -416,6 +416,7 @@ export class CronometroPage {
     this.contador_entrenamiento = null;
     // se redefine el timepo de entrenamiento como 0
     this.tiempo=0;
+    this.recuperacion();
     this.cambio= true;
   }
 
@@ -463,7 +464,8 @@ export class CronometroPage {
    // se redefine el timepo de entrenamiento como 0
    this.tiempo=0;
    this.navCtrl.setRoot(EstadisticasdepPage, {correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
- }
+  }
+
   lapso(){
     //se define un objeto para almacenar distintas marcas de tiempo durante el entrenamiento 
     let obj:any = {};

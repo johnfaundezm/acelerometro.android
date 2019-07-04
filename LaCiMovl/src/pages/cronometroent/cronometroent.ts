@@ -399,7 +399,7 @@ export class CronometroentPage {
     this.contador_entrenamiento = null;
     // se redefine el timepo de entrenamiento como 0
     this.tiempo=0;
-    
+    this.recuperacion();
     this.cambio= true;
     this.alerta_confirmacion();
   }
@@ -425,7 +425,7 @@ export class CronometroentPage {
     this.contador_entrenamiento = null;
     // se redefine el timepo de entrenamiento como 0
     this.tiempo=0;
-    
+    this.recuperacion();
     this.cambio= true;
     this.alerta_confirmacion();
   }
