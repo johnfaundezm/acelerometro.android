@@ -17,7 +17,7 @@ export class DatosentrenamientoPage {
   @ViewChild('giroscopiochart') giroscopiochart;
   @ViewChild('aceleragiroschart') aceleragiroschart;
 
-  id_solicitud:any;
+  
   id_entrenamiento:any;
   correo:any;
 
@@ -42,7 +42,6 @@ export class DatosentrenamientoPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider)  {
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar'); //se pasa el elemento tabbar a la variable antes declarada
-    this.id_solicitud = navParams.get('id_solicitud');
     this.id_entrenamiento = navParams.get('id_entrenamiento');
     this.correo = navParams.get('correo');
   }

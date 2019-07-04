@@ -134,12 +134,14 @@ export class CronometroentPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CronometroentPage');
+    alert(this.correo)
   }
 
   ionViewWillEnter() {
     this.tabBarElement.style.display = 'none';//antes de entrar a la vista se oculta el tabbar
     this.a=1; // variable que activa la recursividad de buscar entrenamientos
     this.time();
+    this.datos_entrenamiento();
   }
 
   ionViewWillLeave() {
@@ -178,6 +180,19 @@ export class CronometroentPage {
       })
   }
 
+  datos_entrenamiento(){
+    this.webservices.consultar_entrenamiento_por_id(this.id_ent).then(//llama a la funcion del webservices.ts y le envia la id del entrenamiento
+      (datos)=>{// recibe los datos de la consulta
+        //alert(JSON.stringify(datos));
+        this.tipo_entrenamiento = datos[0].NOMBRE;
+        this.tiempo_entrenamiento = datos[0].TIEMPO_ENT;
+        this.tiempo_recuperacion = datos[0].TIEMPO_REC;
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
+  }
+
   actualizar_estado(){
     this.webservices.actualizar_estado_entrenamiento(this.id_ent,this.estadouser).then(
       (datos) =>{
@@ -192,7 +207,7 @@ export class CronometroentPage {
 
   alerta_confirmacion() {//Alerta que se activa cuando termina el entrenamiento
     const confirm = this.alertCtrl.create({
-      title: 'Entrenamiento terminado',// titulo de la alerta
+      title: 'Entrenamiento Terminado',// titulo de la alerta
       message: '¿Desea ver las estadisticas?',// mensaje de la alerta
       buttons: [
         {
@@ -216,10 +231,12 @@ export class CronometroentPage {
   }
 
   pasar_tabs_deportistas(){
+    alert('se va al tabs')
     this.navCtrl.setRoot(DeportistasentPage, {correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
   }
 
   pasar_vista_datosent(){
+    alert('se va a la vista')
     this.navCtrl.push(DatosentrenamientoPage, {id_entrenamiento:this.id_ent, correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
   }
 
@@ -397,6 +414,7 @@ export class CronometroentPage {
     this.tiempo=0;
     
     this.cambio= true;
+    this.alerta_confirmacion();
   }
 
   finalizar2(){
