@@ -543,6 +543,7 @@ export class EstadisticasdepPage {
     }, 1000)
 */
     this.removeData(this.aceleragiroschartvar);
+
     //this.doRefresh('refreshing');
   }
 
@@ -565,6 +566,6 @@ export class EstadisticasdepPage {
         dataset.data.pop(); 
     });
     chart.update();
-    this.acelgiroschart();
+    //this.acelgiroschart();
   }
 }
