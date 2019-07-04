@@ -36,25 +36,4 @@ page-cronometroent {//vista del cronometro del entrenador
         height: 40px;//alto del botón
     }
 
-    //estilo para los input de valores maximos
-    .AFP_max {
-        text-align-last: center;//centrar el texto
-        font-size: 35px;//tamaño de la fuente
-        color: whitesmoke;//color de la fuente
-        border: none;//sin bordes de input
-    }
-
-    //estilo para la etiqueta de aceleracion
-    .label_acel{
-        text-align: center;//texto centrado
-        font-size: 15px;//tamaño de la fuente
-        color: whitesmoke;//color de la fuente
-    }
-
-    //estilo para la etiqueta de potencia
-    .label_potencia{
-        text-align: center;//texto centro
-        font-size: 13px;//tamaño fuente
-        color: whitesmoke;//color de fuente
-    }
 }

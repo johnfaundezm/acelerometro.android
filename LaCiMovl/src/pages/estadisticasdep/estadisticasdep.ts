@@ -160,8 +160,7 @@ export class EstadisticasdepPage {
           this.datos_acelerometroF.push(auxF);
           this.datos_acelerometroP.push(auxP);
         }
-        this.acelerachart();
-        this.aceleraxyzchart();
+
         //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
@@ -205,8 +204,7 @@ export class EstadisticasdepPage {
           this.datos_giroscopioZ.push(auxZ);
           this.datos_giroscopio.push(aux);          
         }
-        this.giroschart();
-        this.acelgiroschart();
+        
         //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
@@ -534,12 +532,39 @@ export class EstadisticasdepPage {
     this.consultar_acc();
     this.consultar_gir();
 
-    setTimeout(() => {
+    //this.updateData(this.aceleragiroschartvar, this.datos_acelerometro);
+    //this.removeData(this.aceleragiroschartvar);
+
+   /* setTimeout(() => {
       this.acelerachart();
       this.aceleraxyzchart();
       this.giroschart();
       this.acelgiroschart();
     }, 1000)
+*/
+    this.removeData(this.aceleragiroschartvar);
+    //this.doRefresh('refreshing');
   }
 
+  doRefresh(refresher) {
+    this.removeData(this.aceleragiroschartvar);
+    //this.acelgiroschart();
+    refresher.complete();
+  } 
+
+  updateData(chart, data) {
+    this.removeData(this.aceleragiroschartvar);
+    chart.data.datasets.forEach((dataset) => {
+      dataset[0].data = data;
+    });
+    chart.update();
+  };
+
+  removeData(chart) {
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.pop(); 
+    });
+    chart.update();
+    this.acelgiroschart();
+  }
 }
