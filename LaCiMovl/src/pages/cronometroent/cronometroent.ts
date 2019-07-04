@@ -218,7 +218,8 @@ export class CronometroentPage {
         {
           text: 'Aceptar',//nombre del boton 2
           handler: () => {
-            this.navCtrl.setRoot(DeportistasentPage, {correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
+            this.navCtrl.push(DatosentrenamientoPage, {id_entrenamiento:this.id_ent, correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
+
           }
         }
       ]
