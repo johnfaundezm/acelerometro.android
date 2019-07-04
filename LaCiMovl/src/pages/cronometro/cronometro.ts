@@ -244,7 +244,7 @@ export class CronometroPage {
         this.inicioseg+=1; //inicia el timer de inicio  de entrenamiento
         if(this.inicioseg==3){ // si el timer es igual a 3 se comienza el entrenamiento
           this.playAudiocomienzo(); // se reproduce audio de inicio con voz
-          this.inicio(); // se comienza la funcion de entrenamiento 
+          this.inicio(); // se comienza la funcion de entrenamiento
         }
         if(this.tiempo>this.tiempo_entrenamiento-1){ // se compara si el tiempo de entrenamiento es igual al tiempo asignado como tiempo de entrenamiento para finalizar el entrenamiento
           this.finalizar(); // se finaliza el entrenamiento
@@ -279,8 +279,8 @@ export class CronometroPage {
   inicio(){
 
     if(this.contador ==undefined){ // se analiza si el contador fue definido o aun no
-      this.comienzoAcelerometro(); // se comienza la funcion de acelerometro
-      this.comienzoGiroscopio(); // se comienza la funcion de giroscopio
+          this.comienzoAcelerometro(); // se comienza la funcion de acelerometro
+          this.comienzoGiroscopio(); // se comienza la funcion de giroscopio
       this.contador = setInterval (()=>{ // se inicia el cronometro junto con el entrenamiento
         this.cen1+=1;
         if (this.cen1 == 10){
