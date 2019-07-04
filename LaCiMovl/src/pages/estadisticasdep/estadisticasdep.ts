@@ -171,7 +171,6 @@ export class EstadisticasdepPage {
 
   //transladar consulta a vista correspondiente
   consultar_gir(){
-
     for(var i=0;i<this.datos_giroscopioX.length;i++){
       this.datos_giroscopioX.pop();
     }
@@ -529,8 +528,23 @@ export class EstadisticasdepPage {
   }
 
   escoger_entrenamiento(){
-    this.consultar_acc();
-    this.consultar_gir();
+    this.removeData(this.aceleragiroschartvar);
+
+    setTimeout(() => {
+      this.consultar_acc();
+      this.consultar_gir();
+    }, 1000)
+
+    setTimeout(() => {
+      this.aceleragiroschartvar.reset();
+    }, 1500)
+
+    setTimeout(() => {
+      this.aceleragiroschartvar.update();
+    }, 2000)
+
+    //this.aceleragiroschartvar.destroy();
+    //this.acelgiroschart();
 
     //this.updateData(this.aceleragiroschartvar, this.datos_acelerometro);
     //this.removeData(this.aceleragiroschartvar);
@@ -542,13 +556,13 @@ export class EstadisticasdepPage {
       this.acelgiroschart();
     }, 1000)
 */
-    this.removeData(this.aceleragiroschartvar);
+    //this.removeData(this.aceleragiroschartvar);
 
     //this.doRefresh('refreshing');
   }
 
   doRefresh(refresher) {
-    this.removeData(this.aceleragiroschartvar);
+    //this.removeData(this.aceleragiroschartvar);
     //this.acelgiroschart();
     refresher.complete();
   } 
@@ -562,10 +576,12 @@ export class EstadisticasdepPage {
   };
 
   removeData(chart) {
+    chart.data.labels.pop();
     chart.data.datasets.forEach((dataset) => {
-        dataset.data.pop(); 
+        dataset.data.shift();
     });
     chart.update();
     //this.acelgiroschart();
   }
+
 }
