@@ -54,7 +54,7 @@ export class CronometroPage {
   public fuerza: any; // fuerza del usuario durante el entrenamiento  
   public tiempo_recuperacion :number;
   public unidad_recuperacion : number;
-
+  public frecuencia :number;
   //Cronometro
   public min1: number =0;   //minuto unidad
   public min2: number =0; //minuto decena
@@ -201,6 +201,7 @@ export class CronometroPage {
       (err)=>{
         alert(JSON.stringify(err))
       })
+      this.frecuenciasEntrenamiento();
   }
 
   actualizar_estado(){
@@ -498,7 +499,7 @@ export class CronometroPage {
     //this.playAudioi();
     try{
       var option : DeviceMotionAccelerometerOptions ={ // se configura el acelerometro con una frecuencia de 100
-        frequency : 100
+        frequency : this.frecuencia
       };
     
       this.id = this.deviceMotion.watchAcceleration(option).subscribe((acc:DeviceMotionAccelerationData) =>{ // se inicia variable receptora de informacion de acelerometro "id" y se define objeto acc al cual se le entregan los parametros de aceleracion
@@ -551,7 +552,7 @@ export class CronometroPage {
   comienzoGiroscopio(){
     try{
       var options : GyroscopeOptions={ // se configura el giroscopio con una frecuencia de 100
-        frequency : 100
+        frequency : this.frecuencia
       };// se inicia variable receptora de informacion de giroscopio "idg" y se define objeto orientation al cual se le entregan los parametros de aceleracion
       this.idg = this.gyroscope.watch(options).subscribe((orientation: GyroscopeOrientation) => { 
         console.log(orientation.x, orientation.y, orientation.z, orientation.timestamp);
@@ -636,6 +637,24 @@ export class CronometroPage {
     }
     if(this.potencia > this.P_max){
       this.P_max= this.potencia.toFixed(2);
+    }
+  }
+
+  frecuenciasEntrenamiento(){
+    if(this.tipo_entrenamiento=='Saltar'){
+      this.frecuencia=100;
+    }else{
+      if(this.tipo_entrenamiento=='Correr'){
+        this.frecuencia=1000;
+      }else{
+        if(this.tipo_entrenamiento=='Caminar'){
+          this.frecuencia=500;
+        }else{
+          if(this.tipo_entrenamiento=='Golpear'){
+            this.frecuencia=100;
+          }
+        }
+      }
     }
   }
 
