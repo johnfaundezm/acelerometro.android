@@ -200,19 +200,27 @@ export class CronometroentPage {
           handler: () => {
             console.log('Disagree clicked');
             this.loading.dismiss();// detiene el loading
-            this.navCtrl.setRoot(DeportistasentPage, {correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
+            this.pasar_tabs_deportistas();
           }
         },
         {
           text: 'Aceptar',//nombre del boton 2
           handler: () => {
             this.loading.dismiss();// detiene el loading
-            this.navCtrl.push(DatosentrenamientoPage, {id_entrenamiento:this.id_ent, correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
+            this.pasar_vista_datosent();
           }
         }
       ]
     });
     confirm.present();// se confirma la opcion apretada(Cancelar o Aceptar)
+  }
+
+  pasar_tabs_deportistas(){
+    this.navCtrl.setRoot(DeportistasentPage, {correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
+  }
+
+  pasar_vista_datosent(){
+    this.navCtrl.push(DatosentrenamientoPage, {id_entrenamiento:this.id_ent, correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
   }
 
   // Funcion Entrenamiento
