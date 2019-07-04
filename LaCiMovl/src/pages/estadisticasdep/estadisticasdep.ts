@@ -116,24 +116,13 @@ export class EstadisticasdepPage {
   }
 
   consultar_acc(){
-    for(var i=0;i<this.datos_acelerometroX.length;i++){
-      this.datos_acelerometroX.pop();
-    }
-    for(i=0;i<this.datos_acelerometroY.length;i++){
-      this.datos_acelerometroY.pop();
-    }
-    for(i=0;i<this.datos_acelerometroZ.length;i++){
-      this.datos_acelerometroZ.pop();
-    }
-    for(i=0;i<this.datos_acelerometro.length;i++){
-      this.datos_acelerometro.pop();
-    }
-    for(i=0;i<this.datos_acelerometroF.length;i++){
-      this.datos_acelerometroF.pop();
-    }
-    for(i=0;i<this.datos_acelerometroP.length;i++){
-      this.datos_acelerometroP.pop();
-    }
+    
+    this.datos_acelerometroX=[];
+    this.datos_acelerometroY=[];
+    this.datos_acelerometroZ=[];
+    this.datos_acelerometro=[];
+    this.datos_acelerometroF=[];
+    this.datos_acelerometroP=[];
     
     this.webservices.consulta_acelerometro_datos(this.val_entre).then(
       (datos) =>{
@@ -161,7 +150,7 @@ export class EstadisticasdepPage {
           this.datos_acelerometroF.push(auxF);
           this.datos_acelerometroP.push(auxP);
         }
-
+        this.consultar_gir();
         //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
@@ -172,18 +161,12 @@ export class EstadisticasdepPage {
 
   //transladar consulta a vista correspondiente
   consultar_gir(){
-    for(var i=0;i<this.datos_giroscopioX.length;i++){
-      this.datos_giroscopioX.pop();
-    }
-    for(i=0;i<this.datos_giroscopioY.length;i++){
-      this.datos_giroscopioY.pop();
-    }
-    for(i=0;i<this.datos_giroscopioZ.length;i++){
-      this.datos_giroscopioZ.pop();
-    }
-    for(i=0;i<this.datos_giroscopio.length;i++){
-      this.datos_giroscopio.pop();
-    }
+    
+    this.datos_giroscopioX=[];
+    this.datos_giroscopioY=[];
+    this.datos_giroscopioZ=[];
+    this.datos_giroscopio=[];
+
     this.webservices.consulta_giroscopio_datos(this.val_entre).then(
       (datos) =>{
         let largo=Object.keys(datos).length;
@@ -482,11 +465,12 @@ export class EstadisticasdepPage {
         },
         tooltips: {
           enabled: true,
+          /*
           callbacks: {
             label: function(tooltipItem, data) {
                 return tooltipItem.yLabel;
             }
-          }
+          }*/
         },
         scales: {
           xAxes: [{
@@ -531,11 +515,13 @@ export class EstadisticasdepPage {
 
   escoger_entrenamiento(){
     //this.datos_acelerometro= [];
-    this.removeData(this.aceleragiroschartvar);
+    //this.datos_acelerometro = [];
+    //this.datos_giroscopio = [];
+    //this.aceleragiroschartvar.update();
 
     setTimeout(() => {
       this.consultar_acc();
-      this.consultar_gir();
+      
     }, 1000)
 
     setTimeout(() => {
@@ -546,7 +532,9 @@ export class EstadisticasdepPage {
     }, 1500)
 
     setTimeout(() => {
-      this.aceleragiroschartvar.update();
+      //this.aceleragiroschartvar.update();
+      this.aceleragiroschartvar.destroy();
+      this.acelgiroschart();
       this.aceleracionchartvar.update();
       this.aceleracionxyzchartvar.update();
       this.giroscopiochartvar.update();
@@ -576,21 +564,18 @@ export class EstadisticasdepPage {
     refresher.complete();
   } 
 
-  updateData(chart, data) {
-    this.removeData(this.aceleragiroschartvar);
-    chart.data.datasets.forEach((dataset) => {
-      dataset[0].data = data;
-    });
-    chart.update();
-  };
+  borrar_data(){
 
-  removeData(chart) {
-    chart.data.labels.pop();
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.shift();
+    var prueba:any;
+    this.aceleragiroschartvar.data.labels.pop();
+    this.aceleragiroschartvar.data.datasets.forEach((dataset) => {
+        dataset.data = prueba;
+        
     });
-    chart.update();
-    //this.acelgiroschart();
+    
+    setTimeout(() => {
+      this.aceleragiroschartvar.update();
+    }, 2000)
   }
 
 }
