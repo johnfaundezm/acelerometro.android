@@ -524,6 +524,7 @@ export class EstadisticasdepPage {
   }
 
   escoger_solicitud() {
+    this.entrenamiento= [];
     this.nombre_entrenamiento();
   }
 
@@ -537,10 +538,16 @@ export class EstadisticasdepPage {
 
     setTimeout(() => {
       this.aceleragiroschartvar.reset();
+      this.aceleracionchartvar.reset();
+      this.aceleracionxyzchartvar.reset();
+      this.giroscopiochartvar.reset();
     }, 1500)
 
     setTimeout(() => {
       this.aceleragiroschartvar.update();
+      this.aceleracionchartvar.update();
+      this.aceleracionxyzchartvar.update();
+      this.giroscopiochartvar.update();
     }, 2000)
 
     //this.aceleragiroschartvar.destroy();
