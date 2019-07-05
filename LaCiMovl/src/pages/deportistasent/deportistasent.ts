@@ -48,7 +48,10 @@ export class DeportistasentPage {
     this.consulta_deportistas();
     this.consulta_enlace_pend();
 
-    this.initializeItems();
+    setTimeout(() => {
+      this.initializeItems();
+    }, 2000);
+    
   }
 
   doRefresh(refresher) {
@@ -185,7 +188,7 @@ export class DeportistasentPage {
       (err)=>{
         alert(JSON.stringify(err))
     })
-    this.initializeItems();
+    //this.initializeItems();
   }
 
   consulta_deportistas(){
