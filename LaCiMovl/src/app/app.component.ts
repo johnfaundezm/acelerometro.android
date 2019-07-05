@@ -4,20 +4,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-//import { ListPage } from '../pages/list/list';
-//import { AdministradorPage } from '../pages/administrador/administrador';
-//import { DeportistatabsPage} from '../pages/deportistatabs/deportistatabs';
-//import { AdmintabsPage } from '../pages/admintabs/admintabs';
-//import { EntrenadortabsPage } from '../pages/entrenadortabs/entrenadortabs';
 
 import { DatabaseProvider } from '../providers/database/database';
 
 import { Gyroscope, GyroscopeOrientation, GyroscopeOptions } from '@ionic-native/gyroscope';
 import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
-import { CronometroPage } from '../pages/cronometro/cronometro';
-import { CronometroentPage } from '../pages/cronometroent/cronometroent';
-//import { InfoentrenamientoPage } from '../pages/infoentrenamiento/infoentrenamiento';
-
 
 
 @Component({
@@ -29,13 +20,15 @@ export class MyApp {
 
   rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
+  //pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public db: DatabaseProvider,private gyroscope: Gyroscope,private deviceMotion: DeviceMotion) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, 
+    public db: DatabaseProvider,private gyroscope: Gyroscope,private deviceMotion: DeviceMotion) {
     this.initializeApp();
     this.getCurrent();
     this.getCurrentAcceleration();
 
+    /*
     this.pages = [
       { title: 'Salir', component: HomePage },
       { title: 'Cronometro', component: CronometroPage },
@@ -48,7 +41,7 @@ export class MyApp {
       //{ title: 'Deportista', component: DeportistaPage },
       //{ title: 'List', component: ListPage }
     ];
-
+*/
   }
 
   initializeApp() {
@@ -58,7 +51,7 @@ export class MyApp {
       this.splashScreen.hide();
     });
   }
-
+  /*
   metodosalir(){
     this.nav.popToRoot();
   }
@@ -68,7 +61,7 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
-
+*/
   //gyroscopio-------------------------------------------------------------------------------
   getCurrent(){
     let options: GyroscopeOptions = {
