@@ -16,7 +16,7 @@ export class WebservicesProvider {
   }
 
   //se crea el metodo para registrar un usuario
-  registrar(correo,pass,nombre,apellido_p,apellido_m,genero,edad,peso,estatura,imc,pais,estado,fecha_r,id_tipo_usuario) {//se reciben las variables para registrarse
+  registrar(correo,pass,nombre,apellido_p,apellido_m,genero,edad,peso,estatura,imc,pais,estado,estado_ingreso_cuenta,fecha_r,id_tipo_usuario) {//se reciben las variables para registrarse
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
@@ -27,7 +27,7 @@ export class WebservicesProvider {
       });
       // TODO: Encode the values using encodeURIComponent().
       //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
-      let body = 'correo='+correo +'&pass='+pass +'&nombre='+nombre +'&apellido_p='+apellido_p +'&apellido_m='+apellido_m+'&genero='+genero+'&edad='+edad+'&peso='+peso+'&estatura='+estatura+'&imc='+imc+'&pais='+pais+'&estado='+estado+'&fecha_r='+fecha_r+'&id_tipo_usuario='+id_tipo_usuario;
+      let body = 'correo='+correo +'&pass='+pass +'&nombre='+nombre +'&apellido_p='+apellido_p +'&apellido_m='+apellido_m+'&genero='+genero+'&edad='+edad+'&peso='+peso+'&estatura='+estatura+'&imc='+imc+'&pais='+pais+'&estado='+estado+'&estado_ingreso_cuenta='+estado_ingreso_cuenta+'&fecha_r='+fecha_r+'&id_tipo_usuario='+id_tipo_usuario;
       //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/insert_usuario.php";
 

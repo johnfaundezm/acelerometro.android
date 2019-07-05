@@ -86,7 +86,7 @@ export class RegistroPage {
   registrar(){
     this.loadregistrar()
     this.getFormattedDate();
-    this.webservices.registrar(this.formulario.value.correo,this.formulario.value.pass,'',' ',' ',' ',0,0,0,0,' ','activada',this.formattedDate,this.formulario.value.id_tipo_usuario).then(
+    this.webservices.registrar(this.formulario.value.correo,this.formulario.value.pass,'',' ',' ',' ',0,0,0,0,' ','activada',2,this.formattedDate,this.formulario.value.id_tipo_usuario).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
         if(this.respuesta=='OK'){
