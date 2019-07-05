@@ -142,23 +142,6 @@ export class InfoentrenamientoPage {
 
 
   //__Metodos_____
-  segEntrenamiento(){
-    alert('Ha definido su tiempo de entrenamiento en segundos');
-    this.tiempo_entrenamiento=this.unidad_entrenamiento;
-  }
-  minEntrenamiento(){
-    this.tiempo_entrenamiento= this.unidad_entrenamiento*60;
-    alert('Ha definido su tiempo de entrenamiento en minutos');
-  }
-  segRecuperacion(){
-    alert('Ha definido su tiempo de recuperación en segundos');
-    this.tiempo_recuperacion=this.unidad_recuperacion;
-  }
-  minRecuperacion(){
-    this.tiempo_recuperacion= this.unidad_recuperacion*60;
-    alert('Ha definido su tiempo de recuperación en minutos');
-  }
-
   getFormattedDate(){
     var dateObj =new Date()
 
