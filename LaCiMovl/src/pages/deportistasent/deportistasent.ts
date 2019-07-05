@@ -199,8 +199,8 @@ export class DeportistasentPage {
     this.navCtrl.push(InfoentrenamientoPage, {ide:id, email:email, correo:this.correo});
   }
 
-  goestadisticas(){
-    this.navCtrl.push(DatosentrenamientoPage, {correo:this.correo});
+  goestadisticas(id_solicitud){
+    this.navCtrl.push(DatosentrenamientoPage, {id_solicitud:id_solicitud,correo:this.correo});
   }
 
 }
