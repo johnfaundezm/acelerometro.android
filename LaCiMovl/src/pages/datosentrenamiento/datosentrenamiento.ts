@@ -51,7 +51,9 @@ export class DatosentrenamientoPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DatosentrenamientoPage');
-    this.consultar_acc();
+    setTimeout(() => {
+      this.consultar_acc();
+    }, 500)
   }
 
   
