@@ -54,7 +54,7 @@ export class CronometroPage {
   public fuerza: any; // fuerza del usuario durante el entrenamiento  
   public tiempo_recuperacion :number;
   public unidad_recuperacion : number;
-  public frecuencia :number;
+  public frecuencia : number;
   //Cronometro
   public min1: number =0;   //minuto unidad
   public min2: number =0; //minuto decena
@@ -197,11 +197,11 @@ export class CronometroPage {
         this.tipo_entrenamiento = datos[0].NOMBRE;
         this.tiempo_entrenamiento = datos[0].TIEMPO_ENT;
         this.tiempo_recuperacion = datos[0].TIEMPO_REC;
+        this.frecuenciasEntrenamiento();
       },
       (err)=>{
         alert(JSON.stringify(err))
       })
-      this.frecuenciasEntrenamiento();
   }
 
   actualizar_estado(){
@@ -504,6 +504,7 @@ export class CronometroPage {
 //Acelerometro
   comienzoAcelerometro(){
     //this.playAudioi();
+    this.frecuenciasEntrenamiento();
     try{
       var option : DeviceMotionAccelerometerOptions ={ // se configura el acelerometro con una frecuencia de 100
         frequency : this.frecuencia
@@ -648,16 +649,16 @@ export class CronometroPage {
   }
 
   frecuenciasEntrenamiento(){
-    if(this.tipo_entrenamiento=='Saltar'){
+    if(this.tipo_entrenamiento=='saltar'){
       this.frecuencia=100;
     }else{
-      if(this.tipo_entrenamiento=='Correr'){
+      if(this.tipo_entrenamiento=='correr'){
         this.frecuencia=1000;
       }else{
-        if(this.tipo_entrenamiento=='Caminar'){
+        if(this.tipo_entrenamiento=='caminar'){
           this.frecuencia=500;
         }else{
-          if(this.tipo_entrenamiento=='Golpear'){
+          if(this.tipo_entrenamiento=='golpear'){
             this.frecuencia=100;
           }
         }
