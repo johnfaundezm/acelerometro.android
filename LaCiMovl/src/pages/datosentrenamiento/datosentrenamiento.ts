@@ -139,8 +139,12 @@ export class DatosentrenamientoPage {
           this.datos_acelerometro.push(aux);
           this.datos_acelerometroF.push(auxF);
           this.datos_acelerometroP.push(auxP);
+          if(i==largo){
+            this.consultar_gir();
+          }
         }
-        this.consultar_gir();
+        
+        
         //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
