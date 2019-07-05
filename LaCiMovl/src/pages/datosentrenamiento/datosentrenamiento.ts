@@ -53,7 +53,7 @@ export class DatosentrenamientoPage {
   //antes de entrar a la vista se oculta el tabbar
   ionViewWillEnter() {
     this.consultar_acc();
-    this.consultar_gir();
+    
     this.tabBarElement.style.display = 'none';
   }
   //cuando va a salir de la vista se le agrega el tabbar nuevamente
@@ -96,24 +96,14 @@ export class DatosentrenamientoPage {
   }
 
   consultar_acc(){
-    for(var i=0;i<this.datos_acelerometroX.length;i++){
-      this.datos_acelerometroX.pop();
-    }
-    for(i=0;i<this.datos_acelerometroY.length;i++){
-      this.datos_acelerometroY.pop();
-    }
-    for(i=0;i<this.datos_acelerometroZ.length;i++){
-      this.datos_acelerometroZ.pop();
-    }
-    for(i=0;i<this.datos_acelerometro.length;i++){
-      this.datos_acelerometro.pop();
-    }
-    for(i=0;i<this.datos_acelerometroF.length;i++){
-      this.datos_acelerometroF.pop();
-    }
-    for(i=0;i<this.datos_acelerometroP.length;i++){
-      this.datos_acelerometroP.pop();
-    }
+    
+    this.datos_acelerometroX=[];
+    this.datos_acelerometroY=[];
+    this.datos_acelerometroZ=[];
+    this.datos_acelerometro=[];
+    this.datos_acelerometroF=[];
+    this.datos_acelerometroP=[];
+
     this.webservices.consulta_acelerometro_datos(this.id_entrenamiento).then(
       (datos) =>{
         let largo=Object.keys(datos).length;
@@ -140,8 +130,7 @@ export class DatosentrenamientoPage {
           this.datos_acelerometroF.push(auxF);
           this.datos_acelerometroP.push(auxP);
         }
-        this.acelerachart();
-        this.aceleraxyzchart();
+        this.consultar_gir();
         //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
@@ -153,18 +142,11 @@ export class DatosentrenamientoPage {
   //transladar consulta a vista correspondiente
   consultar_gir(){
 
-    for(var i=0;i<this.datos_giroscopioX.length;i++){
-      this.datos_giroscopioX.pop();
-    }
-    for(i=0;i<this.datos_giroscopioY.length;i++){
-      this.datos_giroscopioY.pop();
-    }
-    for(i=0;i<this.datos_giroscopioZ.length;i++){
-      this.datos_giroscopioZ.pop();
-    }
-    for(i=0;i<this.datos_giroscopio.length;i++){
-      this.datos_giroscopio.pop();
-    }
+    this.datos_giroscopioX=[];
+    this.datos_giroscopioY=[];
+    this.datos_giroscopioZ=[];
+    this.datos_giroscopio=[];
+    
     this.webservices.consulta_giroscopio_datos(this.id_entrenamiento).then(
       (datos) =>{
         let largo=Object.keys(datos).length;
@@ -185,8 +167,7 @@ export class DatosentrenamientoPage {
           this.datos_giroscopioZ.push(auxZ);
           this.datos_giroscopio.push(aux);          
         }
-        this.giroschart();
-        this.acelgiroschart();
+        this.reload_chart();
         //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
@@ -489,6 +470,17 @@ export class DatosentrenamientoPage {
 
   volver(){
     this.navCtrl.setRoot(DeportistasentPage,{correo:this.correo});
+  }
+
+  reload_chart(){
+    this.aceleragiroschartvar.destroy();
+    this.aceleracionchartvar.destroy();
+    this.aceleracionxyzchartvar.destroy();
+    this.giroscopiochartvar.destroy();
+    this.acelgiroschart();
+    this.giroschart();
+    this.aceleraxyzchart();
+    this.acelerachart();
   }
 
 }
