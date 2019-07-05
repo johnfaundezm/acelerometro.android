@@ -396,8 +396,10 @@ export class CronometroPage {
     this.contador_entrenamiento = null;
     // se redefine el timepo de entrenamiento como 0
     this.tiempo=0;
-    this.recuperacion();
-    this.cambio= true;
+    if(this.tiempo_recuperacion!=0){
+      this.recuperacion();
+    }
+     this.cambio= true;
   }
 
   finalizar2(){
@@ -421,7 +423,9 @@ export class CronometroPage {
     this.contador_entrenamiento = null;
     // se redefine el timepo de entrenamiento como 0
     this.tiempo=0;
-    this.recuperacion();
+    if(this.tiempo_recuperacion!=0){
+      this.recuperacion();
+    }
     this.cambio= true;
   }
 
