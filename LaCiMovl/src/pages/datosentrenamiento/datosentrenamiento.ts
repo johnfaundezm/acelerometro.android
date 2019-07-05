@@ -17,7 +17,7 @@ export class DatosentrenamientoPage {
   @ViewChild('giroscopiochart') giroscopiochart;
   @ViewChild('aceleragiroschart') aceleragiroschart;
 
-  val_ent: any;
+  val_entre: any;
   entrenamiento: Array<{ide:string, nombre_ent:string}>=[{ide:'', nombre_ent:''}];
   id_entrenamiento:any;
   correo:any;
@@ -108,7 +108,7 @@ export class DatosentrenamientoPage {
     this.datos_acelerometroF=[];
     this.datos_acelerometroP=[];
 
-    this.webservices.consulta_acelerometro_datos(this.id_entrenamiento).then(
+    this.webservices.consulta_acelerometro_datos(this.val_entre).then(
       (datos) =>{
         let largo=Object.keys(datos).length;
         //var division=largo/1;
@@ -151,7 +151,7 @@ export class DatosentrenamientoPage {
     this.datos_giroscopioZ=[];
     this.datos_giroscopio=[];
 
-    this.webservices.consulta_giroscopio_datos(this.id_entrenamiento).then(
+    this.webservices.consulta_giroscopio_datos(this.val_entre).then(
       (datos) =>{
         let largo=Object.keys(datos).length;
         var x=0;
@@ -488,10 +488,8 @@ export class DatosentrenamientoPage {
   }
 
   nombre_entrenamiento(){
-    for(var i=0;i<this.entrenamiento.length;i++){
-      this.entrenamiento.pop();
-    }
-    this.webservices.nombre_entrenamiento(this.val_ent).then(
+    this.entrenamiento = [];
+    this.webservices.nombre_entrenamiento(this.id_solicitud).then(
       (datos)=>{
         //alert(JSON.stringify(datos));
         let largo=Object.keys(datos).length;
