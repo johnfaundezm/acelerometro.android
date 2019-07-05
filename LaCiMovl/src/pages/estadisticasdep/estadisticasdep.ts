@@ -150,7 +150,6 @@ export class EstadisticasdepPage {
           this.datos_acelerometroF.push(auxF);
           this.datos_acelerometroP.push(auxP);
         }
-        this.consultar_gir();
         //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
@@ -465,12 +464,11 @@ export class EstadisticasdepPage {
         },
         tooltips: {
           enabled: true,
-          /*
           callbacks: {
             label: function(tooltipItem, data) {
                 return tooltipItem.yLabel;
             }
-          }*/
+          }
         },
         scales: {
           xAxes: [{
@@ -521,61 +519,19 @@ export class EstadisticasdepPage {
 
     setTimeout(() => {
       this.consultar_acc();
-      
+      this.consultar_gir();
     }, 1000)
 
     setTimeout(() => {
-      this.aceleragiroschartvar.reset();
-      this.aceleracionchartvar.reset();
-      this.aceleracionxyzchartvar.reset();
-      this.giroscopiochartvar.reset();
-    }, 1500)
-
-    setTimeout(() => {
-      //this.aceleragiroschartvar.update();
       this.aceleragiroschartvar.destroy();
+      this.aceleracionchartvar.destroy();
+      this.aceleracionxyzchartvar.destroy();
+      this.giroscopiochartvar.destroy();
       this.acelgiroschart();
-      this.aceleracionchartvar.update();
-      this.aceleracionxyzchartvar.update();
-      this.giroscopiochartvar.update();
-    }, 2000)
-
-    //this.aceleragiroschartvar.destroy();
-    //this.acelgiroschart();
-
-    //this.updateData(this.aceleragiroschartvar, this.datos_acelerometro);
-    //this.removeData(this.aceleragiroschartvar);
-
-   /* setTimeout(() => {
-      this.acelerachart();
-      this.aceleraxyzchart();
       this.giroschart();
-      this.acelgiroschart();
-    }, 1000)
-*/
-    //this.removeData(this.aceleragiroschartvar);
-
-    //this.doRefresh('refreshing');
-  }
-
-  doRefresh(refresher) {
-    //this.removeData(this.aceleragiroschartvar);
-    //this.acelgiroschart();
-    refresher.complete();
-  } 
-
-  borrar_data(){
-
-    var prueba:any;
-    this.aceleragiroschartvar.data.labels.pop();
-    this.aceleragiroschartvar.data.datasets.forEach((dataset) => {
-        dataset.data = prueba;
-        
-    });
-    
-    setTimeout(() => {
-      this.aceleragiroschartvar.update();
-    }, 2000)
+      this.aceleraxyzchart();
+      this.acelerachart();
+    }, 1500)
   }
 
 }
