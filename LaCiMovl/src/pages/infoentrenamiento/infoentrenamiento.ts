@@ -180,41 +180,45 @@ export class InfoentrenamientoPage {
   }
 
   enviar_entrenamiento(){
-    this.loadregistrar();
-    this.getFormattedDate();
     this.detalletiempo();
-
-    this.tiempo_ent='00:'+this.tiempoM+':'+this.tiempoS;
-    this.tiempo_rec='00:'+this.tiempoRM+':'+this.tiempoRS;
-    this.estado=5;
-    this.webservices.insertar_entrenamiento(this.id_solicitud,this.tiempo_ent,this.tiempo_entrenamiento,this.tiempo_rec,this.tiempo_recuperacion,this.formattedDate,this.tipo_entrenamiento,this.estado).then(
-      (datos) =>{
-        this.respuesta= datos[0].RESPUESTA;
-        if(this.respuesta=='OK'){
-          this.traer_id_entrenamiento()
-          alert('El entrenamiento se ha creado satisfactoriamente');
-          this.loading.dismiss();
-          this.a=1;
-          this.load_espera_respuesta();
-          this.time();
-
-        }else{
-          if(this.respuesta=='EXISTE'){
+    if(this.tiempo_entrenamiento==0){
+      alert('Su tiempo de entrenamiento no está definido. Defínalo e intente nuevamente');
+    }else{
+      this.loadregistrar();
+      this.getFormattedDate();
+      
+      this.tiempo_ent='00:'+this.tiempoM+':'+this.tiempoS;
+      this.tiempo_rec='00:'+this.tiempoRM+':'+this.tiempoRS;
+      this.estado=5;
+      this.webservices.insertar_entrenamiento(this.id_solicitud,this.tiempo_ent,this.tiempo_entrenamiento,this.tiempo_rec,this.tiempo_recuperacion,this.formattedDate,this.tipo_entrenamiento,this.estado).then(
+        (datos) =>{
+          this.respuesta= datos[0].RESPUESTA;
+          if(this.respuesta=='OK'){
+            this.traer_id_entrenamiento()
+            alert('El entrenamiento se ha creado satisfactoriamente');
             this.loading.dismiss();
-            alert('El entrenamiento ya existe, intente con otro nombre')
+            this.a=1;
+            this.load_espera_respuesta();
+            this.time();
+
           }else{
-            if(this.respuesta=='ERROR'){
+            if(this.respuesta=='EXISTE'){
               this.loading.dismiss();
-              alert('Ha ocurrido un error inesperado')
-            }
-          }  
-        }
-        //alert('oka'+JSON.stringify(resultado));
-      },
-      (error) =>{
-        this.loading.dismiss();
-        alert('error'+JSON.stringify(error));
+              alert('El entrenamiento ya existe, intente con otro nombre')
+            }else{
+              if(this.respuesta=='ERROR'){
+                this.loading.dismiss();
+                alert('Ha ocurrido un error inesperado')
+              }
+            }  
+          }
+          //alert('oka'+JSON.stringify(resultado));
+        },
+        (error) =>{
+          this.loading.dismiss();
+          alert('error'+JSON.stringify(error));
       })
+    }
   }
   
   pausa_entrenamiento(){
