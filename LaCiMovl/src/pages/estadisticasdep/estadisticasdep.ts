@@ -464,11 +464,13 @@ export class EstadisticasdepPage {
         },
         tooltips: {
           enabled: true,
+          /*
           callbacks: {
             label: function(tooltipItem, data) {
                 return tooltipItem.yLabel;
             }
           }
+          */
         },
         scales: {
           xAxes: [{
