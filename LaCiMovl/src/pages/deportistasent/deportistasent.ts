@@ -44,10 +44,11 @@ export class DeportistasentPage {
     while(this.enlaces_pend.length>0){
       this.enlaces_pend.pop();
     }
-    this.initializeItems();
+    
     this.consulta_deportistas();
-    this.consulta_enlace();
     this.consulta_enlace_pend();
+
+    this.initializeItems();
   }
 
   doRefresh(refresher) {
@@ -66,7 +67,19 @@ export class DeportistasentPage {
   }
 
   initializeItems() {
+
+    var temp:any;
     this.items = this.aux;
+    
+    for (var i = 0; i < this.enlaces.length; i++) {
+      for (var y = 0; y < this.aux.length; y++) {
+        if (this.aux[y].email_dep==this.enlaces[i].email) {
+          this.items.splice(y,1);
+          this.aux.splice(y,1);
+        }
+      }
+    }
+
   }
 
   getItems(ev: any) {
@@ -171,7 +184,8 @@ export class DeportistasentPage {
       },
       (err)=>{
         alert(JSON.stringify(err))
-      })
+    })
+    this.initializeItems();
   }
 
   consulta_deportistas(){
@@ -187,7 +201,8 @@ export class DeportistasentPage {
       },
       (err)=>{
         alert(JSON.stringify(err))
-      })
+    })
+    this.consulta_enlace();
   }
 
   metodo(id, email){
