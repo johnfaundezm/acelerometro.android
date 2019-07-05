@@ -150,6 +150,7 @@ export class EstadisticasdepPage {
           this.datos_acelerometroF.push(auxF);
           this.datos_acelerometroP.push(auxP);
         }
+        this.consultar_gir();
         //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
@@ -186,7 +187,7 @@ export class EstadisticasdepPage {
           this.datos_giroscopioZ.push(auxZ);
           this.datos_giroscopio.push(aux);          
         }
-        
+        this.reload_chart();
         //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
@@ -514,18 +515,11 @@ export class EstadisticasdepPage {
   }
 
   escoger_entrenamiento(){
-    //this.datos_acelerometro= [];
-    //this.datos_acelerometro = [];
-    //this.datos_giroscopio = [];
-    //this.aceleragiroschartvar.update();
+    this.consultar_acc();
+  }
 
-    setTimeout(() => {
-      this.consultar_acc();
-      this.consultar_gir();
-    }, 1000)
-
-    setTimeout(() => {
-      this.aceleragiroschartvar.destroy();
+  reload_chart(){
+    this.aceleragiroschartvar.destroy();
       this.aceleracionchartvar.destroy();
       this.aceleracionxyzchartvar.destroy();
       this.giroscopiochartvar.destroy();
@@ -533,7 +527,6 @@ export class EstadisticasdepPage {
       this.giroschart();
       this.aceleraxyzchart();
       this.acelerachart();
-    }, 1500)
   }
 
 }
