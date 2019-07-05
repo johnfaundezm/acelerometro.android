@@ -167,7 +167,6 @@ export class ListPage {
     this.loading = this.loadingCtrl.create({
       spinner: 'ios',
       content: 'Buscando Entrenamiento...',
-      dismissOnPageChange: true
     });
   
     this.loading.present();
