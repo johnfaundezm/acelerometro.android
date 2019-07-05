@@ -20,6 +20,7 @@ export class DatosentrenamientoPage {
   
   id_entrenamiento:any;
   correo:any;
+  id_solicitud:any;
 
   tabBarElement: any; //variable que almacena el elemento tabbar
 
@@ -44,6 +45,7 @@ export class DatosentrenamientoPage {
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar'); //se pasa el elemento tabbar a la variable antes declarada
     this.id_entrenamiento = navParams.get('id_entrenamiento');
     this.correo = navParams.get('correo');
+    this.id_solicitud = navParams.get('id_solicitud');
   }
 
   ionViewDidLoad() {
