@@ -9,10 +9,6 @@
     </ion-refresher-content>
   </ion-refresher>
 
-  <button ion-button color="light" menuToggle clear>
-    <ion-icon name="menu"></ion-icon>
-  </button>
-
   <ion-card class="border_card">
     <ion-card-header class="title_card">
       Informacion Personal
@@ -83,11 +79,12 @@
   </ion-item>
    
   </ion-card>
-  <!--
-  <button ion-button color="danger" block (click)="salir()">
-    <ion-icon name="close" style="margin-right: 5px" ></ion-icon>
-    Salir
-  </button>
-  -->
+  
+  <div style="margin-bottom: 10px">
+    <button ion-button color="danger" block (click)="salir()">
+      <ion-icon name="close" style="margin-right: 5px" ></ion-icon>
+      Salir
+    </button>
+  </div>
   
 </ion-content>
