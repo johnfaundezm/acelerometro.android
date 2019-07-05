@@ -89,6 +89,7 @@ export class InfoentrenamientoPage {
     this.loading = this.loadingCtrl.create({
       spinner: 'ios',
       content: 'Entrando al entrenamiento...',
+      dismissOnPageChange: true
     });
 
     this.loading.onDidDismiss(() => {
