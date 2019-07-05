@@ -93,7 +93,7 @@ export class InfoentrenamientoPage {
     });
 
     this.loading.onDidDismiss(() => {
-      this.navCtrl.push(CronometroentPage, {id_entrenamiento:this.id_entrenamiento,correo:this.correo});
+      this.navCtrl.push(CronometroentPage, {id_entrenamiento:this.id_entrenamiento,correo:this.correo, id_solicitud:this.id_solicitud});
     });
   
     this.loading.present();

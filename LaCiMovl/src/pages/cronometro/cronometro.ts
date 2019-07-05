@@ -22,6 +22,8 @@ export class CronometroPage {
   enlaces: Array<{ide:string, email:string, fecha:string}>=[{ide:'', email:'', fecha:''}]; //arreglo que almacena los enlaces entre deportista y entrenador
   enlaces_pend: Array<{email:string}>=[{email:''}]; //arreglo que almacena las solicitudes pendientes
 
+  aceleraciones: Array<{id_ent:string, accX:string, accY:string, accZ:string, acel_x_y_z:string, fuerza:string, potencia:string}>=[{id_ent:'', accX:'', accY:'', accZ:'', acel_x_y_z:'', fuerza:'', potencia:''}]; //arreglo que almacena los datos del acelerometro
+
   aux: Array<{email_ent:string}>=[{email_ent:''}]; //arreglo que almacena todos los deportistas
   
   correo:any; // correo del deportista
@@ -459,9 +461,32 @@ export class CronometroPage {
            }
          }
        }
+       this.enviar_datos_basedatos();
+       this.navCtrl.setRoot(EstadisticasdepPage, {correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
      },10); // se define el cronometro visual en intervalo de centesimas de segundo
     }
  }
+
+  enviar_datos_basedatos(){
+    for(var i=0;i<this.aceleraciones.length;i++){
+      var id_ent=this.aceleraciones[i].id_ent;
+      var accX=this.aceleraciones[i].accX;
+      var accX=this.aceleraciones[i].accY;
+      var accX=this.aceleraciones[i].accZ;
+      var accX=this.aceleraciones[i].acel_x_y_z;
+      var accX=this.aceleraciones[i].fuerza;
+      var accX=this.aceleraciones[i].potencia;
+    }
+    /*this.webservices.acelerometro_datos(this.aceleraciones).then( // se envian los datos al servidor web
+      (datos) =>{
+        var respuesta= datos[0].RESPUESTA;
+        //alert('oka'+JSON.stringify(resultado));
+      },
+      (error) =>{
+        alert('error'+JSON.stringify(error)); // muestra una alerta si ocurrió algun error durante el proceso
+      }
+    )*/
+  }
   finalizar_recuperacion(){
    this.playAudiof();
     // se restaura el cronometro como 0
@@ -529,6 +554,8 @@ export class CronometroPage {
         this.potencia = this.fuerza * this.acel_x_y_z; //potencia resultante
 
         this.punto_max();//para sacar los valores maximos de aceleracion, fuerza y potencia
+
+        //this.aceleraciones.push({"id_ent":this.id_ent,"accX":this.accX, "accY":this.accY,"accZ":this.accZ,"acel_x_y_z":this.acel_x_y_z, "fuerza":this.fuerza, "potencia":this.potencia});
 
         this.webservices.acelerometro_datos(this.id_ent,this.accX, this.accY, this.accZ, this.acel_x_y_z,this.fuerza,this.potencia).then( // se envian los datos al servidor web
           (datos) =>{

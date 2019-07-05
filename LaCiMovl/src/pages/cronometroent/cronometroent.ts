@@ -15,16 +15,12 @@ import { DatosentrenamientoPage } from '../datosentrenamiento/datosentrenamiento
 export class CronometroentPage {
 
   tabBarElement: any; //variable que almacena el elemento tabbar
-
-  aceleraciones: Array<{id_ent:string, accX:string, accY:string, accZ:string, acel_x_y_z:string, fuerza:string, potencia:string}>=[{id_ent:'', accX:'', accY:'', accZ:'', acel_x_y_z:'', fuerza:'', potencia:''}]; //arreglo que almacena los datos del acelerometro
-
-  aux: Array<{email_ent:string}>=[{email_ent:''}]; //arreglo que almacena todos los deportistas
   
   correo:any; // correo del desportista
   id_ent:any;
+  id_solicitud:any;
   peso:any;// variable que almacena el peso del usuario deportista
   loading:any;// variable que almacena el estado de el loading
-  items:any;// variable para usarlo en el filtro
   a:any;
   estado:any;
   estadouser:any;
@@ -93,6 +89,7 @@ export class CronometroentPage {
 
     this.correo = this.navParams.get('correo'); //Se recibe el correo del deportista
     this.id_ent = this.navParams.get('id_entrenamiento');
+    this.id_solicitud = this.navParams.get('id_solicitud');
     this.consulta_peso(); //Se inicializa la consulta del peso  
 
     // se inicia la plataforma de reproducciones
@@ -217,8 +214,7 @@ export class CronometroentPage {
         {
           text: 'Aceptar',//nombre del boton 2
           handler: () => {
-            this.navCtrl.push(DatosentrenamientoPage, {id_entrenamiento:this.id_ent, correo:this.correo})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
-
+            this.navCtrl.push(DatosentrenamientoPage, {id_entrenamiento:this.id_ent, correo:this.correo, id_solicitud:this.id_solicitud})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
           }
         }
       ]
@@ -470,9 +466,6 @@ export class CronometroentPage {
    this.contador_recuperacion = null;
    // se redefine el timepo de entrenamiento como 0
    this.tiempo=0;
-    for(var i=0;i<this.aceleraciones.length;i++){
-      alert(this.aceleraciones[i].id_ent);
-    }
   this.alerta_confirmacion();
  }
   lapso(){
@@ -526,7 +519,6 @@ export class CronometroentPage {
 
         this.punto_max();//para sacar los valores maximos de aceleracion, fuerza y potencia
 
-        this.aceleraciones.push({"id_ent":this.id_ent,"accX":this.accX, "accY":this.accY,"accZ":this.accZ,"acel_x_y_z":this.acel_x_y_z, "fuerza":this.fuerza, "potencia":this.potencia});
       }
       );      
     }catch(err){
