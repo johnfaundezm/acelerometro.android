@@ -116,7 +116,7 @@ export class DatosentrenamientoPage {
 
     this.webservices.consulta_acelerometro_datos(this.val_entre).then(
       (datos) =>{
-        let largo=Object.keys(datos).length;
+        let largo:any=Object.keys(datos).length;
         //var division=largo/1;
         var x=0;
         for(var i=0;i<largo;i++){
@@ -139,7 +139,7 @@ export class DatosentrenamientoPage {
           this.datos_acelerometro.push(aux);
           this.datos_acelerometroF.push(auxF);
           this.datos_acelerometroP.push(auxP);
-          if(i==largo){
+          if((largo-1)>i){
             this.consultar_gir();
           }
         }
