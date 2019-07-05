@@ -141,10 +141,7 @@ export class DeportistasentPage {
   }
 
   consulta_enlace_pend(){
-    let largo=this.enlaces_pend.length;
-    for(var i=0;i<largo;i++){
-      this.enlaces_pend.pop();
-    }
+    this.enlaces_pend = [];// se vacía el arreglo
     this.webservices.consulta_enlace_pend(this.correo).then(
       (datos)=>{
         //alert(JSON.stringify(datos));
@@ -160,10 +157,7 @@ export class DeportistasentPage {
   }
 
   consulta_enlace(){
-    let largo=this.enlaces.length;
-    for(var i=0;i<largo;i++){
-      this.enlaces.pop();
-    }
+    this.enlaces = [];// se vacía el arreglo
     this.webservices.consulta_enlace(this.correo).then(
       (datos)=>{
         //alert(JSON.stringify(datos));
@@ -181,6 +175,7 @@ export class DeportistasentPage {
   }
 
   consulta_deportistas(){
+    this.aux = []
     this.webservices.vista_deportista().then(
       (datos)=>{
         //alert(JSON.stringify(datos));

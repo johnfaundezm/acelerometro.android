@@ -471,7 +471,7 @@ export class CronometroentPage {
    // se redefine el timepo de entrenamiento como 0
    this.tiempo=0;
     for(var i=0;i<this.aceleraciones.length;i++){
-      alert(this.aceleraciones[i]);
+      alert(this.aceleraciones[i].id_ent);
     }
   this.alerta_confirmacion();
  }
