@@ -53,19 +53,24 @@ export class DatosentrenamientoPage {
     console.log('ionViewDidLoad DatosentrenamientoPage');
   }
 
-  //antes de entrar a la vista se oculta el tabbar
+  
   ionViewWillEnter() {
     this.nombre_entrenamiento();
-    this.consultar_acc();
-    
-    this.tabBarElement.style.display = 'none';
+    this.tabBarElement.style.display = 'none';//antes de entrar a la vista se oculta el tabbar
   }
-  //cuando va a salir de la vista se le agrega el tabbar nuevamente
+  
   ionViewWillLeave() {
-    this.tabBarElement.style.display = 'flex';
+    this.tabBarElement.style.display = 'flex';//cuando va a salir de la vista se le agrega el tabbar nuevamente
   }
 
   ionViewDidEnter() {
+    setTimeout(() => {
+      this.acelerachart();
+      this.aceleraxyzchart();
+      this.giroschart();
+      this.acelgiroschart();
+    }, 150)
+
     while(this.datos_acelerometroX.length>0){
       this.datos_acelerometroX.pop();
     }
@@ -502,6 +507,10 @@ export class DatosentrenamientoPage {
       (err)=>{
         alert(JSON.stringify(err))
       })
+  }
+
+  escoger_entrenamiento(){
+    this.consultar_acc();
   }
 
 }
