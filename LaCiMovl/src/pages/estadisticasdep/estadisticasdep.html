@@ -82,5 +82,23 @@
             </div>
         </ion-card-content>
     </ion-card>
+    <ion-card>
+        <style>
+            body, input, select {
+              font: 11pt sans-serif;
+            }
+            input, select, th, #result {
+              padding: 5px 10px;
+            }
+            th {
+              text-align: left;
+            }
+        </style>
+        
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/mathjs/2.0.1/math.min.js"></script>
+        
+        <button ion-button (click)="calculoFourier()">fourier</button>
+
+    </ion-card>
 
 </ion-content>

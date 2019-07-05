@@ -528,7 +528,7 @@ export class EstadisticasdepPage {
       this.aceleraxyzchart();
       this.acelerachart();
   }
-
+/*
   calculoFourier(){
     function fft2(X) {
       var N = X.length;
@@ -549,7 +549,7 @@ export class EstadisticasdepPage {
       var a = -2*math.pi;
       for (var k = 0; k < M; ++k) {
   
-        var t = math.exp(math.complex(0, a*k/N));
+        var t = math.exp(Math.complex(0, a*k/N));
         t = math.multiply(t, odd[k]);
         X[k] = odd[k] = math.add(even[k], t);
         X[k+M] = even[k] = math.subtract(even[k], t);
@@ -569,7 +569,7 @@ export class EstadisticasdepPage {
     // complex numbers
     function make_complex(X) {
       for (var i = 0; i < X.length; i++) {
-        X[i] = math.complex(X[i],0);
+        X[i] = Math.complex(X[i],0);
       }
     }
 
@@ -594,5 +594,5 @@ export class EstadisticasdepPage {
     }
     console.log(Yr);
     }
-
+*/
 }

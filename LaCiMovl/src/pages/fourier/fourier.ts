@@ -28,7 +28,7 @@ export class FourierPage {
   giroscopioFFT(){
 
   }
-  
+  /*
   fft2(acelerometroDatos) {
     var N = acelerometroDatos.length;
     if (N <= 1) {
@@ -92,5 +92,5 @@ export class FourierPage {
   }
   console.log(Yr);
   }
-  
+  */
 }
