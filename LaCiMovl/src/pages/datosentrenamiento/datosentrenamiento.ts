@@ -51,11 +51,11 @@ export class DatosentrenamientoPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DatosentrenamientoPage');
+    this.consultar_acc();
   }
 
   
   ionViewWillEnter() {
-    this.consultar_acc();
     this.nombre_entrenamiento();
     this.tabBarElement.style.display = 'none';//antes de entrar a la vista se oculta el tabbar
   }
