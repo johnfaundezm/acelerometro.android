@@ -401,7 +401,6 @@ export class CronometroentPage {
     this.tiempo=0;
     this.recuperacion();
     this.cambio= true;
-    this.alerta_confirmacion();
   }
 
   finalizar2(){
@@ -427,7 +426,6 @@ export class CronometroentPage {
     this.tiempo=0;
     this.recuperacion();
     this.cambio= true;
-    this.alerta_confirmacion();
   }
 
   recuperacion(){
