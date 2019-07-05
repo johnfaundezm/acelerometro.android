@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import * as Math from 'mathjs';
+declare const math: any;
 
 @IonicPage()
 @Component({
@@ -27,7 +28,7 @@ export class FourierPage {
   giroscopioFFT(){
 
   }
-  /*
+  
   fft2(acelerometroDatos) {
     var N = acelerometroDatos.length;
     if (N <= 1) {
@@ -44,13 +45,13 @@ export class FourierPage {
     }
     even = this.fft2(even);
     odd = this.fft2(odd);
-    var a = -2*Math.PI;
+    var a = -2*math.pi;
     for (var k = 0; k < M; ++k) {
 
-      var t = Math.exp(Math.complex(0, a*k/N));
-      t = Math.multiply(t, odd[k]);
-      X[k] = odd[k] = Math.add(even[k], t);
-      X[k+M] = even[k] = Math.subtract(even[k], t);
+      var t = math.exp(math.complex(0, a*k/N));
+      t = math.multiply(t, odd[k]);
+      acelerometroDatos[k] = odd[k] = math.add(even[k], t);
+      acelerometroDatos[k+M] = even[k] = math.subtract(even[k], t);
     }
     return acelerometroDatos;
   }
@@ -74,7 +75,7 @@ export class FourierPage {
     var X = [];
     X.length = T.length;
     for (var t = 0; t < T.length; t++) {
-      X[t] = Math.sin(2*Math.PI*T[t]);
+      X[t] = math.sin(2*math.pi*T[t]);
     }
     return X;
   }
@@ -91,5 +92,5 @@ export class FourierPage {
   }
   console.log(Yr);
   }
-  */
+  
 }
