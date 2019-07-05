@@ -51,7 +51,10 @@ export class DatosentrenamientoPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DatosentrenamientoPage');
-      this.consultar_acc();
+
+      setTimeout(() => {
+        this.consultar_acc();
+      }, 500)
   }
 
   
@@ -139,11 +142,8 @@ export class DatosentrenamientoPage {
           this.datos_acelerometro.push(aux);
           this.datos_acelerometroF.push(auxF);
           this.datos_acelerometroP.push(auxP);
-          if((largo-1)>i){
-            this.consultar_gir();
-          }
         }
-        
+        this.consultar_gir();
         
         //alert('oka'+JSON.stringify(resultado));
       },
