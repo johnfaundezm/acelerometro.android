@@ -66,8 +66,8 @@ export class ListPage {
       (datos)=>{// recibe los datos de la consulta
         //alert(JSON.stringify(datos));
         this.id_ent=datos[0].ID;// recibe la id del entrenamiento y se almacena en una variable
-        this.estado= datos[0].ESTADO2;// recibe el estado y se almacena en una variable
-        if(this.estado==3){ // si el estado es 5 es por que se generó un entrenamiento
+        this.estado= datos[0].ESTADO_CREACION;// recibe el estado y se almacena en una variable
+        if(this.estado==3){ // si el estado es 3 es por que se generó un entrenamiento
           this.a=0; // variable que desactiva la recursividad de buscar entrenamientos
           this.alerta_confirmacion();// llama a la alerta para aceptar el entrenamiento
         }else{

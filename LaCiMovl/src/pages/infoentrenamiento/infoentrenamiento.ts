@@ -153,7 +153,7 @@ export class InfoentrenamientoPage {
 
   actualizar_estado(){
     this.load();
-    this.estado=3;
+    this.estado=4;
     this.webservices.actualizar_creacion_entrenamiento(this.id_entrenamiento,this.estado).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
