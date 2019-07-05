@@ -68,18 +68,18 @@ export class DeportistasentPage {
 
   initializeItems() {
 
-    var temp:any;
-    this.items = this.aux;
+    var temp: any;
+    temp = this.aux;
     
     for (var i = 0; i < this.enlaces.length; i++) {
       for (var y = 0; y < this.aux.length; y++) {
         if (this.aux[y].email_dep==this.enlaces[i].email) {
-          this.items.splice(y,1);
+          temp.splice(y,1);
           this.aux.splice(y,1);
         }
       }
     }
-
+    this.items = temp;
   }
 
   getItems(ev: any) {
