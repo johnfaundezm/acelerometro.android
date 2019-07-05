@@ -200,7 +200,7 @@ export class DeportistasentPage {
   }
 
   goestadisticas(){
-    this.navCtrl.setRoot(DatosentrenamientoPage, {correo:this.correo});
+    this.navCtrl.push(DatosentrenamientoPage, {correo:this.correo});
   }
 
 }
