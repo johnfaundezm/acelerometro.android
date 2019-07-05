@@ -32,6 +32,7 @@
     "@ionic/storage": "^2.2.0",
     "@swimlane/ngx-charts": "^11.1.0",
     "chart.js": "^2.8.0",
+    "complex-js": "^5.0.0",
     "complex.js": "^2.0.11",
     "cordova-android": "8.0.0",
     "cordova-plugin-advanced-http": "2.0.9",
@@ -53,7 +54,7 @@
     "zone.js": "0.8.29"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "3.2.2",
+    "@ionic/app-scripts": "^3.2.4",
     "@ionic/lab": "1.0.24",
     "@types/mathjs": "^5.0.1",
     "cordova-plugin-device": "^2.0.2",
