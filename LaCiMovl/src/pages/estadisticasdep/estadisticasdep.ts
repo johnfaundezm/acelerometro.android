@@ -29,7 +29,6 @@ export class EstadisticasdepPage {
 
   val_ent: any;
   val_entre: any;
-  id_solicitud:any;
 
   datos_acelerometroX = [];
   datos_acelerometroY = [];
@@ -46,7 +45,7 @@ export class EstadisticasdepPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
     this.correo = navParams.get('correo');
     this.val_entre = navParams.get('id_entrenamiento');
-    this.id_solicitud = navParams.get('id_solicitud');
+    this.val_ent = navParams.get('id_solicitud');
   }
 
   ionViewDidLoad(){
