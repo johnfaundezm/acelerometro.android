@@ -44,7 +44,7 @@ export class DatosentrenamientoPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider)  {
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar'); //se pasa el elemento tabbar a la variable antes declarada
-    this.id_entrenamiento = navParams.get('id_entrenamiento');
+    this.val_entre = navParams.get('id_entrenamiento');
     this.correo = navParams.get('correo');
     this.id_solicitud = navParams.get('id_solicitud');
   }
@@ -55,6 +55,7 @@ export class DatosentrenamientoPage {
 
   
   ionViewWillEnter() {
+    this.consultar_acc();
     this.nombre_entrenamiento();
     this.tabBarElement.style.display = 'none';//antes de entrar a la vista se oculta el tabbar
   }

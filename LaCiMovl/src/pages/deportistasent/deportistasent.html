@@ -28,7 +28,7 @@
         </ion-refresher-content>
       </ion-refresher>
       <!--tarjeta donde se muestran los deportistas ya enlazados-->
-      <ion-card style="height: 500px" class="border_card">
+      <ion-card  class="border_card">
         <ion-card-header class="title_card"><!--titulo de la tarjeta-->
           Deportistas
         </ion-card-header>
@@ -41,6 +41,11 @@
                   <h2>{{d.email}}</h2><!--correo del deportista en la lista-->
                   <p style="text-align: center">{{d.ide}}  {{d.fecha}}</p><!--id del entrenamiento y fecha de enlace-->
                 </ion-item>
+                <ion-item-options side="left"><!--botone del sliding-->
+                  <button ion-button color="danger" ><!--botón e icono para eliminar enlace con deportista seleccionado-->
+                    <ion-icon  name="close" style="width: 30px; height: 30px"></ion-icon>
+                  </button>
+                </ion-item-options>
                 <ion-item-options side="right"><!--botones del sliding-->
                     <button ion-button (click)="metodo(d.ide,d.email)"><!--botón e icono para enviar entrenamiento-->
                       <ion-icon  name="clipboard" style="width: 30px; height: 30px"></ion-icon>
