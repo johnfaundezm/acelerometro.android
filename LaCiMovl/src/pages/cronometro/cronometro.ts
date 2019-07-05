@@ -680,18 +680,14 @@ export class CronometroPage {
   }
 
   frecuenciasEntrenamiento(){
-    if(this.tipo_entrenamiento=='saltar'){
+    if(this.tipo_entrenamiento=='saltar' || this.tipo_entrenamiento=='golpear' || this.tipo_entrenamiento=='carrera_corta'){
       this.frecuencia=100;
     }else{
-      if(this.tipo_entrenamiento=='correr'){
+      if(this.tipo_entrenamiento=='carrera_larga'){
         this.frecuencia=1000;
       }else{
         if(this.tipo_entrenamiento=='caminar'){
           this.frecuencia=500;
-        }else{
-          if(this.tipo_entrenamiento=='golpear'){
-            this.frecuencia=100;
-          }
         }
       }
     }

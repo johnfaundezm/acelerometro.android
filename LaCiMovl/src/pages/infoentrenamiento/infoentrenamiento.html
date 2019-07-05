@@ -3,6 +3,26 @@
   <div>
     <ion-card class="card_rango">
       <ion-card-header class="title_card">
+        Tipo entrenamiento
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item style="background-color: transparent;">
+          <ion-select [(ngModel)]="tipo_entrenamiento" class="tipo_entre" placeholder="Elegir tipo">
+            <!--Define los tipos de entrenamiento-->
+            <ion-option value="caminar">Caminar</ion-option>
+            <ion-option value="carrera_corta">Carrera corta</ion-option>
+            <ion-option value="carrera_larga">Carrera larga</ion-option>
+            <ion-option value="saltar">Saltar</ion-option>
+            <ion-option value="golpear">Golpear</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div>
+    <ion-card class="card_rango">
+      <ion-card-header class="title_card">
         Tiempo entrenamiento
       </ion-card-header>
       <ion-card-content>
@@ -24,25 +44,6 @@
     </ion-card>
   </div>
   
-  <div>
-    <ion-card class="card_rango">
-      <ion-card-header class="title_card">
-        Tipo entrenamiento
-      </ion-card-header>
-      <ion-card-content>
-        <ion-item style="background-color: transparent;">
-          <ion-select [(ngModel)]="tipo_entrenamiento" style="color:rgb(51, 50, 50); background-color: whitesmoke; margin: auto; border-radius: 5px" placeholder="Elegir tipo">
-            <!--Define los tipos de entrenamiento-->
-            <ion-option value="caminar">Caminar</ion-option>
-            <ion-option value="correr">Correr</ion-option>
-            <ion-option value="saltar">Saltar</ion-option>
-            <ion-option value="golpear">Golpear</ion-option>
-          </ion-select>
-        </ion-item>
-      </ion-card-content>
-    </ion-card>
-  </div>
-
   <div>
     <ion-card class="card_rango">
       <ion-card-header class="title_card">
