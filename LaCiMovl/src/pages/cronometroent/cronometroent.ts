@@ -157,7 +157,7 @@ export class CronometroentPage {
     this.webservices.estado_entrenamiento(this.id_ent).then(//llama a la funcion del webservices.ts y le envia la id del entrenamiento
       (datos)=>{// recibe los datos de la consulta
         //alert(JSON.stringify(datos));
-        this.estado= datos[0].ESTADO;// recibe el estado y se almacena en una variable
+        this.estado= datos[0].ESTADO_CRONOMETRO;// recibe el estado y se almacena en una variable
         if(this.estado==3){ // si el estado es 3 se inicia el cronometro
           this.nuevoEntrenamiento();
         }else{
@@ -189,7 +189,7 @@ export class CronometroentPage {
   }
 
   actualizar_estado(){
-    this.webservices.actualizar_estado_entrenamiento(this.id_ent,this.estadouser).then(
+    this.webservices.actualizar_cronometro_entrenamiento(this.id_ent,this.estadouser).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
       //alert('oka'+JSON.stringify(resultado));

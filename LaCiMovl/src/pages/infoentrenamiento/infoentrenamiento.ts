@@ -93,6 +93,7 @@ export class InfoentrenamientoPage {
     });
 
     this.loading.onDidDismiss(() => {
+      this.actualizar_estado()
       this.navCtrl.push(CronometroentPage, {id_entrenamiento:this.id_entrenamiento,correo:this.correo, id_solicitud:this.id_solicitud});
     });
   
@@ -109,6 +110,15 @@ export class InfoentrenamientoPage {
       content: 'Esperando respuesta del Deportista...',
     });
 
+    this.loading.present();
+  }
+
+  load() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'ios',
+      content: 'Cargando...',
+    });
+  
     this.loading.present();
   }
 
@@ -139,6 +149,33 @@ export class InfoentrenamientoPage {
     });
     confirm.present();
   }
+
+  actualizar_estado(){
+    this.load();
+    this.estado=3;
+    this.webservices.actualizar_creacion_entrenamiento(this.id_entrenamiento,this.estado).then(
+      (datos) =>{
+        this.respuesta= datos[0].RESPUESTA;
+        if(this.respuesta=='OK'){
+          this.loading.dismiss();
+          alert('Los cambios se han realizado satisfactoriamente')
+        }else{
+          if(this.respuesta=='ERROR'){
+            this.loading.dismiss();
+            alert('Ha ocurrido un error al actualizar el estado')
+          }else{
+            this.loading.dismiss();
+            alert('Ha ocurrido un error al actualizar el estado')
+          }
+        }
+      //alert('oka'+JSON.stringify(resultado));
+      },
+      (error) =>{
+        this.loading.dismiss();
+        alert('error'+JSON.stringify(error));
+      })
+  }
+
   //__Metodos_____
   getFormattedDate(){
     var dateObj =new Date()
@@ -175,7 +212,7 @@ export class InfoentrenamientoPage {
       
       this.tiempo_ent='00:'+this.tiempoM+':'+this.tiempoS;
       this.tiempo_rec='00:'+this.tiempoRM+':'+this.tiempoRS;
-      this.estado=5;
+      this.estado=3;
       this.webservices.insertar_entrenamiento(this.id_solicitud,this.tiempo_ent,this.tiempo_entrenamiento,this.tiempo_rec,this.tiempo_recuperacion,this.formattedDate,this.tipo_entrenamiento,this.estado).then(
         (datos) =>{
           this.respuesta= datos[0].RESPUESTA;
@@ -206,70 +243,6 @@ export class InfoentrenamientoPage {
       })
     }
   }
-  
-  pausa_entrenamiento(){
-    this.estado=2;
-    this.webservices.actualizar_estado_entrenamiento(this.id_entrenamiento,this.estado).then(
-      (datos) =>{
-        this.respuesta= datos[0].RESPUESTA;
-        if(this.respuesta=='OK'){
-          alert('Los cambios se han realizado satisfactoriamente')
-        }else{
-          if(this.respuesta=='ERROR'){
-            alert('Ha ocurrido un error en la actualizacion')
-          }else{
-            alert('Ha ocurrido un error en la actualizacion')
-          }
-        }
-      //alert('oka'+JSON.stringify(resultado));
-      },
-      (error) =>{
-        alert('error'+JSON.stringify(error));
-      })
-  }
-
-  continuar_entrenamiento(){
-    this.estado=3;
-    this.webservices.actualizar_estado_entrenamiento(this.id_entrenamiento,this.estado).then(
-      (datos) =>{
-        this.respuesta= datos[0].RESPUESTA;
-        if(this.respuesta=='OK'){
-          alert('Los cambios se han realizado satisfactoriamente')
-        }else{
-          if(this.respuesta=='ERROR'){
-            alert('Ha ocurrido un error en la actualizacion')
-          }else{
-            alert('Ha ocurrido un error en la actualizacion')
-          }
-        }
-      //alert('oka'+JSON.stringify(resultado));
-      },
-      (error) =>{
-        alert('error'+JSON.stringify(error));
-      })
-  }
-
-  finalizar_entrenamiento(){
-    this.estado=1;
-    this.webservices.actualizar_estado_entrenamiento(this.id_entrenamiento,this.estado).then(
-      (datos) =>{
-        this.respuesta= datos[0].RESPUESTA;
-        if(this.respuesta=='OK'){
-          alert('Los cambios se han realizado satisfactoriamente')
-        }else{
-          if(this.respuesta=='ERROR'){
-            alert('Ha ocurrido un error en la actualizacion')
-          }else{
-            alert('Ha ocurrido un error en la actualizacion')
-          }
-        }
-      //alert('oka'+JSON.stringify(resultado));
-      },
-      (error) =>{
-        alert('error'+JSON.stringify(error));
-      })
-  }
-
 
   detalletiempo(){
     this.tiempo_recuperacion= (this.tiempoRM*60) + this.tiempoRS;
@@ -281,8 +254,8 @@ export class InfoentrenamientoPage {
       (datos)=>{// recibe los datos de la consulta
         //alert(JSON.stringify(datos));
         this.id_entrenamiento= datos[0].ID;
-        this.estado= datos[0].ESTADO;// recibe el estado y se almacena en una variable
-        if(this.estado==4){ // si el estado es 4 es por que el deportista aceptó
+        this.estado= datos[0].ESTADO_CREACION;// recibe el estado y se almacena en una variable
+        if(this.estado==1){ // si el estado es 4 es por que el deportista aceptó
           this.loading.dismiss();// detiene el loading
           this.a=0; // variable que desactiva la recursividad de buscar entrenamientos
           this.load_pasar_de_vista()

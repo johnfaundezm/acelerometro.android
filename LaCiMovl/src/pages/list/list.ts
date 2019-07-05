@@ -66,7 +66,7 @@ export class ListPage {
       (datos)=>{// recibe los datos de la consulta
         //alert(JSON.stringify(datos));
         this.id_ent=datos[0].ID;// recibe la id del entrenamiento y se almacena en una variable
-        this.estado= datos[0].ESTADO;// recibe el estado y se almacena en una variable
+        this.estado= datos[0].ESTADO2;// recibe el estado y se almacena en una variable
         if(this.estado==5){ // si el estado es 5 es por que se generó un entrenamiento
           this.a=0; // variable que desactiva la recursividad de buscar entrenamientos
           this.alerta_confirmacion();// llama a la alerta para aceptar el entrenamiento
@@ -128,6 +128,7 @@ export class ListPage {
           text: 'Aceptar',//nombre del boton 2
           handler: () => {
             this.loading.dismiss();// detiene el loading
+            this.navCtrl.push(CronometroPage, {id_entrenamiento:this.id_ent, email:this.email,id_solicitud:this.id_solicitud,correo:this.correo});
             this.actualizar_estado();// se llama a al funcion que actualiza el estado
           }
         }
@@ -138,21 +139,20 @@ export class ListPage {
 
   actualizar_estado(){
     this.load();
-    this.estado=4;
-    this.webservices.actualizar_estado_entrenamiento(this.id_ent,this.estado).then(
+    this.estado=1;
+    this.webservices.actualizar_creacion_entrenamiento(this.id_ent,this.estado).then(
       (datos) =>{
         this.respuesta= datos[0].RESPUESTA;
         if(this.respuesta=='OK'){
           this.loading.dismiss();
           alert('Los cambios se han realizado satisfactoriamente')
-          this.navCtrl.push(CronometroPage, {id_entrenamiento:this.id_ent, email:this.email,id_solicitud:this.id_solicitud,correo:this.correo});
         }else{
           if(this.respuesta=='ERROR'){
             this.loading.dismiss();
-            alert('Ha ocurrido un error en la actualizacion')
+            alert('Ha ocurrido un error al actualizar el estado')
           }else{
             this.loading.dismiss();
-            alert('Ha ocurrido un error en la actualizacion')
+            alert('Ha ocurrido un error al actualizar el estado')
           }
         }
       //alert('oka'+JSON.stringify(resultado));

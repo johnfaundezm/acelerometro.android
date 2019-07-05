@@ -661,7 +661,7 @@ export class WebservicesProvider {
   }
 
   //se crea el metodo para insertar un entrenamiento
-  insertar_entrenamiento(id_solicitud_entrenamiento,tiempo_ent,tiempo_entrenamiento,tiempo_rec,tiempo_recuperacion,fecha,tipo_entrenamiento,estado) {//se reciben las variables para insertar solicitud
+  insertar_entrenamiento(id_solicitud_entrenamiento,tiempo_ent,tiempo_entrenamiento,tiempo_rec,tiempo_recuperacion,fecha,tipo_entrenamiento,estado_creacion) {//se reciben las variables para insertar solicitud
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
@@ -672,7 +672,7 @@ export class WebservicesProvider {
       });
       // TODO: Encode the values using encodeURIComponent().
       //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
-      let body = 'id_solicitud_entrenamiento='+id_solicitud_entrenamiento +'&tiempo_ent='+tiempo_ent+'&tiempo_entrenamiento='+tiempo_entrenamiento+'&tiempo_rec='+tiempo_rec +'&tiempo_recuperacion='+tiempo_recuperacion +'&fecha='+fecha+'&tipo_entrenamiento='+tipo_entrenamiento+'&estado='+estado;
+      let body = 'id_solicitud_entrenamiento='+id_solicitud_entrenamiento +'&tiempo_ent='+tiempo_ent+'&tiempo_entrenamiento='+tiempo_entrenamiento+'&tiempo_rec='+tiempo_rec +'&tiempo_recuperacion='+tiempo_recuperacion +'&fecha='+fecha+'&tipo_entrenamiento='+tipo_entrenamiento+'&estado_creacion='+estado_creacion;
       //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://192.81.216.141/webservices/insert_entrenamiento.php";
 
@@ -741,7 +741,7 @@ export class WebservicesProvider {
   }
 
   //se crea el metodo para actualizar el estado del entrenamiento
-  actualizar_estado_entrenamiento(id,estado) {
+  actualizar_creacion_entrenamiento(id,estado_creacion) {
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
@@ -752,9 +752,35 @@ export class WebservicesProvider {
       });
       // TODO: Encode the values using encodeURIComponent().
       //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
-      let body = 'id='+id+ '&estado='+estado;
+      let body = 'id='+id+ '&estado_creacion='+estado_creacion;
       //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
-      let url = "http://192.81.216.141/webservices/actualizar_estado_entrenamiento.php";
+      let url = "http://192.81.216.141/webservices/actualizar_creacion_entrenamiento.php";
+
+      this.http.post(url, body, options)
+        .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
+        .subscribe(data => {
+          //alert(JSON.stringify(data));
+          if (data != 'null') resolve( data );  
+          else resolve (false);
+        }, error => reject(error));
+    });
+  }
+
+  //se crea el metodo para actualizar el estado del entrenamiento
+  actualizar_cronometro_entrenamiento(id,estado_cronometro) {
+    return new Promise( (resolve, reject) => {
+      
+      let headers = new Headers({
+        "Content-Type": "application/x-www-form-urlencoded" //este es la forma en que se envia el POST y se almacena en la variable headers
+      });
+      let options = new RequestOptions({
+        headers: headers // se pasa la variable header con la forma de post a la variable options
+      });
+      // TODO: Encode the values using encodeURIComponent().
+      //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
+      let body = 'id='+id+ '&estado_cronometro='+estado_cronometro;
+      //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
+      let url = "http://192.81.216.141/webservices/actualizar_cronometro_entrenamiento.php";
 
       this.http.post(url, body, options)
         .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
