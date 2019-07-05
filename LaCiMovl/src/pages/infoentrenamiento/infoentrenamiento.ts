@@ -315,7 +315,4 @@ export class InfoentrenamientoPage {
     this.navCtrl.pop();
   }
 
-  
-
-
 }
