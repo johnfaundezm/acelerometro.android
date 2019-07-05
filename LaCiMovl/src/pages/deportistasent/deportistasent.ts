@@ -48,7 +48,10 @@ export class DeportistasentPage {
     this.consulta_deportistas();
     this.consulta_enlace_pend();
 
-    this.initializeItems();
+    setTimeout(() => {
+      this.initializeItems();
+    }, 2000);
+    
   }
 
   doRefresh(refresher) {
@@ -68,18 +71,18 @@ export class DeportistasentPage {
 
   initializeItems() {
 
-    var temp:any;
-    this.items = this.aux;
+    var temp: any;
+    temp = this.aux;
     
     for (var i = 0; i < this.enlaces.length; i++) {
       for (var y = 0; y < this.aux.length; y++) {
         if (this.aux[y].email_dep==this.enlaces[i].email) {
-          this.items.splice(y,1);
+          temp.splice(y,1);
           this.aux.splice(y,1);
         }
       }
     }
-
+    this.items = temp;
   }
 
   getItems(ev: any) {
@@ -185,7 +188,7 @@ export class DeportistasentPage {
       (err)=>{
         alert(JSON.stringify(err))
     })
-    this.initializeItems();
+    //this.initializeItems();
   }
 
   consulta_deportistas(){
