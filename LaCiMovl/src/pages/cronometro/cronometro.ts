@@ -458,10 +458,9 @@ export class CronometroPage {
                  this.min1 +=1;
                }
            }
+           this.navCtrl.setRoot(EstadisticasdepPage, {correo:this.correo, id_entrenamiento:this.id_ent, id_solicitud:this.id_solicitud})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
          }
        }
-       this.enviar_datos_basedatos();
-       this.navCtrl.setRoot(EstadisticasdepPage, {correo:this.correo, id_entrenamiento:this.id_ent, id_solicitud:this.id_solicitud})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
      },10); // se define el cronometro visual en intervalo de centesimas de segundo
     }
  }
