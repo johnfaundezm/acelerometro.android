@@ -462,7 +462,7 @@ export class CronometroPage {
      },10); // se define el cronometro visual en intervalo de centesimas de segundo
     }
  }
- finalizar_recuperacion(){
+  finalizar_recuperacion(){
    this.playAudiof();
     // se restaura el cronometro como 0
    this.min2 = 0; 

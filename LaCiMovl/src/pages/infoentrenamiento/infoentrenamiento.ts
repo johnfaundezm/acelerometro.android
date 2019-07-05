@@ -139,8 +139,6 @@ export class InfoentrenamientoPage {
     });
     confirm.present();
   }
-
-
   //__Metodos_____
   getFormattedDate(){
     var dateObj =new Date()
@@ -164,8 +162,13 @@ export class InfoentrenamientoPage {
 
   enviar_entrenamiento(){
     this.detalletiempo();
-    if(this.tiempo_entrenamiento==0){
-      alert('Su tiempo de entrenamiento no está definido. Defínalo e intente nuevamente');
+    if(this.tiempo_entrenamiento==0 || this.tipo_entrenamiento==null){
+      if(this.tiempo_entrenamiento==0){
+        alert('Su tiempo de entrenamiento no está definido. Defínalo e intente nuevamente');
+      }
+      if(this.tipo_entrenamiento==null){
+        alert('Su tipo de entrenamiento no está definido. Defínalo e intente nuevamente');
+      }
     }else{
       this.loadregistrar();
       this.getFormattedDate();
