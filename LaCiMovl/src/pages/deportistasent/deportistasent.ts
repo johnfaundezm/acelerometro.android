@@ -70,10 +70,9 @@ export class DeportistasentPage {
   }
 
   initializeItems() {
-
     var temp: any;
     temp = this.aux;
-    
+    /*
     for (var i = 0; i < this.enlaces.length; i++) {
       for (var y = 0; y < this.aux.length; y++) {
         if (this.aux[y].email_dep==this.enlaces[i].email) {
@@ -82,6 +81,12 @@ export class DeportistasentPage {
         }
       }
     }
+    */
+
+    for (let j = 0; j < this.enlaces.length; j++) {
+      temp.splice(temp.indexOf(this.enlaces[j]), 1);
+    }
+    
     this.items = temp;
   }
 
