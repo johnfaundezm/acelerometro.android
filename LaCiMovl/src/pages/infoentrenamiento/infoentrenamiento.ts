@@ -108,6 +108,7 @@ export class InfoentrenamientoPage {
     this.loading = this.loadingCtrl.create({
       spinner: 'ios',
       content: 'Esperando respuesta del Deportista...',
+      dismissOnPageChange: true
     });
 
     this.loading.present();
