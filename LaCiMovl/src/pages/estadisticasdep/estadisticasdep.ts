@@ -491,9 +491,7 @@ export class EstadisticasdepPage {
   }
 
   nombre_entrenamiento(){
-    for(var i=0;i<this.entrenamiento.length;i++){
-      this.entrenamiento.pop();
-    }
+    this.entrenamiento= [];
     this.webservices.nombre_entrenamiento(this.val_ent).then(
       (datos)=>{
         //alert(JSON.stringify(datos));
@@ -510,7 +508,6 @@ export class EstadisticasdepPage {
   }
 
   escoger_solicitud() {
-    this.entrenamiento= [];
     this.nombre_entrenamiento();
   }
 

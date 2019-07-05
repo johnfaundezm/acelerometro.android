@@ -9,6 +9,17 @@
     </ion-item>   
   </div>
 
+    <div>
+        <ion-item no-lines style="background-color: transparent">
+            <ion-item style="background-color: transparent">
+                <ion-select [(ngModel)]="val_entre" style="background-color:whitesmoke" placeholder="entrenamiento" >
+                    <ion-option *ngFor="let ide_entre of entrenamiento" value="{{ide_entre.ide}}">{{ide_entre.nombre_ent}} - {{ide_entre.ide}}</ion-option>
+                </ion-select>
+            </ion-item>
+        <button item-end ion-button (click)="escoger_entrenamiento()">Graficar</button>
+        </ion-item>
+    </div>
+
   <!--tarjeta contenedora del grafico de aceleracion y giroscopio resultante-->
   <ion-card style="height: 300px;" class="border_card">
       <ion-card-header class="title_card"><!--titulo de la tarjeta-->

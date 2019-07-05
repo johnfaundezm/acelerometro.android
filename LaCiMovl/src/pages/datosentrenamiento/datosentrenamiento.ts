@@ -17,7 +17,8 @@ export class DatosentrenamientoPage {
   @ViewChild('giroscopiochart') giroscopiochart;
   @ViewChild('aceleragiroschart') aceleragiroschart;
 
-  
+  val_ent: any;
+  entrenamiento: Array<{ide:string, nombre_ent:string}>=[{ide:'', nombre_ent:''}];
   id_entrenamiento:any;
   correo:any;
 
@@ -52,6 +53,7 @@ export class DatosentrenamientoPage {
 
   //antes de entrar a la vista se oculta el tabbar
   ionViewWillEnter() {
+    this.nombre_entrenamiento();
     this.consultar_acc();
     
     this.tabBarElement.style.display = 'none';
@@ -146,7 +148,7 @@ export class DatosentrenamientoPage {
     this.datos_giroscopioY=[];
     this.datos_giroscopioZ=[];
     this.datos_giroscopio=[];
-    
+
     this.webservices.consulta_giroscopio_datos(this.id_entrenamiento).then(
       (datos) =>{
         let largo=Object.keys(datos).length;
@@ -481,6 +483,25 @@ export class DatosentrenamientoPage {
     this.giroschart();
     this.aceleraxyzchart();
     this.acelerachart();
+  }
+
+  nombre_entrenamiento(){
+    for(var i=0;i<this.entrenamiento.length;i++){
+      this.entrenamiento.pop();
+    }
+    this.webservices.nombre_entrenamiento(this.val_ent).then(
+      (datos)=>{
+        //alert(JSON.stringify(datos));
+        let largo=Object.keys(datos).length;
+        for(var i=0;i<largo;i++){ // se reciben la id, el correo del entrenador y la fecha de la solicitud
+          var ide= datos[i].ID;
+          var nombre_ent= datos[i].NOMBRE;
+          this.entrenamiento.push({"ide":ide,"nombre_ent":nombre_ent});
+        }
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
   }
 
 }

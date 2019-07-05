@@ -12,7 +12,7 @@
                     <ion-option *ngFor="let ide_ent of entrenador" value="{{ide_ent.ide}}" >{{ide_ent.email}}</ion-option>
                 </ion-select>   
             </ion-item>
-            <button ion-button item-end (click)="escoger_solicitud()">enviar1</button>
+            <button ion-button item-end (click)="escoger_solicitud()">Consultar</button>
         </ion-item>
     </div>
 
@@ -23,7 +23,7 @@
                     <ion-option *ngFor="let ide_entre of entrenamiento" value="{{ide_entre.ide}}">{{ide_entre.nombre_ent}} - {{ide_entre.ide}}</ion-option>
                 </ion-select>
             </ion-item>
-        <button item-end ion-button (click)="escoger_entrenamiento()">enviar2</button>
+        <button item-end ion-button (click)="escoger_entrenamiento()">Graficar</button>
         </ion-item>
     </div>
 
