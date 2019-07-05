@@ -4,11 +4,21 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
+//import { ListPage } from '../pages/list/list';
+//import { AdministradorPage } from '../pages/administrador/administrador';
+//import { DeportistatabsPage} from '../pages/deportistatabs/deportistatabs';
+//import { AdmintabsPage } from '../pages/admintabs/admintabs';
+//import { EntrenadortabsPage } from '../pages/entrenadortabs/entrenadortabs';
 
 import { DatabaseProvider } from '../providers/database/database';
 
 import { Gyroscope, GyroscopeOrientation, GyroscopeOptions } from '@ionic-native/gyroscope';
 import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
+import { CronometroPage } from '../pages/cronometro/cronometro';
+import { CronometroentPage } from '../pages/cronometroent/cronometroent';
+//import { InfoentrenamientoPage } from '../pages/infoentrenamiento/infoentrenamiento';
+
+
 
 @Component({
   templateUrl: 'app.html'
@@ -16,13 +26,29 @@ import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   
+
   rootPage: any = HomePage;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, 
-    public db: DatabaseProvider,private gyroscope: Gyroscope,private deviceMotion: DeviceMotion) {
+  pages: Array<{title: string, component: any}>;
+
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public db: DatabaseProvider,private gyroscope: Gyroscope,private deviceMotion: DeviceMotion) {
     this.initializeApp();
     this.getCurrent();
     this.getCurrentAcceleration();
+
+    this.pages = [
+      { title: 'Salir', component: HomePage },
+      { title: 'Cronometro', component: CronometroPage },
+      { title: 'Cronometroent', component: CronometroentPage },
+      //{ title: 'infoentrenamiento', component: InfoentrenamientoPage },
+      //{ title: 'Administrador', component: AdministradorPage },
+      //{ title: 'Deportistatabs', component: DeportistatabsPage},
+      //{ title: 'Entrenadortabs', component: EntrenadortabsPage},
+      //{ title: 'Admintabs', component: AdmintabsPage},
+      //{ title: 'Deportista', component: DeportistaPage },
+      //{ title: 'List', component: ListPage }
+    ];
+
   }
 
   initializeApp() {
@@ -31,6 +57,16 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  metodosalir(){
+    this.nav.popToRoot();
+  }
+
+  openPage(page) {
+    // Reset the content nav to have just this page
+    // we wouldn't want the back button to show in this scenario
+    this.nav.setRoot(page.component);
   }
 
   //gyroscopio-------------------------------------------------------------------------------
