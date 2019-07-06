@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController, Platform, Nav } from 'ionic-angular';
+import { WebservicesProvider } from '../../providers/webservices/webservices';
 
 @IonicPage()
 @Component({
@@ -15,6 +16,8 @@ export class DeportistatabsPage {
   entrenamientoRoot = 'EntrenamientoPage'
   estadisticasdepRoot = 'EstadisticasdepPage'
 
+  correo:any;
+  estado:any;
   parametros = {
     correo: ''
   }
@@ -22,9 +25,9 @@ export class DeportistatabsPage {
   pages: Array<{title: string, component: any}>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public menuCtrl: MenuController, 
-    public platform: Platform) {
+    public platform: Platform, private webservices: WebservicesProvider) {
     this.parametros.correo = this.navParams.get('correo');
-
+    this.correo = this.navParams.get('correo');
     this.pages = [
       //{ title: 'Salir', component: HomePage },
       //{ title: 'Cronometro', component: CronometroPage },
@@ -37,7 +40,33 @@ export class DeportistatabsPage {
   }
 
   metodosalir(){
+    
     this.nav.popToRoot();
+  }
+
+  actualizar_ingreso_cuenta(){
+    this.webservices.actualizar_ingreso_cuenta(this.correo, this.estado).then(
+      (datos) =>{
+        this.respuesta= datos[0].RESPUESTA;
+        if(this.respuesta=='OK'){
+          this.loading.dismiss();
+          this.navCtrl.pop();
+          alert('Los cambios se han realizado satisfactoriamente')
+        }else{
+          if(this.respuesta=='ERROR'){
+            this.loading.dismiss();
+            alert('Ha ocurrido un error en la actualizacion')
+          }else{
+            this.loading.dismiss();
+            alert('Ha ocurrido un error en la actualizacion')
+          }  
+        }
+      //alert('oka'+JSON.stringify(resultado));
+      },
+      (error) =>{
+        this.loading.dismiss();
+        alert('error'+JSON.stringify(error));
+      })
   }
 
   openPage(page) {
