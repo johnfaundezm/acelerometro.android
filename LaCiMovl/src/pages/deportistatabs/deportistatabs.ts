@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController, Platform, Nav } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, Nav } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 
 @IonicPage()
@@ -25,7 +25,7 @@ export class DeportistatabsPage {
   pages: Array<{title: string, component: any}>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public menuCtrl: MenuController, 
-    public platform: Platform, private webservices: WebservicesProvider) {
+    private webservices: WebservicesProvider) {
     this.parametros.correo = this.navParams.get('correo');
     this.correo = this.navParams.get('correo');
     this.pages = [
