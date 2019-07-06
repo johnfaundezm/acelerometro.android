@@ -62,8 +62,7 @@ export class DeportistatabsPage {
 
   openPage(page) {
     this.actualizar_ingreso_cuenta();
-    this.navCtrl.setRoot(HomePage);
-    //this.nav.setRoot(page.component);
+    this.navCtrl.setRoot(page.component);
   }
 
 }

@@ -31,7 +31,7 @@ export class EntrenadortabsPage {
     this.correo = this.navParams.get('correo');
 
     this.pages = [
-      { title: 'Salir', component: HomePage },
+      //{ title: 'Salir', component: HomePage },
       //{ title: 'Cronometro', component: CronometroPage },
       //{ title: 'Cronometroent', component: CronometroentPage }
     ];
@@ -69,8 +69,7 @@ export class EntrenadortabsPage {
 
   openPage(page) {
     this.actualizar_ingreso_cuenta();
-    this.navCtrl.setRoot(HomePage);
-    //this.nav.setRoot(page.component);
+    this.navCtrl.setRoot(page.component);
   }
 
 }
