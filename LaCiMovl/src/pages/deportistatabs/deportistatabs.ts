@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController, Nav } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -17,7 +18,7 @@ export class DeportistatabsPage {
   estadisticasdepRoot = 'EstadisticasdepPage'
 
   correo:any;
-  estado:any;
+
   parametros = {
     correo: ''
   }
@@ -39,38 +40,32 @@ export class DeportistatabsPage {
     this.menuCtrl.enable(true, 'Menu');
   }
 
-  metodosalir(){
-    
-    this.nav.popToRoot();
-  }
-
   actualizar_ingreso_cuenta(){
-    this.webservices.actualizar_ingreso_cuenta(this.correo, this.estado).then(
+    var estado = 2;
+    this.webservices.actualizar_ingreso_cuenta(this.correo, estado).then(
       (datos) =>{
-        this.respuesta= datos[0].RESPUESTA;
-        if(this.respuesta=='OK'){
-          this.loading.dismiss();
-          this.navCtrl.pop();
-          alert('Los cambios se han realizado satisfactoriamente')
+        var respuesta= datos[0].RESPUESTA;
+        if(respuesta=='ERROR'){
+          alert('Ha ocurrido un error al enviar el estado')
         }else{
-          if(this.respuesta=='ERROR'){
-            this.loading.dismiss();
-            alert('Ha ocurrido un error en la actualizacion')
-          }else{
-            this.loading.dismiss();
-            alert('Ha ocurrido un error en la actualizacion')
-          }  
+          alert('Ha ocurrido un error a enviar el estado')
         }
       //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
-        this.loading.dismiss();
         alert('error'+JSON.stringify(error));
       })
   }
 
+  metodosalir(){
+    this.actualizar_ingreso_cuenta();
+    this.nav.popToRoot();
+  }
+
   openPage(page) {
-    this.nav.setRoot(page.component);
+    this.actualizar_ingreso_cuenta();
+    this.nav.setRoot(HomePage);
+    //this.nav.setRoot(page.component);
   }
 
 }
