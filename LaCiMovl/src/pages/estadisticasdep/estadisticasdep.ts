@@ -556,11 +556,11 @@ export class EstadisticasdepPage {
     }
     even = this.fft2(even); //aplica la funcion fft2 para los valores del arreglo even
     odd = this.fft2(odd); //aplica la funcion fft2 para los valores del arreglo odd
-    var a = -2*math.pi; //asgina el valor -2pi a la variable "a";
+    var a = -2*Math.PI; //asgina el valor -2pi a la variable "a";
     
     for (var k=0; k < M;k++){
 
-      var t=math.exp(math.complex(0,a*k/N));
+      var t=Math.exp(math.complex(0,a*k/N));
 
       t= math.multiply(t,odd[k]);
       X[k] = odd[k] = math.add(even[k],t);
