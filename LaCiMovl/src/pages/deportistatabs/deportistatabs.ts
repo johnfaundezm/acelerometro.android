@@ -47,8 +47,6 @@ export class DeportistatabsPage {
         var respuesta= datos[0].RESPUESTA;
         if(respuesta=='ERROR'){
           alert('Ha ocurrido un error al enviar el estado')
-        }else{
-          alert('Ha ocurrido un error a enviar el estado')
         }
       //alert('oka'+JSON.stringify(resultado));
       },
