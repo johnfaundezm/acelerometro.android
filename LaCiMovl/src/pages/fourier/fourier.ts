@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { complex,multiply, exp, pi, sin, add, subtract } from 'mathjs';
+//import { complex,multiply, exp, pi, sin, add, subtract } from 'mathjs';
 //const Complex = require('complex-js');
+declare const math: any;
+
 @IonicPage()
 @Component({
   selector: 'page-fourier',
@@ -11,7 +13,6 @@ export class FourierPage {
   
   public datos_acelerometro=[1,3,5,4,2,3];
   public giroscopioDatos=[];
-
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -43,16 +44,16 @@ export class FourierPage {
       }
       even = this.fft2(even); //aplica la funcion fft2 para los valores del arreglo even
       odd = this.fft2(odd); //aplica la funcion fft2 para los valores del arreglo odd
-      var a = -2*Math.PI; //asgina el valor -2pi a la variable "a";
-     /* 
+      var a = -2*math.pi; //asgina el valor -2pi a la variable "a";
+      
       for (var k=0; k < M;k++){
 
-        var t=exp(complex(0,a*k/N));
+        var t=math.exp(math.complex(0,a*k/N));
 
-        t= multiply(t,odd[k]);
-        X[k] = odd[k] = add(even[k],t);
-        X[k+M] = even[k] = subtract(even[k],t);
-      }*/
+        t= math.multiply(t,odd[k]);
+        X[k] = odd[k] = math.add(even[k],t);
+        X[k+M] = even[k] = math.subtract(even[k],t);
+      }
       return X;  
     
     }
@@ -64,17 +65,17 @@ export class FourierPage {
       }
       return Y;
     }
-    make_complex(X){/*
+    make_complex(X){
       for (var i =0; i< X.length;i++){
-        X[i] = complex(X[i],0);
-      }*/
+        X[i] = math.complex(X[i],0);
+      }
     }
     calc_function(T){
       var X =[];
-      X.length = T.length;/*
+      X.length = T.length;
       for (var t =0;t<T.length; t++){
-        X[t] = sin(2*Math.PI*T[t]);
-      }*/
+        X[t] = math.sin(2*math.pi*T[t]);
+      }
       return X;
     }
     
