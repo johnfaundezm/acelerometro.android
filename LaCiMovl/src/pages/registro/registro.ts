@@ -82,7 +82,7 @@ export class RegistroPage {
   
 
   
-  // SE envian los datos de registro al metodo registrar definido en webservices
+  // Se envian los datos de registro al metodo registrar definido en webservices
   registrar(){
     this.loadregistrar()
     this.getFormattedDate();
@@ -112,7 +112,8 @@ export class RegistroPage {
   cancelar(){
     this.navCtrl.pop();
   }
-  //Aaigna y recibe la fecha con formato
+
+  //Asigna y recibe la fecha con formato
   getFormattedDate(){
     var dateObj =new Date()
 

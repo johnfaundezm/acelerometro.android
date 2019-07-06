@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
-import { PerfilentPage } from '../../pages/perfilent/perfilent';
 
 @Component({
   selector: 'poent',
