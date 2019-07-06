@@ -12,6 +12,7 @@ export class EntrenadortabsPage {
 
   @ViewChild(Nav) nav: Nav;
 
+  rootPage: any = HomePage;
   pages: Array<{title: string, component: any}>;
 
   perfilentRoot = 'PerfilentPage'
@@ -30,7 +31,7 @@ export class EntrenadortabsPage {
     this.correo = this.navParams.get('correo');
 
     this.pages = [
-      //{ title: 'Salir', component: HomePage },
+      { title: 'Salir', component: HomePage },
       //{ title: 'Cronometro', component: CronometroPage },
       //{ title: 'Cronometroent', component: CronometroentPage }
     ];
@@ -52,7 +53,7 @@ export class EntrenadortabsPage {
         if(respuesta=='ERROR'){
           alert('Ha ocurrido un error al enviar el estado')
         }else{
-          alert('Ha ocurrido un error a enviar el estado')
+          //alert('Ha ocurrido un error a enviar el estado')
         }
       //alert('oka'+JSON.stringify(resultado));
       },
@@ -63,12 +64,12 @@ export class EntrenadortabsPage {
 
   metodosalir(){
     this.actualizar_ingreso_cuenta();
-    this.nav.popToRoot();
+    this.navCtrl.setRoot(HomePage);
   }
 
   openPage(page) {
     this.actualizar_ingreso_cuenta();
-    this.nav.setRoot(HomePage);
+    this.navCtrl.setRoot(HomePage);
     //this.nav.setRoot(page.component);
   }
 

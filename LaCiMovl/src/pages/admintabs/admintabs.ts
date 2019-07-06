@@ -55,12 +55,12 @@ export class AdmintabsPage {
 
   metodosalir(){
     this.actualizar_ingreso_cuenta();
-    this.nav.popToRoot();
+    this.nav.setRoot(HomePage);
   }
 
   openPage(page) {
     this.actualizar_ingreso_cuenta();
-    this.nav.setRoot(HomePage);
+    this.navCtrl.setRoot(HomePage);
     //this.nav.setRoot(page.component);
   }
   
