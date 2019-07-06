@@ -79,7 +79,7 @@ export class HomePage {
           alert('El correo no existe o su contraseña es incorrecta')
         }
         else{
-          if(sesion!=0){
+          if(sesion!=0){// si sesion es distinto de 0 entonces la cuenta no está en uso
             if(this.estado==1){//si estado es 1, entonces la cuenta esta activada
         
               if(this.rol==1){ //si rol es 1 entonces es un administrador
