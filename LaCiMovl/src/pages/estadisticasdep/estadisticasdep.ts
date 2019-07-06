@@ -2,9 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
-
-declare const math: any;
-
+//import * as math from 'mathjs'; // don't named as Math, this will conflict with Math in JS
+//declare const math: any;
+import {complex,exp,pi, multiply, sin, add, subtract} from 'mathjs';
+import { Complex } from 'complex-js';
 
 @IonicPage()
 @Component({
@@ -17,7 +18,7 @@ export class EstadisticasdepPage {
   @ViewChild('aceleracionxyzchart') aceleracionxyzchart;
   @ViewChild('giroscopiochart') giroscopiochart;
   @ViewChild('aceleragiroschart') aceleragiroschart;
-
+  
   correo:any;
   entrenador: Array<{ide:string, email:string}>=[{ide:'', email:''}]; //arreglo que almacena los enlaces entre deportista y entrenador
   entrenamiento: Array<{ide:string, nombre_ent:string}>=[{ide:'', nombre_ent:''}];
@@ -41,7 +42,7 @@ export class EstadisticasdepPage {
   datos_giroscopioY = [];
   datos_giroscopioZ = [];
   datos_giroscopio = [];
-
+  arreglo=[];
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider) {
     this.correo = navParams.get('correo');
     this.val_entre = navParams.get('id_entrenamiento');
@@ -536,7 +537,6 @@ export class EstadisticasdepPage {
   }
 
   fft2(X){
-
     var N = X.length; //define el largo del arreglo
     if (N <= 1){  //si el arreglo es menor que 2 retorna el arreglo
       return X;
@@ -556,18 +556,20 @@ export class EstadisticasdepPage {
     }
     even = this.fft2(even); //aplica la funcion fft2 para los valores del arreglo even
     odd = this.fft2(odd); //aplica la funcion fft2 para los valores del arreglo odd
-    var a = -2*Math.PI; //asgina el valor -2pi a la variable "a";
-    
+    let a = -2*Math.PI; //asgina el valor -2pi a la variable "a";
+    alert(a);
     for (var k=0; k < M;k++){
-
-      var t=Math.exp(math.complex(0,a*k/N));
-
-      t= math.multiply(t,odd[k]);
-      X[k] = odd[k] = math.add(even[k],t);
-      X[k+M] = even[k] = math.subtract(even[k],t);
+      let b= k/N;
+      let t=a*b;
+      var m=t;
+      //var m=Complex(0,t);
+      m=Math.exp(m);
+      m=m*odd[k];
+      X[k]=odd[k]=even[k]+m;
+      X[k+M]=even[k]=even[k]-m;
     }
+    alert(X);
     return X;  
-  
   }
   linspace(A,B,S){
     var Y = new Array(0);
@@ -579,7 +581,9 @@ export class EstadisticasdepPage {
   }
   make_complex(X){
     for (var i =0; i< X.length;i++){
-      X[i] = math.complex(X[i],0);
+      /*var m =Complex(X[i],0);
+      X[i] = m;*/
+      this.arreglo[i] =X[i];
     }
   }
   calc_function(T){
@@ -587,26 +591,28 @@ export class EstadisticasdepPage {
     for (var i = 0;i< this.datos_acelerometro.length; i++){
       X[i] = this.datos_acelerometro[i];
     }
-    alert(X);
-    alert(this.datos_acelerometro);
+   
     X.length = T.length;
     for (var t =0;t<T.length; t++){
-      X[t] = math.sin(2*math.pi*T[t]);
+      X[t] = Math.sin(2*Math.PI*T[t]);
     }
     return X;
   }
   
   fourier(){
-    var T=this.linspace(0,1,8);
+    var T=this.linspace(0,1,this.datos_acelerometro.length);
     var X= this.calc_function(T);
     this.make_complex(X);
+    X=this.arreglo;
     var Y=this.fft2(X);
     var Yr=[];
     Yr.length = Y.length;
 
     for (var i = 0;i< Y.length; i++){
-      Yr[i] = Y[i].re;
+      Yr[i] = Y[i];
+      //Yr[i] = Y[i].re;
     }
+    alert(Yr);
     console.log(Yr);      
   }
 }

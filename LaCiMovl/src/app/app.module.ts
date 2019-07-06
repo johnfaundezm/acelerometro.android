@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SQLite } from '@ionic-native/sqlite';
-
+import {complex,exp,pi} from 'mathjs';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -39,7 +39,6 @@ import { AdmininsertPage } from '../pages/admininsert/admininsert';
 import { AdmininsertentPage } from '../pages/admininsertent/admininsertent';
 
 import { ChartsModule } from 'ng2-charts-x';
-
 import { CronometroPage } from '../pages/cronometro/cronometro';
 import { InfoentrenamientoPage } from '../pages/infoentrenamiento/infoentrenamiento';
 import { PodepComponent } from '../components/podep/podep';
@@ -76,7 +75,7 @@ import { DatosentrenamientoPage } from '../pages/datosentrenamiento/datosentrena
     IonicStorageModule.forRoot(),
     HttpModule,
     HttpClientModule,
-    ChartsModule
+    ChartsModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -110,7 +109,7 @@ import { DatosentrenamientoPage } from '../pages/datosentrenamiento/datosentrena
     HTTP,
     Gyroscope,
     DeviceMotion,
-    NativeAudio
+    NativeAudio,
   ]
 })
 export class AppModule {}

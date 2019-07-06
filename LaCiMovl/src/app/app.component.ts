@@ -4,7 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import * as math from 'mathjs'; // don't named as Math, this will conflict with Math in JS
 import { HomePage } from '../pages/home/home';
-
 import { DatabaseProvider } from '../providers/database/database';
 
 import { Gyroscope, GyroscopeOrientation, GyroscopeOptions } from '@ionic-native/gyroscope';
