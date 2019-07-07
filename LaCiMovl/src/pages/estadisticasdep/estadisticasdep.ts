@@ -4,7 +4,7 @@ import { Chart } from 'chart.js';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 //import * as math from 'mathjs'; // don't named as Math, this will conflict with Math in JS
 //declare const math: any;
-import {complex,exp,pi, multiply, sin, add, subtract} from 'mathjs';
+//import {complex,exp,pi, multiply, sin, add, subtract} from 'mathjs';
 import { Complex } from 'complex-js';
 
 @IonicPage()
@@ -562,7 +562,7 @@ export class EstadisticasdepPage {
       let b= k/N;
       let t=a*b;
       var m=t;
-      //var m=Complex(0,t);
+      var m=Complex(0,t);
       m=Math.exp(m);
       m=m*odd[k];
       X[k]=odd[k]=even[k]+m;
@@ -581,8 +581,8 @@ export class EstadisticasdepPage {
   }
   make_complex(X){
     for (var i =0; i< X.length;i++){
-      /*var m =Complex(X[i],0);
-      X[i] = m;*/
+      var m =Complex(X[i],0);
+      X[i] = m;
       this.arreglo[i] =X[i];
     }
   }
