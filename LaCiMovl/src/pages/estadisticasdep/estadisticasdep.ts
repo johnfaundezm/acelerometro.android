@@ -609,8 +609,7 @@ export class EstadisticasdepPage {
     Yr.length = Y.length;
 
     for (var i = 0;i< Y.length; i++){
-      Yr[i] = Y[i];
-      //Yr[i] = Y[i].re;
+      Yr[i] = Y[i].re;
     }
     alert(Yr);
     console.log(Yr);      
