@@ -204,7 +204,7 @@ export class DatosentrenamientoPage {
       data: {
         datasets: [{
           label: 'Acel x',
-          data: this.datos_acelerometroX,
+          data: this.datos_acelerometroX, // se reciben los datos del arreglo en data
 
           showLine: true,
           borderWidth: 2,
@@ -218,7 +218,7 @@ export class DatosentrenamientoPage {
         },
         {
           label: 'Acel Y',
-          data: this.datos_acelerometroY,
+          data: this.datos_acelerometroY, // se reciben los datos del arreglo en data
           showLine: true,
           borderWidth: 2,
           borderColor: 'rgba(24, 24, 185, 1)',
@@ -231,7 +231,7 @@ export class DatosentrenamientoPage {
         },
         {
           label: 'Acel Z',
-          data: this.datos_acelerometroZ,
+          data: this.datos_acelerometroZ, // se reciben los datos del arreglo en data
           showLine: true,
           borderWidth: 2,
           borderColor: 'rgba(185, 24, 24, 1)',
@@ -284,7 +284,7 @@ export class DatosentrenamientoPage {
       data: {
         datasets: [{
           label: 'Fuerza',
-          data: this.datos_acelerometroF,
+          data: this.datos_acelerometroF, // se reciben los datos del arreglo en data
           showLine: true,
           borderWidth: 2,
           borderColor: 'rgba(4, 106, 118, 1)',
@@ -297,7 +297,7 @@ export class DatosentrenamientoPage {
         },
         {
           label: 'Potencia',
-          data: this.datos_acelerometroP,
+          data: this.datos_acelerometroP, // se reciben los datos del arreglo en data
           showLine: true,
           borderWidth: 2,
           borderColor: 'rgba(109, 2, 86, 1)',
@@ -349,7 +349,7 @@ export class DatosentrenamientoPage {
       data: {
         datasets: [{
           label: 'Eje x',
-          data: this.datos_giroscopioX,
+          data: this.datos_giroscopioX, // se reciben los datos del arreglo en data
 
           showLine: true,
           borderWidth: 2,
@@ -363,7 +363,7 @@ export class DatosentrenamientoPage {
         },
         {
           label: 'Eje Y',
-          data: this.datos_giroscopioY,
+          data: this.datos_giroscopioY, // se reciben los datos del arreglo en data
           showLine: true,
           borderWidth: 2,
           borderColor: 'rgba(28, 78, 241, 1)',
@@ -376,7 +376,7 @@ export class DatosentrenamientoPage {
         },
         {
           label: 'Eje Z',
-          data: this.datos_giroscopioZ,
+          data: this.datos_giroscopioZ, // se reciben los datos del arreglo en data
           showLine: true,
           borderWidth: 2,
           borderColor: 'rgba(151, 36, 148, 1)',
@@ -429,7 +429,7 @@ export class DatosentrenamientoPage {
       data: {
         datasets: [{
           label: 'Aceleración',
-          data: this.datos_acelerometro,
+          data: this.datos_acelerometro, // se reciben los datos del arreglo en data
 
           showLine: true,
           borderWidth: 2,
@@ -443,7 +443,7 @@ export class DatosentrenamientoPage {
         },
         {
           label: 'Giroscopio',
-          data: this.datos_giroscopio,
+          data: this.datos_giroscopio, // se reciben los datos del arreglo en data
           showLine: true,
           borderWidth: 2,
           borderColor: 'rgba(28, 78, 241, 1)',
@@ -490,38 +490,41 @@ export class DatosentrenamientoPage {
     })
   }
 
+  //método que vuelve hacia la vista de los enlaces con los deportistas
   volver(){
     this.navCtrl.setRoot(DeportistasentPage,{correo:this.correo});
   }
 
+  //método que destruye el gráfico y realiza uno nuevo
   reload_chart(){
-    this.aceleragiroschartvar.destroy();
-    this.aceleracionchartvar.destroy();
-    this.aceleracionxyzchartvar.destroy();
-    this.giroscopiochartvar.destroy();
-    this.acelgiroschart();
-    this.giroschart();
-    this.aceleraxyzchart();
-    this.acelerachart();
+    this.aceleragiroschartvar.destroy();// destruye el gráfico
+    this.aceleracionchartvar.destroy();// destruye el gráfico
+    this.aceleracionxyzchartvar.destroy();// destruye el gráfico
+    this.giroscopiochartvar.destroy();// destruye el gráfico
+    this.acelgiroschart(); //crea el gráfico nuevamente con los datos nuevos
+    this.giroschart(); //crea el gráfico nuevamente con los datos nuevos
+    this.aceleraxyzchart(); //crea el gráfico nuevamente con los datos nuevos
+    this.acelerachart(); //crea el gráfico nuevamente con los datos nuevos
   }
 
   nombre_entrenamiento(){
     this.entrenamiento = [];
-    this.webservices.nombre_entrenamiento(this.id_solicitud).then(
-      (datos)=>{
+    this.webservices.nombre_entrenamiento(this.id_solicitud).then( // se envian todos los parametros que se ven en el paréntesis
+      (datos)=>{ // se reciben los datos de respuesta del servidor
         //alert(JSON.stringify(datos));
-        let largo=Object.keys(datos).length;
+        let largo=Object.keys(datos).length; // se calcula el largo de el arreglo que llegará del servidor con los datos
         for(var i=0;i<largo;i++){ // se reciben la id, el correo del entrenador y la fecha de la solicitud
-          var ide= datos[i].ID;
-          var nombre_ent= datos[i].NOMBRE;
-          this.entrenamiento.push({"ide":ide,"nombre_ent":nombre_ent});
+          var ide= datos[i].ID; // se almacenan los datos en una variable
+          var nombre_ent= datos[i].NOMBRE; // se almacenan los datos en una variable
+          this.entrenamiento.push({"ide":ide,"nombre_ent":nombre_ent}); // se envian al arreglo
         }
       },
       (err)=>{
-        alert(JSON.stringify(err))
+        alert(JSON.stringify(err)) // si ocurre un error de comunicacion con el servidor, se envia este mensaje
       })
   }
 
+  //método que llama a la funcion para traer los datos del acelerometro y giroscopio para graficarlos
   escoger_entrenamiento(){
     this.consultar_acc();
   }
