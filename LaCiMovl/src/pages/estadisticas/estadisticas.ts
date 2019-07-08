@@ -10,6 +10,7 @@ import { WebservicesProvider } from '../../providers/webservices/webservices';
 })
 export class EstadisticasPage {
 
+  //DECLARACION DE VARIABLES
   @ViewChild('usuarioschart') usuarioschart;
   @ViewChild('usuariosporsemanachart') usuariosporsemanachart;
 
@@ -34,50 +35,51 @@ export class EstadisticasPage {
   sem4;
   cant_sem4:any;
 
+  //Constructor, donde se declaran todos los plugins
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider, public loadingCtrl: LoadingController) {
   }
 
 
-  ionViewCanEnter() {
-    this.cantidad_usuarios();
-    this.cantidad_users_por_semana();
+  ionViewWillEnter() { // evento que se realiza antes de cargar la vista
+    this.cantidad_usuarios(); // llama al método que trae la cantidad de usuarios deportistas y entrenadores
+    this.cantidad_users_por_semana(); // método que llama a la función que calcula los usuarios por semana
   }
 
-  doRefresh(refresher) {
+  doRefresh(refresher) {// método que realiza la actualizacion de los datos al tirar hacia abajo
     this.cantidad_usuarios();
     this.cantidad_users_por_semana();
     refresher.complete();
   } 
 
-  loadconsulta_login() {
-    this.loading = this.loadingCtrl.create({
-      spinner: 'ios',
-      content: 'Cargando...',
+  loadconsulta_login() { //loading que se muesta en pantalla al llamar esta función
+    this.loading = this.loadingCtrl.create({ // se crea el loading
+      spinner: 'ios', //tipo de animación al estar cargando
+      content: 'Cargando...', //mensaje que muestra al estar cargando
     });
   
     this.loading.present();
   }
 
   cantidad_usuarios(){
-    this.loadconsulta_login();
+    this.loadconsulta_login(); // comienza el loading
     this.webservices.vista_deportista().then(
-      (datos) =>{
-        this.cant_dep=Object.keys(datos).length;
+      (datos) =>{// se reciben los datos de respuesta del servidor
+        this.cant_dep=Object.keys(datos).length;// se recibe la cantidad de usuarios deportistas
           this.webservices.vista_entrenador().then(
-          (datos) =>{
-            this.cant_ent=Object.keys(datos).length;
-            this.total_usuarios=this.cant_dep+this.cant_ent;
-            this.loading.dismiss();
-            this.cantidadusuarios();
+          (datos) =>{// se reciben los datos de respuesta del servidor
+            this.cant_ent=Object.keys(datos).length;// se recibe la cantidad de usuarios entrenadores
+            this.total_usuarios=this.cant_dep+this.cant_ent; // se suman los deportistas y los entrenadores, para calcular un total
+            this.loading.dismiss(); // Se termina el loading
+            this.cantidadusuarios(); // se llama al método que graficará los datos de la cantidad de usuarios
           },
           (err)=>{
-            this.loading.dismiss();
-            alert(JSON.stringify(err))
+            this.loading.dismiss(); // Se termina el loading
+            alert(JSON.stringify(err)) // si ocurre un error de comunicacion con el servidor, se envia este mensaje
           })
       },
       (err)=>{
-        this.loading.dismiss();
-        alert(JSON.stringify(err))
+        this.loading.dismiss(); // Se termina el loading
+        alert(JSON.stringify(err)) // si ocurre un error de comunicacion con el servidor, se envia este mensaje
       })
   }
 
@@ -86,7 +88,7 @@ export class EstadisticasPage {
       type: 'doughnut',
       data: {
         datasets: [{
-          data: [this.cant_dep, this.cant_ent],
+          data: [this.cant_dep, this.cant_ent],  // se reciben los datos en data
           backgroundColor: [
             'rgba(11, 169, 3, 1)',
             'rgba(255, 148, 52, 1)'
@@ -113,90 +115,90 @@ export class EstadisticasPage {
   }
 
   cantidad_users_por_semana(){
-    var dateObj =new Date()
+    var dateObj =new Date()// se almacena la fecha actual en una variable (queda almacenado en formato objeto)
 
     // 1 semana atrás
-    dateObj.setDate(dateObj.getDate() - 7);
-    var year = dateObj.getFullYear().toString()
-    var month = dateObj.getMonth().toString()
+    dateObj.setDate(dateObj.getDate() - 7); // se le resta 7 días  la fecha actual
+    var year = dateObj.getFullYear().toString() // se saca solo el año
+    var month = dateObj.getMonth().toString() // se saca solo el mes
     var mes:any = month;
-    mes ++;
-    var date = dateObj.getDate().toString()
-    this.sem1 = year+'-'+ mes +'-'+ date;
+    mes ++; // se suma 1 al mes por que enero lo toma como el mes "0" en vez de ser el "1"
+    var date = dateObj.getDate().toString() // se saca solo el día
+    this.sem1 = year+'-'+ mes +'-'+ date; // se concatena para dar el formato de fecha deseada
 
     // 2 semanas atrás
-    dateObj.setDate(dateObj.getDate() - 7);
-    year = dateObj.getFullYear().toString()
-    month = dateObj.getMonth().toString()
+    dateObj.setDate(dateObj.getDate() - 7); // se le resta 7 días más a la fecha actual
+    year = dateObj.getFullYear().toString() // se saca solo el año
+    month = dateObj.getMonth().toString() // se saca solo el mes
     mes = month;
-    mes ++;
-    date = dateObj.getDate().toString()
-    this.sem2 = year+'-'+ mes +'-'+ date;
+    mes ++; // se suma 1 al mes por que enero lo toma como el mes "0" en vez de ser el "1"
+    date = dateObj.getDate().toString() // se saca solo el día
+    this.sem2 = year+'-'+ mes +'-'+ date; // se concatena para dar el formato de fecha deseada
 
     // 3 semanas atrás
-    dateObj.setDate(dateObj.getDate() - 7);
-    year = dateObj.getFullYear().toString()
-    month = dateObj.getMonth().toString()
+    dateObj.setDate(dateObj.getDate() - 7); // se le resta 7 días más a la fecha actual
+    year = dateObj.getFullYear().toString() // se saca solo el año
+    month = dateObj.getMonth().toString() // se saca solo el mes
     mes = month;
-    mes ++;
-    date = dateObj.getDate().toString()
-    this.sem3 = year+'-'+ mes +'-'+ date;
+    mes ++; // se suma 1 al mes por que enero lo toma como el mes "0" en vez de ser el "1"
+    date = dateObj.getDate().toString() // se saca solo el día
+    this.sem3 = year+'-'+ mes +'-'+ date; // se concatena para dar el formato de fecha deseada
 
     // 4 semanas atrás
-    dateObj.setDate(dateObj.getDate() - 7);
-    year = dateObj.getFullYear().toString()
-    month = dateObj.getMonth().toString()
+    dateObj.setDate(dateObj.getDate() - 7); // se le resta 7 días más a la fecha actual
+    year = dateObj.getFullYear().toString() // se saca solo el año
+    month = dateObj.getMonth().toString() // se saca solo el mes
     mes = month;
-    mes ++;
-    date = dateObj.getDate().toString()
-    this.sem4 = year+'-'+ mes +'-'+ date;
+    mes ++; // se suma 1 al mes por que enero lo toma como el mes "0" en vez de ser el "1"
+    date = dateObj.getDate().toString() // se saca solo el día
+    this.sem4 = year+'-'+ mes +'-'+ date; // se concatena para dar el formato de fecha deseada
 
     //consulta de ususarios por semanas
-    this.webservices.semanas(this.sem1).then(
-      (datos) =>{
-        this.cant_sem1=Object.keys(datos).length;
-          this.webservices.semanas(this.sem2).then(
-          (datos) =>{
-            this.cant_sem2=Object.keys(datos).length;
-            this.webservices.semanas(this.sem3).then(
-              (datos) =>{
-                this.cant_sem3=Object.keys(datos).length;
-                this.webservices.semanas(this.sem4).then(
-                  (datos) =>{
-                    this.cant_sem4=Object.keys(datos).length;
-                    this.loading.dismiss();
-                    this.porsemana();
+    this.webservices.semanas(this.sem1).then( // se envian todos los parametros que se ven en el paréntesis
+      (datos) =>{// se reciben los datos de respuesta del servidor
+        this.cant_sem1=Object.keys(datos).length;// se recibe la cantidad de usuarios
+          this.webservices.semanas(this.sem2).then( // se envian todos los parametros que se ven en el paréntesis
+          (datos) =>{// se reciben los datos de respuesta del servidor
+            this.cant_sem2=Object.keys(datos).length;// se recibe la cantidad de usuarios deportistas
+            this.webservices.semanas(this.sem3).then( // se envian todos los parametros que se ven en el paréntesis
+              (datos) =>{// se reciben los datos de respuesta del servidor
+                this.cant_sem3=Object.keys(datos).length;// se recibe la cantidad de usuarios deportistas
+                this.webservices.semanas(this.sem4).then( // se envian todos los parametros que se ven en el paréntesis
+                  (datos) =>{// se reciben los datos de respuesta del servidor
+                    this.cant_sem4=Object.keys(datos).length;// se recibe la cantidad de usuarios deportistas
+                    this.loading.dismiss(); // Se termina el loading
+                    this.porsemana();// se llama al método que graficará los datos de usuarios por semana
                   },
                   (err)=>{
                     this.loading.dismiss();
-                    alert(JSON.stringify(err))
+                    alert(JSON.stringify(err)) // si ocurre un error de comunicacion con el servidor, se envia este mensaje
                   })
               },
               (err)=>{
                 this.loading.dismiss();
-                alert(JSON.stringify(err))
+                alert(JSON.stringify(err)) // si ocurre un error de comunicacion con el servidor, se envia este mensaje
               })
           },
           (err)=>{
             this.loading.dismiss();
-            alert(JSON.stringify(err))
+            alert(JSON.stringify(err)) // si ocurre un error de comunicacion con el servidor, se envia este mensaje
           })
       },
       (err)=>{
         this.loading.dismiss();
-        alert(JSON.stringify(err))
+        alert(JSON.stringify(err)) // si ocurre un error de comunicacion con el servidor, se envia este mensaje
       })
     
   }
    
 
   porsemana(){
-    var array=[this.cant_sem4, this.cant_sem3, this.cant_sem2, this.cant_sem1]
+    var array=[this.cant_sem4, this.cant_sem3, this.cant_sem2, this.cant_sem1]// se almacenan los datos en un arreglo
     this.semanachartvar = new Chart(this.usuariosporsemanachart.nativeElement, {
       type: 'horizontalBar',
       data: {
         datasets: [{
-          data: array,
+          data: array, // se reciben los datos del arreglo en data 
           backgroundColor: [
             'rgba(14, 10, 132, 0.3)',
             'rgba(1, 176, 4, 0.3)',

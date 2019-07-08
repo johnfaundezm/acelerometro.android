@@ -84,7 +84,7 @@ export class RegistroPage {
   
   // Se envian los datos de registro al metodo registrar definido en webservices
   registrar(){
-    this.loadregistrar() // comienza el loading
+    this.loadregistrar(); // comienza el loading
     this.getFormattedDate(); // se da formato a la fecha
     this.webservices.registrar(this.formulario.value.correo,this.formulario.value.pass,'',' ',' ',' ',0,0,0,0,' ','activada',2,this.formattedDate,this.formulario.value.id_tipo_usuario).then( // se envian todos los parametros que se ven en el paréntesis
       (datos) =>{// se reciben los datos de respuesta del servidor
