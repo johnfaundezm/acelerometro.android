@@ -19,12 +19,20 @@ export class CronometroPage {
 
   tabBarElement: any; //variable que almacena el elemento tabbar
 
-  enlaces: Array<{ide:string, email:string, fecha:string}>=[{ide:'', email:'', fecha:''}]; //arreglo que almacena los enlaces entre deportista y entrenador
-  enlaces_pend: Array<{email:string}>=[{email:''}]; //arreglo que almacena las solicitudes pendientes
+  //almacenamiento datos acelerometro
+  id_entrenamiento = [];
+  arrayaccX = [];//declaración de arreglo que almacena datos acelerometro eje x
+  arrayaccY = [];//declaración de arreglo que almacena datos acelerometro eje y
+  arrayaccZ = [];//declaración de arreglo que almacena datos acelerometro eje z
+  arrayacel_x_y_z = [];//declaración de arreglo que almacena datos modulo de la aceleracion
+  arrayfuerza = [];//declaración de arreglo que almacena fuerza
+  arraypotencia = [];//declaración de arreglo que almacena potencia
 
-  aceleraciones: Array<{id_ent:string, accX:string, accY:string, accZ:string, acel_x_y_z:string, fuerza:string, potencia:string}>=[{id_ent:'', accX:'', accY:'', accZ:'', acel_x_y_z:'', fuerza:'', potencia:''}]; //arreglo que almacena los datos del acelerometro
-
-  aux: Array<{email_ent:string}>=[{email_ent:''}]; //arreglo que almacena todos los deportistas
+  //almacenamiento datos giroscopio
+  arrayxOrient = [];//declaración de arreglo que almacena datos giroscopio eje x
+  arrayyOrient = [];//declaración de arreglo que almacena datos giroscopio eje y
+  arrayzOrient = [];//declaración de arreglo que almacena datos giroscopio eje z
+  arraygiro_x_y_z = [];//declaración de arreglo que almacena datos modulo del giroscopio
   
   correo:any; // correo del deportista
   peso:any;// variable que almacena el peso del usuario deportista
@@ -458,7 +466,6 @@ export class CronometroPage {
                  this.min1 +=1;
                }
            }
-           this.navCtrl.setRoot(EstadisticasdepPage, {correo:this.correo, id_entrenamiento:this.id_ent, id_solicitud:this.id_solicitud})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
          }
        }
      },10); // se define el cronometro visual en intervalo de centesimas de segundo
@@ -466,24 +473,26 @@ export class CronometroPage {
  }
 
   enviar_datos_basedatos(){
-    for(var i=0;i<this.aceleraciones.length;i++){
-      var id_ent=this.aceleraciones[i].id_ent;
-      var accX=this.aceleraciones[i].accX;
-      var accX=this.aceleraciones[i].accY;
-      var accX=this.aceleraciones[i].accZ;
-      var accX=this.aceleraciones[i].acel_x_y_z;
-      var accX=this.aceleraciones[i].fuerza;
-      var accX=this.aceleraciones[i].potencia;
-    }
-    /*this.webservices.acelerometro_datos(this.aceleraciones).then( // se envian los datos al servidor web
+    this.webservices.acelerometro_datos(this.id_entrenamiento, this.arrayaccX, this.arrayaccY, this.arrayaccZ, this.arrayacel_x_y_z, this.arrayfuerza, this.arraypotencia).then( // se envian los datos al servidor web
       (datos) =>{
-        var respuesta= datos[0].RESPUESTA;
+        //var respuesta= datos[0].RESPUESTA;
         //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
         alert('error'+JSON.stringify(error)); // muestra una alerta si ocurrió algun error durante el proceso
       }
-    )*/
+    )
+
+    this.webservices.giroscopio_datos(this.id_entrenamiento,this.arrayxOrient, this.arrayyOrient, this.arrayzOrient, this.arraygiro_x_y_z).then(// se envian los datos al servidor web
+      (datos) =>{
+        //var respuesta= datos[0].RESPUESTA;
+        //alert('oka'+JSON.stringify(resultado));
+      },
+      (error) =>{
+        alert('error'+JSON.stringify(error));// muestra una alerta si ocurrió algun error durante el proceso
+      }
+    )
+
   }
   finalizar_recuperacion(){
    this.playAudiof();
@@ -499,6 +508,8 @@ export class CronometroPage {
    this.contador_recuperacion = null;
    // se redefine el timepo de entrenamiento como 0
    this.tiempo=0;
+   this.enviar_datos_basedatos();
+   this.navCtrl.setRoot(EstadisticasdepPage, {correo:this.correo, id_entrenamiento:this.id_ent, id_solicitud:this.id_solicitud})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
   }
 
   lapso(){
@@ -553,17 +564,14 @@ export class CronometroPage {
 
         this.punto_max();//para sacar los valores maximos de aceleracion, fuerza y potencia
 
-        //this.aceleraciones.push({"id_ent":this.id_ent,"accX":this.accX, "accY":this.accY,"accZ":this.accZ,"acel_x_y_z":this.acel_x_y_z, "fuerza":this.fuerza, "potencia":this.potencia});
-
-        this.webservices.acelerometro_datos(this.id_ent,this.accX, this.accY, this.accZ, this.acel_x_y_z,this.fuerza,this.potencia).then( // se envian los datos al servidor web
-          (datos) =>{
-            var respuesta= datos[0].RESPUESTA;
-            //alert('oka'+JSON.stringify(resultado));
-          },
-          (error) =>{
-            alert('error'+JSON.stringify(error)); // muestra una alerta si ocurrió algun error durante el proceso
-          }
-        )   
+        this.id_entrenamiento.push(this.id_ent)// se almacena la id del entrenamiento en curso
+        this.arrayaccX.push(this.accX);//se envia aceleracion del eje x a un arreglo
+        this.arrayaccY.push(this.accY);//se envia aceleracion del eje y a un arreglo
+        this.arrayaccZ.push(this.accZ);//se envia aceleracion del eje y a un arreglo
+        this.arrayacel_x_y_z.push(this.acel_x_y_z);//se envia el módulo de la aceleracion a un arreglo
+        this.arrayfuerza.push(this.fuerza);//se envia el cálculo de la fuerza a un arreglo
+        this.arraypotencia.push(this.potencia);//se envia el cálculo de la potencia a un arreglo
+          
       }
       );      
     }catch(err){
@@ -601,14 +609,11 @@ export class CronometroPage {
         //Calculos____________________
         this.giro_x_y_z = ((this.xOrient**2)+(this.yOrient**2)+(this.zOrient**2))**0.5; //vector resultante
 
-        this.webservices.giroscopio_datos(this.id_ent,this.xOrient, this.yOrient, this.zOrient, this.giro_x_y_z).then(// se envian los datos al servidor web
-          (resultado) =>{
-            //alert('oka'+JSON.stringify(resultado));
-          },
-          (error) =>{
-            alert('error'+JSON.stringify(error));// muestra una alerta si ocurrió algun error durante el proceso
-          }
-        )  
+        this.arrayxOrient.push(this.xOrient);//se envia aceleracion del eje x a un arreglo
+        this.arrayyOrient.push(this.yOrient);//se envia aceleracion del eje y a un arreglo
+        this.arrayzOrient.push(this.zOrient);//se envia aceleracion del eje y a un arreglo
+        this.arraygiro_x_y_z.push(this.giro_x_y_z);//se envia aceleracion del eje y a un arreglo
+ 
      });
     }catch(err){
       alert("Error" + err);// muestra una alerta si ocurrió algun error durante el proceso
