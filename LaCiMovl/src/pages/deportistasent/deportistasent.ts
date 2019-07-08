@@ -53,7 +53,7 @@ export class DeportistasentPage {
     this.consulta_enlace_pend();// consulta los enlaces pendientes
 
     setTimeout(() => {// después de 2000 milisegundos se inicializan los items
-    //  this.initializeItems();
+      this.initializeItems();
     }, 2000);
     
   }
@@ -188,7 +188,7 @@ export class DeportistasentPage {
 
   consulta_enlace(){
     this.enlaces = [];// se vacía el arreglo
-    this.webservices.consulta_enlace(this.correo).then( // se envian todos los parametros que se ven en el paréntesis
+    this.webservices.consulta_enlace(this.correo).then(
       (datos)=>{// se reciben los datos de respuesta del servidor
         //alert(JSON.stringify(datos));
         let largo=Object.keys(datos).length; // se calcula el largo de el arreglo que llegará del servidor con los datos
@@ -198,7 +198,6 @@ export class DeportistasentPage {
           var fecha= datos[i].FECHA; // se almacena la fecha de la solicitud en una variable
           this.enlaces.push({"ide":ide,"email":email, "fecha":fecha}); // se envia al arreglo
         }
-        this.initializeItems();
       },
       (err)=>{
         alert(JSON.stringify(err)) // si ocurre un error de comunicacion con el servidor, se envia este mensaje
@@ -215,19 +214,16 @@ export class DeportistasentPage {
         for(var i=0;i<largo;i++){
           var email_dep= datos[i].CORREO; // se almacena el correo del deportista en una variable      
           this.aux.push({"email_dep":email_dep}); // se envia al arreglo
-          
         }
-        this.consulta_enlace(); // se actualiza los enlaces
-
       },
       (err)=>{
         alert(JSON.stringify(err)) // si ocurre un error de comunicacion con el servidor, se envia este mensaje
     })
-  
+    this.consulta_enlace();
   }
 
   borrar_enlace(id_solicitud){
-    this.webservices.borrar_enlace(id_solicitud).then( // se envian todos los parametros que se ven en el paréntesis
+    this.webservices.borrar_enlace(id_solicitud).then(
       (datos)=>{// se reciben los datos de respuesta del servidor
         var respuesta= datos[0].RESPUESTA;
         if(respuesta=="OK"){
