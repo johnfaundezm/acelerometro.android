@@ -1,5 +1,5 @@
-<ion-content class="grad" padding>
-
+<ion-content class="grad" padding><!--contenido de la vista estadisticas del entrenador-->
+  <!--bloque donde se presenta el refresh de pagina-->
   <ion-refresher  (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
@@ -8,25 +8,30 @@
       refreshingText="Refrescando...">
     </ion-refresher-content>
   </ion-refresher>
-
+  <!--boton del menu lateral-->
   <button ion-button color="light" menuToggle clear>
     <ion-icon name="menu"></ion-icon>
   </button>
-
+  <!--tarjeta para el grafico de cantidad de usuarios-->
   <ion-card style="height: 225px;" class="border_card">
+    <!--titulo de la tarjeta-->
     <ion-card-header class="title_card">
       Cantidad Usuarios
     </ion-card-header>  
+    <!--contenido de la tarjeta-->
     <ion-card-content style="padding-top: 10px">
-      <canvas #usuarioschart></canvas>
+      <canvas #usuarioschart></canvas><!--grafico de la cantidad de usuarios-->
     </ion-card-content>
   </ion-card>
-
+  <!--tarjeta para el grafico de la cantidad de usuarios en las ultimas 4 semanas-->
   <ion-card style="height: 225px;" class="border_card">
+    <!--titulo de la tarjeta-->
     <ion-card-header class="title_card">
       Usuarios ultimas semanas
     </ion-card-header>  
+    <!--contenido de la tarjeta-->
     <ion-card-content style="padding-top: 10px">
+      <!--grafico de usuarios por semana-->
       <canvas #usuariosporsemanachart></canvas>
     </ion-card-content>
   </ion-card>
