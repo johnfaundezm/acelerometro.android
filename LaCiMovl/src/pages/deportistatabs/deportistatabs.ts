@@ -33,8 +33,8 @@ export class DeportistatabsPage {
     this.correo = this.navParams.get('correo');
     this.pages = [
       //{ title: 'Salir', component: HomePage },
-      { title: 'Cronometro', component: CronometroPage },
-      { title: 'Cronometroent', component: CronometroentPage }
+      //{ title: 'Cronometro', component: CronometroPage },
+      //{ title: 'Cronometroent', component: CronometroentPage }
     ];
   }
 
