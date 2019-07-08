@@ -1,12 +1,15 @@
-<ion-content class ="grad" padding>
+<ion-content class ="grad" padding><!--contenedor de la vista de la informacion de entrenamiento-->
 
-  <div>
+  <div><!--bloque del tipo de entrenamiento-->
     <ion-card class="card_rango">
+      <!--titulo del la tarjeta-->
       <ion-card-header class="title_card">
         Tipo entrenamiento
       </ion-card-header>
+      <!--contenido de la tarjeta-->
       <ion-card-content>
         <ion-item style="background-color: transparent;">
+          <!--select con los tipos de ejercicios-->
           <ion-select [(ngModel)]="tipo_entrenamiento" class="tipo_entre" placeholder="Elegir tipo">
             <!--Define los tipos de entrenamiento-->
             <ion-option value="caminar">Caminar</ion-option>
@@ -20,24 +23,26 @@
     </ion-card>
   </div>
 
-  <div>
+  <div><!--bloque del tiempo de entrenaniemto-->
     <ion-card class="card_rango">
+      <!--titulo de la tarjeta-->
       <ion-card-header class="title_card">
         Tiempo entrenamiento
       </ion-card-header>
+      <!--contenido de la tarjeta-->
       <ion-card-content>
-       <!--Define los minutos de tiempo de entrenamiento-->
+       <!--Define los minutos de tiempo de entrenamiento (minutos)-->
       <ion-item style="background-color: transparent;">
-          <ion-range min="0" max="59" color="primary" [(ngModel)]="tiempoM">
-          <ion-label range-left style="color: whitesmoke">(min) 0</ion-label>
-          <ion-label range-right style="color: whitesmoke">{{tiempoM}}</ion-label>
+          <ion-range min="0" max="59" color="primary" [(ngModel)]="tiempoM"><!--recibe los valores de tiempo seleccionados-->
+          <ion-label range-left style="color: whitesmoke">(min) 0</ion-label><!--etiqueta del valor minimo-->
+          <ion-label range-right style="color: whitesmoke">{{tiempoM}}</ion-label><!--muestra el valor seleccionado-->
         </ion-range>
       </ion-item>
-      <!--Define los segundos de tiempo de entrenamiento-->
+      <!--Define los segundos de tiempo de entrenamiento (segundos)-->
       <ion-item style="background-color: transparent">
-        <ion-range min="0" max="59"  color="light" [(ngModel)]="tiempoS">
-          <ion-label range-left style="color: whitesmoke">(seg) 0</ion-label>
-          <ion-label range-right style="color: whitesmoke">{{tiempoS}}</ion-label>
+        <ion-range min="0" max="59"  color="light" [(ngModel)]="tiempoS"><!--recibe los valores de tiempo seleccionados-->
+          <ion-label range-left style="color: whitesmoke">(seg) 0</ion-label><!--etiqueta del valor minimo-->
+          <ion-label range-right style="color: whitesmoke">{{tiempoS}}</ion-label><!--muestra el valor seleccionado-->
         </ion-range>
        </ion-item>
       </ion-card-content>
@@ -45,23 +50,25 @@
   </div>
   
   <div>
+    <!--tarjeta para el tiempo de recuperación-->
     <ion-card class="card_rango">
+      <!--titulo de la tarjeta-->
       <ion-card-header class="title_card">
         Tiempo recuperación
       </ion-card-header>
-        <!--Define los minutos de tiempo de recuperación-->
+        <!--Define los minutos de tiempo de recuperación (minutos)-->
       <ion-card-content>  
         <ion-item style="background-color: transparent;">
-          <ion-range min="0" max="59" color="primary" [(ngModel)]="tiempoRM">
-            <ion-label range-left style="color: whitesmoke">(min) 0</ion-label>
-            <ion-label range-right style="color: whitesmoke">{{tiempoRM}}</ion-label>
+          <ion-range min="0" max="59" color="primary" [(ngModel)]="tiempoRM"><!--recibe el valor seleccionado-->
+            <ion-label range-left style="color: whitesmoke">(min) 0</ion-label><!--etiqueta valor minimo-->
+            <ion-label range-right style="color: whitesmoke">{{tiempoRM}}</ion-label><!--muestra el valor seleccionado-->
           </ion-range>
         </ion-item>
-        <!--Define los segundos de tiempo de recuperación-->
+        <!--Define los segundos de tiempo de recuperación (segundos)-->
         <ion-item style="background-color: transparent">
-          <ion-range min="0" max="59"  color="light" [(ngModel)]="tiempoRS">
-            <ion-label range-left style="color: whitesmoke">(seg) 0</ion-label>
-            <ion-label range-right style="color: whitesmoke">{{tiempoRS}}</ion-label>
+          <ion-range min="0" max="59"  color="light" [(ngModel)]="tiempoRS"><!--recibe el valor seleccionado-->
+            <ion-label range-left style="color: whitesmoke">(seg) 0</ion-label><!--etiqueta valor minimo-->
+            <ion-label range-right style="color: whitesmoke">{{tiempoRS}}</ion-label><!--muestra el valor seleccionado-->
           </ion-range>
         </ion-item>
       </ion-card-content>
@@ -69,8 +76,8 @@
   </div>
   <!--Enviar la información del entrenamiento-->
   <div style="text-align: right">
-    <button ion-button clear color="light" (click)="volver()">Volver</button>
-    <button ion-button class="btn_enviar" (click)="enviar_entrenamiento()">Enviar</button>
+    <button ion-button clear color="light" (click)="volver()">Volver</button><!--boton para volver a la vista anterior-->
+    <button ion-button class="btn_enviar" (click)="enviar_entrenamiento()">Enviar</button><!--botón para enviar el entrenamiento-->
   </div>
   
 </ion-content>

@@ -1,33 +1,34 @@
-page-infoentrenamiento {
+page-infoentrenamiento {//estilos para la pagina de creacion de entrenamietno
+    //estilo fondo de pantalla
     .grad {
         background-image: linear-gradient(#1575E1, #33D7FF);
     }
-
+    //estilo para la tarjeta
     .card_rango {
-        background-color: transparent;
-        color: whitesmoke;
-        border-radius: 10px;
-        height: auto;
+        background-color: transparent;//color de fondo transparente
+        border-color: whitesmoke !important;//color del borde
+        border-radius: 10px !important;//esquinas redondeadas
+        height: auto;//altura automatica
     }
-
+    //estilo del titulo
     .title_card {
-        color: whitesmoke;
-        text-align: center;
+        color: whitesmoke;//color de fuente
+        text-align: center;//alineacion del texto al centro
     }
-
+    //estilo para el select
     ion-select{
-        max-width: 80% !important;
+        max-width: 80% !important;//ancho maximo del select
     }
-
+    //estilo del botón
     .btn_enviar{
-        background-color: rgb(255, 120, 15); 
-        color: whitesmoke;
+        background-color: rgb(255, 120, 15); //color del botón
+        color: whitesmoke;//color de las letras
     }
-
-    .tipo_entre {
-        color:rgb(51, 50, 50) !important; 
-        background-color: whitesmoke !important; 
-        margin: auto !important; 
-        border-radius: 5px !important;
+    //estilo del select
+    .tipo_entre {   
+        color:rgb(51, 50, 50) !important; //colro de las letras 
+        background-color: whitesmoke !important; //color del fondo
+        margin: auto !important; //margen automatico
+        border-radius: 5px !important;//esquinas redondeadas
     }
 }
