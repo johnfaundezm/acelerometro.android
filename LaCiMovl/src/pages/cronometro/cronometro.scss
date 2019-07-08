@@ -4,6 +4,10 @@ page-cronometro { //estilos (class) para la pagina cronometro
         background-color: #252121 !important;
     }
 
+    ion-content{
+        background: #252121 !important;
+    }
+
     //estilo para los caracteres del cronometro
     .crono {
         text-align: center;//alinear al centro
