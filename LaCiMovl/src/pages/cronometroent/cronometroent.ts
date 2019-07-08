@@ -240,23 +240,10 @@ export class CronometroentPage {
     }
   }
 
-  nuevoEntrenamiento2(){
+  iniciar_entrenamiento(){
     this.estadouser=3;
     this.actualizar_estado();
-    this.inicioseg=0; // se inicializa el tiempo en 0
-    if(this.contador_entrenamiento == undefined){ // se analiza si el contador fue definido o aun no
-      this.playAudioi(); // se reproduce audio de inicio con timer
-      this.contador_entrenamiento = setInterval(()=>{
-        this.inicioseg+=1; //inicia el timer de inicio  de entrenamiento
-        if(this.inicioseg==3){ // si el timer es igual a 3 se comienza el entrenamiento
-          this.playAudiocomienzo(); // se reproduce audio de inicio con voz
-          this.inicio(); // se comienza la funcion de entrenamiento 
-        }
-        if(this.tiempo>this.tiempo_entrenamiento-1){ // se compara si el tiempo de entrenamiento es igual al tiempo asignado como tiempo de entrenamiento para finalizar el entrenamiento
-          this.finalizar(); // se finaliza el entrenamiento
-        }
-      },1000); // timer de control de entrenamiento en 1000 milisegundos= 1 segundo
-    }
+    this.nuevoEntrenamiento();
   }
 // _____________________
 //Cronometro
@@ -340,39 +327,10 @@ export class CronometroentPage {
 
   }
 
-  pausa2(){
+  pausar_entrenamiento(){
     this.estadouser=2;
     this.actualizar_estado();
-    this.detenerAcelerometro(); // se detiene el acelerometro
-    this.detenerGiroscopio(); // se detiene el giroscopio
-    this.playAudiof(); // se reproduce audio de finalización para pausa
-    this.min2Marca = this.min2; // se almacena la marca de tiempo de  min2
-    this.min1Marca = this.min1; // se almacena la marca de tiempo de  min1
-    this.seg2Marca = this.seg2; // se almacena la marca de tiempo de  seg2
-    this.seg1Marca = this.seg1; // se almacena la marca de tiempo de  seg1
-    this.cen2Marca = this.cen2; // se almacena la marca de tiempo de  cen2
-    this.cen1Marca = this.cen1; // se almacena la marca de tiempo de  cen1
-    this.tiempoMarca = this.tiempo;  // se almacena la marca de tiempo de "tiempo"
-    
-    this.min2 = 0;  //se limpia el valor de la variable min2
-    this.min1 = 0;  //se limpia el valor de la variable min1
-    this.seg2 = 0;  //se limpia el valor de la variable seg2
-    this.seg1 = 0;  //se limpia el valor de la variable seg1
-    this.cen2 = 0;  //se limpia el valor de la variable cen2
-    this.cen1 = 0;  //se limpia el valor de la variable cen1
-
-    clearInterval(this.contador); // se detiene intervalo de contador
-    clearInterval(this.contador_entrenamiento); // se detiene intervalo de contador_entrenamiento
-    this.contador = null; // se limpia el valor del contador
-    this.contador_entrenamiento = null; // se limpia el valor de contador_entrenamiento
-    this.min2 = this.min2Marca; // se le entrega el valor de pausa almacenado a min2
-    this.min1 = this.min1Marca; // se le entrega el valor de pausa almacenado a min1 
-    this.seg2 = this.seg2Marca; // se le entrega el valor de pausa almacenado a seg2
-    this.seg1 = this.seg1Marca; // se le entrega el valor de pausa almacenado a seg1
-    this.cen2 = this.cen2Marca; // se le entrega el valor de pausa almacenado a cen2
-    this.cen1 = this.cen1Marca; // se le entrega el valor de pausa almacenado a cen1
-    this.tiempo = this.tiempoMarca; // se le entrega el valor de pausa almacenado a tiempo
-
+    this.pausa();
   }
 
   finalizar(){
@@ -398,34 +356,18 @@ export class CronometroentPage {
     this.cambio= true;
   }
 
-  finalizar2(){
+  finalizar_entrenamiento(){
     this.estadouser=1;
     this.actualizar_estado();
-    this.detenerAcelerometro(); // se detiene acelerometro
-    this.detenerGiroscopio(); // se detiene giroscopio
-    this.playAudiof(); // se reproduce audio de finalizacion
-    this.playAudiofn(); // se reproduce audio de finalizacion por voz
-    // se restaura el cronometro como 0
-    this.min2 = 0; 
-    this.min1 = 0; 
-    this.seg2 = 0;
-    this.seg1 = 0;
-    this.cen2 = 0;
-    this.cen1 = 0;
-    // se limpian los intervalos de los contadores y se dejan como nulos
-    clearInterval(this.contador);
-    clearInterval(this.contador_entrenamiento);
-    this.contador = null;
-    this.contador_entrenamiento = null;
-    // se redefine el timepo de entrenamiento como 0
-    this.tiempo=0;
-    this.recuperacion();
-    this.cambio= true;
+    this.finalizar();
   }
 
   recuperacion(){
     // se analiza si el contador fue definido o aun no
-     alert("Comienza el tiempo de recuperación")
+    if (this.tiempo_recuperacion==0){
+      this.finalizar_recuperacion;
+    }else{
+      alert("Comienza el tiempo de recuperación")
      this.playAudiof();
      this.contador_recuperacion = setInterval (()=>{ // se inicia el cronometro junto con el entrenamiento
        this.cen1+=1;
@@ -447,10 +389,11 @@ export class CronometroentPage {
                  this.min1 +=1;
                }
            }
+           
          }
        }
      },10); // se define el cronometro visual en intervalo de centesimas de segundo
-     
+    } 
  }
  finalizar_recuperacion(){
    this.playAudiof();

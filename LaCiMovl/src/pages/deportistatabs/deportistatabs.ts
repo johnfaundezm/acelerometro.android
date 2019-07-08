@@ -3,8 +3,6 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController, Nav } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { HomePage } from '../home/home';
-import { CronometroentPage } from '../cronometroent/cronometroent';
-import { CronometroPage } from '../cronometro/cronometro';
 
 @IonicPage()
 @Component({

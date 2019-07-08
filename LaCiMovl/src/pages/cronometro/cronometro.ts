@@ -8,6 +8,7 @@ import { NativeAudio } from '@ionic-native/native-audio';
 //import { Observable } from 'rxjs/Observable'
 import  'rxjs/add/observable/interval' 
 import { WebservicesProvider } from '../../providers/webservices/webservices';
+import { EntrenamientoPage } from '../entrenamiento/entrenamiento';
 import { EstadisticasdepPage } from '../estadisticasdep/estadisticasdep';
 
 @IonicPage()
@@ -166,8 +167,29 @@ export class CronometroPage {
     this.a=0; // variable que activa la recursividad de buscar entrenamientos
   }
 
-  ionViewCanEnter() {
+  alerta_confirmacion() {//Alerta que se activa cuando se encuentra un entrenamiento activo
+    const confirm = this.alertCtrl.create({
+      title: 'Entrenamiento terminado',// titulo de la alerta
+      message: '¿Desea ver las estadisticas de su entrenamiento?',// mensaje de la alerta
+      buttons: [
+        {
+          text: 'Cancelar',//nombre del boton 1
+          handler: () => {
+            this.navCtrl.setRoot(EntrenamientoPage, {correo:this.correo});
+          }
+        },
+        {
+          text: 'Aceptar',//nombre del boton 2
+          handler: () => {
+            // se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
+            this.navCtrl.setRoot(EstadisticasdepPage, {correo:this.correo, id_entrenamiento:this.id_ent, id_solicitud:this.id_solicitud});
+          }
+        }
+      ]
+    });
+    confirm.present();// se confirma la opcion apretada(Cancelar o Aceptar)
   }
+
 
   time(){// función recursiva que se activa cada 2 segundos
     setTimeout(() => {
@@ -221,7 +243,6 @@ export class CronometroPage {
       //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
-        this.loading.dismiss();
         alert('error'+JSON.stringify(error));
       })
   }
@@ -244,23 +265,10 @@ export class CronometroPage {
     }
   }
 
-  nuevoEntrenamiento2(){
+  iniciar_entrenamiento(){
     this.estadouser=3;
     this.actualizar_estado();
-    this.inicioseg=0; // se inicializa el tiempo en 0
-    if(this.contador_entrenamiento == undefined){ // se analiza si el contador fue definido o aun no
-      this.playAudioi(); // se reproduce audio de inicio con timer
-      this.contador_entrenamiento = setInterval(()=>{
-        this.inicioseg+=1; //inicia el timer de inicio  de entrenamiento
-        if(this.inicioseg==3){ // si el timer es igual a 3 se comienza el entrenamiento
-          this.playAudiocomienzo(); // se reproduce audio de inicio con voz
-          this.inicio(); // se comienza la funcion de entrenamiento
-        }
-        if(this.tiempo>this.tiempo_entrenamiento-1){ // se compara si el tiempo de entrenamiento es igual al tiempo asignado como tiempo de entrenamiento para finalizar el entrenamiento
-          this.finalizar(); // se finaliza el entrenamiento
-        }
-      },1000); // timer de control de entrenamiento en 1000 milisegundos= 1 segundo
-    }
+    this.nuevoEntrenamiento();
   }
 
 // _____________________
@@ -352,39 +360,10 @@ export class CronometroPage {
 
   }
 
-  pausa2(){
+  pausar_entrenamiento(){
     this.estadouser=2;
     this.actualizar_estado();
-    this.detenerAcelerometro(); // se detiene el acelerometro
-    this.detenerGiroscopio(); // se detiene el giroscopio
-    this.playAudiof(); // se reproduce audio de finalización para pausa
-    this.min2Marca = this.min2; // se almacena la marca de tiempo de  min2
-    this.min1Marca = this.min1; // se almacena la marca de tiempo de  min1
-    this.seg2Marca = this.seg2; // se almacena la marca de tiempo de  seg2
-    this.seg1Marca = this.seg1; // se almacena la marca de tiempo de  seg1
-    this.cen2Marca = this.cen2; // se almacena la marca de tiempo de  cen2
-    this.cen1Marca = this.cen1; // se almacena la marca de tiempo de  cen1
-    this.tiempoMarca = this.tiempo;  // se almacena la marca de tiempo de "tiempo"
-    
-    this.min2 = 0;  //se limpia el valor de la variable min2
-    this.min1 = 0;  //se limpia el valor de la variable min1
-    this.seg2 = 0;  //se limpia el valor de la variable seg2
-    this.seg1 = 0;  //se limpia el valor de la variable seg1
-    this.cen2 = 0;  //se limpia el valor de la variable cen2
-    this.cen1 = 0;  //se limpia el valor de la variable cen1
-
-    clearInterval(this.contador); // se detiene intervalo de contador
-    clearInterval(this.contador_entrenamiento); // se detiene intervalo de contador_entrenamiento
-    this.contador = null; // se limpia el valor del contador
-    this.contador_entrenamiento = null; // se limpia el valor de contador_entrenamiento
-    this.min2 = this.min2Marca; // se le entrega el valor de pausa almacenado a min2
-    this.min1 = this.min1Marca; // se le entrega el valor de pausa almacenado a min1 
-    this.seg2 = this.seg2Marca; // se le entrega el valor de pausa almacenado a seg2
-    this.seg1 = this.seg1Marca; // se le entrega el valor de pausa almacenado a seg1
-    this.cen2 = this.cen2Marca; // se le entrega el valor de pausa almacenado a cen2
-    this.cen1 = this.cen1Marca; // se le entrega el valor de pausa almacenado a cen1
-    this.tiempo = this.tiempoMarca; // se le entrega el valor de pausa almacenado a tiempo
-
+    this.pausa();
   }
 
   finalizar(){
@@ -412,31 +391,10 @@ export class CronometroPage {
      this.cambio= true;
   }
 
-  finalizar2(){
+  finalizar_entrenamiento(){
     this.estadouser=1;
     this.actualizar_estado();
-    this.detenerAcelerometro(); // se detiene acelerometro
-    this.detenerGiroscopio(); // se detiene giroscopio
-    this.playAudiof(); // se reproduce audio de finalizacion
-    this.playAudiofn(); // se reproduce audio de finalizacion por voz
-    // se restaura el cronometro como 0
-    this.min2 = 0; 
-    this.min1 = 0; 
-    this.seg2 = 0;
-    this.seg1 = 0;
-    this.cen2 = 0;
-    this.cen1 = 0;
-    // se limpian los intervalos de los contadores y se dejan como nulos
-    clearInterval(this.contador);
-    clearInterval(this.contador_entrenamiento);
-    this.contador = null;
-    this.contador_entrenamiento = null;
-    // se redefine el timepo de entrenamiento como 0
-    this.tiempo=0;
-    if(this.tiempo_recuperacion!=0){
-      this.recuperacion();
-    }
-    this.cambio= true;
+    this.finalizar();
   }
 
   recuperacion(){
@@ -466,6 +424,7 @@ export class CronometroPage {
                  this.min1 +=1;
                }
            }
+           
          }
        }
      },10); // se define el cronometro visual en intervalo de centesimas de segundo
@@ -493,6 +452,8 @@ export class CronometroPage {
       }
     )
 
+    this.alerta_confirmacion();
+
   }
   finalizar_recuperacion(){
    this.playAudiof();
@@ -509,7 +470,6 @@ export class CronometroPage {
    // se redefine el timepo de entrenamiento como 0
    this.tiempo=0;
    this.enviar_datos_basedatos();
-   this.navCtrl.setRoot(EstadisticasdepPage, {correo:this.correo, id_entrenamiento:this.id_ent, id_solicitud:this.id_solicitud})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
   }
 
   lapso(){

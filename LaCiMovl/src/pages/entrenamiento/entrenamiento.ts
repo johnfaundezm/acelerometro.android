@@ -1,6 +1,6 @@
 // se importan los plugins que se ejecutarán en esta vista
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController,Platform, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 
 
 //import { Observable } from 'rxjs/Observable'

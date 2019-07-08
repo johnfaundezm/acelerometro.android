@@ -9,13 +9,13 @@
       
       <!--botones de inicio, detencion y terminar para el cronometro-->
       <div style="text-align: center; margin-top: 15%">
-        <button ion-button icon-only class="btn_entre" outline color="light" (click)="nuevoEntrenamiento2(); cambiaricon()" *ngIf="cambio"> <!--botón e icono para inicio-->
+        <button ion-button icon-only class="btn_entre" outline color="light" (click)="iniciar_entrenamiento(); cambiaricon()" *ngIf="cambio"> <!--botón e icono para inicio-->
           <ion-icon name="play"></ion-icon>
         </button>
-        <button ion-button class="btn_entre" outline color="light" (click)="pausa2(); cambiaricon()" *ngIf="!cambio"><!--botón e icono para detener-->
+        <button ion-button class="btn_entre" outline color="light" (click)="pausar_entrenamiento(); cambiaricon()" *ngIf="!cambio"><!--botón e icono para detener-->
           <ion-icon name="pause"></ion-icon>
         </button>
-        <button ion-button class="btn_fin" outline color="light" (click)="finalizar2()"><!--botón e icono para finalizar-->
+        <button ion-button class="btn_fin" outline color="light" (click)="finalizar_entrenamiento()"><!--botón e icono para finalizar-->
           <ion-icon name="close"></ion-icon>
         </button>
       </div>

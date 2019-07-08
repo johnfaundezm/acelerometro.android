@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
-import { PerfildepPage } from '../../pages/perfildep/perfildep';
-import { DeportistatabsPage } from '../../pages/deportistatabs/deportistatabs';
 
 @Component({
   selector: 'podep',

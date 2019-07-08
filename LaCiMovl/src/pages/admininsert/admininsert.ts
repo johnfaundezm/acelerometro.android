@@ -1,7 +1,6 @@
 // se importan los plugins que se ejecutarán en esta vista
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-import { DatabaseProvider } from '../../providers/database/database';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { AdmintabsPage } from '../admintabs/admintabs';
@@ -22,7 +21,7 @@ export class AdmininsertPage {
   formattedDate;
 
   //Constructor, donde se declaran todos los plugins
-  constructor(public navCtrl: NavController, private database: DatabaseProvider, private formBuilder: FormBuilder, private webservices: WebservicesProvider) {
+  constructor(public navCtrl: NavController, private formBuilder: FormBuilder, private webservices: WebservicesProvider) {
     // se crea un formulario
     this.formulario = this.formBuilder.group({//aqui se pone las restricciones al formulario para poder registrarse
       correo: ['',[Validators.required, Validators.maxLength(50), Validators.pattern('^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$')]],// validacion de correo
