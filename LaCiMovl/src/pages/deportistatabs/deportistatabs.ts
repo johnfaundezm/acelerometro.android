@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, MenuController, Nav } from 'ionic-
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { HomePage } from '../home/home';
 import { CronometroentPage } from '../cronometroent/cronometroent';
+import { CronometroPage } from '../cronometro/cronometro';
 
 @IonicPage()
 @Component({
@@ -32,7 +33,7 @@ export class DeportistatabsPage {
     this.correo = this.navParams.get('correo');
     this.pages = [
       //{ title: 'Salir', component: HomePage },
-      //{ title: 'Cronometro', component: CronometroPage },
+      { title: 'Cronometro', component: CronometroPage },
       { title: 'Cronometroent', component: CronometroentPage }
     ];
   }
