@@ -4,25 +4,31 @@
     <button ion-button color="light" menuToggle clear>
         <ion-icon name="menu"></ion-icon>
     </button>
-
+    <!--bloque para el filtro de entrenador-->
     <div>
         <ion-item style="background-color: transparent">
             <ion-item no-lines style="background-color: transparent">
+                <!--select contenedor de los entrenadores a elegir-->
                 <ion-select [(ngModel)]="val_ent" style="background-color:whitesmoke" placeholder="Entrenador" >
+                    <!--opcion donde se presentan los entrenadores-->
                     <ion-option *ngFor="let ide_ent of entrenador" value="{{ide_ent.ide}}" >{{ide_ent.email}}</ion-option>
                 </ion-select>   
             </ion-item>
+            <!--botón para enviar consulta de entrenamientos con ese entrenador-->
             <button ion-button item-end (click)="escoger_solicitud()">Consultar</button>
         </ion-item>
     </div>
-
+    <!--bloque para el filtro de entrenamiento-->
     <div>
         <ion-item no-lines style="background-color: transparent">
             <ion-item style="background-color: transparent">
+                <!--select contenedor de los entrenamientos-->
                 <ion-select [(ngModel)]="val_entre" style="background-color:whitesmoke" placeholder="entrenamiento" >
+                    <!--opcion donde se presentan los entrenamientos-->
                     <ion-option *ngFor="let ide_entre of entrenamiento" value="{{ide_entre.ide}}">{{ide_entre.nombre_ent}} - {{ide_entre.ide}}</ion-option>
                 </ion-select>
             </ion-item>
+        <!--botón para graficar el entrenamiento seleccionado-->
         <button item-end ion-button (click)="escoger_entrenamiento()">Graficar</button>
         </ion-item>
     </div>
