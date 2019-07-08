@@ -1,3 +1,4 @@
+// se importan los plugins que se ejecutarán en esta vista
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
@@ -10,7 +11,7 @@ import { EntrenamientoPage } from '../entrenamiento/entrenamiento';
 })
 export class ListPage {
 
-  //declaracion de variable
+  //DECLARACION DE VARIABLES
   tabBarElement: any; //variable que almacena el elemento tabbar
 
   id_ent:any;
@@ -24,6 +25,7 @@ export class ListPage {
   cont:number=0;
   a:any;
   
+  //Constructor, donde se declaran todos los plugins
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider,
     public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     //se reciben las variables de la vista anterior y se almacenan en una variable dentro de la vista
@@ -34,7 +36,7 @@ export class ListPage {
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar'); //se pasa el elemento tabbar a la variable antes declarada
   }
 
-  ionViewDidLoad(){
+  ionViewDidLoad(){// esta función se realiza cuando la vista actual está cargada
     if(this.v==1){
       this.load_buscar();
     }
@@ -50,6 +52,24 @@ export class ListPage {
     this.tabBarElement.style.display = 'flex';
     this.a=0;// variable que desactiva la recursividad de buscar entrenamientos
     this.v=0;// variable que desactiva el load_buscar()
+  }
+
+  load_buscar() {//loading que se muesta en pantalla al llamar esta función
+    this.loading = this.loadingCtrl.create({// se crea el loading
+      spinner: 'ios',//tipo de animación al estar cargando
+      content: 'Buscando Entrenamiento...',//mensaje que muestra al estar cargando
+    });
+  
+    this.loading.present();
+  }
+
+  load() {//loading que se muesta en pantalla al llamar esta función
+    this.loading = this.loadingCtrl.create({// se crea el loading
+      spinner: 'ios',//tipo de animación al estar cargando
+      content: 'Cargando...',//mensaje que muestra al estar cargando
+    });
+  
+    this.loading.present();
   }
 
   time(){// función recursiva que se activa cada 2 segundos
@@ -80,7 +100,7 @@ export class ListPage {
         }
       },
       (err)=>{
-        alert(JSON.stringify(err))
+        alert(JSON.stringify(err)) // si ocurre un error de comunicacion con el servidor, se envia este mensaje
       })
   }
 
@@ -137,47 +157,31 @@ export class ListPage {
     confirm.present();// se confirma la opcion apretada(Cancelar o Aceptar)
   }
 
+  //metodo que actualiza el estado del entrenamiento
   actualizar_estado(){
-    this.load();
-    this.estado=1;
-    this.webservices.actualizar_creacion_entrenamiento(this.id_ent,this.estado).then(
-      (datos) =>{
-        this.respuesta= datos[0].RESPUESTA;
-        if(this.respuesta=='OK'){
-          this.loading.dismiss();
-          alert('Los cambios se han realizado satisfactoriamente')
+    this.load(); // comienza el loading
+    this.estado=1;// se cambia el valor de la variable estado a 1
+    this.webservices.actualizar_creacion_entrenamiento(this.id_ent,this.estado).then( // se envian todos los parametros que se ven en el paréntesis
+      (datos) =>{ // se reciben los datos de respuesta del servidor
+        this.respuesta= datos[0].RESPUESTA; // se almacena la respuesta en una variable 
+        if(this.respuesta=='OK'){ // si la respuesta es "OK"
+          this.loading.dismiss(); // Se termina el loading
+          alert('Los cambios se han realizado satisfactoriamente') // Se envia un alert con el mensaje correspondiente
         }else{
           if(this.respuesta=='ERROR'){
-            this.loading.dismiss();
-            alert('Ha ocurrido un error al actualizar el estado')
+            this.loading.dismiss(); // Se termina el loading
+            alert('Ha ocurrido un error al actualizar el estado') // Se envia un alert con el mensaje correspondiente
           }else{
-            this.loading.dismiss();
-            alert('Ha ocurrido un error al actualizar el estado')
+            this.loading.dismiss(); // Se termina el loading
+            alert('Ha ocurrido un error al actualizar el estado') // Se envia un alert con el mensaje correspondiente
           }
         }
       //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
-        this.loading.dismiss();
-        alert('error'+JSON.stringify(error));
+        this.loading.dismiss(); // Se termina el loading
+        alert('error'+JSON.stringify(error)); // si ocurre un error de comunicacion con el servidor, se envia este mensaje
       })
   }
 
-  load_buscar() {
-    this.loading = this.loadingCtrl.create({
-      spinner: 'ios',
-      content: 'Buscando Entrenamiento...',
-    });
-  
-    this.loading.present();
-  }
-
-  load() {
-    this.loading = this.loadingCtrl.create({
-      spinner: 'ios',
-      content: 'Cargando...',
-    });
-  
-    this.loading.present();
-  }
 }

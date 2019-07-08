@@ -30,53 +30,37 @@ export class HomePage {
   constructor(public navCtrl: NavController, private sqlite: SQLite, private webservices: WebservicesProvider, public menuCtrl: MenuController, public loadingCtrl: LoadingController,public toastCtrl: ToastController) {
   }
 /*
-  ionViewCanEnter() {
-    this.menuCtrl.enable(false, 'Menu');
+  ionViewWillEnter() { //evento que se realiza antes de entrar a la vista
+    this.menuCtrl.enable(false, 'Menu'); //no permite que se pueda ingresar al menu deslizable de la izquierda
   }
 */
-  /*
-  ionViewDidEnter(){
-    this.cantidad_pila_nav()
-  }
-*/
-  ionViewWillLeave(){
-  }
 
-  cantidad_pila_nav(){
-    for ( let i=0; i < this.navCtrl.length(); i++ ){
-      let v = this.navCtrl.getViews()[i];
-      console.log(v.component.name); 
-      alert(v.component.name) 
-      
-    }
-  }
-
-  loadconsulta_login() {
-    this.loading = this.loadingCtrl.create({
-      spinner: 'ios',
-      content: 'Cargando...',
+  loadconsulta_login() {//loading que se muesta en pantalla al llamar esta función
+    this.loading = this.loadingCtrl.create({// se crea el loading
+      spinner: 'ios',//tipo de animación al estar cargando
+      content: 'Cargando...',//mensaje que muestra al estar cargando
     });
   
     this.loading.present();
   }
   
   consulta_login(){
-    this.loadconsulta_login()
+    this.loadconsulta_login() // comienza el loading
     
-    this.webservices.consulta_login(this.correo, this.pass).then(
-      (datos)=>{
+    this.webservices.consulta_login(this.correo, this.pass).then( // se envian todos los parametros que se ven en el paréntesis
+      (datos)=>{// se reciben los datos de respuesta del servidor
 
         //alert(JSON.stringify(datos));
-        this.email= datos[0].CORREO;
-        this.pass2= datos[0].PASS;
-        this.estado= datos[0].ESTADO;
-        var sesion= datos[0].SESION;
-        this.rol= datos[0].TIPO;
-        this.respuesta= datos[0].RESPUESTA;
-        this.loading.dismiss();
+        this.email= datos[0].CORREO; // se almacena en una variable
+        this.pass2= datos[0].PASS; // se almacena en una variable
+        this.estado= datos[0].ESTADO; // se almacena en una variable
+        var sesion= datos[0].SESION; // se almacena en una variable
+        this.rol= datos[0].TIPO; // se almacena en una variable
+        this.respuesta= datos[0].RESPUESTA; // se almacena la respuesta en una variable 
+        this.loading.dismiss(); // Se termina el loading
 
         if(this.respuesta=='ERROR'){
-          alert('El correo no existe o su contraseña es incorrecta')
+          alert('El correo no existe o su contraseña es incorrecta') // Se envia un alert con el mensaje correspondiente
         }
         else{
           if(sesion!=0){// si sesion es distinto de 0 entonces la cuenta no está en uso
@@ -115,24 +99,25 @@ export class HomePage {
             else{
               if(this.estado==0){//si estado es 0, entonces la cuenta esta desactivada
                 if(this.pass2==1){
-                  alert('Su cuenta esta desactivada')
+                  alert('Su cuenta esta desactivada') // Se envia un alert con el mensaje correspondiente
                 }else{
-                  alert('El correo no existe o su contraseña es incorrecta')
+                  alert('El correo no existe o su contraseña es incorrecta') // Se envia un alert con el mensaje correspondiente
                 }
               }
             }
           }
           else{
-            alert('La cuenta está siendo usada')
+            alert('La cuenta está siendo usada') // Se envia un alert con el mensaje correspondiente
           }
         }
       },
       (err)=>{
-        this.loading.dismiss();
-        alert(JSON.stringify(err))
+        this.loading.dismiss(); // Se termina el loading
+        alert(JSON.stringify(err)) // si ocurre un error de comunicacion con el servidor, se envia este mensaje
       })
   }
 
+  // método que envía a la página de registro
   registrar(){
     this.navCtrl.push(RegistroPage);
   }

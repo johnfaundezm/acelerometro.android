@@ -12,7 +12,7 @@ import { LoadingController } from 'ionic-angular';
 })
 export class RegistroPage {
 
-  //DECLARACION DE FUNCIONES
+  //DECLARACION DE VARIABLES
   private formulario: FormGroup; //se declara el formulario de registro
   respuesta:any;
   loading:any;
@@ -84,7 +84,7 @@ export class RegistroPage {
   
   // Se envian los datos de registro al metodo registrar definido en webservices
   registrar(){
-    this.loadregistrar() // se comienza el loading
+    this.loadregistrar() // comienza el loading
     this.getFormattedDate(); // se da formato a la fecha
     this.webservices.registrar(this.formulario.value.correo,this.formulario.value.pass,'',' ',' ',' ',0,0,0,0,' ','activada',2,this.formattedDate,this.formulario.value.id_tipo_usuario).then( // se envian todos los parametros que se ven en el paréntesis
       (datos) =>{// se reciben los datos de respuesta del servidor
@@ -117,7 +117,7 @@ export class RegistroPage {
   getFormattedDate(){
     var dateObj =new Date() // se almacena la fecha actual en una variable (queda almacenado en formato objeto)
 
-    var year = dateObj.getFullYear().toString()  // se saca solo el año
+    var year = dateObj.getFullYear().toString() // se saca solo el año
     var month = dateObj.getMonth().toString() // se saca solo el mes
     this.mes = month; 
     this.mes ++; // se suma 1 al mes por que enero lo toma como el mes "0" en vez de ser el "1"
