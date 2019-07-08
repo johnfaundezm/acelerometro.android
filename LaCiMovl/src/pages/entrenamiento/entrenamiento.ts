@@ -178,6 +178,7 @@ export class EntrenamientoPage {
         }else{
           alert('Ha ocurrido un problema en el borrado');
         }
+        this.consulta_enlace();
         //alert(JSON.stringify(datos));
       },
       (err)=>{
