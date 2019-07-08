@@ -571,10 +571,9 @@ export class EstadisticasdepPage {
     odd = this.fft2(odd); //aplica la funcion fft2 para los valores del arreglo odd
     let a = -2*Math.PI; //asgina el valor -2pi a la variable "a";
     alert(a);
-    for (var k=0; k < M;k++){
+    for (var k=0; k < M;k++){//se ejecuta el bucle para ambas mitades del arreglo
       let b= k/N;
       let t=a*b;
-      var m=t;
       var m=Complex(0,t);
       m=Math.exp(m);
       m=m*odd[k];
@@ -582,9 +581,9 @@ export class EstadisticasdepPage {
       X[k+M]=even[k]=even[k]-m;
     }
     alert(X);
-    return X;  
+    return X;  // se retornan los valores finales de fourier
   }
-  linspace(A,B,S){
+  linspace(A,B,S){// generar espacio lineal de A a B con intervalos S
     var Y = new Array(0);
     var D = (B-A)/(S-1);
     for (var i = A;i <=B;i +=D){
@@ -592,20 +591,21 @@ export class EstadisticasdepPage {
     }
     return Y;
   }
+  
+  //previene errores al mezclar reales y números complejos
   make_complex(X){
     for (var i =0; i< X.length;i++){
       var m =Complex(X[i],0);
       X[i] = m;
+      alert(X);
       this.arreglo[i] =X[i];
     }
   }
+  //
   calc_function(T){
     var X =[];
-    for (var i = 0;i< this.datos_acelerometro.length; i++){
-      X[i] = this.datos_acelerometro[i];
-    }
-   
     X.length = T.length;
+    //alert('largo T= '+T.length);
     for (var t =0;t<T.length; t++){
       X[t] = Math.sin(2*Math.PI*T[t]);
     }
@@ -613,18 +613,18 @@ export class EstadisticasdepPage {
   }
   
   fourier(){
-    var T=this.linspace(0,1,this.datos_acelerometro.length);
+    var T=this.linspace(0,1,8);
     var X= this.calc_function(T);
-    this.make_complex(X);
-    X=this.arreglo;
-    var Y=this.fft2(X);
-    var Yr=[];
-    Yr.length = Y.length;
+    alert(X);//muestra los valores almacenados en X
+    this.make_complex(X);// se ejecuta el metodo make_complex para X
+    //X=this.arreglo;// se le asignan a X los valores resultantes de la funcion make_complex
+    var Y=this.fft2(X);// Se retornan los valores de fourier a el arreglo Y
+    var Yr=[];// se crea el arreglo Yr
+    Yr.length = Y.length; // se crea le asigna el largo a Yr igual a la cantidad de datos recibidos.
 
     for (var i = 0;i< Y.length; i++){
-      Yr[i] = Y[i].re;
+      Yr[i] = Y[i].re; // se almacenan solo los datos reales
     }
-    alert(Yr);
     console.log(Yr);      
   }
 }
