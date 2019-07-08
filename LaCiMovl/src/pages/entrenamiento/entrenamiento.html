@@ -1,20 +1,22 @@
-<ion-content class="grad" padding>
-
+<ion-content class="grad" padding><!--vista del tab de entrenamiento del deportista-->
+  <!--botón del menu lateral-->
   <button ion-button color="light" menuToggle clear>
     <ion-icon name="menu"></ion-icon>
   </button>
 
-  <ion-segment [(ngModel)]="actividades">
-    <ion-segment-button style="color: whitesmoke; border-color: white;" value="ejercicio">
+  <!--bloque donde se muestran los botones para cambiar de segmento-->
+  <ion-segment [(ngModel)]="actividades"><!--se recibe el valor para cambiar de segmento-->
+    <ion-segment-button style="color: whitesmoke; border-color: white;" value="ejercicio"><!--boton segmento ejercicios-->
       Ejercicios
     </ion-segment-button>
-    <ion-segment-button style="color: whitesmoke; border-color: white;" value="solicitud">
+    <ion-segment-button style="color: whitesmoke; border-color: white;" value="solicitud"><!--boton segmento solicitudes-->
       Solicitudes
     </ion-segment-button>
   </ion-segment>
 
-  <div [ngSwitch]="actividades">
-    <div *ngSwitchCase="'ejercicio'">
+  <div [ngSwitch]="actividades"><!--recibe el valor para cambiar de segmento-->
+    <div *ngSwitchCase="'ejercicio'"><!--contenedor del segmento de ejercicio-->
+      <!--bloque para el refresh-->
       <ion-refresher  (ionRefresh)="doRefresh($event)">
         <ion-refresher-content
           pullingIcon="arrow-dropdown"
@@ -23,29 +25,27 @@
           refreshingText="Refrescando...">
         </ion-refresher-content>
       </ion-refresher>
-
+      <!--tarjeta donde se presentaran las solicitudes pendientes-->
       <ion-card class="border_card_solicitudes_pen">
-        <ion-card-header class="title_card">
+        <ion-card-header class="title_card"><!--titulo de la tarjeta-->
           Entrenadores enlazados
         </ion-card-header>
+        <!--bloque con scroll donde se presenta la lista con los entrenadores enlazados-->
         <ion-scroll scrollY="true">
           <ion-list inset >
-            <ion-item-sliding *ngFor="let e of enlaces">
+            <ion-item-sliding *ngFor="let e of enlaces"><!--bloque que permite deslizar a un costado para obtener botones-->
                 <ion-item   class="formato_item">
                   <h2>{{e.email}}</h2>
                   <p style="text-align: center">{{e.ide}}  {{e.fecha}}</p>
                 </ion-item>
-                <ion-item-options side="left">
-                  <button ion-button color="danger" >
+                <ion-item-options side="left"><!--opciones lado izquierdo-->
+                  <button ion-button color="danger" ><!--boton para elminar enlace-->
                     <ion-icon  name="close" style="width: 30px; height: 30px"></ion-icon>
                   </button>
                 </ion-item-options>
-                <ion-item-options side="right">
-                  <button ion-button (click)="info_entrenamiento(e.ide,e.email)">
+                <ion-item-options side="right"><!--opciones lado derecho-->
+                  <button ion-button (click)="info_entrenamiento(e.ide,e.email)"><!--boton para aceptar los entrenamientos-->
                     <ion-icon  name="clipboard" style="width: 30px; height: 30px"></ion-icon>
-                  </button>
-                  <button ion-button color="secondary">
-                    <ion-icon name="stats" style="width: 30px; height: 30px"></ion-icon>
                   </button>
                 </ion-item-options>
             </ion-item-sliding>
@@ -54,17 +54,18 @@
       </ion-card>
 
     </div>
-  
+    <!--segmento de las solicitudes del deportista-->
     <div *ngSwitchCase="'solicitud'">
-      
-      <ion-card class="border_card_solicitudes_pen">
-        <ion-card-header class="title_card">
+      <!--tarjeta de las solicitudes pendientes-->
+      <ion-card class="border_card_solicitudes">
+        <ion-card-header class="title_card"><!--titulo de la tarjeta-->
           Solicitudes Recibidas Pendiente
         </ion-card-header>
+          <!--bloque con scroll donde se presenta la lista de solicitudes pendientes-->
           <ion-scroll scrollY="true">
             <ion-list inset>
               <ion-item *ngFor="let p of enlaces_pend" class="formato_item" (click)="alerta_confirmacion(p.email, p.ide)">
-                <ion-label >{{ p.email }}</ion-label>
+                <ion-label >{{ p.email }}</ion-label><!--email del solicitante-->
               </ion-item>
             </ion-list>
           </ion-scroll>

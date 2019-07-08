@@ -1,4 +1,4 @@
-page-datosentrenamiento {
+page-datosentrenamiento {//estilos de la vista datosentrenamiento
 
     //estilo color de fondo
     .grad {
@@ -15,10 +15,10 @@ page-datosentrenamiento {
         font-size: 90%;//tamaño de fuente
         color: darkcyan;//color de fuente
     }
-
+    //estilo del titulo
     .titulo {
-        font-size: 15px !important;
-        text-align: center !important;
-        color: whitesmoke;
+        font-size: 15px !important; //tamaño de la fuente
+        text-align: center !important;//alineación del texto
+        color: whitesmoke;//color del texto
     }
 }

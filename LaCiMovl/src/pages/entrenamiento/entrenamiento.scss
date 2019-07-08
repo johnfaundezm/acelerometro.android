@@ -1,54 +1,31 @@
-page-entrenamiento {
+page-entrenamiento {//estilos de vista entrenameinto
+    //estilo fondo de pantalla
     .grad {
         background-image: linear-gradient(#1575E1, #33D7FF);
     }
-
+    //estilo borde de tarjeta
     .border_card {
-        border-radius: 10px;
+        border-radius: 10px;//esquinas redondeadas
     }
-    
+    //estilo para el titutlo de la tarjeta
     .title_card {
-        font-size: 90%;
-        color: darkcyan;
+        font-size: 90%;//tamaño de fuente
+        color: darkcyan;//color fuente
     }
-
-    .btn_entre {
-        border-radius: 10px;
-        border-width: 2px;
-        width: 22%;
-        height: 30px;
-    }
-
-    .crono {
-        text-align: center;
-        font-size: 50px;
-        color: whitesmoke;
-    }
-
-    .icon_crono {
-        margin-right: 5px;
-        color: whitesmoke;
-        font-size: 35px;
-    }
-
+    //permite que funcione es scroll en la vista
     ion-scroll {
         white-space: nowrap;
-        height: 85%;
+        height: 85%;//altura del scroll
     }
-
+    //estilo para el borde de la tarjeta de solicitudes
     .border_card_solicitudes {
-        border-radius: 10px;
-        height: 500px;
+        border-radius: 10px;//borde redondeado
+        height: 500px;//alto de la tarjeta
     }
-
-    .border_card_solicitudes_pen {
-        border-radius: 10px;
-        height: 500px;
-    }
-
+    //estilo para darle formato al item contenedor de los datos
     .formato_item {
-        border-bottom: 1px solid !important; 
-        border-color: rgb(194, 191, 191) !important; 
-        height: auto !important;
+        border-bottom: 1px solid !important;//borde inferior del item
+        border-color: rgb(194, 191, 191) !important; //color del borde del item
+        height: auto !important;//altura del itam
     }
 }
