@@ -1,14 +1,15 @@
-page-estadisticas {
+page-estadisticas {//estilos vista estadisticas del administrador
+    //estilo para el fondo de pantalla
     .grad {
         background-image: linear-gradient(#1575E1, #33D7FF);
     }
-    
+    //estilo para el borde de la tarjeta
     .border_card {
-        border-radius: 10px;
+        border-radius: 10px;//esquinas redondeadas
     }
-    
+    //estilo para el titulo de la tarjeta
     .title_card {
-        font-size: 90%;
-        color: darkcyan;
+        font-size: 90%;//tamaño de la fuente
+        color: darkcyan;//color de la fuente
     }
 }
