@@ -2,9 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SQLite } from '@ionic-native/sqlite';
-
-
-
+import { Complex } from 'complex-js'
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { RegistroPage } from '../pages/registro/registro';
