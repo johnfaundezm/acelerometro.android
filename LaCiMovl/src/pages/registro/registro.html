@@ -1,50 +1,56 @@
-<ion-content class="grad" padding>
-
+<ion-content class="grad" padding><!--contenido del la vista de registro-->
+<!--titulo de la pagina-->
   <div style="text-align:center;margin-top:20% ;color:white">
     <h3>Crear Cuenta</h3>
   </div>
   <br>
-
+  <!--formulario para el registro-->
   <form [formGroup]="formulario" (ngSubmit)="registrar()">
     <ion-item style="margin-top:15%" class="border_r">
-      <!--<ion-inp   ut [(ngModel)]="correo" type="text" placeholder="Correo" ></ion-input>-->
+      <!--input donde se recibe el correo-->
       <ion-input type="email" formControlName="correo" placeholder="Correo"></ion-input>
     </ion-item>
+    <!--errores al no cumplir con las condiciones del formato del correo-->
     <ion-item *ngIf="formulario.get('correo').errors && formulario.get('correo').dirty">
-      <p color="danger" ion-text *ngIf="formulario.get('correo').hasError('required')">*El campo es requerido</p>
-      <p color="danger" ion-text *ngIf="formulario.get('correo').hasError('maxlength')">Cantidad maxima de caracteres es (50)</p>
-      <p color="danger" ion-text *ngIf="formulario.get('correo').hasError('pattern')">Ingrese un correo valido</p>
+      <p color="danger" ion-text *ngIf="formulario.get('correo').hasError('required')">*El campo es requerido</p><!--error por falta del campo-->
+      <p color="danger" ion-text *ngIf="formulario.get('correo').hasError('maxlength')">Cantidad maxima de caracteres es (50)</p><!--error por exederce de los caracteres-->
+      <p color="danger" ion-text *ngIf="formulario.get('correo').hasError('pattern')">Ingrese un correo valido</p><!--error por formato erroneo-->
     </ion-item>
     <br>
     <ion-item class="border_r">
+      <!--input donde se recibe la contraseña-->
       <ion-input type="password" formControlName="pass" placeholder="Contraseña" ></ion-input>
     </ion-item>
+    <!--errores al no cumplir con las condiciones del formato de contraseña-->
     <ion-item *ngIf="formulario.get('pass').errors && formulario.get('pass').dirty">
-      <p color="danger" ion-text *ngIf="formulario.get('pass').hasError('required')">*El campo es requerido</p>
-      <p color="danger" ion-text *ngIf="formulario.get('pass').hasError('minlength')">Cantidad minima de caracteres es (4)</p>
-      <p color="danger" ion-text *ngIf="formulario.get('pass').hasError('maxlength')">Cantidad maxima de caracteres es (16)</p>
+      <p color="danger" ion-text *ngIf="formulario.get('pass').hasError('required')">*El campo es requerido</p><!--error por falta de campo-->
+      <p color="danger" ion-text *ngIf="formulario.get('pass').hasError('minlength')">Cantidad minima de caracteres es (4)</p><!--error por no cumplir con la cantidad minima de caracteres-->
+      <p color="danger" ion-text *ngIf="formulario.get('pass').hasError('maxlength')">Cantidad maxima de caracteres es (16)</p><!--errir por sobrearar la cantidad maxima de caracteres-->
     </ion-item>
     <br>
 
     <ion-list>
       <ion-item class="border_r">
+        <!--etiqueta para el rol-->
         <ion-label >ROL</ion-label>
+        <!--select donde se escoge el tipo de usuario-->
         <ion-select formControlName="id_tipo_usuario">
-          <ion-option value="3">Deportista</ion-option>
-          <ion-option value="2">Entrenador</ion-option>
+          <ion-option value="3">Deportista</ion-option><!--opción de deportista-->
+          <ion-option value="2">Entrenador</ion-option><!--opción de entrenador-->
         </ion-select>
       </ion-item>
+      <!--errores al no cumplicar con las condiciones de eleccion de rol-->
       <ion-item *ngIf="formulario.get('id_tipo_usuario').errors && formulario.get('id_tipo_usuario').dirty">
-        <p color="danger" ion-text *ngIf="formulario.get('id_tipo_usuario').hasError('required')">*El campo es requerido</p>
+        <p color="danger" ion-text *ngIf="formulario.get('id_tipo_usuario').hasError('required')">*El campo es requerido</p><!--error por no seleccionar un tipo-->
       </ion-item>
     </ion-list>
-
+<!--botón para enviar la petición de registro-->
     <div style="text-align:center;margin-top:5%">
       <button ion-button secondary type="submit" [disabled]="!formulario.valid" class="btn_ok">Registrarse</button>  
     </div>
 
   </form> 
-  
+  <!--botón para cancelar y regresar a la vista anterior-->
   <div style="text-align:center">
     <button ion-button style="text-align: center" color="light" clear secondary (click)="cancelar()">Cancelar</button>
   </div>
