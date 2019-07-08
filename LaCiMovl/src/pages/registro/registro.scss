@@ -1,14 +1,15 @@
-page-registro {
+page-registro {//estilos del registro
+    //estilo para el fondo de pagina
     .grad {
         background-image: linear-gradient(#1575E1, #33D7FF);
     }
-
+    //estilo para el borde del input
     .border_r {
-        border-top-right-radius: 20px;
-        border-bottom-right-radius: 20px;
+        border-top-right-radius: 20px;//redondeo borde superior derecho
+        border-bottom-right-radius: 20px;//redondeo borde inferior derecho
     }
-
+    //estilo del botón de registro
     .btn_ok{
-		background-color:#FF780F;
+		background-color:#FF780F;//color del botón
 	}
 }
