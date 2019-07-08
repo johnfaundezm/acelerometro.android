@@ -42,7 +42,7 @@
                   <p style="text-align: center">{{d.ide}}  {{d.fecha}}</p><!--id del entrenamiento y fecha de enlace-->
                 </ion-item>
                 <ion-item-options side="left"><!--botone del sliding-->
-                  <button ion-button color="danger" ><!--botón e icono para eliminar enlace con deportista seleccionado-->
+                  <button ion-button color="danger" (click)="borrar_enlace(d.ide)"><!--botón e icono para eliminar enlace con deportista seleccionado-->
                     <ion-icon  name="close" style="width: 30px; height: 30px"></ion-icon>
                   </button>
                 </ion-item-options>

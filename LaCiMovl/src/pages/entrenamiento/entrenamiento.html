@@ -39,7 +39,7 @@
                   <p style="text-align: center">{{e.ide}}  {{e.fecha}}</p>
                 </ion-item>
                 <ion-item-options side="left"><!--opciones lado izquierdo-->
-                  <button ion-button color="danger" ><!--boton para elminar enlace-->
+                  <button ion-button color="danger" (click)="borrar_enlace(e.ide)"><!--boton para elminar enlace-->
                     <ion-icon  name="close" style="width: 30px; height: 30px"></ion-icon>
                   </button>
                 </ion-item-options>

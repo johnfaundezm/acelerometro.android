@@ -213,6 +213,22 @@ export class DeportistasentPage {
     this.consulta_enlace();
   }
 
+  borrar_enlace(id_solicitud){
+    this.webservices.borrar_enlace(id_solicitud).then(
+      (datos)=>{
+        var respuesta= datos[0].RESPUESTA;
+        if(respuesta=="OK"){
+          alert('El enlace se ha borrado satisfactoriamente');
+        }else{
+          alert('Ha ocurrido un problema en el borrado');
+        }
+        //alert(JSON.stringify(datos));
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
+  }
+
   metodo(id, email){
     this.navCtrl.push(InfoentrenamientoPage, {ide:id, email:email, correo:this.correo});
   }
