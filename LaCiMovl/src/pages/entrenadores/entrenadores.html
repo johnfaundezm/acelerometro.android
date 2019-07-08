@@ -1,5 +1,6 @@
+<!--vista del administrador de los usuarios entrenadores-->
 <ion-content class="grad" padding>
-
+<!--contenedor del refresh de la vista-->
   <ion-refresher  (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
@@ -8,25 +9,26 @@
       refreshingText="Refrescando...">
     </ion-refresher-content>
   </ion-refresher>
-
+    <!--boton del menu lateral-->
     <button ion-button color="light" menuToggle clear>
         <ion-icon name="menu"></ion-icon>
     </button>
-
+    <!--botón para ir a la vista de creación un entrenador-->
     <button ion-button block (click)="crear_usuario()">
       <ion-icon name="add" style="margin-right: 5px"></ion-icon>
       Agregar Entrenador
     </button>
     <br>
+    <!--tarjeta donde se listan los entrenadores registrados en el sistema-->
     <ion-card class="border_card">
-      <ion-card-header class="title_card">
+      <ion-card-header class="title_card"><!--encabezado de la tarjeta-->
         Entrenadores
       </ion-card-header>
-  
+      <!--scroll con la lista de los usuarios entrenador-->
       <ion-scroll scrollY="true">
         <ion-list inset *ngFor="let en of entrenador" >
-          <ion-item class="formato_item" (click)="detalle(en.email)">
-            <h2 >{{en.email}}</h2>
+          <ion-item class="formato_item" (click)="detalle(en.email)"><!--item contenedor del usuario con su email, estado y fecha de registro-->
+            <h2 >{{en.email}}</h2> 
             <p style="text-align: left">{{en.estado}}</p>
             <p style="text-align: right">{{en.fecha_r}}</p>
           </ion-item>

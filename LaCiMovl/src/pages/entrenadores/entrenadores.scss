@@ -1,26 +1,31 @@
-page-entrenadores {
+page-entrenadores {//estilos(class) de la vista entrenadores
+    //estilo para el fondo de pantalla
     .grad {
         background-image: linear-gradient(#1575E1, #33D7FF);
     }
     
+    //estilo para el borde de la tarjeta
     .border_card {
-        border-radius: 10px;
-        height: 85%;
+        border-radius: 10px;//esquinas redondeadas
+        height: 85%;//tamaño de la tarjeta
     }
     
+    //estilo del titulo de la tarjeta
     .title_card {
-        font-size: 90%;
-        color: darkcyan;
+        font-size: 90%;//tamaño de la fuente
+        color: darkcyan;//color de la fuente
     }
 
+    //se utiliza para darle funcionalidad al scroll
     ion-scroll {
       white-space: nowrap;
       height: 100%;
     }
 
+    //estilo que le da formato al item
     .formato_item {
-        border-bottom: 1px solid !important; 
-        border-color: rgb(194, 191, 191) !important; 
-        height: auto !important;
+        border-bottom: 1px solid !important; //borde inferior de un pixel
+        border-color: rgb(194, 191, 191) !important; //color del borde
+        height: auto !important;//altura del item
     }
 }
