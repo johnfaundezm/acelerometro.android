@@ -38,6 +38,10 @@ export class DeportistasentPage {
     this.correo = this.navParams.get('correo');
   }
 
+  ionViewCanEnter(){
+    this.consulta_deportistas();// consulta los deportistas
+  }
+
   ionViewWillEnter() {// el evento se realiza antes de entrar a la vista
     while(this.aux.length>0){
       this.aux.pop();// borra los espacios vacios del arreglo
@@ -48,8 +52,7 @@ export class DeportistasentPage {
     while(this.enlaces_pend.length>0){
       this.enlaces_pend.pop();// borra los espacios vacios del arreglo
     }
-    
-    this.consulta_deportistas();// consulta los deportistas
+  
     this.consulta_enlace_pend();// consulta los enlaces pendientes
 
     setTimeout(() => {// después de 2000 milisegundos se inicializan los items
@@ -77,7 +80,7 @@ export class DeportistasentPage {
   initializeItems() {
     var temp: any;
     temp = this.aux;
-    /*
+    
     for (var i = 0; i < this.enlaces.length; i++) {
       for (var y = 0; y < this.aux.length; y++) {
         if (this.aux[y].email_dep==this.enlaces[i].email) {
@@ -86,11 +89,11 @@ export class DeportistasentPage {
         }
       }
     }
-    */
-
+    
+/*
     for (let j = 0; j < this.enlaces.length; j++) {
       temp.splice(temp.indexOf(this.enlaces[j]), 1);
-    }
+    }*/
     
     this.items = temp;
   }
