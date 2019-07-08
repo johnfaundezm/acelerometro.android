@@ -1,5 +1,12 @@
-<ion-content class="grad" padding>
+<ion-content class="grad" padding><!--contenido de la vista del perfil del deportista-->
 
+  <!--botón del menu lateral-->
+  <div>
+    <button ion-button color="light" menuToggle clear>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </div>
+  <!--bloque para realizar el refresh de la vista-->
   <ion-refresher  (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
@@ -8,83 +15,73 @@
       refreshingText="Refrescando...">
     </ion-refresher-content>
   </ion-refresher>
-
+  <!--tarjeta donde se presenta la informacion personal del usuario-->
   <ion-card class="border_card">
-    <ion-card-header class="title_card">
+    <ion-card-header class="title_card"><!--titulo de la tarjeta-->
       Informacion Personal
     </ion-card-header>
 
         <ion-list>
+          <!--muestra el nombre del deportista-->
             <ion-item>
               <ion-label>Nombre</ion-label>
               <ion-input [(ngModel)]="nombre" class="textarea" disabled></ion-input>
             </ion-item>
-      
+          <!--muestra el apellido paterno del deportista-->
             <ion-item>
               <ion-label>Apellido paterno</ion-label>
               <ion-input [(ngModel)]="apellido_p" class="textarea" disabled></ion-input>
             </ion-item>
-      
+          <!--muestra el apellido materno del deportista-->
             <ion-item>
               <ion-label>Apellido materno</ion-label>
               <ion-input [(ngModel)]="apellido_m" class="textarea" disabled></ion-input>
             </ion-item>
-      
+          <!--muestra la contraseña del deportista-->
             <ion-item>
               <ion-label>Contraseña</ion-label>
               <ion-input [(ngModel)]="pass" class="textarea" disabled type="password"></ion-input>
             </ion-item>
-      
+          <!--muestra el genero del deportista-->
             <ion-item>
               <ion-label>Genero</ion-label>
               <ion-input [(ngModel)]="genero" class="textarea" disabled></ion-input>
             </ion-item>
-      
+          <!--muestra la edad del deportista-->
             <ion-item>
               <ion-label>Edad</ion-label>
               <ion-input [(ngModel)]="edad" class="textarea" disabled></ion-input>
             </ion-item>
-      
+          <!--muestra el peso del deportista-->
             <ion-item>
               <ion-label>Peso</ion-label>
               <ion-input [(ngModel)]="peso" class="textarea" disabled></ion-input>
             </ion-item>
-          
+          <!--muestra la estatura del deportista-->
             <ion-item>
               <ion-label>Estatura</ion-label>
               <ion-input [(ngModel)]="estatura" class="textarea" disabled></ion-input>
             </ion-item>
-          
+          <!--muestra el imc del deportista-->
             <ion-item>
               <ion-label>I.M.C</ion-label>
               <ion-input [(ngModel)]="imc" class="textarea" disabled></ion-input>
             </ion-item>
-      
+          <!--muestra el pais del deportista-->
             <ion-item>
               <ion-label>Pais</ion-label>
               <ion-input [(ngModel)]="pais" class="textarea" disabled></ion-input>
             </ion-item>
-<!--
-            <ion-item>
-              <ion-label>Estado Cuenta</ion-label>
-              <ion-input [(ngModel)]="estado" class="textarea" disabled></ion-input>
-            </ion-item>-->
         </ion-list>
 
-  <ion-item >
-      <button ion-button color="secondary" block (click)="poadmindep($event)">
-        <ion-icon name="create" style="margin-right: 5px" ></ion-icon>
-        Editar
-      </button>
-  </ion-item>
+    <ion-item >
+      <!--boton para entrar al popover donde se realizara la modificacion de los datos-->
+        <button ion-button color="secondary" block (click)="poadmindep($event)">
+          <ion-icon name="create" style="margin-right: 5px" ></ion-icon>
+          Editar
+        </button>
+    </ion-item>
    
   </ion-card>
-  
-  <div style="margin-bottom: 10px">
-    <button ion-button color="danger" block (click)="salir()">
-      <ion-icon name="close" style="margin-right: 5px" ></ion-icon>
-      Salir
-    </button>
-  </div>
   
 </ion-content>
