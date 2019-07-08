@@ -2,12 +2,13 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import * as math from 'mathjs'; // don't named as Math, this will conflict with Math in JS
+//import * as math from 'mathjs'; // don't named as Math, this will conflict with Math in JS
 import { HomePage } from '../pages/home/home';
 import { DatabaseProvider } from '../providers/database/database';
-
+import { Complex } from 'complex-js'
 import { Gyroscope, GyroscopeOrientation, GyroscopeOptions } from '@ionic-native/gyroscope';
 import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
+
 
 
 @Component({

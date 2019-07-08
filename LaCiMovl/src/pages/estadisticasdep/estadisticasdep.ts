@@ -7,7 +7,6 @@ import { WebservicesProvider } from '../../providers/webservices/webservices';
 //declare const math: any;
 //import {complex,exp,pi, multiply, sin, add, subtract} from 'mathjs';
 import { Complex } from 'complex-js';
-
 @IonicPage()
 @Component({
   selector: 'page-estadisticasdep',
@@ -570,7 +569,6 @@ export class EstadisticasdepPage {
     even = this.fft2(even); //aplica la funcion fft2 para los valores del arreglo even
     odd = this.fft2(odd); //aplica la funcion fft2 para los valores del arreglo odd
     let a = -2*Math.PI; //asgina el valor -2pi a la variable "a";
-    alert(a);
     for (var k=0; k < M;k++){//se ejecuta el bucle para ambas mitades del arreglo
       let b= k/N;
       let t=a*b;
@@ -597,7 +595,7 @@ export class EstadisticasdepPage {
     for (var i =0; i< X.length;i++){
       var m =Complex(X[i],0);
       X[i] = m;
-      alert(X);
+      alert('complex'+X);
       this.arreglo[i] =X[i];
     }
   }
@@ -613,10 +611,10 @@ export class EstadisticasdepPage {
   }
   
   fourier(){
-    var T=this.linspace(0,1,8);
+    var T=this.linspace(0,1,this.datos_acelerometro.length);
     var X= this.calc_function(T);
     alert(X);//muestra los valores almacenados en X
-    this.make_complex(X);// se ejecuta el metodo make_complex para X
+    //this.make_complex(X);// se ejecuta el metodo make_complex para X
     //X=this.arreglo;// se le asignan a X los valores resultantes de la funcion make_complex
     var Y=this.fft2(X);// Se retornan los valores de fourier a el arreglo Y
     var Yr=[];// se crea el arreglo Yr
