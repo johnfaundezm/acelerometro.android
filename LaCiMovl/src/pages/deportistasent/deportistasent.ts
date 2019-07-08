@@ -38,10 +38,6 @@ export class DeportistasentPage {
     this.correo = this.navParams.get('correo');
   }
 
-  ionViewCanEnter(){
-    this.consulta_deportistas();// consulta los deportistas
-  }
-
   ionViewWillEnter() {// el evento se realiza antes de entrar a la vista
     while(this.aux.length>0){
       this.aux.pop();// borra los espacios vacios del arreglo
@@ -53,6 +49,7 @@ export class DeportistasentPage {
       this.enlaces_pend.pop();// borra los espacios vacios del arreglo
     }
   
+    this.consulta_deportistas();// consulta los deportistas
     this.consulta_enlace_pend();// consulta los enlaces pendientes
 
     setTimeout(() => {// después de 2000 milisegundos se inicializan los items
