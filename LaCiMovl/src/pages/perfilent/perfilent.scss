@@ -1,18 +1,19 @@
-page-perfilent {
+page-perfilent {//estilos para el perfil del entrenador
+    //estilo de fondo de pantalla
     .grad {
         background-image: linear-gradient(#1575E1, #33D7FF);
     }
-    
+    //estilo de borde de tarjeta
     .border_card {
-        border-radius: 10px;
+        border-radius: 10px;//esquinas redondeadas
     }
-    
+    //estilo para el titulo de la tarjeta
     .title_card {
-        font-size: 90%;
-        color: darkcyan;
+        font-size: 90%;//tamaño de la fuente
+        color: darkcyan;//color de la fuente
     }
-    
+    //estilo para las etiquetas que muestran la informacion
     .textarea {
-        text-align-last: right;
+        text-align-last: right;//texto alineado a la derecha
     }
 }

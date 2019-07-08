@@ -1,5 +1,5 @@
-<ion-content class="grad" padding>
-
+<ion-content class="grad" padding><!--contenido de la vista del perfil del entrenador-->
+<!--bloque para el refresh de la pagina-->
   <ion-refresher  (ionRefresh)="doRefresh($event)">
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
@@ -8,60 +8,56 @@
       refreshingText="Refrescando...">
     </ion-refresher-content>
   </ion-refresher>
-
+<!--botón del menu lateral-->
   <button ion-button color="light" menuToggle clear>
       <ion-icon name="menu"></ion-icon>
   </button>
-
+<!--tarjeta con la informacion personal-->
   <ion-card class="border_card">
+    <!--titulo de la tarjeta-->
     <ion-card-header class="title_card">
       Informacion Personal
     </ion-card-header>
 
     <ion-list>
-
-      <ion-item>
+      
+      <ion-item><!--contiene el nombre del entrenador-->
         <ion-label>Nombre</ion-label>
         <ion-input [(ngModel)]="nombre" disabled class="textarea"></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--contiene el apellido paterno del entrenador-->
         <ion-label>Apellido paterno</ion-label>
         <ion-input [(ngModel)]="apellido_p" class="textarea" disabled></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--contiene el apellido materno del entrenador-->
         <ion-label>Apellido materno</ion-label>
         <ion-input [(ngModel)]="apellido_m" class="textarea" disabled></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--contiene la contraseña del entrenador-->
         <ion-label>Contraseña</ion-label>
         <ion-input [(ngModel)]="pass" class="textarea" type="password" disabled></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--contiene el genero del entrenador-->
         <ion-label>Genero</ion-label>
         <ion-input [(ngModel)]="genero" disabled class="textarea"></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--contiene la edad del entrenador-->
         <ion-label>Edad</ion-label>
         <ion-input [(ngModel)]="edad" disabled class="textarea"></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item><!--contiene pais del entrenador-->
         <ion-label>Pais</ion-label>
         <ion-input [(ngModel)]="pais" disabled class="textarea"></ion-input>
       </ion-item>
-<!--
-      <ion-item>
-        <ion-label>Estado Cuenta</ion-label>
-        <ion-input [(ngModel)]="estado" class="textarea" disabled></ion-input>
-      </ion-item>-->
 
     </ion-list>
-
+<!--botón para editar la informacion personal-->
     <ion-item >
       <button ion-button color="secondary" block (click)="poadminent($event)">
         <ion-icon name="create" style="margin-right: 5px" ></ion-icon>
@@ -69,12 +65,5 @@
       </button>
     </ion-item> 
   </ion-card>
-  
-  <div style="margin-top: 50px">
-    <button ion-button color="danger" block (click)="salir()">
-      <ion-icon name="close" style="margin-right: 5px" ></ion-icon>
-      Salir
-    </button>
-  </div>
   
 </ion-content>
