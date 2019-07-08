@@ -1,3 +1,4 @@
+// se importan los plugins que se ejecutarán en esta vista
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController,Platform, AlertController } from 'ionic-angular';
 
@@ -14,6 +15,7 @@ import { ListPage } from '../list/list';
 })
 export class EntrenamientoPage {
 
+  //DECLARACION DE VARIABLES
   enlaces: Array<{ide:string, email:string, fecha:string}>=[{ide:'', email:'', fecha:''}]; //arreglo que almacena los enlaces entre deportista y entrenador
   enlaces_pend: Array<{email:string,ide:string}>=[{email:'',ide:''}]; //arreglo que almacena las solicitudes pendientes
 
@@ -35,10 +37,7 @@ export class EntrenamientoPage {
     this.correo = this.navParams.get('correo'); //Se recibe el correo del deportista
   }
 
-  ionViewDidLoad() {
-  }
-
-  ionViewWillEnter() {
+  ionViewWillEnter() { // el evento se realiza antes de entrar a la vista
     while(this.enlaces.length>0){
       this.enlaces.pop();// borra el ultimo dato que siempre esta vacio del arreglo
     }
@@ -48,33 +47,35 @@ export class EntrenamientoPage {
     while(this.aux.length>0){
       this.aux.pop();// borra el ultimo dato que siempre esta vacio del arreglo
     }
-    this.initializeItems();
+    this.initializeItems(); // Método que inicializa los datos del buscador que filtra datos
     this.consulta_entrenadores();//Se inicializa la consulta del los deportistas  
     this.consulta_solicitud_pend(); //Se inicializa la consulta de las solicitudes pendientes
     this.consulta_enlace(); //Se inicializa la consulta de los enlaces
   }
 
-  doRefresh(refresher) {
-    this.consulta_enlace();
+  doRefresh(refresher) { // método que refresca al tirar hacia abajo
+    this.consulta_enlace(); // consulta los enlaces
     refresher.complete();
   } 
 
-  alerta_confirmacion(correo,id) {
-    this.id_ent=id;
-    const confirm = this.alertCtrl.create({
-      title: 'Confirmacion de solicitud',
-      message: 'El entrenador "'+correo+'" te ha enviado una solicitud de entrenamiento',
+  alerta_confirmacion(correo,id) {// método de alerta que aparece al encontrar una solicitud
+    this.id_ent=id; // se pasa la variable id a la variable this.id_ent declarada globalmente
+    const confirm = this.alertCtrl.create({ // se crea la alerta
+      title: 'Confirmacion de solicitud', // titulo de la alerta
+      message: 'El entrenador "'+correo+'" te ha enviado una solicitud de entrenamiento', // mensaje de la alerta
       buttons: [
         {
-          text: 'Cancelar',
+          text: 'Cancelar', // boton numero 1
           handler: () => {
+            // funciones  a realizar al apretar el botón
             console.log('Disagree clicked');
           }
         },
         {
-          text: 'Aceptar',
+          text: 'Aceptar', //boton numero 2
           handler: () => {
-            this.actualizar_estado();
+            // funciones  a realizar al apretar el botón
+            this.actualizar_estado(); // método que actualiza el estado
           }
         }
       ]
@@ -100,31 +101,29 @@ export class EntrenamientoPage {
   }
 
   actualizar_estado(){
-    this.estado=3
-    this.webservices.actualizar_solicitud(this.id_ent,this.estado).then(
-      (datos) =>{
-        this.respuesta= datos[0].RESPUESTA;
-        alert(this.respuesta);
+    this.estado=3// cambia el estado a 3
+    this.webservices.actualizar_solicitud(this.id_ent,this.estado).then( // se envian todos los parametros que se ven en el paréntesis
+      (datos) =>{// se reciben los datos de respuesta del servidor
+        this.respuesta= datos[0].RESPUESTA; // se almacena la respuesta en una variable 
       //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
-        this.loading.dismiss();
-        alert('error'+JSON.stringify(error));
+        alert('error'+JSON.stringify(error)); // si ocurre un error de comunicacion con el servidor, se envia este mensaje
       })
   }
 
   consulta_entrenadores(){// se consultan todos los entrenadores disponibles para enviar solicitud
     this.webservices.vista_entrenador().then(
-      (datos)=>{
+      (datos)=>{// se reciben los datos de respuesta del servidor
         //alert(JSON.stringify(datos));
-        let largo=Object.keys(datos).length;
+        let largo=Object.keys(datos).length; // se calcula el largo de el arreglo que llegará del servidor con los datos
         for(var i=0;i<largo;i++){
           var email_ent= datos[i].CORREO; // se recibe el correo de los entrenadores      
-          this.aux.push({"email_ent":email_ent});
+          this.aux.push({"email_ent":email_ent});// se almacenan los datos en el arreglo
         }
       },
       (err)=>{
-        alert(JSON.stringify(err))
+        alert(JSON.stringify(err)) // si ocurre un error de comunicacion con el servidor, se envia este mensaje
       })
   }
 
@@ -138,13 +137,13 @@ export class EntrenamientoPage {
         //alert(JSON.stringify(datos));
         let largo=Object.keys(datos).length;
         for(var i=0;i<largo;i++){
-          var ide= datos[i].ID;
+          var ide= datos[i].ID; // se recibe el id de la solicitud
           var email= datos[i].ENTRENADOR;// se recibe el correo de la solicitud pendiente
           this.enlaces_pend.push({"email":email,"ide":ide});
         }
       },
       (err)=>{
-        alert(JSON.stringify(err))
+        alert(JSON.stringify(err)) // si ocurre un error de comunicacion con el servidor, se envia este mensaje
       })
   }
 
@@ -158,35 +157,35 @@ export class EntrenamientoPage {
         //alert(JSON.stringify(datos));
         let largo=Object.keys(datos).length;
         for(var i=0;i<largo;i++){ // se reciben la id, el correo del entrenador y la fecha de la solicitud
-          var ide= datos[i].ID;
-          var email= datos[i].ENTRENADOR;
-          var fecha= datos[i].FECHA;
+          var ide= datos[i].ID; // se recibe el id de la solicitud
+          var email= datos[i].ENTRENADOR;// se recibe el correo del entrenador
+          var fecha= datos[i].FECHA;// se recibe la fecha de la solicitud
           this.enlaces.push({"ide":ide,"email":email, "fecha":fecha});
         }
       },
       (err)=>{
-        alert(JSON.stringify(err))
+        alert(JSON.stringify(err)) // si ocurre un error de comunicacion con el servidor, se envia este mensaje
       })
   }
 
   borrar_enlace(id_solicitud){
-    this.webservices.borrar_enlace(id_solicitud).then(
-      (datos)=>{
-        var respuesta= datos[0].RESPUESTA;
-        if(respuesta=="OK"){
-          alert('El enlace se ha borrado satisfactoriamente');
+    this.webservices.borrar_enlace(id_solicitud).then( // se envian todos los parametros que se ven en el paréntesis
+      (datos)=>{// se reciben los datos de respuesta del servidor
+        var respuesta= datos[0].RESPUESTA; // se almacena la respuesta en una variable 
+        if(respuesta=="OK"){ // si la respuesta es "OK"
+          alert('El enlace se ha borrado satisfactoriamente'); // Se envia un alert con el mensaje correspondiente
         }else{
-          alert('Ha ocurrido un problema en el borrado');
+          alert('Ha ocurrido un problema en el borrado'); // Se envia un alert con el mensaje correspondiente
         }
-        this.consulta_enlace();
+        this.consulta_enlace(); // llama al método para refrescar los enlaces
         //alert(JSON.stringify(datos));
       },
       (err)=>{
-        alert(JSON.stringify(err))
+        alert(JSON.stringify(err)) // si ocurre un error de comunicacion con el servidor, se envia este mensaje
       })
   }
 
-
+  //método que lleva a la siguiente vista
   info_entrenamiento(id,email){
     var v=1;
     this.navCtrl.push(ListPage, {ide:id, email:email, correo:this.correo,v:v});

@@ -25,6 +25,7 @@ export class PerfilentPage {
 
   //Constructor, donde se declaran todos los plugins
   constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, private webservices: WebservicesProvider) {
+    //se reciben las variables de la vista anterior y se almacenan en una variable dentro de la vista
     this.correo = this.navParams.get('correo');
   }
 

@@ -1,3 +1,4 @@
+// se importan los plugins que se ejecutarán en esta vista
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
