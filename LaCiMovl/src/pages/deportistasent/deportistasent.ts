@@ -53,7 +53,7 @@ export class DeportistasentPage {
     this.consulta_enlace_pend();// consulta los enlaces pendientes
 
     setTimeout(() => {// después de 2000 milisegundos se inicializan los items
-      //this.initializeItems();
+      this.initializeItems();
     }, 2000);
     
   }
@@ -197,11 +197,7 @@ export class DeportistasentPage {
           var email= datos[i].DEPORTISTA; // se almacena el correo del deportista en una variable
           var fecha= datos[i].FECHA; // se almacena la fecha de la solicitud en una variable
           this.enlaces.push({"ide":ide,"email":email, "fecha":fecha}); // se envia al arreglo
-          if((largo-1)==i){
-            this.initializeItems();// método que consulta los datos del giroscopio
-          }
         }
-        
       },
       (err)=>{
         alert(JSON.stringify(err)) // si ocurre un error de comunicacion con el servidor, se envia este mensaje
@@ -219,11 +215,11 @@ export class DeportistasentPage {
           var email_dep= datos[i].CORREO; // se almacena el correo del deportista en una variable      
           this.aux.push({"email_dep":email_dep}); // se envia al arreglo
         }
-        this.consulta_enlace();
       },
       (err)=>{
         alert(JSON.stringify(err)) // si ocurre un error de comunicacion con el servidor, se envia este mensaje
     })
+    this.consulta_enlace();
   }
 
   borrar_enlace(id_solicitud){
