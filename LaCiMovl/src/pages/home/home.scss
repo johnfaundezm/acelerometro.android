@@ -1,29 +1,25 @@
-/*ESTILO DE LA PAGINA DE Origen*/
-
-page-home {
-	/*Colores de Fondo de pantalla*/
+page-home {//estilos pagina inicial
+	//estilo fondo de pantalla
 	.grad {
-		/*Colores gradientes del fondo de pantalla*/
 		background-image: linear-gradient(#1575E1, #33D7FF);
 	}
-
+	//estilo para el logo 
 	.logo {
-		width: 130px;
-		height: 130px;
-		//margin-left: 30%; 
-		margin-top: 20%;
-		margin: auto;
+		width: 130px;//ancho del icono
+		height: 130px;//alto del icono
+		margin-top: 20%;//margen desde la parte superior
+		margin: auto;//margen automatico horizontal
 		display: block;
 	}
-
+	//estilo botón inicio
 	.btn_ok{
-		background-color:#FF780F;	/*Color de botón*/
+		background-color:#FF780F;	//color del botón
 	}
-	/*Estilo de texto pie de pagina (derechos reservados)*/
+	//estilo del pie de pagina
 	.pie_page {
 		display: block;
-		text-align: center;	/*ubicacion del texto horizontal*/
-		color: white;	  /*Color de la fuente*/
-		font-size: 75%;		/*tamaño de la fuente*/
+		text-align: center;	//alineacion del texto
+		color: white;	  //color del texto
+		font-size: 75%;		//tamaño del texto
 	}
 }
