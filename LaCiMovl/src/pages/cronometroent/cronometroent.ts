@@ -401,7 +401,7 @@ export class CronometroentPage {
     } 
  }
  finalizar_recuperacion(){
-   this.playAudiof();
+   //this.playAudiof();
     // se restaura el cronometro como 0
    this.min2 = 0; 
    this.min1 = 0; 
