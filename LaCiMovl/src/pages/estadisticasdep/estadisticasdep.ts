@@ -272,16 +272,16 @@ export class EstadisticasdepPage {
         },
         tooltips: {//herramientas
           enabled: true,
-          callbacks: {
-            //funcioón para solo mostrar el valor del eje y
-            label: function(tooltipItem, data) {
-                return tooltipItem.yLabel;
+          /*callbacks: {
+              funcioón para solo mostrar el valor del eje y
+              label: function(tooltipItem, data) {
+              return tooltipItem.yLabel;
             }
-          }
+          }*/
         },
         scales: {//escalas
           xAxes: [{
-            display: false,//para no mostrar la escala en el eje x
+            display: true,//para no mostrar la escala en el eje x
             type: 'linear',
             position: 'bottom'//posición abajo
           }],
@@ -339,16 +339,16 @@ export class EstadisticasdepPage {
         },
         tooltips: {//herramientas
           enabled: true,
-          callbacks: {
+         /* callbacks: {
             //funcioón para solo mostrar el valor del eje y
             label: function(tooltipItem, data) {
                 return tooltipItem.yLabel;
             }
-          }
+          }*/
         },
         scales: {//escalas
           xAxes: [{
-            display: false,//para no mostrar la escala en el eje x
+            display: true,//para no mostrar la escala en el eje x
             type: 'linear',
             position: 'bottom'//posición abajo
           }],
@@ -419,16 +419,16 @@ export class EstadisticasdepPage {
         },
         tooltips: {//herramientas
           enabled: true,
-          callbacks: {
+         /* callbacks: {
             //funcioón para solo mostrar el valor del eje y
             label: function(tooltipItem, data) {
                 return tooltipItem.yLabel;
             }
-          }
+          }*/
         },
         scales: {//escalas
           xAxes: [{
-            display: false,//para no mostrar la escala en el eje x
+            display: true,//para no mostrar la escala en el eje x
             type: 'linear',
             position: 'bottom'//posición abajo
           }],
@@ -498,7 +498,7 @@ export class EstadisticasdepPage {
         },
         scales: {//escalas
           xAxes: [{
-            display: false,//para no mostrar la escala en el eje x
+            display: true,//para no mostrar la escala en el eje x
             type: 'linear',
             position: 'bottom'//posición abajo
           }],
