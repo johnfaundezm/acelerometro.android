@@ -62,6 +62,7 @@ export class InfoentrenamientoPage {
   }
   //cuando va a salir de la vista se le agrega el tabbar nuevamente
   ionViewWillLeave() {
+    this.a=0;
     this.tabBarElement.style.display = 'flex';
   }
 
