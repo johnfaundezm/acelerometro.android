@@ -686,6 +686,33 @@ export class WebservicesProvider {
     });
   }
 
+  // se crea un metodo consultar la id del entrenamiento y el estado
+  consulta_estado_entrenamiento(id_entrenamiento) {
+    return new Promise( (resolve, reject) => {
+      
+      let headers = new Headers({
+        "Content-Type": "application/x-www-form-urlencoded" //este es la forma en que se envia el POST y se almacena en la variable headers
+      });
+      let options = new RequestOptions({
+        headers: headers // se pasa la variable header con la forma de post a la variable options
+      });
+      // TODO: Encode the values using encodeURIComponent().
+      //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
+      // en este caso no se envian variables, por q solo se reciben datos del php
+      let body = 'id_entrenamiento='+id_entrenamiento;
+      //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
+      let url = "http://192.81.216.141/webservices/consulta_estado_entrenamiento.php";
+
+      this.http.post(url, body, options)
+        .map(res => res.json()) // se retorno el body como text y no como json por error en el formato de json en la pagina
+        .subscribe(data => {
+          //alert(JSON.stringify(data));
+          if (data != 'null') resolve( data );  
+          else resolve (false);
+        }, error => reject(error));
+    });
+  }
+
   // se crea un metodo para consultar la id y el nombre del entrenamiento
   nombre_entrenamiento(id_solicitud) {
     return new Promise( (resolve, reject) => {

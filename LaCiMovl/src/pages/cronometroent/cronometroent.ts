@@ -154,7 +154,7 @@ export class CronometroentPage {
   }
 
   verificacion(){// consulta quer verifica el estado del entrenamiento
-    this.webservices.estado_entrenamiento(this.id_ent).then(//llama a la funcion del webservices.ts y le envia la id del entrenamiento
+    this.webservices.consulta_estado_entrenamiento(this.id_ent).then(//llama a la funcion del webservices.ts y le envia la id del entrenamiento
       (datos)=>{// recibe los datos de la consulta
         //alert(JSON.stringify(datos));
         var estado= datos[0].ESTADO_CRONOMETRO;// recibe el estado y se almacena en una variable
