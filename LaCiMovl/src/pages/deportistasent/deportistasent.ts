@@ -242,7 +242,7 @@ export class DeportistasentPage {
     this.navCtrl.push(InfoentrenamientoPage, {ide:id, email:email, correo:this.correo});
   }
 
-  goestadisticas(id_solicitud){
-    this.navCtrl.push(DatosentrenamientoPage, {id_solicitud:id_solicitud,correo:this.correo});
+  goestadisticas(id_solicitud, email_dep){
+    this.navCtrl.push(DatosentrenamientoPage, {email_dep:email_dep,id_solicitud:id_solicitud,correo:this.correo});
   }
 }
