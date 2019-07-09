@@ -438,7 +438,7 @@ export class CronometroPage {
  }
 
   enviar_datos_basedatos(){
-    alerta_confirmacion()
+    this.alerta_confirmacion();
     this.webservices.acelerometro_datos(this.id_entrenamiento, this.arrayaccX, this.arrayaccY, this.arrayaccZ, this.arrayacel_x_y_z, this.arrayfuerza, this.arraypotencia).then( // se envian los datos al servidor web
       (datos) =>{
         //var respuesta= datos[0].RESPUESTA;
@@ -460,6 +460,7 @@ export class CronometroPage {
     )
 
   }
+  
   finalizar_recuperacion(){
    //this.playAudiof();
     // se restaura el cronometro como 0
