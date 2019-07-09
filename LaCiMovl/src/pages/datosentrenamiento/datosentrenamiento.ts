@@ -76,6 +76,7 @@ export class DatosentrenamientoPage {
 
   
   ionViewWillEnter() {// evento que se realiza antes de cargar la vista
+    this.datos_entrenamiento();
     this.nombre_entrenamiento();
     this.datos_deportista();
     this.tabBarElement.style.display = 'none';//antes de entrar a la vista se oculta el tabbar
@@ -231,9 +232,21 @@ export class DatosentrenamientoPage {
     this.webservices.consulta_giroscopio_datos(this.val_entre).then( // se envian todos los parametros que se ven en el paréntesis
       (datos) =>{// se reciben los datos de respuesta del servidor
         let largo=Object.keys(datos).length; // se calcula el largo de el arreglo que llegará del servidor con los datos
+        var frec;
+        if(this.tipo_entrenamiento=='saltar' || this.tipo_entrenamiento=='golpear' || this.tipo_entrenamiento=='carrera_corta'){
+          frec=0.1;
+        }else{
+          if(this.tipo_entrenamiento=='carrera_larga'){
+            frec=1;
+          }else{
+            if(this.tipo_entrenamiento=='caminar'){
+              frec=0.5;
+            }
+          }
+        }
         var x=0;
         for(var i=0;i<largo;i++){
-          x+=0.1;
+          x+=frec;
           var varX = datos[i].ORIENTACIONX; // se almacena el dato en una variable
           var varY = datos[i].ORIENTACIONY; // se almacena el dato en una variable
           var varZ = datos[i].ORIENTACIONZ; // se almacena el dato en una variable
