@@ -1,0 +1,79 @@
+<ion-content class="grad" padding><!--vista de las estadisticas del deportista, despues del entrenamiento-->
+
+  <div><!--bloque boton para volver a la vista anterior-->
+    <ion-item no-lines only-icon style="background-color: transparent">
+      <button ion-button color="light" clear (click)="volver()" item-start ><!--botón para volver atras-->
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+      <ion-label class="titulo">Estadisticas ultimo entrenamiento</ion-label> <!--encabezado de pagina-->
+    </ion-item>   
+  </div>
+
+    <div><!--bloque para el filtro del entrenamiento-->
+        <ion-item no-lines style="background-color: transparent">
+            <ion-item style="background-color: transparent">
+                <ion-select [(ngModel)]="val_entre" style="background-color:whitesmoke" placeholder="entrenamiento" ><!--select para elegir el entrenamiento a graficar-->
+                    <ion-option *ngFor="let ide_entre of entrenamiento" value="{{ide_entre.ide}}">{{ide_entre.nombre_ent}} - {{ide_entre.ide}}</ion-option> <!--datos que muestra el select-->
+                </ion-select>
+            </ion-item>
+        <button item-end ion-button (click)="escoger_entrenamiento()">Graficar</button><!--botón para realizar la graficacion del entrenamiento seleccionado-->
+        </ion-item>
+    </div>
+
+  <!--tarjeta contenedora del grafico de aceleracion y giroscopio resultante-->
+  <ion-card style="height: 300px;" class="border_card">
+      <ion-card-header class="title_card"><!--titulo de la tarjeta-->
+          Aceleracion - Giroscopio
+      </ion-card-header>  
+      <ion-card-content style="padding-top: 10px">
+          <div style="width: 100%; overflow-x: auto;overflow-y:hidden"><!--contenedor: tamaño y caracteristicas anti desbordamiento-->
+              <div style="width: 6000px; height: 225px">
+                  <canvas #aceleragiroschart width="0" height="300"></canvas><!--llamado al grafico-->
+              </div>
+          </div>
+      </ion-card-content>
+  </ion-card>
+
+  <!--tarjeta contenedora del grafico de aceleracion, fuerza y portencia resultante-->
+  <ion-card style="height: 300px;" class="border_card">
+      <ion-card-header class="title_card"><!--titulo de la tarjeta-->
+          Fuerza - Potencia
+      </ion-card-header>  
+      <ion-card-content style="padding-top: 10px">
+          <div style="width: 100%; overflow-x: auto;overflow-y:hidden"><!--contenedor: tamaño y caracteristicas anti desbordamiento-->
+              <div style="width: 6000px; height: 225px">
+                  <canvas #aceleracionxyzchart width="0" height="300"></canvas><!--llamado al grafico-->
+              </div>
+          </div>
+      </ion-card-content>
+  </ion-card>
+
+  <!--tarjeta contenedora del grafico de aceleraciones por cada eje-->
+  <ion-card style="height: 300px;" class="border_card">
+      <ion-card-header class="title_card"><!--titulo de la tarjeta-->
+          Aceleraciones por eje
+      </ion-card-header>  
+      <ion-card-content style="padding-top: 10px">
+          <div style="width: 100%; overflow-x: auto;overflow-y:hidden"><!--contenedor: tamaño y caracteristicas anti desbordamiento-->
+              <div style="width: 6000px; height: 225px">
+                  <canvas #aceleracionchart width="0" height="300"></canvas><!--llamado al grafico-->
+              </div>
+          </div>
+      </ion-card-content>
+  </ion-card>
+
+  <!--tarjeta contenedora del grafico del giroscopio-->
+  <ion-card style="height: 300px;" class="border_card">
+      <ion-card-header class="title_card"><!--titulo de la tarjeta-->
+          Giroscopio por eje
+      </ion-card-header>  
+      <ion-card-content style="padding-top: 10px">
+          <div style="width: 100%; overflow-x: auto;overflow-y:hidden"><!--contenedor: tamaño y caracteristicas anti desbordamiento-->
+              <div style="width: 6000px; height: 225px">
+                  <canvas #giroscopiochart width="0" height="300"></canvas><!--llamado al grafico-->
+              </div>
+          </div>
+      </ion-card-content>
+  </ion-card>
+
+</ion-content>
