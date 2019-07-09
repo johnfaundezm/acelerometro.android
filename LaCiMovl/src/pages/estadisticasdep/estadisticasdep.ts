@@ -214,277 +214,281 @@ export class EstadisticasdepPage {
       }
     )
   }
-
+  //funcion que llama al grafico de aceleraciones por eje
   acelerachart(){
     this.aceleracionchartvar = new Chart(this.aceleracionchart.nativeElement, {
-      type: 'scatter',
+      type: 'scatter',//tipo de grafico
       data: {
         datasets: [{
-          label: 'Acel x',
+          label: 'Acel x',//etiqueta del conjunto de puntos de la aceleracion en el eje x
           data: this.datos_acelerometroX, // se reciben los datos del arreglo en data
 
-          showLine: true,
-          borderWidth: 2,
-          borderColor: 'rgba(214, 225, 9, 1)',
-          fill: false,
-                        backgroundColor: 'rgba(214, 225, 9, 1)',
-                        pointBorderColor: 'rgba(75,192,192,1)',
-                        pointBorderWidth: 1,     
-                        pointRadius: 0,
-                        pointHitRadius: 10,
+          showLine: true,//true para mostrar la linea
+          borderWidth: 2,//grosor de la linea
+          borderColor: 'rgba(214, 225, 9, 1)',//color de la linea
+          fill: false,//false para no mostrar area bajo la curva
+          backgroundColor: 'rgba(214, 225, 9, 1)',//color de fondo para la leyenda
+          pointBorderColor: 'rgba(75,192,192,1)',//color del borde del punto
+          pointBorderWidth: 1,//tamaño del borde del punto     
+          pointRadius: 0,//tamaño del borde
+          pointHitRadius: 20,//radio donde responde a un tap en pantalla para mostrar la información
         },
         {
-          label: 'Acel Y',
+          label: 'Acel Y',//etiqueta del conjunto de puntos de la aceleracion en el eje y
           data: this.datos_acelerometroY, // se reciben los datos del arreglo en data
-          showLine: true,
-          borderWidth: 2,
-          borderColor: 'rgba(24, 24, 185, 1)',
-          fill: false,
-                        backgroundColor: 'rgba(24, 24, 185, 1)',
-                        pointBorderColor: 'rgba(75,192,192,1)',
-                        pointBorderWidth: 1,     
-                        pointRadius: 0,
-                        pointHitRadius: 10,
+          showLine: true,//true para mostrar la linea
+          borderWidth: 2,//grosor de la linea
+          borderColor: 'rgba(24, 24, 185, 1)',//color de la linea
+          fill: false,//false para no mostrar area bajo la curva
+          backgroundColor: 'rgba(24, 24, 185, 1)',//color del fondo de la leyenda
+          pointBorderColor: 'rgba(75,192,192,1)',//color del borde del punto
+          pointBorderWidth: 1,//tamaño del borde del punto
+          pointRadius: 0,//tamaño del punto
+          pointHitRadius: 20,//radio donde responde a un tap en pantalla para mostrar la información
         },
         {
-          label: 'Acel Z',
+          label: 'Acel Z',//etiqueta del conjunto de puntos de la aceleracion en el eje y
           data: this.datos_acelerometroZ, // se reciben los datos del arreglo en data
-          showLine: true,
-          borderWidth: 2,
-          borderColor: 'rgba(185, 24, 24, 1)',
-          fill: false,
-                        backgroundColor: 'rgba(185, 24, 24, 1)',
-                        pointBorderColor: 'rgba(75,192,192,1)',
-                        pointBorderWidth: 1,     
-                        pointRadius: 0,
-                        pointHitRadius: 20,
+          showLine: true,//true para mostrar la linea del grafico
+          borderWidth: 2,//tamaño de la linea
+          borderColor: 'rgba(185, 24, 24, 1)',//color de la linea
+          fill: false,//false para no mostrar area bajo la curva
+          backgroundColor: 'rgba(185, 24, 24, 1)',//color de la leyenda
+          pointBorderColor: 'rgba(75,192,192,1)',//color del borde del punto
+          pointBorderWidth: 1,//tamaño del borde del punto     
+          pointRadius: 0,//tamaño del punto
+          pointHitRadius: 20,//radio donde responde a un tap en pantalla para mostrar la información
         }
         ]
       },
 
       options: {
-        legend: {
-          position: 'left',
-          labels:{
-            boxWidth: 15
+        legend: {//opciones de la leyenda
+          position: 'left',//leyenda posicionada a la izquierda
+          labels:{//etiqueta
+            boxWidth: 15//tamaño de la leyenda
           },
-          display: true
+          display: true//true para mostrar la leyenda
         },
-        tooltips: {
+        tooltips: {//herramientas
           enabled: true,
           callbacks: {
+            //funcioón para solo mostrar el valor del eje y
             label: function(tooltipItem, data) {
                 return tooltipItem.yLabel;
             }
           }
         },
-        scales: {
+        scales: {//escalas
           xAxes: [{
-            display: false,
+            display: false,//para no mostrar la escala en el eje x
             type: 'linear',
-            position: 'bottom'
+            position: 'bottom'//posición abajo
           }],
           yAxes: [{
             scaleLabel: {
-              display: true,
-              labelString:"m/s^2"
+              display: true,//mostrar etiqueta en el eje y
+              labelString:"m/s^2"//texto de la etiqueta
             }
           }]
         }
       }
     })
   }
-
+  //funcion que llama al grafico de la fuerza y potencia
   aceleraxyzchart(){
     this.aceleracionxyzchartvar = new Chart(this.aceleracionxyzchart.nativeElement, {
-      type: 'scatter',
+      type: 'scatter',//tipo de grafico
       data: {
         datasets: [{
-          label: 'Fuerza',
+          label: 'Fuerza',//etiqueta del conjunto de puntos para la fuerza resultante
           data: this.datos_acelerometroF, // se reciben los datos del arreglo en data
-          showLine: true,
-          borderWidth: 2,
-          borderColor: 'rgba(4, 106, 118, 1)',
-          fill: false,
-                        backgroundColor: 'rgba(4, 106, 118, 1)',
-                        pointBorderColor: 'rgba(75,192,192,1)',
-                        pointBorderWidth: 1,     
-                        pointRadius: 0,
-                        pointHitRadius: 10,
+          showLine: true,//true para mostrar la linea
+          borderWidth: 2,//grosor de la linea
+          borderColor: 'rgba(4, 106, 118, 1)',//color de la linea
+          fill: false,//false para no mostrar el area bajo la curva
+          backgroundColor: 'rgba(4, 106, 118, 1)',//colro de la leyenda
+          pointBorderColor: 'rgba(75,192,192,1)',//color del borde del punto
+          pointBorderWidth: 1,//tamaño del borde del punto
+          pointRadius: 0,//tamaño del punto
+          pointHitRadius: 20,//radio donde responde a un tap en pantalla para mostrar la información
         },
         {
-          label: 'Potencia',
+          label: 'Potencia',//etiqueta del conjunto de puntos para le potencia resultante
           data: this.datos_acelerometroP, // se reciben los datos del arreglo en data
-          showLine: true,
-          borderWidth: 2,
-          borderColor: 'rgba(109, 2, 86, 1)',
-          fill: false,
-                        backgroundColor: 'rgba(109, 2, 86, 1)',
-                        pointBorderColor: 'rgba(75,192,192,1)',
-                        pointBorderWidth: 1,     
-                        pointRadius: 0,
-                        pointHitRadius: 10,
+          showLine: true,//true para mostrar la linea
+          borderWidth: 2,//grosor de la linea
+          borderColor: 'rgba(109, 2, 86, 1)',//color de la linea
+          fill: false,//false para no mostrar el area bajo la curva
+          backgroundColor: 'rgba(109, 2, 86, 1)',//colro de la leyenda
+          pointBorderColor: 'rgba(75,192,192,1)',//color del borde del punto
+          pointBorderWidth: 1,//tamaño del borde del punto
+          pointRadius: 0,//tamaño del punto
+          pointHitRadius: 20,//radio donde responde a un tap en pantalla para mostrar la información
         }
         ]
       },
 
       options: {
-        legend: {
-          position: 'left',
-          labels:{
-            boxWidth: 15
+        legend: {//opciones de la leyenda
+          position: 'left',//leyenda posicionada a la izquierda
+          labels:{//etiqueta
+            boxWidth: 15//tamaño de la leyenda
           },
-          display: true
+          display: true//true para mostrar la leyenda
         },
-        tooltips: {
+        tooltips: {//herramientas
           enabled: true,
           callbacks: {
+            //funcioón para solo mostrar el valor del eje y
             label: function(tooltipItem, data) {
                 return tooltipItem.yLabel;
             }
           }
         },
-        scales: {
+        scales: {//escalas
           xAxes: [{
-            display: false,
+            display: false,//para no mostrar la escala en el eje x
             type: 'linear',
-            position: 'bottom'
+            position: 'bottom'//posición abajo
           }],
           yAxes: [{
             scaleLabel: {
-              display: true
+              display: true//mostrar etiqueta en el eje y
             }
           }]
         }
       }
     })
   }
-
+  //funcion que llama al grafico de giroscopio por eje
   giroschart(){
     this.giroscopiochartvar = new Chart(this.giroscopiochart.nativeElement, {
-      type: 'scatter',
+      type: 'scatter',//tipo de grafico
       data: {
         datasets: [{
-          label: 'Eje x',
+          label: 'Eje x',//etiqueta del conjunto de puntos del giroscopio en el eje x
           data: this.datos_giroscopioX, // se reciben los datos del arreglo en data
 
-          showLine: true,
-          borderWidth: 2,
-          borderColor: 'rgba(28, 210, 8, 1)',
-          fill: false,
-                        backgroundColor: 'rgba(28, 210, 8, 1)',
-                        pointBorderColor: 'rgba(75,192,192,1)',
-                        pointBorderWidth: 1,     
-                        pointRadius: 0,
-                        pointHitRadius: 10,
+          showLine: true,//true para mostrar la linea
+          borderWidth: 2,//grosor de la linea
+          borderColor: 'rgba(28, 210, 8, 1)',//color de la linea
+          fill: false,//false para no mostrar area bajo la curva
+          backgroundColor: 'rgba(28, 210, 8, 1)',//color de fondo para la leyenda
+          pointBorderColor: 'rgba(75,192,192,1)',//color del borde del punto
+          pointBorderWidth: 1,//tamaño del borde del punto
+          pointRadius: 0,//tamaño del borde
+          pointHitRadius: 20,//radio donde responde a un tap en pantalla para mostrar la información
         },
         {
-          label: 'Eje Y',
+          label: 'Eje Y',//etiqueta del conjunto de puntos delgiroscopio en el eje y
           data: this.datos_giroscopioY, // se reciben los datos del arreglo en data
-          showLine: true,
-          borderWidth: 2,
-          borderColor: 'rgba(28, 78, 241, 1)',
-          fill: false,
-                        backgroundColor: 'rgba(28, 78, 241, 1)',
-                        pointBorderColor: 'rgba(75,192,192,1)',
-                        pointBorderWidth: 1,     
-                        pointRadius: 0,
-                        pointHitRadius: 10,
+          showLine: true,//true para mostrar la linea
+          borderWidth: 2,//grosor de la linea
+          borderColor: 'rgba(28, 78, 241, 1)',//color de la linea
+          fill: false,//false para no mostrar area bajo la curva
+          backgroundColor: 'rgba(28, 78, 241, 1)',//color de fondo para la leyenda
+          pointBorderColor: 'rgba(75,192,192,1)',//color del borde del punto
+          pointBorderWidth: 1,//tamaño del borde del punto
+          pointRadius: 0,//tamaño del borde
+          pointHitRadius: 20,//radio donde responde a un tap en pantalla para mostrar la información
         },
         {
-          label: 'Eje Z',
+          label: 'Eje Z',//etiqueta del conjunto de puntos del giroscopio en el eje z
           data: this.datos_giroscopioZ, // se reciben los datos del arreglo en data
-          showLine: true,
-          borderWidth: 2,
-          borderColor: 'rgba(151, 36, 148, 1)',
-          fill: false,
-                        backgroundColor: 'rgba(151, 36, 148, 1)',
-                        pointBorderColor: 'rgba(75,192,192,1)',
-                        pointBorderWidth: 1,     
-                        pointRadius: 0,
-                        pointHitRadius: 20,
+          showLine: true,//true para mostrar la linea
+          borderWidth: 2,//grosor de la linea
+          borderColor: 'rgba(151, 36, 148, 1)',//color de la linea
+          fill: false,//false para no mostrar area bajo la curva
+          backgroundColor: 'rgba(151, 36, 148, 1)',//color de fondo para la leyenda
+          pointBorderColor: 'rgba(75,192,192,1)',//color del borde del punto
+          pointBorderWidth: 1,//tamaño del borde del punto     
+          pointRadius: 0,//tamaño del borde
+          pointHitRadius: 20,//radio donde responde a un tap en pantalla para mostrar la información
         }
         ]
       },
 
       options: {
-        legend: {
-          position: 'left',
-          labels:{
-            boxWidth: 15
+        legend: {//opciones de la leyenda
+          position: 'left',//leyenda posicionada a la izquierda
+          labels:{//etiqueta
+            boxWidth: 15//tamaño de la leyenda
           },
-          display: true
+          display: true//true para mostrar la leyenda
         },
-        tooltips: {
+        tooltips: {//herramientas
           enabled: true,
           callbacks: {
+            //funcioón para solo mostrar el valor del eje y
             label: function(tooltipItem, data) {
                 return tooltipItem.yLabel;
             }
           }
         },
-        scales: {
+        scales: {//escalas
           xAxes: [{
-            display: false,
+            display: false,//para no mostrar la escala en el eje x
             type: 'linear',
-            position: 'bottom'
+            position: 'bottom'//posición abajo
           }],
           yAxes: [{
             scaleLabel: {
-              display: false,
-              labelString:""
+              display: false,//mostrar etiqueta en el eje y
+              labelString:""//texto de la etiqueta
             }
           }]
         }
       }
     })
   }
-
+//funcion que llama al grafico de aceleraciones y giroscopio resultante
   acelgiroschart(){
     this.aceleragiroschartvar = new Chart(this.aceleragiroschart.nativeElement, {
-      type: 'scatter',
+      type: 'scatter',//tipo de grafico
       data: {
         datasets: [{
-          label: 'Aceleración',
+          label: 'Aceleración',//etiqueta del conjunto de puntos de la aceleracion resultante
           data: this.datos_acelerometro, // se reciben los datos del arreglo en data
 
-          showLine: true,
-          borderWidth: 2,
-          borderColor: 'rgba(28, 210, 8, 1)',
-          fill: false,
-                        backgroundColor: 'rgba(28, 210, 8, 1)',
-                        pointBorderColor: 'rgba(75,192,192,1)',
-                        pointBorderWidth: 1,     
-                        pointRadius: 0,
-                        pointHitRadius: 10,
+          showLine: true,//true para mostrar la linea
+          borderWidth: 2,//grosor de la linea
+          borderColor: 'rgba(28, 210, 8, 1)',//color de la linea
+          fill: false,//false para no mostrar area bajo la curva
+          backgroundColor: 'rgba(28, 210, 8, 1)',//color de fondo para la leyenda
+          pointBorderColor: 'rgba(75,192,192,1)',//color del borde del punto
+          pointBorderWidth: 1,//tamaño del borde del punto     
+          pointRadius: 0,//tamaño del borde
+          pointHitRadius: 20,//radio donde responde a un tap en pantalla para mostrar la información
         },
         {
-          label: 'Giroscopio',
+          label: 'Giroscopio',//etiqueta del conjunto de puntos del giroscopio resultante
           data: this.datos_giroscopio, // se reciben los datos del arreglo en data
-          showLine: true,
-          borderWidth: 2,
-          borderColor: 'rgba(28, 78, 241, 1)',
-          fill: false,
-                        backgroundColor: 'rgba(28, 78, 241, 1)',
-                        pointBorderColor: 'rgba(75,192,192,1)',
-                        pointBorderWidth: 1,     
-                        pointRadius: 0,
-                        pointHitRadius: 10,
+          showLine: true,//true para mostrar la linea
+          borderWidth: 2,//grosor de la linea
+          borderColor: 'rgba(28, 78, 241, 1)',//color de la linea
+          fill: false,//false para no mostrar area bajo la curva
+          backgroundColor: 'rgba(28, 78, 241, 1)',//color de fondo para la leyenda
+          pointBorderColor: 'rgba(75,192,192,1)',//color del borde del punto
+          pointBorderWidth: 1,//tamaño del borde del punto 
+          pointRadius: 0,//tamaño del borde
+          pointHitRadius: 20,//radio donde responde a un tap en pantalla para mostrar la información
         }
         ]
       },
 
       options: {
-        legend: {
-          position: 'left',
-          labels:{
-            boxWidth: 15
+        legend: {//opciones de la leyenda
+          position: 'left',//leyenda posicionada a la izquierda
+          labels:{//etiqueta
+            boxWidth: 15//tamaño de la leyenda
           },
-          display: true
+          display: true//true para mostrar la leyenda
         },
-        tooltips: {
+        tooltips: {//herramientas
           enabled: true,
           /*
+          //funcioón para solo mostrar el valor del eje y
           callbacks: {
             label: function(tooltipItem, data) {
                 return tooltipItem.yLabel;
@@ -492,16 +496,16 @@ export class EstadisticasdepPage {
           }
           */
         },
-        scales: {
+        scales: {//escalas
           xAxes: [{
-            display: false,
+            display: false,//para no mostrar la escala en el eje x
             type: 'linear',
-            position: 'bottom'
+            position: 'bottom'//posición abajo
           }],
           yAxes: [{
             scaleLabel: {
-              display: false,
-              labelString:""
+              display: false,//mostrar etiqueta en el eje y
+              labelString:""//texto de la etiqueta
             }
           }]
         }
