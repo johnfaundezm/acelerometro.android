@@ -9,7 +9,7 @@ import { NativeAudio } from '@ionic-native/native-audio';
 import  'rxjs/add/observable/interval' 
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { EntrenamientoPage } from '../entrenamiento/entrenamiento';
-import { EstadisticasdepPage } from '../estadisticasdep/estadisticasdep';
+import { DatosentrenamientodepPage } from '../datosentrenamientodep/datosentrenamientodep';
 
 @IonicPage()
 @Component({
@@ -182,7 +182,7 @@ export class CronometroPage {
           text: 'Aceptar',//nombre del boton 2
           handler: () => {
             // se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
-            this.navCtrl.setRoot(EstadisticasdepPage, {correo:this.correo, id_entrenamiento:this.id_ent, id_solicitud:this.id_solicitud});
+            this.navCtrl.setRoot(DatosentrenamientodepPage, {correo:this.correo, id_entrenamiento:this.id_ent, id_solicitud:this.id_solicitud});
           }
         }
       ]

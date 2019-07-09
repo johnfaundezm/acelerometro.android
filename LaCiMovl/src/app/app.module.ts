@@ -44,6 +44,7 @@ import { PodepComponent } from '../components/podep/podep';
 import { PoentComponent } from '../components/poent/poent';
 import { CronometroentPage } from '../pages/cronometroent/cronometroent';
 import { DatosentrenamientoPage } from '../pages/datosentrenamiento/datosentrenamiento';
+import { DatosentrenamientodepPage } from '../pages/datosentrenamientodep/datosentrenamientodep';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { DatosentrenamientoPage } from '../pages/datosentrenamiento/datosentrena
     CronometroPage,
     CronometroentPage,
     InfoentrenamientoPage,
-    DatosentrenamientoPage
+    DatosentrenamientoPage,
+    DatosentrenamientodepPage
   ],
   imports: [
     BrowserAnimationsModule,
@@ -96,7 +98,8 @@ import { DatosentrenamientoPage } from '../pages/datosentrenamiento/datosentrena
     CronometroPage,
     CronometroentPage,
     InfoentrenamientoPage,
-    DatosentrenamientoPage
+    DatosentrenamientoPage,
+    DatosentrenamientodepPage
   ],
   providers: [
     StatusBar,
