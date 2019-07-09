@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { Chart } from 'chart.js';
 import { DeportistasentPage } from '../deportistasent/deportistasent';
+import { formDirectiveProvider } from '@angular/forms/src/directives/ng_form';
 
 
 @IonicPage()
@@ -55,6 +56,8 @@ export class DatosentrenamientoPage {
   estatura_dep:any;
   imc_dep:any;
   pais_dep:any;
+  tipo_entrenamiento:any;
+
   //Constructor, donde se declaran todos los plugins
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider)  {
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar'); //se pasa el elemento tabbar a la variable antes declarada
@@ -123,6 +126,17 @@ export class DatosentrenamientoPage {
     }
   }
 
+  datos_entrenamiento(){
+    this.webservices.consultar_entrenamiento_por_id(this.val_entre).then(//llama a la funcion del webservices.ts y le envia la id del entrenamiento
+      (datos)=>{// recibe los datos de la consulta
+        //alert(JSON.stringify(datos));
+        this.tipo_entrenamiento = datos[0].NOMBRE;
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
+  }
+
   datos_deportista(){
     this.webservices.consulta(this.email_dep).then( // se envia el correo a consultar
       (datos)=>{ //se reciben los datos como respuesta
@@ -152,15 +166,26 @@ export class DatosentrenamientoPage {
     this.datos_acelerometroF=[];
     this.datos_acelerometroP=[];
 
-   
-   
     this.webservices.consulta_acelerometro_datos(this.val_entre).then(// se envian todos los parametros que se ven en el paréntesis
       (datos) =>{// se reciben los datos de respuesta del servidor
         let largo:any=Object.keys(datos).length; // se calcula el largo de el arreglo que llegará del servidor con los datos
         //var division=largo/1;
+        var frec;
+        if(this.tipo_entrenamiento=='saltar' || this.tipo_entrenamiento=='golpear' || this.tipo_entrenamiento=='carrera_corta'){
+          frec=0.1;
+        }else{
+          if(this.tipo_entrenamiento=='carrera_larga'){
+            frec=1;
+          }else{
+            if(this.tipo_entrenamiento=='caminar'){
+              frec=0.5;
+            }
+          }
+        }
+
         var x=0;
         for(var i=0;i<largo;i++){
-          x+=0.1;
+          x+=frec;
           var yX = datos[i].ACELERACIONX; // se almacena el dato en una variable
           var yY = datos[i].ACELERACIONY; // se almacena el dato en una variable
           var yZ = datos[i].ACELERACIONZ; // se almacena el dato en una variable

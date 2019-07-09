@@ -224,7 +224,7 @@ export class CronometroentPage {
         {
           text: 'Aceptar',//nombre del boton 2
           handler: () => {
-            this.navCtrl.push(DatosentrenamientoPage, {email_dep:this.email_dep,id_entrenamiento:this.id_ent, correo:this.correo, id_solicitud:this.id_solicitud})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
+            this.navCtrl.push(DatosentrenamientoPage, {tipo_entrenamiento:this.tipo_entrenamiento,email_dep:this.email_dep,id_entrenamiento:this.id_ent, correo:this.correo, id_solicitud:this.id_solicitud})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
           }
         }
       ]
