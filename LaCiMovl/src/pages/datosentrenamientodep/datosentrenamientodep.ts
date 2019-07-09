@@ -56,12 +56,11 @@ export class DatosentrenamientodepPage {
   }
 
   ionViewDidLoad() { // evento que se realiza al cargar la vista
-      this.consultar_acc(); // se llama al método que consulta los datos del acelerometro
+      this.datos_entrenamiento(); // se llama al método que consulta los datos del acelerometro
   }
 
   
   ionViewWillEnter() {// evento que se realiza antes de cargar la vista
-    this.datos_entrenamiento();
     this.nombre_entrenamiento();
     this.tabBarElement.style.display = 'none';//antes de entrar a la vista se oculta el tabbar
   }
@@ -116,6 +115,7 @@ export class DatosentrenamientodepPage {
       (datos)=>{// recibe los datos de la consulta
         //alert(JSON.stringify(datos));
         this.tipo_entrenamiento = datos[0].NOMBRE;
+        this.consultar_acc();
       },
       (err)=>{
         alert(JSON.stringify(err))
@@ -566,7 +566,7 @@ export class DatosentrenamientodepPage {
 
   //método que llama a la funcion para traer los datos del acelerometro y giroscopio para graficarlos
   escoger_entrenamiento(){
-    this.consultar_acc();
+    this.datos_entrenamiento();
   }
 
 }
