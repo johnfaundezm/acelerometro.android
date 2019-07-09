@@ -190,12 +190,16 @@ export class InfoentrenamientoPage {
 
   enviar_entrenamiento(){
     this.detalletiempo(); // se llama a la funcion que cambia el tiempo a segundos
-    if(this.tiempo_entrenamiento==0 || this.tipo_entrenamiento==null){ // si se cumple la condicion se realiza ésto
+    
+    if(this.tiempo_entrenamiento==0 || this.tipo_entrenamiento==null ||(this.tiempo_recuperacion==0 || this.tiempo_recuperacion==null)){ // si se cumple la condicion se realiza ésto
       if(this.tiempo_entrenamiento==0){
         alert('Su tiempo de entrenamiento no está definido. Defínalo e intente nuevamente'); // se envia el mensaje correspondiente
       }
       if(this.tipo_entrenamiento==null){
         alert('Su tipo de entrenamiento no está definido. Defínalo e intente nuevamente'); // se envia el mensaje correspondiente
+      }
+      if(this.tiempo_recuperacion==0 || this.tiempo_recuperacion==null){
+        this.tiempo_recuperacion=0;
       }
     }else{// si no se cumple la condicion se realiza ésto
       this.loadregistrar();
