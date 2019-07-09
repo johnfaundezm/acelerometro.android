@@ -605,21 +605,23 @@ export class EstadisticasdepPage {
   }
   //
   calc_function(T){
-    var X =[];
-    X.length = T.length;
+    var X =[];// crea un arreglo X
+    X.length = T.length;  // le asigna el un largo igual a la cantidad de datos de acelerometro del entrenamiento
     //alert('largo T= '+T.length);
     for (var t =0;t<T.length; t++){
-      X[t] = Math.sin(2*Math.PI*T[t]);
+      X[t] = this.datos_acelerometro[t]*(Math.sin(2*Math.PI*T[t]));//calcula la funcion para la cantidad de datos del entrenamiento
     }
-    return X;
+    return X; //retorna el arreglo con los valores recalculados.
   }
   
   fourier(){
     var T=this.linspace(0,1,this.datos_acelerometro.length);
     var X= this.calc_function(T);
     alert(X);//muestra los valores almacenados en X
+
     //this.make_complex(X);// se ejecuta el metodo make_complex para X
     //X=this.arreglo;// se le asignan a X los valores resultantes de la funcion make_complex
+    
     var Y=this.fft2(X);// Se retornan los valores de fourier a el arreglo Y
     var Yr=[];// se crea el arreglo Yr
     Yr.length = Y.length; // se crea le asigna el largo a Yr igual a la cantidad de datos recibidos.
