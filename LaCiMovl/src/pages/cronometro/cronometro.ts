@@ -206,12 +206,15 @@ export class CronometroPage {
         //alert(JSON.stringify(datos));
         this.estado= datos[0].ESTADO_CRONOMETRO;// recibe el estado y se almacena en una variable
         if(this.estado==3){ // si el estado es 3 se inicia el cronometro
+          alert('entre al inicio');
           this.nuevoEntrenamiento();
         }else{
           if(this.estado==2){// si el estado es 2 se pausa el cronometro
+            alert('entre a la pausa');
             this.pausa();
           }else{
             if(this.estado==1){// si el estado es 1 finaliza el cronometro
+              alert('entre al finalizar');
               this.finalizar();
             }
           }
