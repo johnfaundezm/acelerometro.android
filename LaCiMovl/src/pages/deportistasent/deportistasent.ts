@@ -245,5 +245,7 @@ export class DeportistasentPage {
   goestadisticas(id_solicitud){
     this.navCtrl.push(DatosentrenamientoPage, {id_solicitud:id_solicitud,correo:this.correo});
   }
-
+  infoPerfil(){
+    alert('infoperfil');
+  }
 }
