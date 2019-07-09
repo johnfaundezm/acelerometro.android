@@ -56,7 +56,7 @@ export class EstadisticasdepPage {
   }
 
   ionViewDidLoad(){ // evento que se realiza al cargar la vista
-    this.consultar_acc(); // se llama al método que consulta los datos del acelerometro
+    this.datos_entrenamiento(); // se llama al método que consulta los datos del acelerometro
   }
 
   ionViewDidEnter() {
@@ -117,6 +117,7 @@ export class EstadisticasdepPage {
       (datos)=>{// recibe los datos de la consulta
         //alert(JSON.stringify(datos));
         this.tipo_entrenamiento = datos[0].NOMBRE;
+        this.consultar_acc();
       },
       (err)=>{
         alert(JSON.stringify(err))
@@ -242,7 +243,6 @@ export class EstadisticasdepPage {
           this.datos_giroscopioZ.push(auxZ);
           this.datos_giroscopio.push(aux);          
         }
-        this.datos_entrenamiento();
         this.reload_chart(); // se llama al método que vuelve a cargar el gráfico
         //alert('oka'+JSON.stringify(resultado));
       },
@@ -574,7 +574,7 @@ export class EstadisticasdepPage {
 
   //método que llama a la funcion para traer los datos del acelerometro y giroscopio para graficarlos
   escoger_entrenamiento(){
-    this.consultar_acc();
+    this.datos_entrenamiento();
   }
 
   //método que destruye el gráfico y realiza uno nuevo
