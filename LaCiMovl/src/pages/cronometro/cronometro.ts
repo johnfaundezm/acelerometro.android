@@ -433,16 +433,14 @@ export class CronometroPage {
                  this.min1 +=1;
                }
            }
-           
          }
-       }
+       }       
      },10); // se define el cronometro visual en intervalo de centesimas de segundo
     }
     this.enviar_datos_basedatos();
  }
 
   enviar_datos_basedatos(){
-    this.alerta_confirmacion();
     this.webservices.acelerometro_datos(this.id_entrenamiento, this.arrayaccX, this.arrayaccY, this.arrayaccZ, this.arrayacel_x_y_z, this.arrayfuerza, this.arraypotencia).then( // se envian los datos al servidor web
       (datos) =>{
         //var respuesta= datos[0].RESPUESTA;
@@ -479,6 +477,7 @@ export class CronometroPage {
    this.contador_recuperacion = null;
    // se redefine el timepo de entrenamiento como 0
    this.tiempo=0;
+   this.alerta_confirmacion();
   }
 
   lapso(){
