@@ -21,4 +21,9 @@ page-datosentrenamiento {//estilos de la vista datosentrenamiento
         text-align: center !important;//alineación del texto
         color: whitesmoke;//color del texto
     }
+
+    //estilo de la etiqueta donde se muestra la informacion
+    .textarea {
+        text-align-last: right;//alineado a la derecha
+    }
 }
