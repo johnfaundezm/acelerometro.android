@@ -396,12 +396,11 @@ export class CronometroentPage {
                  this.min1 +=1;
                }
            }
-           
+           this.alerta_confirmacion();
          }
        }
      },10); // se define el cronometro visual en intervalo de centesimas de segundo
     } 
-    this.alerta_confirmacion();
  }
  finalizar_recuperacion(){
    this.playAudiof();
