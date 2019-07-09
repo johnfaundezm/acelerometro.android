@@ -407,6 +407,7 @@ export class CronometroPage {
 
   recuperacion(){
     // se analiza si el contador fue definido o aun no
+    
     if (this.tiempo_recuperacion==0){
       this.finalizar_recuperacion();
     }else{
@@ -437,6 +438,7 @@ export class CronometroPage {
        }
      },10); // se define el cronometro visual en intervalo de centesimas de segundo
     }
+    this.enviar_datos_basedatos();
  }
 
   enviar_datos_basedatos(){
@@ -477,7 +479,6 @@ export class CronometroPage {
    this.contador_recuperacion = null;
    // se redefine el timepo de entrenamiento como 0
    this.tiempo=0;
-   this.enviar_datos_basedatos();
   }
 
   lapso(){
