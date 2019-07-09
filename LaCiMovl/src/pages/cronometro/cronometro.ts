@@ -433,7 +433,6 @@ export class CronometroPage {
                  this.min1 +=1;
                }
            }
-           this.alerta_confirmacion();
          }
        }       
      },10); // se define el cronometro visual en intervalo de centesimas de segundo
@@ -478,6 +477,7 @@ export class CronometroPage {
    this.contador_recuperacion = null;
    // se redefine el timepo de entrenamiento como 0
    this.tiempo=0;
+   this.alerta_confirmacion();
   }
 
   lapso(){
