@@ -46,7 +46,15 @@ export class DatosentrenamientoPage {
   datos_giroscopio = [];
 
   email_dep:any;
-
+  nombre_dep:any;
+  apellido_p_dep:any;
+  apellido_m_dep:any;
+  genero_dep:any;
+  edad_dep:any;
+  peso_dep:any;
+  estatura_dep:any;
+  imc_dep:any;
+  pais_dep:any;
   //Constructor, donde se declaran todos los plugins
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider)  {
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar'); //se pasa el elemento tabbar a la variable antes declarada
@@ -60,11 +68,13 @@ export class DatosentrenamientoPage {
   ionViewDidLoad() { // evento que se realiza al cargar la vista
     console.log('ionViewDidLoad DatosentrenamientoPage');
       this.consultar_acc(); // se llama al método que consulta los datos del acelerometro
+      
   }
 
   
   ionViewWillEnter() {// evento que se realiza antes de cargar la vista
     this.nombre_entrenamiento();
+    this.datos_deportista();
     this.tabBarElement.style.display = 'none';//antes de entrar a la vista se oculta el tabbar
   }
   
