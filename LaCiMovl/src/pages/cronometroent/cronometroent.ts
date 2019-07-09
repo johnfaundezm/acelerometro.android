@@ -342,7 +342,7 @@ export class CronometroentPage {
     this.detenerAcelerometro(); // se detiene acelerometro
     this.detenerGiroscopio(); // se detiene giroscopio
     this.playAudiof(); // se reproduce audio de finalizacion
-    this.playAudiofn(); // se reproduce audio de finalizacion por voz
+    //this.playAudiofn(); // se reproduce audio de finalizacion por voz
     // se restaura el cronometro como 0
     this.min2 = 0; 
     this.min1 = 0; 
@@ -401,7 +401,7 @@ export class CronometroentPage {
     } 
  }
  finalizar_recuperacion(){
-   //this.playAudiof();
+   this.playAudiof();
     // se restaura el cronometro como 0
    this.min2 = 0; 
    this.min1 = 0; 
