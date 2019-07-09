@@ -101,6 +101,7 @@ export class EstadisticasdepPage {
   }
 
   ionViewWillEnter(){
+    this.datos_entrenamiento();
     // whiles que borran un espacio vacío de un arreglo
     while(this.entrenador.length>0){
       this.entrenador.pop();
