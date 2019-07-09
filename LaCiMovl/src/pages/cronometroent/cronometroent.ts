@@ -195,7 +195,6 @@ export class CronometroentPage {
       //alert('oka'+JSON.stringify(resultado));
       },
       (error) =>{
-        this.loading.dismiss();
         alert('error'+JSON.stringify(error));
       })
   }

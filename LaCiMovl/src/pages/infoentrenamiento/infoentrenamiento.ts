@@ -143,13 +143,13 @@ export class InfoentrenamientoPage {
 
   actualizar_estado(){
     this.load(); // comienza el loading
-    this.estado=1; //se cambia el estado a 1
+    this.estado=4; //se cambia el estado a 1
     this.webservices.actualizar_creacion_entrenamiento(this.id_entrenamiento,this.estado).then( // se envian todos los parametros que se ven en el paréntesis
       (datos) =>{ // se reciben los datos de respuesta del servidor
         this.respuesta= datos[0].RESPUESTA; // se almacena la respuesta en una variable 
         if(this.respuesta=='OK'){ // si la respuesta es "OK"
           this.loading.dismiss(); // Se termina el loading
-          alert('Los cambios se han realizado satisfactoriamente') // Se envia un alert con el mensaje correspondiente
+          //alert('Los cambios se han realizado satisfactoriamente') // Se envia un alert con el mensaje correspondiente
         }else{
           if(this.respuesta=='ERROR'){
             this.loading.dismiss(); // Se termina el loading
