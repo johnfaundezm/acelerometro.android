@@ -101,7 +101,6 @@ export class EstadisticasdepPage {
   }
 
   ionViewWillEnter(){
-    this.datos_entrenamiento();
     // whiles que borran un espacio vacío de un arreglo
     while(this.entrenador.length>0){
       this.entrenador.pop();
@@ -243,6 +242,7 @@ export class EstadisticasdepPage {
           this.datos_giroscopioZ.push(auxZ);
           this.datos_giroscopio.push(aux);          
         }
+        this.datos_entrenamiento();
         this.reload_chart(); // se llama al método que vuelve a cargar el gráfico
         //alert('oka'+JSON.stringify(resultado));
       },
