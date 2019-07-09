@@ -24,6 +24,7 @@ export class DatosentrenamientodepPage {
   id_entrenamiento:any;
   correo:any;
   id_solicitud:any;
+  tipo_entrenamiento
 
   tabBarElement: any; //variable que almacena el elemento tabbar
 
@@ -60,6 +61,7 @@ export class DatosentrenamientodepPage {
 
   
   ionViewWillEnter() {// evento que se realiza antes de cargar la vista
+    this.datos_entrenamiento();
     this.nombre_entrenamiento();
     this.tabBarElement.style.display = 'none';//antes de entrar a la vista se oculta el tabbar
   }
@@ -109,6 +111,17 @@ export class DatosentrenamientodepPage {
     }
   }
 
+  datos_entrenamiento(){
+    this.webservices.consultar_entrenamiento_por_id(this.val_entre).then(//llama a la funcion del webservices.ts y le envia la id del entrenamiento
+      (datos)=>{// recibe los datos de la consulta
+        //alert(JSON.stringify(datos));
+        this.tipo_entrenamiento = datos[0].NOMBRE;
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
+  }
+
   consultar_acc(){
     // se vacian todos los arreglos
     this.datos_acelerometroX=[];
@@ -122,9 +135,21 @@ export class DatosentrenamientodepPage {
       (datos) =>{// se reciben los datos de respuesta del servidor
         let largo:any=Object.keys(datos).length; // se calcula el largo de el arreglo que llegará del servidor con los datos
         //var division=largo/1;
+        var frec;
+        if(this.tipo_entrenamiento=='saltar' || this.tipo_entrenamiento=='golpear' || this.tipo_entrenamiento=='carrera_corta'){
+          frec=0.1;
+        }else{
+          if(this.tipo_entrenamiento=='carrera_larga'){
+            frec=1;
+          }else{
+            if(this.tipo_entrenamiento=='caminar'){
+              frec=0.5;
+            }
+          }
+        }
         var x=0;
         for(var i=0;i<largo;i++){
-          x+=0.1;
+          x+=frec;
           var yX = datos[i].ACELERACIONX; // se almacena el dato en una variable
           var yY = datos[i].ACELERACIONY; // se almacena el dato en una variable
           var yZ = datos[i].ACELERACIONZ; // se almacena el dato en una variable
@@ -170,9 +195,21 @@ export class DatosentrenamientodepPage {
     this.webservices.consulta_giroscopio_datos(this.val_entre).then( // se envian todos los parametros que se ven en el paréntesis
       (datos) =>{// se reciben los datos de respuesta del servidor
         let largo=Object.keys(datos).length; // se calcula el largo de el arreglo que llegará del servidor con los datos
+        var frec;
+        if(this.tipo_entrenamiento=='saltar' || this.tipo_entrenamiento=='golpear' || this.tipo_entrenamiento=='carrera_corta'){
+          frec=0.1;
+        }else{
+          if(this.tipo_entrenamiento=='carrera_larga'){
+            frec=1;
+          }else{
+            if(this.tipo_entrenamiento=='caminar'){
+              frec=0.5;
+            }
+          }
+        }
         var x=0;
         for(var i=0;i<largo;i++){
-          x+=0.1;
+          x+=frec;
           var varX = datos[i].ORIENTACIONX; // se almacena el dato en una variable
           var varY = datos[i].ORIENTACIONY; // se almacena el dato en una variable
           var varZ = datos[i].ORIENTACIONZ; // se almacena el dato en una variable

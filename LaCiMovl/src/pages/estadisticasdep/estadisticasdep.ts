@@ -31,6 +31,7 @@ export class EstadisticasdepPage {
 
   val_ent: any;
   val_entre: any;
+  tipo_entrenamiento:any;
 
   //arreglos que almacenan los datos para le gráfico
   datos_acelerometroX = [];
@@ -100,6 +101,7 @@ export class EstadisticasdepPage {
   }
 
   ionViewWillEnter(){
+    this.datos_entrenamiento();
     // whiles que borran un espacio vacío de un arreglo
     while(this.entrenador.length>0){
       this.entrenador.pop();
@@ -109,6 +111,17 @@ export class EstadisticasdepPage {
     }
 
     this.consulta_enlace(); // se llama al método que consulta los enlaces que tiene el deportista
+  }
+
+  datos_entrenamiento(){
+    this.webservices.consultar_entrenamiento_por_id(this.val_entre).then(//llama a la funcion del webservices.ts y le envia la id del entrenamiento
+      (datos)=>{// recibe los datos de la consulta
+        //alert(JSON.stringify(datos));
+        this.tipo_entrenamiento = datos[0].NOMBRE;
+      },
+      (err)=>{
+        alert(JSON.stringify(err))
+      })
   }
 
   consulta_enlace(){
@@ -144,9 +157,21 @@ export class EstadisticasdepPage {
       (datos) =>{// se reciben los datos de respuesta del servidor
         let largo=Object.keys(datos).length; // se calcula el largo de el arreglo que llegará del servidor con los datos
         //var division=largo/1;
+        var frec;
+        if(this.tipo_entrenamiento=='saltar' || this.tipo_entrenamiento=='golpear' || this.tipo_entrenamiento=='carrera_corta'){
+          frec=0.1;
+        }else{
+          if(this.tipo_entrenamiento=='carrera_larga'){
+            frec=1;
+          }else{
+            if(this.tipo_entrenamiento=='caminar'){
+              frec=0.5;
+            }
+          }
+        }
         var x=0;
         for(var i=0;i<largo;i++){
-          x+=0.1;
+          x+=frec;
           var yX = datos[i].ACELERACIONX; // se almacena el dato en una variable
           var yY = datos[i].ACELERACIONY; // se almacena el dato en una variable
           var yZ = datos[i].ACELERACIONZ; // se almacena el dato en una variable
@@ -188,9 +213,21 @@ export class EstadisticasdepPage {
     this.webservices.consulta_giroscopio_datos(this.val_entre).then( // se envian todos los parametros que se ven en el paréntesis
       (datos) =>{// se reciben los datos de respuesta del servidor
         let largo=Object.keys(datos).length; // se calcula el largo de el arreglo que llegará del servidor con los datos
+        var frec;
+        if(this.tipo_entrenamiento=='saltar' || this.tipo_entrenamiento=='golpear' || this.tipo_entrenamiento=='carrera_corta'){
+          frec=0.1;
+        }else{
+          if(this.tipo_entrenamiento=='carrera_larga'){
+            frec=1;
+          }else{
+            if(this.tipo_entrenamiento=='caminar'){
+              frec=0.5;
+            }
+          }
+        }
         var x=0;
         for(var i=0;i<largo;i++){
-          x+=0.1;
+          x+=frec;
           var varX = datos[i].ORIENTACIONX; // se almacena el dato en una variable
           var varY = datos[i].ORIENTACIONY; // se almacena el dato en una variable
           var varZ = datos[i].ORIENTACIONZ; // se almacena el dato en una variable
@@ -272,16 +309,16 @@ export class EstadisticasdepPage {
         },
         tooltips: {//herramientas
           enabled: true,
-          callbacks: {
-            //funcioón para solo mostrar el valor del eje y
-            label: function(tooltipItem, data) {
-                return tooltipItem.yLabel;
+          /*callbacks: {
+              funcioón para solo mostrar el valor del eje y
+              label: function(tooltipItem, data) {
+              return tooltipItem.yLabel;
             }
-          }
+          }*/
         },
         scales: {//escalas
           xAxes: [{
-            display: false,//para no mostrar la escala en el eje x
+            display: true,//para no mostrar la escala en el eje x
             type: 'linear',
             position: 'bottom'//posición abajo
           }],
@@ -339,16 +376,16 @@ export class EstadisticasdepPage {
         },
         tooltips: {//herramientas
           enabled: true,
-          callbacks: {
+         /* callbacks: {
             //funcioón para solo mostrar el valor del eje y
             label: function(tooltipItem, data) {
                 return tooltipItem.yLabel;
             }
-          }
+          }*/
         },
         scales: {//escalas
           xAxes: [{
-            display: false,//para no mostrar la escala en el eje x
+            display: true,//para no mostrar la escala en el eje x
             type: 'linear',
             position: 'bottom'//posición abajo
           }],
@@ -419,16 +456,16 @@ export class EstadisticasdepPage {
         },
         tooltips: {//herramientas
           enabled: true,
-          callbacks: {
+         /* callbacks: {
             //funcioón para solo mostrar el valor del eje y
             label: function(tooltipItem, data) {
                 return tooltipItem.yLabel;
             }
-          }
+          }*/
         },
         scales: {//escalas
           xAxes: [{
-            display: false,//para no mostrar la escala en el eje x
+            display: true,//para no mostrar la escala en el eje x
             type: 'linear',
             position: 'bottom'//posición abajo
           }],
@@ -498,7 +535,7 @@ export class EstadisticasdepPage {
         },
         scales: {//escalas
           xAxes: [{
-            display: false,//para no mostrar la escala en el eje x
+            display: true,//para no mostrar la escala en el eje x
             type: 'linear',
             position: 'bottom'//posición abajo
           }],
