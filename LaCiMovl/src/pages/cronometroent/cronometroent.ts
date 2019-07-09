@@ -402,6 +402,7 @@ export class CronometroentPage {
     } 
  }
  finalizar_recuperacion(){
+   var cont=0;
    this.playAudiof();
     // se restaura el cronometro como 0
    this.min2 = 0; 
@@ -415,7 +416,10 @@ export class CronometroentPage {
    this.contador_recuperacion = null;
    // se redefine el timepo de entrenamiento como 0
    this.tiempo=0;
-   this.alerta_confirmacion();
+   if(cont==0){
+    this.alerta_confirmacion();
+    cont=1;
+   }
  }
   lapso(){
     //se define un objeto para almacenar distintas marcas de tiempo durante el entrenamiento 
