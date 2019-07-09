@@ -400,7 +400,7 @@ export class CronometroPage {
   recuperacion(){
     // se analiza si el contador fue definido o aun no
     if (this.tiempo_recuperacion==0){
-      this.finalizar_recuperacion;
+      this.finalizar_recuperacion();
     }else{
       alert("Comienza el tiempo de recuperación")
      this.playAudiof();
