@@ -78,11 +78,11 @@ export class DeportistasentPage {
     var temp: any;
     temp = this.aux;
    
-    for (var i = 0; i < this.enlaces.length; i++) {
-      for (var y = 0; y < this.aux.length; y++) {
-        if (this.aux[y].email_dep==this.enlaces[i].email) {
-          temp.splice(y,1);
-          this.aux.splice(y,1);
+    for (var i = 0; i < this.enlaces.length; i++) {//se repite la cantidad de veces, como enlazados hay
+      for (var y = 0; y < this.aux.length; y++) {//se repite la cantidad de veces, como deportistas hay
+        if (this.aux[y].email_dep==this.enlaces[i].email) {//se comparan los valores de los enlazados con los deportistas
+          temp.splice(y,1);//se elimina el deportista repetido
+          this.aux.splice(y,1);//se elimina el deportista repetido
         }
       }
     }
@@ -91,7 +91,7 @@ export class DeportistasentPage {
       temp.splice(temp.indexOf(this.enlaces[j]), 1);
     }
 */   
-    this.items = temp;
+    this.items = temp;//se le pasan los valores de los deportistas que no estan enlazados y luego se muestran en la lista
   }
 
   getItems(ev: any) {// Método que filtra los deportistas
