@@ -85,7 +85,7 @@ export class InfoentrenamientoPage {
 
     this.loading.onDidDismiss(() => {// funcion que realiza una acción al terminar con el loading
       this.actualizar_estado() // se llama al método actualizar estado
-      this.navCtrl.push(CronometroentPage, {id_entrenamiento:this.id_entrenamiento,correo:this.correo, id_solicitud:this.id_solicitud}); // esta funcion redirige a otra vista mandando las variables ingresadas dentro del corchete {}
+      this.navCtrl.push(CronometroentPage, {email_dep:this.email_dep,id_entrenamiento:this.id_entrenamiento,correo:this.correo, id_solicitud:this.id_solicitud}); // esta funcion redirige a otra vista mandando las variables ingresadas dentro del corchete {}
     });
   
     this.loading.present();

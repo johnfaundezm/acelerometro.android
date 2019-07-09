@@ -45,10 +45,13 @@ export class DatosentrenamientoPage {
   datos_giroscopioZ = [];
   datos_giroscopio = [];
 
+  email_dep:any;
+
   //Constructor, donde se declaran todos los plugins
   constructor(public navCtrl: NavController, public navParams: NavParams, private webservices: WebservicesProvider)  {
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar'); //se pasa el elemento tabbar a la variable antes declarada
     //se reciben las variables de la vista anterior y se almacenan en una variable dentro de la vista
+    this.email_dep = navParams.get('email_dep');
     this.val_entre = navParams.get('id_entrenamiento');
     this.correo = navParams.get('correo');
     this.id_solicitud = navParams.get('id_solicitud');
@@ -110,6 +113,26 @@ export class DatosentrenamientoPage {
     }
   }
 
+  datos_deportista(){
+    this.webservices.consulta(this.email_dep).then( // se envia el correo a consultar
+      (datos)=>{ //se reciben los datos como respuesta
+        //alert(JSON.stringify(datos));
+        
+          this.nombre_dep= datos[0].NOMBRE; // se almacena el dato en una variable
+          this.apellido_p_dep= datos[0].APELLIDO_P; // se almacena el dato en una variable
+          this.apellido_m_dep= datos[0].APELLIDO_M; // se almacena el dato en una variable
+          this.genero_dep= datos[0].GENERO; // se almacena el dato en una variable
+          this.edad_dep= datos[0].EDAD; // se almacena el dato en una variable
+          this.peso_dep= datos[0].PESO; // se almacena el dato en una variable
+          this.estatura_dep= datos[0].ESTATURA; // se almacena el dato en una variable
+          this.imc_dep= datos[0].IMC; // se almacena el dato en una variable
+          this.pais_dep= datos[0].PAIS; // se almacena el dato en una variable
+      },
+      (err)=>{
+        alert(JSON.stringify(err)) // si ocurre un error de comunicacion se tira este error
+      })
+  }
+
   consultar_acc(){
     // se vacian todos los arreglos
     this.datos_acelerometroX=[];
@@ -119,6 +142,8 @@ export class DatosentrenamientoPage {
     this.datos_acelerometroF=[];
     this.datos_acelerometroP=[];
 
+   
+   
     this.webservices.consulta_acelerometro_datos(this.val_entre).then(// se envian todos los parametros que se ven en el paréntesis
       (datos) =>{// se reciben los datos de respuesta del servidor
         let largo:any=Object.keys(datos).length; // se calcula el largo de el arreglo que llegará del servidor con los datos

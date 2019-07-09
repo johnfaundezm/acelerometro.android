@@ -77,6 +77,8 @@ export class CronometroentPage {
   public contador : any; //variable de intervalo para cronometro
   public contador_recuperacion : any; // variable recuperacion
 //-----------------------------------
+
+  email_dep:any
   
   actividades: string = 'ejercicio';
   tiempoMarca: any;  //marca del tiempo para pausas
@@ -87,6 +89,7 @@ export class CronometroentPage {
 
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar'); //se pasa el elemento tabbar a la variable antes declarada
 
+    this.email_dep= this.navParams.get('email_dep');
     this.correo = this.navParams.get('correo'); //Se recibe el correo del deportista
     this.id_ent = this.navParams.get('id_entrenamiento');
     this.id_solicitud = this.navParams.get('id_solicitud');
@@ -221,7 +224,7 @@ export class CronometroentPage {
         {
           text: 'Aceptar',//nombre del boton 2
           handler: () => {
-            this.navCtrl.push(DatosentrenamientoPage, {id_entrenamiento:this.id_ent, correo:this.correo, id_solicitud:this.id_solicitud})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
+            this.navCtrl.push(DatosentrenamientoPage, {email_dep:this.email_dep,id_entrenamiento:this.id_ent, correo:this.correo, id_solicitud:this.id_solicitud})// se mueve hacia la vista indicada, pasando las variables en corchetes "{}"
           }
         }
       ]
