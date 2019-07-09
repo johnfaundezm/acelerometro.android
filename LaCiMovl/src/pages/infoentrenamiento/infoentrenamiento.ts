@@ -143,7 +143,7 @@ export class InfoentrenamientoPage {
 
   actualizar_estado(){
     this.load(); // comienza el loading
-    this.estado=4; //se cambia el estado a 1
+    this.estado=1; //se cambia el estado a 1
     this.webservices.actualizar_creacion_entrenamiento(this.id_entrenamiento,this.estado).then( // se envian todos los parametros que se ven en el paréntesis
       (datos) =>{ // se reciben los datos de respuesta del servidor
         this.respuesta= datos[0].RESPUESTA; // se almacena la respuesta en una variable 
