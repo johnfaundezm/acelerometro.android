@@ -36,10 +36,10 @@
         <!--scroll para mover la lista-->
         <ion-scroll scrollY="true">
           <ion-list inset ><!-- lista donde se mostraran los deportistas enlazados-->
-            <ion-item-sliding *ngFor="let d of enlaces"><!--permite mover el el nombre para ver botones con actividades-->
+            <ion-item-sliding *ngFor="let d of enlaces"><!--permite mover  el nombre para ver botones con actividades-->
                 <ion-item class="formato_item"><!--item contenedor de los datos mostrados de los deportistas enlazados-->
                   <h2>{{d.email}}</h2><!--correo del deportista en la lista-->
-                  <p style="text-align: center">{{d.ide}}  {{d.fecha}}</p><!--id del entrenamiento y fecha de enlace-->
+                  <p style="text-align: center">{{d.fecha}}</p><!--id del entrenamiento y fecha de enlace-->
                 </ion-item>
                 <ion-item-options side="left"><!--botone del sliding-->
                   <button ion-button color="danger" (click)="borrar_enlace(d.ide)"><!--botón e icono para eliminar enlace con deportista seleccionado-->
