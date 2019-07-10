@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController, Nav } from 'ionic-angular';
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 import { HomePage } from '../home/home';
+import { CronometroentPage } from '../cronometroent/cronometroent';
 
 @IonicPage()
 @Component({
@@ -38,7 +39,7 @@ export class EntrenadortabsPage {
     this.pages = [
       //{ title: 'Salir', component: HomePage },
       //{ title: 'Cronometro', component: CronometroPage },
-      //{ title: 'Cronometroent', component: CronometroentPage }
+      { title: 'Cronometroent', component: CronometroentPage }
     ];
   }
 
