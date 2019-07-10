@@ -132,6 +132,30 @@ export class DeportistasentPage {
     confirm.present();
   }
 
+  confirmar_borrado_enlace(id_solicitud) {
+    const confirm = this.alertCtrl.create({ // se crea la alerta
+      title: 'Borrar Enlace', // titulo de la alerta
+      message: '¿Está seguro que desea finalizar el enlace?', // mensaje de la alerta
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            // funciones  a realizar al apretar el botón
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: () => {
+            // funciones  a realizar al apretar el botón
+            this.borrar_enlace_bd(id_solicitud);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
   insercion_solicitud(){
     this.getFormattedDate(); // se llama al método que da el formato de la fecha
     this.webservices.insertar_solicitud(this.correo_deportista, this.correo, 1,this.formattedDate).then( // se envian todos los parametros que se ven en el paréntesis
@@ -222,6 +246,10 @@ export class DeportistasentPage {
   }
 
   borrar_enlace(id_solicitud){
+    this.confirmar_borrado_enlace(id_solicitud);
+  }
+
+  borrar_enlace_bd(id_solicitud){
     this.webservices.borrar_enlace(id_solicitud).then(
       (datos)=>{// se reciben los datos de respuesta del servidor
         var respuesta= datos[0].RESPUESTA;
