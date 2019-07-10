@@ -581,4 +581,8 @@ export class CronometroentPage {
     }
   }
 
+  volver(){
+    this.navCtrl.setRoot(DeportistasentPage, {correo:this.correo});
+  }
+
 }

@@ -667,5 +667,9 @@ export class CronometroPage {
     }
   }
 
+  volver(){
+    this.navCtrl.setRoot(EntrenamientoPage, {correo:this.correo});
+  }
+
 }
   
