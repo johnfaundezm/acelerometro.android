@@ -72,6 +72,26 @@ export class ListPage {
     this.loading.present();
   }
 
+  load_pasar_de_vista() { //loading que se muesta en pantalla al llamar esta función
+    this.loading = this.loadingCtrl.create({ // se crea el loading
+      spinner: 'ios', //tipo de animación al estar cargando
+      content: 'Entrando al entrenamiento...', //mensaje que muestra al estar cargando
+      dismissOnPageChange: true // funcion que permite detener el loading al cambiar de vista
+    });
+
+    this.loading.onDidDismiss(() => {// funcion que realiza una acción al terminar con el loading
+      this.actualizar_estado() // se llama al método actualizar estado
+      this.loading.dismiss(); // se termina el loading
+      this.navCtrl.push(CronometroPage, {id_entrenamiento:this.id_ent, email:this.email,id_solicitud:this.id_solicitud,correo:this.correo}); // esta funcion redirige a otra vista mandando las variables ingresadas dentro del corchete {}
+    });
+  
+    this.loading.present();
+
+    setTimeout(() => { //funcion que realiza una accion pasado los 2000 milisegundos
+      this.loading.dismiss(); // se termina el loading
+    }, 2000);
+  }
+
   time(){// función recursiva que se activa cada 2 segundos
     setTimeout(() => {
       if(this.a==1){// si a es igual a 1  se ingresa al if para poder llamar a la recursividad
@@ -148,8 +168,7 @@ export class ListPage {
           text: 'Aceptar',//nombre del boton 2
           handler: () => {
             this.loading.dismiss();// detiene el loading
-            this.navCtrl.push(CronometroPage, {id_entrenamiento:this.id_ent, email:this.email,id_solicitud:this.id_solicitud,correo:this.correo});
-            this.actualizar_estado();// se llama a al funcion que actualiza el estado
+            this.load_pasar_de_vista();
           }
         }
       ]
