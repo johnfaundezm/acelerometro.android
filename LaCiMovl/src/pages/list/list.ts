@@ -166,7 +166,6 @@ export class ListPage {
         this.respuesta= datos[0].RESPUESTA; // se almacena la respuesta en una variable 
         if(this.respuesta=='OK'){ // si la respuesta es "OK"
           this.loading.dismiss(); // Se termina el loading
-          alert('Los cambios se han realizado satisfactoriamente') // Se envia un alert con el mensaje correspondiente
         }else{
           if(this.respuesta=='ERROR'){
             this.loading.dismiss(); // Se termina el loading
