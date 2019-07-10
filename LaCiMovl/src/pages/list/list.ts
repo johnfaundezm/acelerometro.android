@@ -81,6 +81,7 @@ export class ListPage {
 
     this.loading.onDidDismiss(() => {// funcion que realiza una acción al terminar con el loading
       this.actualizar_estado() // se llama al método actualizar estado
+      this.loading.dismiss(); // se termina el loading
       this.navCtrl.push(CronometroPage, {id_entrenamiento:this.id_ent, email:this.email,id_solicitud:this.id_solicitud,correo:this.correo}); // esta funcion redirige a otra vista mandando las variables ingresadas dentro del corchete {}
     });
   
@@ -167,7 +168,6 @@ export class ListPage {
           text: 'Aceptar',//nombre del boton 2
           handler: () => {
             this.loading.dismiss();// detiene el loading
-            this.actualizar_estado();// se llama a al funcion que actualiza el estado
             this.load_pasar_de_vista();
           }
         }
