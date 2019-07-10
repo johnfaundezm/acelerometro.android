@@ -237,6 +237,7 @@ export class CronometroPage {
         this.tipo_entrenamiento = datos[0].NOMBRE;
         this.tiempo_entrenamiento = datos[0].TIEMPO_ENT;
         this.tiempo_recuperacion = datos[0].TIEMPO_REC;
+        alert(this.tiempo_recuperacion)
         this.frecuenciasEntrenamiento();
       },
       (err)=>{
@@ -393,9 +394,7 @@ export class CronometroPage {
     this.contador_entrenamiento = null;
     // se redefine el timepo de entrenamiento como 0
     this.tiempo=0;
-    if(this.tiempo_recuperacion!=0){
-      this.recuperacion();
-    }
+    this.recuperacion();
      this.cambio= true;
   }
 
