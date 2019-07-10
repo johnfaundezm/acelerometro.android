@@ -318,7 +318,7 @@ export class EstadisticasdepPage {
         },
         scales: {//escalas
           xAxes: [{
-            display: true,//para no mostrar la escala en el eje x
+            display: true,//para mostrar la escala en el eje x
             type: 'linear',
             position: 'bottom'//posición abajo
           }],
@@ -385,7 +385,7 @@ export class EstadisticasdepPage {
         },
         scales: {//escalas
           xAxes: [{
-            display: true,//para no mostrar la escala en el eje x
+            display: true,//para mostrar la escala en el eje x
             type: 'linear',
             position: 'bottom'//posición abajo
           }],
@@ -465,7 +465,7 @@ export class EstadisticasdepPage {
         },
         scales: {//escalas
           xAxes: [{
-            display: true,//para no mostrar la escala en el eje x
+            display: true,//para mostrar la escala en el eje x
             type: 'linear',
             position: 'bottom'//posición abajo
           }],
@@ -535,7 +535,7 @@ export class EstadisticasdepPage {
         },
         scales: {//escalas
           xAxes: [{
-            display: true,//para no mostrar la escala en el eje x
+            display: true,//para mostrar la escala en el eje x
             type: 'linear',
             position: 'bottom'//posición abajo
           }],

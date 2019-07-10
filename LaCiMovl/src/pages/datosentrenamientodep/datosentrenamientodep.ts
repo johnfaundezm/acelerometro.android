@@ -291,16 +291,16 @@ export class DatosentrenamientodepPage {
         },
         tooltips: {//herramientas
           enabled: true,
-          callbacks: {
+          /*callbacks: {
              //funcioón para solo mostrar el valor del eje y
             label: function(tooltipItem, data) {
                 return tooltipItem.yLabel;
             }
-          }
+          }*/
         },
         scales: {//escalas
           xAxes: [{
-            display: false,//para no mostrar la escala en el eje x
+            display: true,//para mostrar la escala en el eje x
             type: 'linear',
             position: 'bottom'//posición abajo
           }],
@@ -358,16 +358,16 @@ export class DatosentrenamientodepPage {
         },
         tooltips: {//herramientas
           enabled: true,
-          callbacks: {
+          /*callbacks: {
             //funcioón para solo mostrar el valor del eje y
             label: function(tooltipItem, data) {
                 return tooltipItem.yLabel;
             }
-          }
+          }*/
         },
         scales: {//escalas
           xAxes: [{
-            display: false,//para no mostrar la escala en el eje x
+            display: true,//para mostrar la escala en el eje x
             type: 'linear',
             position: 'bottom'//posición abajo
           }],
@@ -438,16 +438,16 @@ export class DatosentrenamientodepPage {
         },
         tooltips: {//herramientas
           enabled: true,
-          callbacks: {
+          /*callbacks: {
             //funcioón para solo mostrar el valor del eje y
             label: function(tooltipItem, data) {
                 return tooltipItem.yLabel;
             }
-          }
+          }*/
         },
         scales: {//escalas
           xAxes: [{
-            display: false,//para no mostrar la escala en el eje x
+            display: true,//para mostrar la escala en el eje x
             type: 'linear',
             position: 'bottom'//posición abajo
           }],
@@ -506,16 +506,16 @@ export class DatosentrenamientodepPage {
         },
         tooltips: {//herramientas
           enabled: true,
-          callbacks: {
+          /*callbacks: {
             //funcioón para solo mostrar el valor del eje y
             label: function(tooltipItem, data) {
                 return tooltipItem.yLabel;
             }
-          }
+          }*/
         },
         scales: {//escalas
           xAxes: [{
-            display: false,//para no mostrar la escala en el eje x
+            display: true,//para mostrar la escala en el eje x
             type: 'linear',
             position: 'bottom'//posición abajo
           }],

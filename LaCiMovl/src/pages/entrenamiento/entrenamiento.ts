@@ -100,6 +100,30 @@ export class EntrenamientoPage {
     }
   }
 
+  confirmar_borrado_enlace(id_solicitud) {
+    const confirm = this.alertCtrl.create({ // se crea la alerta
+      title: 'Borrar Enlace', // titulo de la alerta
+      message: '¿Está seguro que desea finalizar el enlace?', // mensaje de la alerta
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            // funciones  a realizar al apretar el botón
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: () => {
+            // funciones  a realizar al apretar el botón
+            this.borrar_enlace_bd(id_solicitud);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
   actualizar_estado(){
     this.estado=3// cambia el estado a 3
     this.webservices.actualizar_solicitud(this.id_ent,this.estado).then( // se envian todos los parametros que se ven en el paréntesis
@@ -169,15 +193,19 @@ export class EntrenamientoPage {
   }
 
   borrar_enlace(id_solicitud){
-    this.webservices.borrar_enlace(id_solicitud).then( // se envian todos los parametros que se ven en el paréntesis
+    this.confirmar_borrado_enlace(id_solicitud);
+  }
+
+  borrar_enlace_bd(id_solicitud){
+    this.webservices.borrar_enlace(id_solicitud).then(
       (datos)=>{// se reciben los datos de respuesta del servidor
-        var respuesta= datos[0].RESPUESTA; // se almacena la respuesta en una variable 
-        if(respuesta=="OK"){ // si la respuesta es "OK"
-          alert('El enlace se ha borrado satisfactoriamente'); // Se envia un alert con el mensaje correspondiente
+        var respuesta= datos[0].RESPUESTA;
+        if(respuesta=="OK"){
+          alert('El enlace se ha borrado satisfactoriamente');
         }else{
-          alert('Ha ocurrido un problema en el borrado'); // Se envia un alert con el mensaje correspondiente
+          alert('Ha ocurrido un problema en el borrado');
         }
-        this.consulta_enlace(); // llama al método para refrescar los enlaces
+        this.consulta_enlace();
         //alert(JSON.stringify(datos));
       },
       (err)=>{
