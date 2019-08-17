@@ -53,7 +53,7 @@ export class DeportistasentPage {
     this.consulta_enlace_pend();// consulta los enlaces pendientes
 
     setTimeout(() => {// después de 2000 milisegundos se inicializan los items
-      this.initializeItems();
+      //this.initializeItems();
     }, 2000);
     
   }
@@ -221,11 +221,11 @@ export class DeportistasentPage {
           var fecha= datos[i].FECHA; // se almacena la fecha de la solicitud en una variable
           this.enlaces.push({"ide":ide,"email":email, "fecha":fecha}); // se envia al arreglo
         }
+        this.initializeItems();
       },
       (err)=>{
         alert(JSON.stringify(err)) // si ocurre un error de comunicacion con el servidor, se envia este mensaje
     })
-    //this.initializeItems();
   }
 
   consulta_deportistas(){
@@ -258,7 +258,7 @@ export class DeportistasentPage {
         }else{
           alert('Ha ocurrido un problema en el borrado');
         }
-        this.consulta_enlace();
+        this.consulta_deportistas();
         //alert(JSON.stringify(datos));
       },
       (err)=>{

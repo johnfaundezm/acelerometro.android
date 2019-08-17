@@ -556,7 +556,7 @@ export class WebservicesProvider {
   }
 
   //se crea el metodo para insertar una solicitud
-  insertar_solicitud(correo_solicitado,correo_solicitante,id_estado_solicitud,fecha_solicitud) {//se reciben las variables para insertar solicitud
+  insertar_solicitud(correo_deportista,correo_entrenador,id_estado_solicitud,fecha_solicitud) {//se reciben las variables para insertar solicitud
     return new Promise( (resolve, reject) => {
       
       let headers = new Headers({
@@ -567,7 +567,7 @@ export class WebservicesProvider {
       });
       // TODO: Encode the values using encodeURIComponent().
       //en el body se colocan las variables que van a hacer enviadas al php que se encuentra en el servidor, en el formato nombre de variable recibida igual al nombre de la variable que se envia
-      let body = 'correo_solicitado='+correo_solicitado +'&correo_solicitante='+correo_solicitante+'&id_estado_solicitud='+id_estado_solicitud +'&fecha_solicitud='+fecha_solicitud;
+      let body = 'correo_deportista='+correo_deportista +'&correo_entrenador='+correo_entrenador+'&id_estado_solicitud='+id_estado_solicitud +'&fecha_solicitud='+fecha_solicitud;
       //en la url se ingresa la direccion exacta del servidor en donde se encuentra el archivo php que se va a utilizar para recibir las variables
       let url = "http://159.65.169.94/webservices/insert_solicitud.php";
 

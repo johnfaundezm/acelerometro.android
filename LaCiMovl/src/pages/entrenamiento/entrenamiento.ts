@@ -130,6 +130,8 @@ export class EntrenamientoPage {
       (datos) =>{// se reciben los datos de respuesta del servidor
         this.respuesta= datos[0].RESPUESTA; // se almacena la respuesta en una variable 
       //alert('oka'+JSON.stringify(resultado));
+      this.consulta_solicitud_pend();
+      this.consulta_enlace();
       },
       (error) =>{
         alert('error'+JSON.stringify(error)); // si ocurre un error de comunicacion con el servidor, se envia este mensaje
