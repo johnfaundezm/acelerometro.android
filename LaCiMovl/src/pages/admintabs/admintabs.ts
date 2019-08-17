@@ -58,12 +58,12 @@ export class AdmintabsPage {
   //método para volver al home
   metodosalir(){
     this.actualizar_ingreso_cuenta(); // se actualiza el ingreso de la cuenta al salir
-    this.nav.setRoot(HomePage); // se envia al Homepage
+    this.navCtrl.setRoot(HomePage); // se envia al Homepage
   }
 
   openPage(page) {
     this.actualizar_ingreso_cuenta(); // se actualiza el ingreso de la cuenta al salir
     this.navCtrl.setRoot(page.component); // se envia a la pagina que se seleccione
   }
-  
+  d
 }
