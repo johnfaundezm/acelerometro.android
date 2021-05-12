@@ -31,7 +31,7 @@
     "@ionic-native/status-bar": "~4.20.0",
     "@ionic/storage": "^2.2.0",
     "@swimlane/ngx-charts": "^11.1.0",
-    "chart.js": "^2.8.0",
+    "chart.js": "^2.9.4",
     "complex-js": "^5.0.0",
     "complex.js": "^2.0.11",
     "cordova-android": "8.0.0",
